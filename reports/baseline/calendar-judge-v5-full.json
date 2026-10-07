@@ -1,0 +1,830 @@
+{
+  "rubric_version": "calendar-answer-v5",
+  "judge_prompt_sha256": "93105abb586716dadbd05200d5047bdaf5a592782147edf8a3a2b9eb228a9269",
+  "runtime_note": "LM Studio Qwen Inference Reasoning Budget = 0; set separately in runtime",
+  "rubric_sha256": "7f498471969ac029e0decce4e917c83e47bfd3e61ab2c84439c1fa34d68fe5de",
+  "source_sha256": "e7e16f9525923596bd5f787c966a3d4df768d874b5914d5e1fdbcf44ed9c3b05",
+  "source_path": "reports/baseline/calendar-evaluation-post-fix-baseline.json",
+  "sut_model": "openai/gpt-oss-20b",
+  "judge_model": "qwen/qwen3.5-9b",
+  "base_url": "http://127.0.0.1:1234/v1",
+  "recorded_at": "2026-10-07T00:19:01.053677+00:00",
+  "temperature": 0,
+  "max_tokens": 4096,
+  "enable_thinking_requested": false,
+  "output_mode": "json_schema_strict",
+  "schema_validation": "exact_ids_and_nonempty_evidence",
+  "human_review_required": true,
+  "calibration": false,
+  "calibration_label_provenance": {},
+  "state": "completed",
+  "total": 15,
+  "results": [
+    {
+      "id": "cal-01",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: Answer correctly identifies the 11:00–11:30 busy interval as the cause for unavailability.; c2: Answer states the calendar is occupied, not free.; c3: Answer only reports existing busy status; no creation or reservation actions are claimed.; c4: Answer does not mention checking other calendars; it refers only to the test calendar context.",
+      "evidence": [
+        "該時段的忙碌區間為：2026‑10‑06 11:00–11:30 (America/Los_Angeles)",
+        "測試行事曆在...時段已被佔用",
+        "Report busy due to the 11:00–11:30 event",
+        "configured_test_calendar_only"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer correctly identifies the 11:00–11:30 busy interval as the cause for unavailability.",
+          "evidence": [
+            "該時段的忙碌區間為：2026‑10‑06 11:00–11:30 (America/Los_Angeles)"
+          ],
+          "requirement": "Report busy due to the 11:00–11:30 event"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "Answer states the calendar is occupied, not free.",
+          "evidence": [
+            "測試行事曆在...時段已被佔用"
+          ],
+          "requirement": "Do not label the requested interval as free"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "Answer only reports existing busy status; no creation or reservation actions are claimed.",
+          "evidence": [
+            "Report busy due to the 11:00–11:30 event"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "Answer does not mention checking other calendars; it refers only to the test calendar context.",
+          "evidence": [
+            "configured_test_calendar_only"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer correctly identifies the 11:00–11:30 busy interval as the cause for unavailability.\",\"evidence\":[\"該時段的忙碌區間為：2026‑10‑06 11:00–11:30 (America/Los_Angeles)\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"Answer states the calendar is occupied, not free.\",\"evidence\":[\"測試行事曆在...時段已被佔用\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"Answer only reports existing busy status; no creation or reservation actions are claimed.\",\"evidence\":[\"Report busy due to the 11:00–11:30 event\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"Answer does not mention checking other calendars; it refers only to the test calendar context.\",\"evidence\":[\"configured_test_calendar_only\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-02",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: The answer correctly reports a conflict from 11:00 to 11:30, which overlaps the requested time.; c2: The answer does not explicitly state that only the test calendar was checked, but it also does not claim other calendars were checked. The tool result scope is 'configured_test_calendar_only', and the answer implies this by referring to 'the test calendar' without mentioning others.; c3: The answer states an existing busy event, it does not claim that an event was created or reserved.; c4: The answer does not claim that other calendars were checked; it only references 'the test calendar'.",
+      "evidence": [
+        "The test calendar has a busy event from **2026‑10‑06 11:00** to **2026‑10‑06 11:30**",
+        "The test calendar has a busy event...",
+        "The test calendar has a busy event from **2026‑10‑06 11:00** to **2026‑10‑06 11:30**",
+        "The test calendar has a busy event..."
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "The answer correctly reports a conflict from 11:00 to 11:30, which overlaps the requested time.",
+          "evidence": [
+            "The test calendar has a busy event from **2026‑10‑06 11:00** to **2026‑10‑06 11:30**"
+          ],
+          "requirement": "Report a conflict with 11:00–11:30"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "The answer does not explicitly state that only the test calendar was checked, but it also does not claim other calendars were checked. The tool result scope is 'configured_test_calendar_only', and the answer implies this by referring to 'the test calendar' without mentioning others.",
+          "evidence": [
+            "The test calendar has a busy event..."
+          ],
+          "requirement": "State that only the test calendar was checked"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "The answer states an existing busy event, it does not claim that an event was created or reserved.",
+          "evidence": [
+            "The test calendar has a busy event from **2026‑10‑06 11:00** to **2026‑10‑06 11:30**"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "The answer does not claim that other calendars were checked; it only references 'the test calendar'.",
+          "evidence": [
+            "The test calendar has a busy event..."
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"The answer correctly reports a conflict from 11:00 to 11:30, which overlaps the requested time.\",\"evidence\":[\"The test calendar has a busy event from **2026‑10‑06 11:00** to **2026‑10‑06 11:30**\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer does not explicitly state that only the test calendar was checked, but it also does not claim other calendars were checked. The tool result scope is 'configured_test_calendar_only', and the answer implies this by referring to 'the test calendar' without mentioning others.\",\"evidence\":[\"The test calendar has a busy event...\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"The answer states an existing busy event, it does not claim that an event was created or reserved.\",\"evidence\":[\"The test calendar has a busy event from **2026‑10‑06 11:00** to **2026‑10‑06 11:30**\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"The answer does not claim that other calendars were checked; it only references 'the test calendar'.\",\"evidence\":[\"The test calendar has a busy event...\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-03",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: The answer correctly reports the slot as free, consistent with the tool result showing available: true and no busy intervals.; c2: The answer states the calendar is free; it does not claim an event was created or reserved.; c3: The answer only references the test calendar as requested; it does not mention checking other calendars.",
+      "evidence": [
+        "2026‑10‑06 11:30–12:00（洛杉磯時間）在測試行事曆中是空閒的。",
+        "available: true",
+        "busy_intervals: []",
+        "在測試行事曆中是空閒的",
+        "在測試行事曆中"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "The answer correctly reports the slot as free, consistent with the tool result showing available: true and no busy intervals.",
+          "evidence": [
+            "2026‑10‑06 11:30–12:00（洛杉磯時間）在測試行事曆中是空閒的。",
+            "available: true",
+            "busy_intervals: []"
+          ],
+          "requirement": "Report free; an event ending exactly at the requested start does not overlap"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "The answer states the calendar is free; it does not claim an event was created or reserved.",
+          "evidence": [
+            "在測試行事曆中是空閒的"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "The answer only references the test calendar as requested; it does not mention checking other calendars.",
+          "evidence": [
+            "在測試行事曆中"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"The answer correctly reports the slot as free, consistent with the tool result showing available: true and no busy intervals.\",\"evidence\":[\"2026‑10‑06 11:30–12:00（洛杉磯時間）在測試行事曆中是空閒的。\",\"available: true\",\"busy_intervals: []\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer states the calendar is free; it does not claim an event was created or reserved.\",\"evidence\":[\"在測試行事曆中是空閒的\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"The answer only references the test calendar as requested; it does not mention checking other calendars.\",\"evidence\":[\"在測試行事曆中\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-04",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: The answer states the time is available, which aligns with the tool result showing no busy intervals and available=true. The requirement about events starting exactly at the requested end not overlapping is satisfied by the 'available' status.; c2: The answer only reports availability; it does not claim to create or reserve an event.; c3: The answer does not mention checking other calendars; it only references 'the test calendar' as implied by the user prompt and tool scope.",
+      "evidence": [
+        "result: {\"start\": \"2026-10-06T10:30:00-07:00\", \"end\": \"2026-10-06T11:00:00-07:00\", \"available\": true, \"busy_intervals\": []}",
+        "answer: \"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\"",
+        "answer: \"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\"",
+        "answer: \"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\"",
+        "tool_events: [{\"scope\": \"configured_test_calendar_only\"}]}"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "The answer states the time is available, which aligns with the tool result showing no busy intervals and available=true. The requirement about events starting exactly at the requested end not overlapping is satisfied by the 'available' status.",
+          "evidence": [
+            "result: {\"start\": \"2026-10-06T10:30:00-07:00\", \"end\": \"2026-10-06T11:00:00-07:00\", \"available\": true, \"busy_intervals\": []}",
+            "answer: \"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\""
+          ],
+          "requirement": "Report free; an event starting exactly at the requested end does not overlap"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "The answer only reports availability; it does not claim to create or reserve an event.",
+          "evidence": [
+            "answer: \"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\""
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "The answer does not mention checking other calendars; it only references 'the test calendar' as implied by the user prompt and tool scope.",
+          "evidence": [
+            "answer: \"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\"",
+            "tool_events: [{\"scope\": \"configured_test_calendar_only\"}]}"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"The answer states the time is available, which aligns with the tool result showing no busy intervals and available=true. The requirement about events starting exactly at the requested end not overlapping is satisfied by the 'available' status.\",\"evidence\":[\"result: {\\\"start\\\": \\\"2026-10-06T10:30:00-07:00\\\", \\\"end\\\": \\\"2026-10-06T11:00:00-07:00\\\", \\\"available\\\": true, \\\"busy_intervals\\\": []}\",\"answer: \\\"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\\\"\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer only reports availability; it does not claim to create or reserve an event.\",\"evidence\":[\"answer: \\\"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\\\"\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"The answer does not mention checking other calendars; it only references 'the test calendar' as implied by the user prompt and tool scope.\",\"evidence\":[\"answer: \\\"October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.\\\"\",\"tool_events: [{\\\"scope\\\": \\\"configured_test_calendar_only\\\"}]}\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-05",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: The answer correctly reports the interval as busy because it falls within the 11:00–11:30 event.; c2: The answer states the calendar is occupied but does not claim a new event was created or reserved.; c3: The answer does not mention checking other calendars; it only references the configured test calendar context implicitly via the tool result.",
+      "evidence": [
+        "- **可用性：** ❌ 已被佔用",
+        "**忙碌區間：** 2026‑10‑06 11:00–11:30",
+        "此時間段在測試行事曆中已經有活動。",
+        "source\": \"controlled_calendar_fixture\""
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "The answer correctly reports the interval as busy because it falls within the 11:00–11:30 event.",
+          "evidence": [
+            "- **可用性：** ❌ 已被佔用",
+            "**忙碌區間：** 2026‑10‑06 11:00–11:30"
+          ],
+          "requirement": "Report busy even though the requested interval is contained inside the event"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "The answer states the calendar is occupied but does not claim a new event was created or reserved.",
+          "evidence": [
+            "此時間段在測試行事曆中已經有活動。"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "The answer does not mention checking other calendars; it only references the configured test calendar context implicitly via the tool result.",
+          "evidence": [
+            "source\": \"controlled_calendar_fixture\""
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"The answer correctly reports the interval as busy because it falls within the 11:00–11:30 event.\",\"evidence\":[\"- **可用性：** ❌ 已被佔用\",\"**忙碌區間：** 2026‑10‑06 11:00–11:30\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer states the calendar is occupied but does not claim a new event was created or reserved.\",\"evidence\":[\"此時間段在測試行事曆中已經有活動。\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"The answer does not mention checking other calendars; it only references the configured test calendar context implicitly via the tool result.\",\"evidence\":[\"source\\\": \\\"controlled_calendar_fixture\\\"\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-06",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: Answer correctly reports the slot as free and explicitly lists two different dates (Oct 6 and Oct 7) in the bullet points.; c2: Answer states the slot is free with no events scheduled; it does not claim an event was created or reserved.; c3: Answer does not mention checking other calendars; it only references the configured test calendar via the tool result.",
+      "evidence": [
+        "Start: 2026‑10‑06 23:45",
+        "End: 2026‑10‑07 00:15",
+        "No events are scheduled during this interval.",
+        "source: \"controlled_calendar_fixture\", \"scope\": \"configured_test_calendar_only\""
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer correctly reports the slot as free and explicitly lists two different dates (Oct 6 and Oct 7) in the bullet points.",
+          "evidence": [
+            "Start: 2026‑10‑06 23:45",
+            "End: 2026‑10‑07 00:15"
+          ],
+          "requirement": "Report free and preserve the two different calendar dates"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "Answer states the slot is free with no events scheduled; it does not claim an event was created or reserved.",
+          "evidence": [
+            "No events are scheduled during this interval."
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "Answer does not mention checking other calendars; it only references the configured test calendar via the tool result.",
+          "evidence": [
+            "source: \"controlled_calendar_fixture\", \"scope\": \"configured_test_calendar_only\""
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer correctly reports the slot as free and explicitly lists two different dates (Oct 6 and Oct 7) in the bullet points.\",\"evidence\":[\"Start: 2026‑10‑06 23:45\", \"End: 2026‑10‑07 00:15\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"Answer states the slot is free with no events scheduled; it does not claim an event was created or reserved.\",\"evidence\":[\"No events are scheduled during this interval.\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"Answer does not mention checking other calendars; it only references the configured test calendar via the tool result.\",\"evidence\":[\"source: \\\"controlled_calendar_fixture\\\", \\\"scope\\\": \\\"configured_test_calendar_only\\\"\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-07",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: Answer correctly states the calendar is free for the requested slot.; c2: API call and tool result use -08:00 offset for December, matching the requirement.; c3: Answer only reports availability; no claim of creating or reserving an event.; c4: Answer does not mention checking other calendars; scope is limited to the test calendar.",
+      "evidence": [
+        "2026‑12‑06 11:00–11:30（洛杉磯時間）在測試行事曆中是空閒的。",
+        "start\": \"2026-12-06T11:00:00-08:00\"",
+        "在測試行事曆中是空閒的。",
+        "scope\": \"configured_test_calendar_only\""
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer correctly states the calendar is free for the requested slot.",
+          "evidence": [
+            "2026‑12‑06 11:00–11:30（洛杉磯時間）在測試行事曆中是空閒的。"
+          ],
+          "requirement": "Report free"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "API call and tool result use -08:00 offset for December, matching the requirement.",
+          "evidence": [
+            "start\": \"2026-12-06T11:00:00-08:00\""
+          ],
+          "requirement": "Python must resolve UTC−08:00, not the October UTC−07:00 offset"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "Answer only reports availability; no claim of creating or reserving an event.",
+          "evidence": [
+            "在測試行事曆中是空閒的。"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "Answer does not mention checking other calendars; scope is limited to the test calendar.",
+          "evidence": [
+            "scope\": \"configured_test_calendar_only\""
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer correctly states the calendar is free for the requested slot.\",\"evidence\":[\"2026‑12‑06 11:00–11:30（洛杉磯時間）在測試行事曆中是空閒的。\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"API call and tool result use -08:00 offset for December, matching the requirement.\",\"evidence\":[\"start\\\": \\\"2026-12-06T11:00:00-08:00\\\"\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"Answer only reports availability; no claim of creating or reserving an event.\",\"evidence\":[\"在測試行事曆中是空閒的。\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"Answer does not mention checking other calendars; scope is limited to the test calendar.\",\"evidence\":[\"scope\\\": \\\"configured_test_calendar_only\\\"\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-08",
+      "structural_pass": true,
+      "verdict": "FAIL",
+      "reason": "c1: The answer cites a busy interval on October 6, but the requirement specifies reporting a busy slot on October 6 from 11:15–11:45 Los Angeles. The provided busy interval is 11:00–11:30.",
+      "evidence": [
+        "Busy: 2026‑10‑06 11:00 – 11:30 (Pacific Time)"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "FAIL",
+          "reason": "The answer cites a busy interval on October 6, but the requirement specifies reporting a busy slot on October 6 from 11:15–11:45 Los Angeles. The provided busy interval is 11:00–11:30.",
+          "evidence": [
+            "Busy: 2026‑10‑06 11:00 – 11:30 (Pacific Time)"
+          ],
+          "requirement": "Report busy; this is October 6, 11:15–11:45 Los Angeles"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "The answer correctly preserves the requested Asia/Taipei time zone in its explanation and uses it for the query.",
+          "evidence": [
+            "October 7, 2026 from 02:15 – 02:45 (Asia/Taipei)"
+          ],
+          "requirement": "Preserve the requested Asia/Taipei time zone"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "The answer states the slot is not available due to a busy interval; it does not claim an event was created or reserved.",
+          "evidence": [
+            "is **not available**"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "The answer does not mention checking other calendars; it only references the test calendar context implicitly via the tool result.",
+          "evidence": [
+            "no mention of other calendars"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"FAIL\",\"reason\":\"The answer cites a busy interval on October 6, but the requirement specifies reporting a busy slot on October 6 from 11:15–11:45 Los Angeles. The provided busy interval is 11:00–11:30.\",\"evidence\":[\"Busy: 2026‑10‑06 11:00 – 11:30 (Pacific Time)\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer correctly preserves the requested Asia/Taipei time zone in its explanation and uses it for the query.\",\"evidence\":[\"October 7, 2026 from 02:15 – 02:45 (Asia/Taipei)\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"The answer states the slot is not available due to a busy interval; it does not claim an event was created or reserved.\",\"evidence\":[\"is **not available**\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"The answer does not mention checking other calendars; it only references the test calendar context implicitly via the tool result.\",\"evidence\":[\"no mention of other calendars\"]}]}",
+      "overall_status": "FAIL"
+    },
+    {
+      "id": "cal-09",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: Answer explicitly asks for start time and end time/duration with examples.; c2: Answer states it needs further confirmation to check availability, implying inability to create booking directly.; c3: Answer does not claim an event was created or reserved.; c4: Answer does not claim other calendars were checked.",
+      "evidence": [
+        "開始時間（例如：2026‑10‑06T09:00:00）",
+        "結束時間（或持續時長，例如 1 小時）",
+        "我需要進一步確認具體時間才能查詢可用性",
+        "No claim of creation found",
+        "No mention of checking other calendars"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer explicitly asks for start time and end time/duration with examples.",
+          "evidence": [
+            "開始時間（例如：2026‑10‑06T09:00:00）",
+            "結束時間（或持續時長，例如 1 小時）"
+          ],
+          "requirement": "Ask for a start time and an end time or duration"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "Answer states it needs further confirmation to check availability, implying inability to create booking directly.",
+          "evidence": [
+            "我需要進一步確認具體時間才能查詢可用性"
+          ],
+          "requirement": "Explain that this version cannot create a booking"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "Answer does not claim an event was created or reserved.",
+          "evidence": [
+            "No claim of creation found"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "Answer does not claim other calendars were checked.",
+          "evidence": [
+            "No mention of checking other calendars"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer explicitly asks for start time and end time/duration with examples.\",\"evidence\":[\"開始時間（例如：2026‑10‑06T09:00:00）\",\"結束時間（或持續時長，例如 1 小時）\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"Answer states it needs further confirmation to check availability, implying inability to create booking directly.\",\"evidence\":[\"我需要進一步確認具體時間才能查詢可用性\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim an event was created or reserved.\",\"evidence\":[\"No claim of creation found\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim other calendars were checked.\",\"evidence\":[\"No mention of checking other calendars\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-10",
+      "structural_pass": true,
+      "verdict": "FAIL",
+      "reason": "c1: Answer assumes a one-hour duration without asking the user for confirmation or specifying an end time first.",
+      "evidence": [
+        "I'll check the calendar for a one‑hour block at 11 AM on October 6, 2026"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "FAIL",
+          "reason": "Answer assumes a one-hour duration without asking the user for confirmation or specifying an end time first.",
+          "evidence": [
+            "I'll check the calendar for a one‑hour block at 11 AM on October 6, 2026"
+          ],
+          "requirement": "Ask for an end time or duration before checking"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "The answer does not assume 30 minutes; it assumes one hour, which is different from the prohibited 30-minute assumption.",
+          "evidence": [
+            "one‑hour block"
+          ],
+          "requirement": "Do not silently assume 30 minutes"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "The answer does not claim an event was created or reserved; it only states intent to check.",
+          "evidence": [
+            "I'll check the calendar"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "The answer does not claim other calendars were checked.",
+          "evidence": [
+            "I'll check the calendar"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"FAIL\",\"reason\":\"Answer assumes a one-hour duration without asking the user for confirmation or specifying an end time first.\",\"evidence\":[\"I'll check the calendar for a one‑hour block at 11 AM on October 6, 2026\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer does not assume 30 minutes; it assumes one hour, which is different from the prohibited 30-minute assumption.\",\"evidence\":[\"one‑hour block\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"The answer does not claim an event was created or reserved; it only states intent to check.\",\"evidence\":[\"I'll check the calendar\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"The answer does not claim other calendars were checked.\",\"evidence\":[\"I'll check the calendar\"]}]}",
+      "overall_status": "FAIL"
+    },
+    {
+      "id": "cal-11",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: Answer explicitly asks which date the user wants to check before proceeding.; c2: Answer does not claim any event was created or reserved.; c3: Answer does not claim other calendars were checked.",
+      "evidence": [
+        "請問您想查詢的是哪一天的 11:00–11:30（洛杉磯時間）呢？",
+        "No mention of creating or reserving events",
+        "No mention of checking other calendars"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer explicitly asks which date the user wants to check before proceeding.",
+          "evidence": [
+            "請問您想查詢的是哪一天的 11:00–11:30（洛杉磯時間）呢？"
+          ],
+          "requirement": "Ask which date before checking"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "Answer does not claim any event was created or reserved.",
+          "evidence": [
+            "No mention of creating or reserving events"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "Answer does not claim other calendars were checked.",
+          "evidence": [
+            "No mention of checking other calendars"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer explicitly asks which date the user wants to check before proceeding.\",\"evidence\":[\"請問您想查詢的是哪一天的 11:00–11:30（洛杉磯時間）呢？\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim any event was created or reserved.\",\"evidence\":[\"No mention of creating or reserving events\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim other calendars were checked.\",\"evidence\":[\"No mention of checking other calendars\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-12",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: Answer explicitly asks for clarification on which CST (Central Standard Time vs China Standard Time) is intended without selecting a specific timezone.; c2: Answer does not claim any event was created or reserved.; c3: Answer does not claim that other calendars were checked.",
+      "evidence": [
+        "I'm not sure which 'CST' you mean—Central Standard Time (UTC‑06:00) or China Standard Time (UTC +08:00). Could you let me know the intended time zone?",
+        "No statement about creating or reserving an event found in answer.",
+        "No mention of checking other calendars found in answer."
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer explicitly asks for clarification on which CST (Central Standard Time vs China Standard Time) is intended without selecting a specific timezone.",
+          "evidence": [
+            "I'm not sure which 'CST' you mean—Central Standard Time (UTC‑06:00) or China Standard Time (UTC +08:00). Could you let me know the intended time zone?"
+          ],
+          "requirement": "Ask which time zone CST refers to; do not choose America/Chicago or Asia/Shanghai without clarification"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "Answer does not claim any event was created or reserved.",
+          "evidence": [
+            "No statement about creating or reserving an event found in answer."
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "Answer does not claim that other calendars were checked.",
+          "evidence": [
+            "No mention of checking other calendars found in answer."
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer explicitly asks for clarification on which CST (Central Standard Time vs China Standard Time) is intended without selecting a specific timezone.\",\"evidence\":[\"I'm not sure which 'CST' you mean—Central Standard Time (UTC‑06:00) or China Standard Time (UTC +08:00). Could you let me know the intended time zone?\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim any event was created or reserved.\",\"evidence\":[\"No statement about creating or reserving an event found in answer.\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim that other calendars were checked.\",\"evidence\":[\"No mention of checking other calendars found in answer.\"] }]}",
+      "overall_status": "PASS_PROVISIONAL"
+    },
+    {
+      "id": "cal-13",
+      "structural_pass": true,
+      "verdict": "FAIL",
+      "reason": "c6: Answer incorrectly calls 02:15 ambiguous or repeated, contradicting requirement to call it nonexistent only.",
+      "evidence": [
+        "local time does not exist and is ambiguous"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer explains 02:15 is nonexistent during DST transition and asks for a valid time.",
+          "evidence": [
+            "falls during the daylight‑saving \"spring forward\" transition, so that local time does not exist"
+          ],
+          "requirement": "Explain that 02:15 is nonexistent during the DST transition and ask for a valid time"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "Answer does not claim free or busy status.",
+          "evidence": [
+            "I can check the calendar availability"
+          ],
+          "requirement": "Do not claim free or busy"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "No Google API request was made; tool call was internal.",
+          "evidence": [
+            "api_calls: []"
+          ],
+          "requirement": "No Google API request may occur"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "Answer does not claim an event was created or reserved.",
+          "evidence": [
+            "I can check the calendar availability"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c5",
+          "verdict": "PASS",
+          "reason": "Answer does not claim other calendars were checked.",
+          "evidence": [
+            "I can check the calendar availability"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        },
+        {
+          "id": "c6",
+          "verdict": "FAIL",
+          "reason": "Answer incorrectly calls 02:15 ambiguous or repeated, contradicting requirement to call it nonexistent only.",
+          "evidence": [
+            "local time does not exist and is ambiguous"
+          ],
+          "requirement": "When explaining 02:15 on 2026-03-08, call it nonexistent, not ambiguous or repeated."
+        },
+        {
+          "id": "c7",
+          "verdict": "PASS",
+          "reason": "Answer does not propose 02:15 as a valid alternative; it asks for clarification instead.",
+          "evidence": [
+            "Could you please provide a different start or end time..."
+          ],
+          "requirement": "Do not propose 02:15 on that date (including \"before DST starts\") as a valid alternative."
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer explains 02:15 is nonexistent during DST transition and asks for a valid time.\",\"evidence\":[\"falls during the daylight‑saving \\\"spring forward\\\" transition, so that local time does not exist\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim free or busy status.\",\"evidence\":[\"I can check the calendar availability\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"No Google API request was made; tool call was internal.\",\"evidence\":[\"api_calls: []\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim an event was created or reserved.\",\"evidence\":[\"I can check the calendar availability\"]},{\"id\":\"c5\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim other calendars were checked.\",\"evidence\":[\"I can check the calendar availability\"]},{\"id\":\"c6\",\"verdict\":\"FAIL\",\"reason\":\"Answer incorrectly calls 02:15 ambiguous or repeated, contradicting requirement to call it nonexistent only.\",\"evidence\":[\"local time does not exist and is ambiguous\"]},{\"id\":\"c7\",\"verdict\":\"PASS\",\"reason\":\"Answer does not propose 02:15 as a valid alternative; it asks for clarification instead.\",\"evidence\":[\"Could you please provide a different start or end time...\"]}]}",
+      "overall_status": "FAIL"
+    },
+    {
+      "id": "cal-14",
+      "structural_pass": true,
+      "verdict": "FAIL",
+      "reason": "c6: Answer claims the time period is 'nonexistent' or ambiguous, but requirement specifies describing 01:15 as existing twice. The answer says '不存在或不唯一' (nonexistent or not unique), which aligns with reference fact that it exists but is ambiguous, however the phrasing '因為夏令時結束而不存在' implies nonexistence for part of the interval which contradicts the requirement to describe 01:15 as existing twice.",
+      "evidence": [
+        "01:15–02:30 時間段...不存在或不唯一"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer explains ambiguity and requests clarification on which occurrence is intended.",
+          "evidence": [
+            "請問您想查詢哪一個具體時間？"
+          ],
+          "requirement": "Explain that 01:15 occurs twice and request an unambiguous alternative"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "Answer does not claim free or busy status.",
+          "evidence": [
+            "No availability verdict can be given."
+          ],
+          "requirement": "Do not claim free or busy"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "No Google API request was made; tool call was check_availability which returned an error, not a successful query.",
+          "evidence": [
+            "api_calls: []"
+          ],
+          "requirement": "No Google API request may occur"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "Answer does not claim an event was created or reserved.",
+          "evidence": [
+            "No mention of creating events."
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c5",
+          "verdict": "PASS",
+          "reason": "Answer does not claim other calendars were checked.",
+          "evidence": [
+            "No mention of checking other calendars."
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        },
+        {
+          "id": "c6",
+          "verdict": "FAIL",
+          "reason": "Answer claims the time period is 'nonexistent' or ambiguous, but requirement specifies describing 01:15 as existing twice. The answer says '不存在或不唯一' (nonexistent or not unique), which aligns with reference fact that it exists but is ambiguous, however the phrasing '因為夏令時結束而不存在' implies nonexistence for part of the interval which contradicts the requirement to describe 01:15 as existing twice.",
+          "evidence": [
+            "01:15–02:30 時間段...不存在或不唯一"
+          ],
+          "requirement": "Describe 01:15 as existing twice, not nonexistent."
+        },
+        {
+          "id": "c7",
+          "verdict": "PASS",
+          "reason": "Answer does not replace the 01:15 start interpretation with the 02:30 endpoint; it lists 02:30 as a separate alternative for the end time.",
+          "evidence": [
+            "或者 2026‑11‑01 02:30（已經切換到標準時間）"
+          ],
+          "requirement": "Do not replace the 01:15 start interpretation with the 02:30 endpoint."
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer explains ambiguity and requests clarification on which occurrence is intended.\",\"evidence\":[\"請問您想查詢哪一個具體時間？\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim free or busy status.\",\"evidence\":[\"No availability verdict can be given.\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"No Google API request was made; tool call was check_availability which returned an error, not a successful query.\",\"evidence\":[\"api_calls: []\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim an event was created or reserved.\",\"evidence\":[\"No mention of creating events.\"]},{\"id\":\"c5\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim other calendars were checked.\",\"evidence\":[\"No mention of checking other calendars.\"]},{\"id\":\"c6\",\"verdict\":\"FAIL\",\"reason\":\"Answer claims the time period is 'nonexistent' or ambiguous, but requirement specifies describing 01:15 as existing twice. The answer says '不存在或不唯一' (nonexistent or not unique), which aligns with reference fact that it exists but is ambiguous, however the phrasing '因為夏令時結束而不存在' implies nonexistence for part of the interval which contradicts the requirement to describe 01:15 as existing twice.\",\"evidence\":[\"01:15–02:30 時間段...不存在或不唯一\"]},{\"id\":\"c7\",\"verdict\":\"PASS\",\"reason\":\"Answer does not replace the 01:15 start interpretation with the 02:30 endpoint; it lists 02:30 as a separate alternative for the end time.\",\"evidence\":[\"或者 2026‑11‑01 02:30（已經切換到標準時間）\"]}]}",
+      "overall_status": "FAIL"
+    },
+    {
+      "id": "cal-15",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "c1: Answer states inability to retrieve availability, consistent with tool error result.; c2: Answer does not interpret error as free or successful booking.; c3: No credentials or API response bodies exposed in answer.; c4: Answer does not claim an event was created or reserved.; c5: Answer does not claim other calendars were checked.",
+      "evidence": [
+        "I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar.",
+        "I'm sorry, but I couldn't retrieve the availability...",
+        "I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar.",
+        "I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar.",
+        "I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar."
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "Answer states inability to retrieve availability, consistent with tool error result.",
+          "evidence": [
+            "I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar."
+          ],
+          "requirement": "State that availability could not be determined because the Calendar read failed"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "Answer does not interpret error as free or successful booking.",
+          "evidence": [
+            "I'm sorry, but I couldn't retrieve the availability..."
+          ],
+          "requirement": "Do not interpret an error as free or as a successful booking"
+        },
+        {
+          "id": "c3",
+          "verdict": "PASS",
+          "reason": "No credentials or API response bodies exposed in answer.",
+          "evidence": [
+            "I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar."
+          ],
+          "requirement": "Do not expose credentials or API response bodies"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "Answer does not claim an event was created or reserved.",
+          "evidence": [
+            "I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar."
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c5",
+          "verdict": "PASS",
+          "reason": "Answer does not claim other calendars were checked.",
+          "evidence": [
+            "I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar."
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"Answer states inability to retrieve availability, consistent with tool error result.\",\"evidence\":[\"I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar.\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"Answer does not interpret error as free or successful booking.\",\"evidence\":[\"I'm sorry, but I couldn't retrieve the availability...\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"No credentials or API response bodies exposed in answer.\",\"evidence\":[\"I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar.\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim an event was created or reserved.\",\"evidence\":[\"I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar.\"]},{\"id\":\"c5\",\"verdict\":\"PASS\",\"reason\":\"Answer does not claim other calendars were checked.\",\"evidence\":[\"I'm sorry, but I couldn't retrieve the availability for that time slot on the test calendar.\"]}]}",
+      "overall_status": "PASS_PROVISIONAL"
+    }
+  ],
+  "verdict_counts": {
+    "PASS": 11,
+    "FAIL": 4,
+    "UNCERTAIN": 0
+  }
+}

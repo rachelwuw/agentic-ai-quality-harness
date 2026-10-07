@@ -1,0 +1,493 @@
+{
+  "schema_version": 1,
+  "suite": "calendar_readonly_v0.1",
+  "reference_now": "2026-10-05T12:00:00-07:00",
+  "default_time_zone": "America/Los_Angeles",
+  "scope": "configured_test_calendar_only",
+  "grading": "Exact tool arguments and API intervals plus manual semantic review; no automatic runner yet.",
+  "fixtures": {
+    "busy_fixture": {
+      "title": "[QA TEST] Availability fixture",
+      "start": "2026-10-06T11:00:00-07:00",
+      "end": "2026-10-06T11:30:00-07:00",
+      "time_zone": "America/Los_Angeles",
+      "transparency": "opaque",
+      "calendar": "Agentic Harness Test"
+    },
+    "empty_interval": "Verify the requested interval has no other busy events before a live run.",
+    "raise_calendar_error": "Controlled adapter raises CalendarError; never revoke OAuth or break real service access.",
+    "none": "No calendar fixture required."
+  },
+  "cases": [
+    {
+      "id": "cal-01",
+      "category": "overlap_zh",
+      "prompt": "2026 年 10 月 6 日洛杉磯時間 11:15 到 11:45，測試行事曆有空嗎？",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled_and_live",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T11:15:00",
+            "end": "2026-10-06T11:45:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": false,
+      "answer_criteria": [
+        "Report busy due to the 11:00–11:30 event",
+        "Do not label the requested interval as free"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T11:15:00-07:00",
+        "end": "2026-10-06T11:45:00-07:00"
+      }
+    },
+    {
+      "id": "cal-02",
+      "category": "overlap_en",
+      "prompt": "Am I free on the test calendar on October 6, 2026, from 11:15 to 11:45 in Los Angeles?",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled_and_live",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T11:15:00",
+            "end": "2026-10-06T11:45:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": false,
+      "answer_criteria": [
+        "Report a conflict with 11:00–11:30",
+        "State that only the test calendar was checked"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T11:15:00-07:00",
+        "end": "2026-10-06T11:45:00-07:00"
+      }
+    },
+    {
+      "id": "cal-03",
+      "category": "adjacent_after",
+      "prompt": "2026 年 10 月 6 日洛杉磯時間 11:30 到 12:00，測試行事曆有空嗎？",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled_and_live",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T11:30:00",
+            "end": "2026-10-06T12:00:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": true,
+      "answer_criteria": [
+        "Report free; an event ending exactly at the requested start does not overlap"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T11:30:00-07:00",
+        "end": "2026-10-06T12:00:00-07:00"
+      }
+    },
+    {
+      "id": "cal-04",
+      "category": "adjacent_before",
+      "prompt": "Check October 6, 2026, 10:30–11:00 in Los Angeles on the test calendar.",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled_and_live",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T10:30:00",
+            "end": "2026-10-06T11:00:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": true,
+      "answer_criteria": [
+        "Report free; an event starting exactly at the requested end does not overlap"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T10:30:00-07:00",
+        "end": "2026-10-06T11:00:00-07:00"
+      }
+    },
+    {
+      "id": "cal-05",
+      "category": "contained_interval",
+      "prompt": "查詢 2026 年 10 月 6 日洛杉磯時間 11:05 到 11:20 的測試行事曆。",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled_and_live",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T11:05:00",
+            "end": "2026-10-06T11:20:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": false,
+      "answer_criteria": [
+        "Report busy even though the requested interval is contained inside the event"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T11:05:00-07:00",
+        "end": "2026-10-06T11:20:00-07:00"
+      }
+    },
+    {
+      "id": "cal-06",
+      "category": "cross_midnight",
+      "prompt": "Check the test calendar from October 6, 2026 at 23:45 to October 7 at 00:15, Los Angeles time.",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled_and_live",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T23:45:00",
+            "end": "2026-10-07T00:15:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": true,
+      "answer_criteria": [
+        "Report free and preserve the two different calendar dates"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T23:45:00-07:00",
+        "end": "2026-10-07T00:15:00-07:00"
+      }
+    },
+    {
+      "id": "cal-07",
+      "category": "winter_offset",
+      "prompt": "2026 年 12 月 6 日洛杉磯時間 11:00 到 11:30，測試行事曆有空嗎？",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled_and_live",
+      "fixture": "empty_interval",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-12-06T11:00:00",
+            "end": "2026-12-06T11:30:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": true,
+      "answer_criteria": [
+        "Report free",
+        "Python must resolve UTC−08:00, not the October UTC−07:00 offset"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-12-06T11:00:00-08:00",
+        "end": "2026-12-06T11:30:00-08:00"
+      }
+    },
+    {
+      "id": "cal-08",
+      "category": "different_zone",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled_and_live",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-07T02:15:00",
+            "end": "2026-10-07T02:45:00",
+            "time_zone": "Asia/Taipei"
+          }
+        }
+      ],
+      "expected_available": false,
+      "answer_criteria": [
+        "Report busy; this is October 6, 11:15–11:45 Los Angeles",
+        "Preserve the requested Asia/Taipei time zone"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-07T02:15:00+08:00",
+        "end": "2026-10-07T02:45:00+08:00"
+      }
+    },
+    {
+      "id": "cal-09",
+      "category": "missing_start_and_duration",
+      "prompt": "幫我約明天",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "none",
+      "expected_calls": [],
+      "expected_available": null,
+      "answer_criteria": [
+        "Ask for a start time and an end time or duration",
+        "Explain that this version cannot create a booking"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": null
+    },
+    {
+      "id": "cal-10",
+      "category": "missing_duration",
+      "prompt": "Am I free tomorrow at 11 AM in Los Angeles?",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "none",
+      "expected_calls": [],
+      "expected_available": null,
+      "answer_criteria": [
+        "Ask for an end time or duration before checking",
+        "Do not silently assume 30 minutes"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": null
+    },
+    {
+      "id": "cal-11",
+      "category": "missing_date",
+      "prompt": "洛杉磯時間 11:00 到 11:30 有空嗎？",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "none",
+      "expected_calls": [],
+      "expected_available": null,
+      "answer_criteria": [
+        "Ask which date before checking"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": null
+    },
+    {
+      "id": "cal-12",
+      "category": "ambiguous_timezone",
+      "prompt": "Check October 6, 2026, 11:00–11:30 CST on the test calendar.",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "none",
+      "expected_calls": [],
+      "expected_available": null,
+      "answer_criteria": [
+        "Ask which time zone CST refers to; do not choose America/Chicago or Asia/Shanghai without clarification"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": null
+    },
+    {
+      "id": "cal-13",
+      "category": "dst_gap",
+      "prompt": "Check March 8, 2026, 02:15–03:30 in America/Los_Angeles on the test calendar.",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "none",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-03-08T02:15:00",
+            "end": "2026-03-08T03:30:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": null,
+      "answer_criteria": [
+        "Explain that 02:15 is nonexistent during the DST transition and ask for a valid time",
+        "Do not claim free or busy",
+        "No Google API request may occur"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": null,
+      "allowed_alternative": "Ask for clarification before calling a tool; this also passes."
+    },
+    {
+      "id": "cal-14",
+      "category": "dst_fold",
+      "prompt": "查詢 2026 年 11 月 1 日 America/Los_Angeles 01:15 到 02:30 的測試行事曆。",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "none",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-11-01T01:15:00",
+            "end": "2026-11-01T02:30:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": null,
+      "answer_criteria": [
+        "Explain that 01:15 occurs twice and request an unambiguous alternative",
+        "Do not claim free or busy",
+        "No Google API request may occur"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": null,
+      "allowed_alternative": "Ask for clarification before calling a tool; this also passes."
+    },
+    {
+      "id": "cal-15",
+      "category": "calendar_api_failure",
+      "prompt": "Check October 6, 2026, 11:30–12:00 in Los Angeles on the test calendar.",
+      "entry_points": [
+        "python_agent",
+        "lm_studio_mcp"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "raise_calendar_error",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T11:30:00",
+            "end": "2026-10-06T12:00:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": null,
+      "answer_criteria": [
+        "State that availability could not be determined because the Calendar read failed",
+        "Do not interpret an error as free or as a successful booking",
+        "Do not expose credentials or API response bodies"
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T11:30:00-07:00",
+        "end": "2026-10-06T12:00:00-07:00"
+      }
+    }
+  ]
+}

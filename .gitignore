@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+reports/*
+!reports/baseline/
+.env
+.env.*
+!.env.example
+secrets/
+credentials/
+.DS_Store
+
+# OAuth credentials must stay outside this repository.
+client_secret*.json
+google-client.json
+*token*.json

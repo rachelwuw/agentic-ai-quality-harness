@@ -1,0 +1,253 @@
+[
+  {
+    "id": "case-01",
+    "prompt": "Read REQ-1. Include its exact English title.",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-1"
+        }
+      }
+    ],
+    "answer_contains": [
+      "Login"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-02",
+    "prompt": "請讀取 REQ-1，保留英文 title。",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-1"
+        }
+      }
+    ],
+    "answer_contains": [
+      "Login"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-03",
+    "prompt": "What is the acceptance criterion of REQ-1? Include its title.",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-1"
+        }
+      }
+    ],
+    "answer_contains": [
+      "Login"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-04",
+    "prompt": "Read REQ-2. Include its exact English title.",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-2"
+        }
+      }
+    ],
+    "answer_contains": [
+      "Password reset"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-05",
+    "prompt": "請讀取 REQ-2，保留英文 title。",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-2"
+        }
+      }
+    ],
+    "answer_contains": [
+      "Password reset"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-06",
+    "prompt": "What is the acceptance criterion of REQ-2? Include its title.",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-2"
+        }
+      }
+    ],
+    "answer_contains": [
+      "Password reset"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-07",
+    "prompt": "Run the login mock suite. Include passed=N failed=N.",
+    "expected_calls": [
+      {
+        "name": "run_test_suite",
+        "arguments": {
+          "suite": "login"
+        }
+      }
+    ],
+    "answer_contains": [
+      "passed=3",
+      "failed=0"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-08",
+    "prompt": "請執行 login mock suite，使用 passed=N failed=N 格式報告。",
+    "expected_calls": [
+      {
+        "name": "run_test_suite",
+        "arguments": {
+          "suite": "login"
+        }
+      }
+    ],
+    "answer_contains": [
+      "passed=3",
+      "failed=0"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-09",
+    "prompt": "Run the reset mock suite. Include passed=N failed=N.",
+    "expected_calls": [
+      {
+        "name": "run_test_suite",
+        "arguments": {
+          "suite": "reset"
+        }
+      }
+    ],
+    "answer_contains": [
+      "passed=2",
+      "failed=1"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-10",
+    "prompt": "請執行 reset mock suite，使用 passed=N failed=N 格式報告。",
+    "expected_calls": [
+      {
+        "name": "run_test_suite",
+        "arguments": {
+          "suite": "reset"
+        }
+      }
+    ],
+    "answer_contains": [
+      "passed=2",
+      "failed=1"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-11",
+    "prompt": "First read REQ-1, then run the login mock suite. Report failed=N.",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-1"
+        }
+      },
+      {
+        "name": "run_test_suite",
+        "arguments": {
+          "suite": "login"
+        }
+      }
+    ],
+    "answer_contains": [
+      "failed=0"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-12",
+    "prompt": "First read REQ-2, then run the reset mock suite. Report failed=N.",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-2"
+        }
+      },
+      {
+        "name": "run_test_suite",
+        "arguments": {
+          "suite": "reset"
+        }
+      }
+    ],
+    "answer_contains": [
+      "failed=1"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-13",
+    "prompt": "Read REQ-404. Report the exact error code. Do not use another ID.",
+    "expected_calls": [
+      {
+        "name": "get_requirement",
+        "arguments": {
+          "requirement_id": "REQ-404"
+        }
+      }
+    ],
+    "answer_contains": [
+      "not_found"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-14",
+    "prompt": "Say hello. No tools are needed.",
+    "expected_calls": [],
+    "answer_contains": [
+      "hello"
+    ],
+    "answer_excludes": []
+  },
+  {
+    "id": "case-15",
+    "prompt": "Run the reset mock suite. Name the failing test. Do not claim all tests passed.",
+    "expected_calls": [
+      {
+        "name": "run_test_suite",
+        "arguments": {
+          "suite": "reset"
+        }
+      }
+    ],
+    "answer_contains": [
+      "expired_reset_link_accepted"
+    ],
+    "answer_excludes": [
+      "all tests passed"
+    ]
+  }
+]

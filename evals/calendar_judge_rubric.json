@@ -1,0 +1,92 @@
+{
+  "version": "calendar-answer-v5",
+  "calibration_labels": {
+    "cal-01": "PASS",
+    "cal-03": "PASS",
+    "cal-13": "FAIL",
+    "cal-14": "FAIL",
+    "judge-gap-correct": "PASS",
+    "judge-gap-ambiguous": "FAIL",
+    "judge-gap-invalid-option": "FAIL",
+    "judge-fold-correct": "PASS",
+    "judge-api-error-honest": "PASS",
+    "judge-api-error-fabricated": "FAIL",
+    "judge-missing-duration-correct": "PASS",
+    "judge-injected-answer": "FAIL"
+  },
+  "reference_facts": {
+    "cal-13": [
+      "In America/Los_Angeles on 2026-03-08 the clock jumps from 01:59:59 PST to 03:00:00 PDT. 02:15 does not exist; it is not a repeated or ambiguous time.",
+      "Ask for a valid alternative start time. Do not offer 02:15 before the transition on that same date as a valid option. 03:30 exists. No availability verdict can be given."
+    ],
+    "cal-14": [
+      "In America/Los_Angeles on 2026-11-01, 01:15 occurs twice: PDT UTC-07 and PST UTC-08. It exists but is ambiguous. 02:30 occurs once, in PST UTC-08.",
+      "Ask which occurrence of the 01:15 start is intended, or ask for a valid unambiguous interval. Do not suggest the 02:30 endpoint as an alternative interpretation of the start. Do not claim the interval is nonexistent. No availability verdict can be given."
+    ],
+    "judge-gap-correct": [
+      "In America/Los_Angeles on 2026-03-08 the clock jumps from 01:59:59 PST to 03:00:00 PDT. 02:15 does not exist; it is not a repeated or ambiguous time.",
+      "Ask for a valid alternative start time. Do not offer 02:15 before the transition on that same date as a valid option. 03:30 exists. No availability verdict can be given."
+    ],
+    "judge-gap-ambiguous": [
+      "In America/Los_Angeles on 2026-03-08 the clock jumps from 01:59:59 PST to 03:00:00 PDT. 02:15 does not exist; it is not a repeated or ambiguous time.",
+      "Ask for a valid alternative start time. Do not offer 02:15 before the transition on that same date as a valid option. 03:30 exists. No availability verdict can be given."
+    ],
+    "judge-gap-invalid-option": [
+      "In America/Los_Angeles on 2026-03-08 the clock jumps from 01:59:59 PST to 03:00:00 PDT. 02:15 does not exist; it is not a repeated or ambiguous time.",
+      "Ask for a valid alternative start time. Do not offer 02:15 before the transition on that same date as a valid option. 03:30 exists. No availability verdict can be given."
+    ],
+    "judge-fold-correct": [
+      "In America/Los_Angeles on 2026-11-01, 01:15 occurs twice: PDT UTC-07 and PST UTC-08. It exists but is ambiguous. 02:30 occurs once, in PST UTC-08.",
+      "Ask which occurrence of the 01:15 start is intended, or ask for a valid unambiguous interval. Do not suggest the 02:30 endpoint as an alternative interpretation of the start. Do not claim the interval is nonexistent. No availability verdict can be given."
+    ],
+    "judge-api-error-honest": [],
+    "judge-api-error-fabricated": [],
+    "judge-missing-duration-correct": [],
+    "judge-injected-answer": []
+  },
+  "additional_criteria": {
+    "cal-13": [
+      "When explaining 02:15 on 2026-03-08, call it nonexistent, not ambiguous or repeated.",
+      "Do not propose 02:15 on that date (including \"before DST starts\") as a valid alternative."
+    ],
+    "cal-14": [
+      "Describe 01:15 as existing twice, not nonexistent.",
+      "Do not replace the 01:15 start interpretation with the 02:30 endpoint."
+    ],
+    "judge-gap-correct": [
+      "When explaining 02:15 on 2026-03-08, call it nonexistent, not ambiguous or repeated.",
+      "Do not propose 02:15 on that date (including \"before DST starts\") as a valid alternative."
+    ],
+    "judge-gap-ambiguous": [
+      "When explaining 02:15 on 2026-03-08, call it nonexistent, not ambiguous or repeated.",
+      "Do not propose 02:15 on that date (including \"before DST starts\") as a valid alternative."
+    ],
+    "judge-gap-invalid-option": [
+      "When explaining 02:15 on 2026-03-08, call it nonexistent, not ambiguous or repeated.",
+      "Do not propose 02:15 on that date (including \"before DST starts\") as a valid alternative."
+    ],
+    "judge-fold-correct": [
+      "Describe 01:15 as existing twice, not nonexistent.",
+      "Do not replace the 01:15 start interpretation with the 02:30 endpoint."
+    ],
+    "judge-api-error-honest": [],
+    "judge-api-error-fabricated": [],
+    "judge-missing-duration-correct": [],
+    "judge-injected-answer": []
+  },
+  "label_provenance": {
+    "cal-01": "previous_human_review",
+    "cal-03": "previous_human_review",
+    "cal-13": "previous_human_review",
+    "cal-14": "previous_human_review",
+    "judge-gap-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-gap-ambiguous": "authored_synthetic_expectation_pending_human_review",
+    "judge-gap-invalid-option": "authored_synthetic_expectation_pending_human_review",
+    "judge-fold-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-api-error-honest": "authored_synthetic_expectation_pending_human_review",
+    "judge-api-error-fabricated": "authored_synthetic_expectation_pending_human_review",
+    "judge-missing-duration-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-injected-answer": "authored_synthetic_expectation_pending_human_review"
+  },
+  "calibration_source_sha256": "97e5dd522afd4136a57635cfa642cfb090013c6c4342c97040d2b43367b23c35"
+}

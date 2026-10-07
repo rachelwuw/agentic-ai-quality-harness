@@ -1,0 +1,80 @@
+{
+  "rubric_version": "calendar-answer-v2",
+  "judge_prompt_sha256": "a108b49785da9c28331e6be00a96b09917a099c875e559bda77ee29d284fd083",
+  "runtime_note": "LM Studio Qwen Inference Reasoning Budget = 0; set separately in runtime",
+  "rubric_sha256": "4270a56e7ab803d32534288bc6707ae3556b51e06663c90c8893d3f1b5ec1679",
+  "source_sha256": "e7e16f9525923596bd5f787c966a3d4df768d874b5914d5e1fdbcf44ed9c3b05",
+  "source_path": "reports/calendar-evaluation-post-fix-baseline.json",
+  "sut_model": "openai/gpt-oss-20b",
+  "judge_model": "qwen/qwen3.5-9b",
+  "base_url": "http://127.0.0.1:1234/v1",
+  "recorded_at": "2026-10-06T23:37:19.922919+00:00",
+  "temperature": 0,
+  "max_tokens": 4096,
+  "enable_thinking_requested": false,
+  "human_review_required": true,
+  "calibration": true,
+  "results": [
+    {
+      "id": "cal-01",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "Answer correctly reports the calendar as busy due to the 11:00–11:30 event and does not claim the requested interval is free.",
+      "evidence": [
+        "測試行事曆在 2026‑10‑06（洛杉磯時間）11:15–11:45 時段已被佔用",
+        "該時段的忙碌區間為：2026‑10‑06 11:00–11:30 (America/Los_Angeles)"
+      ],
+      "status": "reviewed",
+      "raw_output": "{\n  \"verdict\": \"PASS\",\n  \"reason\": \"Answer correctly reports the calendar as busy due to the 11:00–11:30 event and does not claim the requested interval is free.\",\n  \"evidence\": [\n    \"測試行事曆在 2026‑10‑06（洛杉磯時間）11:15–11:45 時段已被佔用\",\n    \"該時段的忙碌區間為：2026‑10‑06 11:00–11:30 (America/Los_Angeles)\"\n  ]\n}",
+      "overall_status": "PASS_PROVISIONAL",
+      "expected": "PASS",
+      "agreement": true
+    },
+    {
+      "id": "cal-03",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "Answer correctly reports the calendar as free for the requested interval, consistent with tool evidence showing available: true and empty busy_intervals.",
+      "evidence": [
+        "2026‑10‑06 11:30–12:00（洛杉磯時間）在測試行事曆中是空閒的。",
+        "\"available\": true, \"busy_intervals\": []"
+      ],
+      "status": "reviewed",
+      "raw_output": "{\n  \"verdict\": \"PASS\",\n  \"reason\": \"Answer correctly reports the calendar as free for the requested interval, consistent with tool evidence showing available: true and empty busy_intervals.\",\n  \"evidence\": [\n    \"2026‑10‑06 11:30–12:00（洛杉磯時間）在測試行事曆中是空閒的。\",\n    \"\\\"available\\\": true, \\\"busy_intervals\\\": []\"\n  ]\n}",
+      "overall_status": "PASS_PROVISIONAL",
+      "expected": "PASS",
+      "agreement": true
+    },
+    {
+      "id": "cal-13",
+      "structural_pass": true,
+      "verdict": "PASS",
+      "reason": "Answer correctly identifies the nonexistent time during DST transition and requests clarification without making availability claims or calling tools.",
+      "evidence": [
+        "The requested interval (2026‑03‑08 02:15–03:30 America/Los_Angeles) falls during the daylight‑saving “spring forward” transition, so that local time does not exist and is ambiguous.",
+        "Could you please provide a different start or end time for that day, or confirm which clock time you intended (e.g., 2:15 AM before DST starts or 3:30 AM after)?"
+      ],
+      "status": "reviewed",
+      "raw_output": "{\n  \"verdict\": \"PASS\",\n  \"reason\": \"Answer correctly identifies the nonexistent time during DST transition and requests clarification without making availability claims or calling tools.\",\n  \"evidence\": [\n    \"The requested interval (2026‑03‑08 02:15–03:30 America/Los_Angeles) falls during the daylight‑saving “spring forward” transition, so that local time does not exist and is ambiguous.\",\n    \"Could you please provide a different start or end time for that day, or confirm which clock time you intended (e.g., 2:15 AM before DST starts or 3:30 AM after)?\"\n  ]\n}",
+      "overall_status": "PASS_PROVISIONAL",
+      "expected": "FAIL",
+      "agreement": false
+    },
+    {
+      "id": "cal-14",
+      "structural_pass": true,
+      "verdict": "FAIL",
+      "reason": "Answer incorrectly claims the time period is 'nonexistent' and suggests 02:30 as an alternative interpretation of the start, violating reference facts that state 01:15 occurs twice (ambiguous) and should not be claimed nonexistent.",
+      "evidence": [
+        "因為夏令時結束而不存在或不唯一",
+        "或者 2026‑11‑01 02:30（已經切換到標準時間）"
+      ],
+      "status": "reviewed",
+      "raw_output": "{\n  \"verdict\": \"FAIL\",\n  \"reason\": \"Answer incorrectly claims the time period is 'nonexistent' and suggests 02:30 as an alternative interpretation of the start, violating reference facts that state 01:15 occurs twice (ambiguous) and should not be claimed nonexistent.\",\n  \"evidence\": [\n    \"因為夏令時結束而不存在或不唯一\",\n    \"或者 2026‑11‑01 02:30（已經切換到標準時間）\"\n  ]\n}",
+      "overall_status": "FAIL",
+      "expected": "FAIL",
+      "agreement": true
+    }
+  ],
+  "calibration_matches": 3
+}
