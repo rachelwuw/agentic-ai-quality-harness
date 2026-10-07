@@ -1,0 +1,20 @@
+{
+  "valid_outputs": 15,
+  "total": 15,
+  "verdict_counts": {
+    "PASS": 10,
+    "FAIL": 5
+  },
+  "observed_reasoning": 15,
+  "mean_seconds": 168.344,
+  "sum_request_seconds": 2525.158,
+  "raw_report_sha256": "e709dcb485e448e22e1cbc4db55f99d4db2bdebc77b5f293221432032be18dc9",
+  "source_sha256": "e7e16f9525923596bd5f787c966a3d4df768d874b5914d5e1fdbcf44ed9c3b05",
+  "old_report_sha256": "a0d14c061578b3fb53dd37c872350b4e9124074333b8628779afec8493d21e83",
+  "rubric_sha256": "7f498471969ac029e0decce4e917c83e47bfd3e61ab2c84439c1fa34d68fe5de",
+  "changed_verdicts": [
+    "cal-09"
+  ],
+  "human_answer_review": "pending",
+  "accuracy": "not_established"
+}

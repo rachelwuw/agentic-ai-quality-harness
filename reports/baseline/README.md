@@ -17,3 +17,5 @@ Historical source_path entries describe the original execution; the source snaps
 - [JUDGE_REASONING_COMPARISON.md](JUDGE_REASONING_COMPARISON.md) and `judge-reasoning-1024/`: matched native off/on experiment with four development cases and six frozen synthetic cases. Observed reasoning in every on response; new-set usable label agreement 5/6 in both arms, with different format/schema errors and higher on latency. Raw evidence and hashes are preserved; no human signoff or independent benchmark claim.
 
 [Structured-output Thinking validation](JUDGE_STRUCTURED_THINKING_VALIDATION.md) retains the single-attempt six-case results and links Rachel's separate expected-label confirmation.
+
+[Full 15-answer Thinking review](CALENDAR_THINKING_REVIEW_V5.md): all outputs valid and reasoning observed, raw 10 PASS / 5 FAIL, with persistent and newly observed criterion errors. Answer review remains pending. Old v5 results are preserved.
