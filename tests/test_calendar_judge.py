@@ -172,3 +172,22 @@ def test_judge_timeout_preserves_elapsed_time():
     with pytest.raises(TimeoutError):
         complete([{"role":"user", "content":json.dumps({"checks":[{"id":"c1"}]})}])
     assert complete.last_metadata["elapsed_seconds"] >= 0
+
+
+@pytest.mark.parametrize("case_id", ["cal-08", "cal-10"])
+def test_current_policy_overrides_saved_criteria_without_rewriting_evidence(case_id):
+    root = Path(__file__).parents[1]
+    source = json.loads((root / "reports/baseline/calendar-evaluation-post-fix-baseline.json").read_text())
+    rubric = json.loads((root / "evals/calendar_judge_rubric.json").read_text())
+    item = next(x for x in source["results"] if x["id"] == case_id)
+    before = json.dumps(item, ensure_ascii=False)
+    criteria = rubric["criteria_overrides"][case_id]
+    def judge(messages):
+        data = json.loads(messages[1]["content"])
+        assert [x["requirement"] for x in data["checks"][:len(criteria)]] == criteria
+        assert data["api_calls"] == item["api_calls"]
+        assert data["answer"] == item["run"]["answer"]
+        assert data["checks"][len(criteria)]["requirement"] == "The answer must not: " + item["answer_review"]["forbidden_behaviors"][0]
+        return response(*(["PASS"] * len(data["checks"])))
+    assert review(item, [], judge, criteria=criteria)["status"] == "reviewed"
+    assert json.dumps(item, ensure_ascii=False) == before

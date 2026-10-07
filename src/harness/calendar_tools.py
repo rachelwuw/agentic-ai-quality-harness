@@ -6,11 +6,18 @@ import sys
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from urllib.parse import quote
+from .retry import retry_call, transient, TRANSIENT_STATUS
 from .calendar_setup import CONFIG_DIR, SCOPES, save_token
 
 
 class CalendarError(RuntimeError):
     """Safe error message that does not include credentials or API bodies."""
+
+
+class CalendarHTTPError(CalendarError):
+    def __init__(self, status):
+        self.status = status
+        super().__init__(f"Calendar read failed (HTTP {status}).")
 
 
 class LocalTimeError(ValueError):
@@ -85,6 +92,7 @@ class CalendarTools:
 
     def check_availability(self, start, end):
         """Check [start, end); a failed/partial read never reports availability."""
+        self.attempt_events = []
         start, end = validate_interval(start, end)
         url = 'https://www.googleapis.com/calendar/v3/calendars/' + quote(self.calendar_id, safe='') + '/events'
         params = {'timeMin': start, 'timeMax': end, 'singleEvents': 'true',
@@ -94,9 +102,22 @@ class CalendarTools:
         seen_pages = set()
         for _ in range(100):
             try:
-                response = self.session.get(url, params=dict(params), timeout=30)
-                if response.status_code != 200:
-                    raise CalendarError(f'Calendar read failed (HTTP {response.status_code}).')
+                attempts = []
+                def read_page():
+                    response = self.session.get(url, params=dict(params), timeout=30)
+                    if response.status_code != 200:
+                        status = response.status_code
+                        close = getattr(response, "close", None)
+                        if close:
+                            close()
+                        raise CalendarHTTPError(status)
+                    return response
+                try:
+                    response = retry_call(read_page, attempts,
+                        retryable=lambda error: (error.status in TRANSIENT_STATUS
+                            if isinstance(error, CalendarHTTPError) else transient(error)))
+                finally:
+                    self.attempt_events.extend({"page": len(seen_pages) + 1, **a} for a in attempts)
                 data = response.json()
                 items = data.get('items', [])
                 if not isinstance(items, list):
@@ -116,7 +137,7 @@ class CalendarTools:
             if not page:
                 return {'start': start, 'end': end, 'available': not busy,
                         'busy_intervals': busy, 'source': 'google_calendar',
-                        'scope': 'configured_test_calendar_only'}
+                        'scope': 'configured_test_calendar_only', 'attempts': self.attempt_events}
             if not isinstance(page, str) or page in seen_pages:
                 raise CalendarError('Incomplete Calendar response; availability is unknown.')
             seen_pages.add(page)

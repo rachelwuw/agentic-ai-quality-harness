@@ -1,0 +1,271 @@
+{
+  "model": "mixed_saved_sut_and_authored_synthetic",
+  "description": "Development check: original cal-08 plus two authored examples. Expected labels withheld from judge and pending individual human signoff. Not held-out accuracy.",
+  "results": [
+    {
+      "id": "cal-08",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report busy; this is October 6, 11:15–11:45 Los Angeles",
+          "Preserve the requested Asia/Taipei time zone"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot on October 7, 2026 from 02:15 – 02:45 (Asia/Taipei) is **not available**.  \nThere is a busy interval that overlaps this time:\n\n- **Busy:** 2026‑10‑06 11:00 – 11:30 (Pacific Time)\n\nIf you need an alternative time, let me know and I can check other slots for you.",
+        "events": [
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "iTgnGsE4lWfEWzV8ygicpQN92tWXKeUr",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot on October 7, 2026 from 02:15 – 02:45 (Asia/Taipei) is **not available**.  \nThere is a busy interval that overlaps this time:\n\n- **Busy:** 2026‑10‑06 11:00 – 11:30 (Pacific Time)\n\nIf you need an alternative time, let me know and I can check other slots for you.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "v7-query-event-correct",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
+          "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+          "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested October 7 02:15–02:45 Asia/Taipei slot is busy. It corresponds to October 6 11:15–11:45 Los Angeles and overlaps the existing 11:00–11:30 Los Angeles event.",
+        "events": [
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "iTgnGsE4lWfEWzV8ygicpQN92tWXKeUr",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot on October 7, 2026 from 02:15 – 02:45 (Asia/Taipei) is **not available**.  \nThere is a busy interval that overlaps this time:\n\n- **Busy:** 2026‑10‑06 11:00 – 11:30 (Pacific Time)\n\nIf you need an alternative time, let me know and I can check other slots for you.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "v7-event-wrong",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
+          "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+          "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested October 7 02:15–02:45 Asia/Taipei slot is busy because an existing event runs from October 6 11:15 to 11:45 Los Angeles.",
+        "events": [
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "iTgnGsE4lWfEWzV8ygicpQN92tWXKeUr",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot on October 7, 2026 from 02:15 – 02:45 (Asia/Taipei) is **not available**.  \nThere is a busy interval that overlaps this time:\n\n- **Busy:** 2026‑10‑06 11:00 – 11:30 (Pacific Time)\n\nIf you need an alternative time, let me know and I can check other slots for you.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "expected": "FAIL"
+    }
+  ]
+}

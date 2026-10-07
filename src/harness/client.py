@@ -3,6 +3,7 @@ import json
 import os
 from urllib.request import Request, urlopen
 from urllib.parse import urlsplit
+from .retry import retry_call
 
 class LocalClient:
     def __init__(self, *, model=None, base_url=None, timeout=180):
@@ -23,9 +24,10 @@ class LocalClient:
         return self.request("/models")
 
     def __call__(self, messages, tools):
-        response = self.request("/chat/completions", {
+        self.attempt_events = []
+        response = retry_call(lambda: self.request("/chat/completions", {
             "model": self.model, "messages": messages, "tools": tools,
-            "temperature": 0, "max_tokens": 2048, "stream": False})
+            "temperature": 0, "max_tokens": 2048, "stream": False}), self.attempt_events)
         try:
             message = response["choices"][0]["message"]
             finish = response["choices"][0].get("finish_reason")

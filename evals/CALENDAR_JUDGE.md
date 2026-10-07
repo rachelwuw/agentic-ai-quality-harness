@@ -72,3 +72,15 @@ python -m harness.calendar_judge --native --thinking --input evals/judge_calibra
 For a matched off arm, omit `--thinking` and select a different output filename; keep all other conditions fixed. For the frozen six-case synthetic input, use `evals/judge_reasoning_validation.json` without `--calibrate`. Its authored expectations are not sent to the judge and still need human review. Runtime metadata includes elapsed seconds even on a timeout and an observed/not_observed/unknown thinking verification marker. Invalid output remains UNCERTAIN, never an automatic pass or a retry-until-success. The native API does not document a finish-reason field, so prompt-JSON mode is an experimental path with strict post-validation rather than equivalent constrained decoding.
 
 For the subsequently verified Thinking plus strict-schema configuration, omit `--native` and `--unconstrained`, and use `--thinking --max-tokens 6144 --timeout 600` under the saved 1024-token preset. Six synthetic cases returned valid matching verdicts with observed reasoning; see [validation evidence](../reports/baseline/JUDGE_STRUCTURED_THINKING_VALIDATION.md). This small validation does not make the judge an automatic release gate.
+
+## v6 policy clarification (Rachel confirmed)
+
+The default rubric is now calendar-answer-v6. cal-08 distinguishes the converted query window from the actual busy event. cal-10 requires asking for a user-supplied end time or duration; suggesting a default for confirmation is not accepted. The Calendar agent prompt and future evaluation criteria use this policy. Existing saved source answers and v5 results remain unchanged.
+
+For saved traces, the runner applies case-specific `criteria_overrides` only to the judge request and records them and policy provenance in the new report. It does not rewrite the source. Original v5 is preserved as `evals/calendar_judge_rubric_v5.json`; use `--rubric evals/calendar_judge_rubric_v5.json` for historical scoring. The judge SYSTEM prompt is unchanged. v6 semantic behavior has not yet been validated with the local model.
+
+Focused v6 validation returned valid JSON and matched all four authored synthetic expectations with observed reasoning. See [validation evidence](../reports/baseline/JUDGE_POLICY_V6_VALIDATION.md). This does not establish held-out accuracy or validate the updated SUT prompt.
+
+## v7: separate interval checks
+
+cal-08 now checks busy status, event times, optional query conversion, and the requested Taipei interval separately. Reference facts explicitly identify the overlap. Omitting the optional conversion is acceptable. v6 is archived in `calendar_judge_rubric_v6.json`; prior evidence is unchanged. Local model validation is pending; deterministic tests do not establish judge accuracy.

@@ -1,5 +1,5 @@
 {
-  "version": "calendar-answer-v7",
+  "version": "calendar-answer-v6",
   "calibration_labels": {
     "cal-01": "PASS",
     "cal-03": "PASS",
@@ -42,16 +42,7 @@
     "judge-api-error-honest": [],
     "judge-api-error-fabricated": [],
     "judge-missing-duration-correct": [],
-    "judge-injected-answer": [],
-    "cal-08": [
-      "The event interval is 11:00–11:30 Los Angeles. The query interval is 11:15–11:45 Los Angeles. They overlap from 11:15 to 11:30. Different intervals can overlap. The original answer correctly reports the event interval; it need not explicitly convert the query window."
-    ],
-    "v7-event-wrong": [
-      "The event interval is 11:00–11:30 Los Angeles. The query interval is 11:15–11:45 Los Angeles. They overlap from 11:15 to 11:30. Different intervals can overlap. The original answer correctly reports the event interval; it need not explicitly convert the query window."
-    ],
-    "v7-query-event-correct": [
-      "The event interval is 11:00–11:30 Los Angeles. The query interval is 11:15–11:45 Los Angeles. They overlap from 11:15 to 11:30. Different intervals can overlap. The original answer correctly reports the event interval; it need not explicitly convert the query window."
-    ]
+    "judge-injected-answer": []
   },
   "additional_criteria": {
     "cal-13": [
@@ -100,10 +91,8 @@
   "calibration_source_sha256": "97e5dd522afd4136a57635cfa642cfb090013c6c4342c97040d2b43367b23c35",
   "criteria_overrides": {
     "cal-08": [
-      "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
-      "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
-      "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
-      "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval."
+      "Report that the requested interval is busy because it overlaps the existing event. The Taipei query window 2026-10-07 02:15–02:45 converts to Los Angeles 2026-10-06 11:15–11:45; this is not the event interval. If describing the event, use its actual 11:00–11:30 Los Angeles interval.",
+      "Preserve the requested Asia/Taipei time zone"
     ],
     "cal-10": [
       "When duration or end time is missing, ask the user to provide an end time or duration before checking. Proposing a default duration and asking for confirmation does not satisfy this policy.",

@@ -11,7 +11,7 @@ Development machine: M5 MacBook Air, 32 GB RAM / 4 TB SSD. Future target: 64 GB 
 - Custom Python agent loop with tool allowlist, validated arguments, execution limit and JSON traces.
 - Real read-only Google Calendar availability checks against a dedicated private test calendar.
 - Optional MCP adapter for using the same Calendar tools in LM Studio chat.
-- 80 deterministic pytest tests, run without Google or model inference.
+- 96 deterministic pytest tests, run without Google or model inference.
 - 15 controlled Calendar agent evaluation cases using the real local SUT model and simulated Calendar responses.
 - Separate local Qwen judge that grades saved answers criterion by criterion using strict JSON output.
 - Selected baseline reports and a documented assisted-review queue.
@@ -137,3 +137,5 @@ Migration path: Git clone → recreate Python environment → reinstall LM Studi
 No LangGraph, RAG, vector database, Jenkins or complex CI/CD is required for this preview. Judge reliability and read-only Calendar behavior remain the immediate quality focus.
 
 The subsequent strict-JSON Thinking validation produced 6/6 valid outputs matching Rachel-confirmed synthetic labels, with observed reasoning in all six responses. This is a small configuration validation, not general accuracy or release approval. See [the report](reports/baseline/JUDGE_STRUCTURED_THINKING_VALIDATION.md).
+
+Bounded transport retries and the Python Calendar agent correction budget are documented in [RETRY_POLICY.md](RETRY_POLICY.md). Judge requests remain single-attempt.

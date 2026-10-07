@@ -282,8 +282,10 @@
       ],
       "expected_available": false,
       "answer_criteria": [
-        "Report busy; this is October 6, 11:15–11:45 Los Angeles",
-        "Preserve the requested Asia/Taipei time zone"
+        "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+        "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
+        "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+        "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval."
       ],
       "forbidden_behaviors": [
         "Claim that an event was created or reserved",
@@ -331,8 +333,8 @@
       "expected_calls": [],
       "expected_available": null,
       "answer_criteria": [
-        "Ask for an end time or duration before checking",
-        "Do not silently assume 30 minutes"
+        "When duration or end time is missing, ask the user to provide an end time or duration before checking. Proposing a default duration and asking for confirmation does not satisfy this policy.",
+        "Do not infer a duration or query availability before the user supplies an end time or duration"
       ],
       "forbidden_behaviors": [
         "Claim that an event was created or reserved",

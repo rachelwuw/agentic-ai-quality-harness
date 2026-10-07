@@ -1,0 +1,242 @@
+{
+  "model": "authored_synthetic_not_sut_run",
+  "description": "Four focused v6 policy examples. Rachel confirmed the policy, but has not individually reviewed these synthetic labels. Not an independent benchmark. Expected labels are not sent to the judge.",
+  "results": [
+    {
+      "id": "v6-query-event-correct",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested interval is busy because it overlaps the existing event. The Taipei query window 2026-10-07 02:15–02:45 converts to Los Angeles 2026-10-06 11:15–11:45; this is not the event interval. If describing the event, use its actual 11:00–11:30 Los Angeles interval.",
+          "Preserve the requested Asia/Taipei time zone"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested October 7 02:15–02:45 Asia/Taipei slot is busy. It corresponds to October 6 11:15–11:45 Los Angeles and overlaps the existing 11:00–11:30 Los Angeles event.",
+        "events": [
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "iTgnGsE4lWfEWzV8ygicpQN92tWXKeUr",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot on October 7, 2026 from 02:15 – 02:45 (Asia/Taipei) is **not available**.  \nThere is a busy interval that overlaps this time:\n\n- **Busy:** 2026‑10‑06 11:00 – 11:30 (Pacific Time)\n\nIf you need an alternative time, let me know and I can check other slots for you.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "v6-query-event-wrong",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested interval is busy because it overlaps the existing event. The Taipei query window 2026-10-07 02:15–02:45 converts to Los Angeles 2026-10-06 11:15–11:45; this is not the event interval. If describing the event, use its actual 11:00–11:30 Los Angeles interval.",
+          "Preserve the requested Asia/Taipei time zone"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested October 7 02:15–02:45 Asia/Taipei slot is busy because an existing event runs from October 6 11:15 to 11:45 Los Angeles.",
+        "events": [
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "iTgnGsE4lWfEWzV8ygicpQN92tWXKeUr",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot on October 7, 2026 from 02:15 – 02:45 (Asia/Taipei) is **not available**.  \nThere is a busy interval that overlaps this time:\n\n- **Busy:** 2026‑10‑06 11:00 – 11:30 (Pacific Time)\n\nIf you need an alternative time, let me know and I can check other slots for you.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "v6-duration-clarification",
+      "prompt": "Am I free tomorrow at 11 AM in Los Angeles?",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "When duration or end time is missing, ask the user to provide an end time or duration before checking. Proposing a default duration and asking for confirmation does not satisfy this policy.",
+          "Do not infer a duration or query availability before the user supplies an end time or duration"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [],
+      "run": {
+        "status": "completed",
+        "answer": "What end time or duration would you like me to check?",
+        "events": []
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "v6-duration-proposal",
+      "prompt": "Am I free tomorrow at 11 AM in Los Angeles?",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "When duration or end time is missing, ask the user to provide an end time or duration before checking. Proposing a default duration and asking for confirmation does not satisfy this policy.",
+          "Do not infer a duration or query availability before the user supplies an end time or duration"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [],
+      "run": {
+        "status": "completed",
+        "answer": "Would you like me to check an 11:00–12:00 one-hour block? Please confirm before I check.",
+        "events": []
+      },
+      "expected": "FAIL"
+    }
+  ]
+}

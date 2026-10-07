@@ -18,7 +18,17 @@ def run_agent(prompt, complete, max_steps=6, *, system=SYSTEM, tools=TOOLS, exec
     messages = [{"role": "system", "content": system}, {"role": "user", "content": prompt}]
     events = []
     for step in range(max_steps):
-        message = complete(messages, tools)
+        try:
+            message = complete(messages, tools)
+        except Exception as error:
+            if not hasattr(complete, "attempt_events"):
+                raise
+            for attempt in getattr(complete, "attempt_events", []):
+                events.append({"type": "model_attempt", "step": step, **attempt})
+            return {"status": "model_error", "answer": "Model request failed; no availability conclusion can be made.",
+                    "events": events, "error_type": type(error).__name__}
+        for attempt in getattr(complete, "attempt_events", []):
+            events.append({"type": "model_attempt", "step": step, **attempt})
         if not isinstance(message, dict) or message.get("role") != "assistant":
             raise ValueError("Invalid assistant message")
         calls = message.get("tool_calls") or []
