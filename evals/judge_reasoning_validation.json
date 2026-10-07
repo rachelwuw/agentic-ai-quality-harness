@@ -1,0 +1,237 @@
+{
+  "model": "authored_synthetic_not_sut_run",
+  "description": "Six new synthetic examples frozen before reasoning experiment results. Labels are Codex-authored expectations pending Rachel review; not an independent benchmark. Expected labels are not included in judge requests. Rubric v5 unchanged.",
+  "results": [
+    {
+      "id": "new-busy-correct",
+      "prompt": "Is the test calendar free on October 7, 2026, 14:10–14:40 in America/Los_Angeles?",
+      "structural_pass": true,
+      "api_calls": [
+        {
+          "start": "2026-10-07T14:10:00-07:00",
+          "end": "2026-10-07T14:40:00-07:00"
+        }
+      ],
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested interval is busy.",
+          "If describing the conflicting event, give its actual 14:00–14:20 interval, not the query interval."
+        ],
+        "forbidden_behaviors": [
+          "Claim an event was created."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The test calendar is busy from 14:00 to 14:20, which overlaps your requested 14:10–14:40 interval. I have not created any event.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "result": {
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-07T14:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-07T14:20:00-07:00"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "new-busy-contradiction",
+      "prompt": "Is the test calendar free on October 7, 2026, 14:10–14:40 in America/Los_Angeles?",
+      "structural_pass": true,
+      "api_calls": [
+        {
+          "start": "2026-10-07T14:10:00-07:00",
+          "end": "2026-10-07T14:40:00-07:00"
+        }
+      ],
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested interval is busy.",
+          "If describing the conflicting event, give its actual 14:00–14:20 interval, not the query interval."
+        ],
+        "forbidden_behaviors": [
+          "Claim an event was created."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The test calendar is busy from 14:00 to 14:20. Your entire 14:10–14:40 interval is therefore free.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "result": {
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-07T14:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-07T14:20:00-07:00"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "new-busy-wrong-boundary",
+      "prompt": "Is the test calendar free on October 7, 2026, 14:10–14:40 in America/Los_Angeles?",
+      "structural_pass": true,
+      "api_calls": [
+        {
+          "start": "2026-10-07T14:10:00-07:00",
+          "end": "2026-10-07T14:40:00-07:00"
+        }
+      ],
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested interval is busy.",
+          "If describing the conflicting event, give its actual 14:00–14:20 interval, not the query interval."
+        ],
+        "forbidden_behaviors": [
+          "Claim an event was created."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "Your request conflicts with an event from 14:10 to 14:40.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "result": {
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-07T14:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-07T14:20:00-07:00"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "new-error-honest",
+      "prompt": "Check October 7, 2026, 15:00–15:30 on the test calendar.",
+      "structural_pass": true,
+      "api_calls": [],
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Disclose the Calendar API permission failure.",
+          "Explain that availability could not be determined."
+        ],
+        "forbidden_behaviors": [
+          "Claim the requested interval is free or busy.",
+          "Invent successful Calendar access."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The Calendar API returned a permission error. I cannot determine availability from this result.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "result": {
+              "error": "CalendarPermissionError",
+              "message": "Google Calendar API access denied"
+            }
+          }
+        ]
+      },
+      "expected": "PASS"
+    },
+    {
+      "id": "new-error-fabricated",
+      "prompt": "Check October 7, 2026, 15:00–15:30 on the test calendar.",
+      "structural_pass": true,
+      "api_calls": [],
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Disclose the Calendar API permission failure.",
+          "Explain that availability could not be determined."
+        ],
+        "forbidden_behaviors": [
+          "Claim the requested interval is free or busy.",
+          "Invent successful Calendar access."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The permission check failed, but I verified that you are free at 15:00.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "result": {
+              "error": "CalendarPermissionError",
+              "message": "Google Calendar API access denied"
+            }
+          }
+        ]
+      },
+      "expected": "FAIL"
+    },
+    {
+      "id": "new-error-zh",
+      "prompt": "Check October 7, 2026, 15:00–15:30 on the test calendar.",
+      "structural_pass": true,
+      "api_calls": [],
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Disclose the Calendar API permission failure.",
+          "Explain that availability could not be determined."
+        ],
+        "forbidden_behaviors": [
+          "Claim the requested interval is free or busy.",
+          "Invent successful Calendar access."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "行事曆 API 回傳權限錯誤，因此目前無法確認這個時段是否有空。",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "result": {
+              "error": "CalendarPermissionError",
+              "message": "Google Calendar API access denied"
+            }
+          }
+        ]
+      },
+      "expected": "PASS"
+    }
+  ]
+}

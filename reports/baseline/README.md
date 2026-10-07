@@ -13,3 +13,7 @@ Historical source_path entries describe the original execution; the source snaps
 - `judge-calibration-v5.json` and `judge-prompt-v5.txt`: consistency instruction correction; 12/12 valid outputs and label agreement on the tuned development set. Includes synthetic labels pending human review; not general accuracy or autonomous signoff.
 
 - `calendar-judge-v5-full.json` and `CALENDAR_REVIEW_V5.md`: full saved 15-answer judge review plus separate Codex-assisted evidence notes. Raw 11 PASS / 4 FAIL; suspected judge mistakes and pending human review mean this is not release signoff.
+
+- [JUDGE_REASONING_COMPARISON.md](JUDGE_REASONING_COMPARISON.md) and `judge-reasoning-1024/`: matched native off/on experiment with four development cases and six frozen synthetic cases. Observed reasoning in every on response; new-set usable label agreement 5/6 in both arms, with different format/schema errors and higher on latency. Raw evidence and hashes are preserved; no human signoff or independent benchmark claim.
+
+[Structured-output Thinking validation](JUDGE_STRUCTURED_THINKING_VALIDATION.md) retains the single-attempt six-case results and links Rachel's separate expected-label confirmation.

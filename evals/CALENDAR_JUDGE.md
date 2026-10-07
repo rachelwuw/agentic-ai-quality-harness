@@ -33,7 +33,7 @@ The model returns one judgment per requirement with a reason and evidence. Pytho
 
 The 12-example suite `evals/judge_calibration_cases.json` includes four previously human-reviewed saved SUT answers and eight authored synthetic answer variants. Synthetic variants are NOT new SUT runs and their author-defined labels await Rachel's review. They retain controlled tool evidence, with stale assistant messages removed. Expected labels and label provenance are not sent to the judge. Correct gap/fold answers are included to catch false failures; incorrect time alternatives, fabricated API success and an instruction-injection answer test missed failures. These examples are development calibration, not a held-out benchmark or evidence of general accuracy. `--ids` supports focused runs; partial calibration results are not full-suite calibration.
 
-For full saved SUT review after calibration, use the controlled baseline as `--input` without `--calibrate`. The calibration SHA-256 guard only accepts the authored calibration source. Runtime remains Qwen with Reasoning Budget 0. Preserve all versioned results rather than rerunning until success.
+For full saved SUT review after calibration, use the controlled baseline as `--input` without `--calibrate`. The calibration SHA-256 guard only accepts the authored calibration source. Those historical calibration runs used Qwen with Reasoning Budget 0. Preserve all versioned results rather than rerunning until success.
 
 ## Observed v3 result
 
@@ -58,3 +58,17 @@ Preserved evidence: `reports/baseline/judge-calibration-v5.json` and `reports/ba
 ## Full saved-answer review v5
 
 The visible 15-case run completed: 11 raw PASS, 4 raw FAIL, 0 UNCERTAIN, all outputs valid. This is not 11 confirmed passes: assisted review identifies suspected false FAIL cal-08 and missed FAIL cal-09; cal-10's reason is inaccurate about confirmation and duration policy needs review. cal-13/cal-14 known failures were caught. cal-02 scope wording needs review. Human signoff remains pending. See `reports/baseline/CALENDAR_REVIEW_V5.md` for the queue, answers, API parameters and reasons; raw scores remain unchanged in `calendar-judge-v5-full.json`. No new SUT run, automatic retries or Google calls were performed.
+
+## Reasoning comparison
+
+The current saved Thinking experiment preset uses a 1024-token budget. [Comparison results](../reports/baseline/JUDGE_REASONING_COMPARISON.md) retain the historical budget=0 evidence and compare explicit native off/on requests using an unchanged v5 prompt/rubric. This is a separate prompt-JSON experiment; the default OpenAI-compatible path continues to request strict JSON schema. No silent fallback or repair occurs.
+
+Set `JUDGE_MODEL` to the loaded judge identifier and `LM_STUDIO_BASE_URL` to the configurable local `/v1` endpoint. In LM Studio, enable Thinking and set Reasoning Budget 1024 before testing the on arm. Always verify returned reasoning tokens; the requested setting alone is insufficient. Use a new output path for each recorded run.
+
+```sh
+python -m harness.calendar_judge --native --thinking --input evals/judge_calibration_cases.json --calibrate --ids cal-13 --max-tokens 6144 --timeout 600 --output reports/runs/thinking-verification-new.json
+```
+
+For a matched off arm, omit `--thinking` and select a different output filename; keep all other conditions fixed. For the frozen six-case synthetic input, use `evals/judge_reasoning_validation.json` without `--calibrate`. Its authored expectations are not sent to the judge and still need human review. Runtime metadata includes elapsed seconds even on a timeout and an observed/not_observed/unknown thinking verification marker. Invalid output remains UNCERTAIN, never an automatic pass or a retry-until-success. The native API does not document a finish-reason field, so prompt-JSON mode is an experimental path with strict post-validation rather than equivalent constrained decoding.
+
+For the subsequently verified Thinking plus strict-schema configuration, omit `--native` and `--unconstrained`, and use `--thinking --max-tokens 6144 --timeout 600` under the saved 1024-token preset. Six synthetic cases returned valid matching verdicts with observed reasoning; see [validation evidence](../reports/baseline/JUDGE_STRUCTURED_THINKING_VALIDATION.md). This small validation does not make the judge an automatic release gate.

@@ -1,0 +1,96 @@
+{
+  "rubric_version": "calendar-answer-v5",
+  "judge_prompt_sha256": "93105abb586716dadbd05200d5047bdaf5a592782147edf8a3a2b9eb228a9269",
+  "rubric_sha256": "7f498471969ac029e0decce4e917c83e47bfd3e61ab2c84439c1fa34d68fe5de",
+  "judge_model": "qwen/qwen3.5-9b",
+  "temperature": 0,
+  "max_tokens": 6144,
+  "timeout_seconds": 600,
+  "transport": "lm_studio_native",
+  "output_mode": "prompt_json",
+  "reasoning_budget_on": 1024,
+  "human_signoff": false,
+  "labels_new": "authored_synthetic_expectations_pending_human_review",
+  "repetitions_per_case": 1,
+  "summaries": {
+    "Confirmed development cases": {
+      "off": {
+        "total": 4,
+        "valid_outputs": 0,
+        "label_matches": 0,
+        "false_pass": 0,
+        "false_fail": 0,
+        "uncertain_valid": 0,
+        "format_or_request_errors": 4,
+        "mean_seconds": 47.279,
+        "reasoning_tokens": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "total": 4,
+        "valid_outputs": 4,
+        "label_matches": 4,
+        "false_pass": 0,
+        "false_fail": 0,
+        "uncertain_valid": 0,
+        "format_or_request_errors": 0,
+        "mean_seconds": 177.474,
+        "reasoning_tokens": [
+          1022,
+          1022,
+          1024,
+          1022
+        ]
+      }
+    },
+    "New synthetic validation cases": {
+      "off": {
+        "total": 6,
+        "valid_outputs": 5,
+        "label_matches": 5,
+        "false_pass": 0,
+        "false_fail": 0,
+        "uncertain_valid": 0,
+        "format_or_request_errors": 1,
+        "mean_seconds": 17.358,
+        "reasoning_tokens": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "on": {
+        "total": 6,
+        "valid_outputs": 5,
+        "label_matches": 5,
+        "false_pass": 0,
+        "false_fail": 0,
+        "uncertain_valid": 0,
+        "format_or_request_errors": 1,
+        "mean_seconds": 160.786,
+        "reasoning_tokens": [
+          1024,
+          1024,
+          1024,
+          1024,
+          1024,
+          1024
+        ]
+      }
+    }
+  },
+  "artifacts": {
+    "judge-thinking-1024-cal13.json": "50fd436e4f24efbc798b176f879c009be5a91b06a7d74559c36a6e75e5ca8b6e",
+    "judge-reasoning-off-confirmed.json": "12bc74f97a45807a1f6c991439c04c1888a1209d10632ce27c40c19bf9bb13df",
+    "judge-reasoning-on-confirmed-rest.json": "f7db949e984e833bea6e88d7e20255f9488864af56f47272ad89b5a338d1db70",
+    "judge-reasoning-off-validation.json": "bc14717c3c5d80f92dc341da970fe26a44fbc529882212288ad75ef8603e96d5",
+    "judge-reasoning-on-validation.json": "2ae203308a669cda8a76dabf575bb06668d1230acb36d35c855a51473f9b8d67"
+  }
+}

@@ -11,7 +11,7 @@ Development machine: M5 MacBook Air, 32 GB RAM / 4 TB SSD. Future target: 64 GB 
 - Custom Python agent loop with tool allowlist, validated arguments, execution limit and JSON traces.
 - Real read-only Google Calendar availability checks against a dedicated private test calendar.
 - Optional MCP adapter for using the same Calendar tools in LM Studio chat.
-- 77 deterministic pytest tests, run without Google or model inference.
+- 80 deterministic pytest tests, run without Google or model inference.
 - 15 controlled Calendar agent evaluation cases using the real local SUT model and simulated Calendar responses.
 - Separate local Qwen judge that grades saved answers criterion by criterion using strict JSON output.
 - Selected baseline reports and a documented assisted-review queue.
@@ -70,7 +70,7 @@ python -m harness doctor
 
 `.env.example` is a reference; the CLI does not automatically load `.env`. The current doctor checks runtime/model listing, not every migration prerequisite. Legacy `LM_MODEL` and `LM_BASE_URL` remain supported.
 
-On this 32 GB Mac, load SUT and judge in turn rather than assuming both fit at once. Model weights remain on disk when unloaded. The recorded Qwen judge runs use an 8192-token context and LM Studio Inference Reasoning Budget set to 0; this runtime setting is separate from the API request.
+On this 32 GB Mac, load SUT and judge in turn rather than assuming both fit at once. Model weights remain on disk when unloaded. Historical Qwen judge baselines used an 8192-token context and Reasoning Budget 0. The saved Thinking experiment preset now uses a 1024-token budget; native requests select off/on explicitly and returned token counts verify whether reasoning occurred. See [the reasoning comparison](reports/baseline/JUDGE_REASONING_COMPARISON.md) for the matched experiment and its limitations.
 
 ## Google Calendar setup
 
@@ -135,3 +135,5 @@ Commit source, tests, evaluation definitions, project dependency files, docs and
 Migration path: Git clone → recreate Python environment → reinstall LM Studio → download models → configure secrets → authenticate Google → doctor → pytest/evals. Full end-to-end migration verification remains pending. See [local Git workflow](SOURCE_CONTROL.md), [architecture](ARCHITECTURE.md), [scope](PROJECT_SCOPE.md) and [current status/history](SETUP_STATUS.md).
 
 No LangGraph, RAG, vector database, Jenkins or complex CI/CD is required for this preview. Judge reliability and read-only Calendar behavior remain the immediate quality focus.
+
+The subsequent strict-JSON Thinking validation produced 6/6 valid outputs matching Rachel-confirmed synthetic labels, with observed reasoning in all six responses. This is a small configuration validation, not general accuracy or release approval. See [the report](reports/baseline/JUDGE_STRUCTURED_THINKING_VALIDATION.md).

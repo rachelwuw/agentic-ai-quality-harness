@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import os
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from .client import LocalClient
@@ -111,28 +112,68 @@ def response_format(checks):
         "name": "calendar_criterion_review", "strict": True, "schema": schema}}
 
 
-def local_complete(client):
+def local_complete(client, *, thinking=False, max_tokens=4096, constrained=True):
     def complete(messages):
         checks = json.loads(messages[-1]["content"])["checks"]
-        response = client.request("/chat/completions", {"model": client.model,
-            "response_format": response_format(checks),
-            "messages": messages, "temperature": 0, "max_tokens": 4096, "stream": False,
-            "chat_template_kwargs": {"enable_thinking": False}})
+        complete.last_metadata = {}
+        started = time.perf_counter()
+        payload = {"model": client.model,
+            "messages": messages, "temperature": 0, "max_tokens": max_tokens, "stream": False,
+            "reasoning_effort": "high" if thinking else "none"}
+        if constrained:
+            payload["response_format"] = response_format(checks)
+        try:
+            response = client.request("/chat/completions", payload)
+        finally:
+            complete.last_metadata["elapsed_seconds"] = round(time.perf_counter()-started, 3)
         choice = response["choices"][0]
+        complete.last_metadata = {"elapsed_seconds": round(time.perf_counter()-started, 3),
+            "usage": response.get("usage", {}), "finish_reason": choice.get("finish_reason"),
+            "reasoning_content": choice["message"].get("reasoning_content", "")}
         if choice.get("finish_reason") != "stop" or choice["message"].get("tool_calls"):
             raise ValueError("Judge did not return a complete tool-free answer")
         return choice["message"]["content"]
     return complete
 
 
+def native_complete(client, *, thinking=False, max_tokens=6144):
+    transport = LocalClient(model=client.model, base_url=client.base.removesuffix("/v1"), timeout=client.timeout)
+    def complete(messages):
+        complete.last_metadata = {}
+        started = time.perf_counter()
+        try:
+            response = transport.request("/api/v1/chat", {"model": client.model,
+                "system_prompt": messages[0]["content"], "input": messages[1]["content"],
+                "reasoning": "on" if thinking else "off", "temperature": 0,
+                "max_output_tokens": max_tokens, "store": False, "integrations": []})
+        finally:
+            complete.last_metadata["elapsed_seconds"] = round(time.perf_counter()-started, 3)
+        output = response["output"]
+        complete.last_metadata = {"elapsed_seconds": round(time.perf_counter()-started, 3),
+            "usage": response.get("stats", {}),
+            "reasoning_content": "\n".join(x["content"] for x in output if x["type"] == "reasoning")}
+        if any(x["type"] not in {"message", "reasoning"} for x in output):
+            raise ValueError("Judge returned a tool call")
+        return "\n".join(x["content"] for x in output if x["type"] == "message")
+    return complete
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--timeout", type=int, default=600)
+    parser.add_argument("--native", action="store_true", help="LM Studio native API with explicit reasoning control; prompt JSON")
+    parser.add_argument("--thinking", action="store_true")
+    parser.add_argument("--unconstrained", action="store_true", help="Prompt JSON only; parser validation still required")
+    parser.add_argument("--max-tokens", type=int, default=4096)
+    parser.add_argument("--runtime-note", default="Runtime settings not verified by runner")
     parser.add_argument("--input", required=True)
     parser.add_argument("--ids", nargs="+", help="Optional subset for focused review")
     parser.add_argument("--rubric", default="evals/calendar_judge_rubric.json")
     parser.add_argument("--calibrate", action="store_true")
     parser.add_argument("--output", default="reports/runs/calendar-judge.json")
     args = parser.parse_args()
+    if args.max_tokens < 1 or args.timeout < 1:
+        parser.error("max-tokens and timeout must be positive")
     model = os.getenv("JUDGE_MODEL")
     if not model:
         parser.error("Set JUDGE_MODEL to the loaded LM Studio judge identifier")
@@ -159,26 +200,39 @@ def main():
             selected = {k: v for k, v in selected.items() if k in args.ids}
     if selected and {x["id"] for x in items} != set(selected):
         parser.error("Calibration input is missing labeled cases")
-    client = LocalClient(model=model)
+    client = LocalClient(model=model, timeout=args.timeout)
     if model not in {x["id"] for x in client.models()["data"]}:
         parser.error("Configured judge model is not exposed by LM Studio")
     report = {"rubric_version": RUBRIC_VERSION, "judge_prompt_sha256": hashlib.sha256(SYSTEM.encode()).hexdigest(),
-        "runtime_note": "LM Studio Qwen Inference Reasoning Budget = 0; set separately in runtime", "rubric_sha256": hashlib.sha256(rubric_bytes).hexdigest(),
+        "runtime_note": args.runtime_note, "rubric_sha256": hashlib.sha256(rubric_bytes).hexdigest(),
         "source_sha256": hashlib.sha256(source_bytes).hexdigest(), "source_path": str(source_path),
         "sut_model": source.get("model"), "judge_model": model, "base_url": client.base,
         "recorded_at": datetime.now(timezone.utc).isoformat(), "temperature": 0,
-        "max_tokens": 4096, "enable_thinking_requested": False,
-        "output_mode": "json_schema_strict", "schema_validation": "exact_ids_and_nonempty_evidence",
+        "timeout_seconds": args.timeout, "max_tokens": args.max_tokens, "enable_thinking_requested": args.thinking,
+        "transport": "lm_studio_native" if args.native else "openai_compatible",
+        "output_mode": "prompt_json" if args.native or args.unconstrained else "json_schema_strict", "schema_validation": "exact_ids_and_nonempty_evidence",
         "human_review_required": True, "calibration": args.calibrate,
         "calibration_label_provenance": rubric.get("label_provenance", {}) if args.calibrate else {},
         "state": "running", "total": len(items), "results": []}
     output.parent.mkdir(parents=True, exist_ok=True)
-    complete = local_complete(client)
+    complete = (native_complete(client, thinking=args.thinking, max_tokens=args.max_tokens) if args.native else
+        local_complete(client, thinking=args.thinking, max_tokens=args.max_tokens, constrained=not args.unconstrained))
+    output.write_text(json.dumps(report, ensure_ascii=False, indent=2))
     print("Local judge; saved answers only; NO Calendar tools or Google API calls.", flush=True)
     for item in items:
+        complete.last_metadata = {}
+        print(f'{item["id"]}: reviewing saved answer...', flush=True)
         result = {"id": item["id"], "structural_pass": item["structural_pass"],
                   **review(item, rubric["reference_facts"].get(item["id"], []), complete,
                            rubric.get("additional_criteria", {}).get(item["id"], []))}
+        result["generation"] = getattr(complete, "last_metadata", {})
+        usage = result["generation"].get("usage", {})
+        reasoning_tokens = usage.get("reasoning_output_tokens",
+            usage.get("completion_tokens_details", {}).get("reasoning_tokens"))
+        result["generation"]["reasoning_tokens"] = reasoning_tokens
+        result["generation"]["thinking_verification"] = (
+            "observed" if isinstance(reasoning_tokens, int) and reasoning_tokens > 0
+            else "not_observed" if reasoning_tokens == 0 else "unknown")
         result["overall_status"] = ("FAIL" if not item["structural_pass"] or result["verdict"] == "FAIL"
                                     else "PASS_PROVISIONAL" if result["verdict"] == "PASS" else "NEEDS_REVIEW")
         if selected:
@@ -186,6 +240,9 @@ def main():
         report["results"].append(result)
         output.write_text(json.dumps(report, ensure_ascii=False, indent=2))
         print(f'{item["id"]}: {result["verdict"]}', flush=True)
+        print(f'  Runtime: {result["generation"].get("elapsed_seconds")} seconds; '
+              f'reasoning tokens: {reasoning_tokens}; '
+              f'verification: {result["generation"]["thinking_verification"]}', flush=True)
         for check in result["checks"]:
             print(f'  {check["id"]} {check["verdict"]}: {check["reason"]}', flush=True)
     if selected:

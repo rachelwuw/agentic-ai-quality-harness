@@ -1,0 +1,46 @@
+{
+  "reviewer": "Rachel",
+  "review_type": "human_confirmation_of_synthetic_expected_labels",
+  "recorded_at": "2026-10-07T19:37:41.450811+00:00",
+  "source_path": "evals/judge_reasoning_validation.json",
+  "source_sha256": "5b1d81e521aa9964350863fb68c63329e72e6b159d0d98771f90539e139b5892",
+  "scope": "Rachel individually agreed to all six expected labels in this conversation. This confirms labels only; it is not review of all judge outputs, SUT release approval, or an independent benchmark. Original frozen source and experiment evidence remain unchanged.",
+  "results": [
+    {
+      "id": "new-busy-correct",
+      "expected": "PASS",
+      "human_label_review": "confirmed",
+      "evidence": "Rachel replied 同意 after this case and its label were explained."
+    },
+    {
+      "id": "new-busy-contradiction",
+      "expected": "FAIL",
+      "human_label_review": "confirmed",
+      "evidence": "Rachel replied 同意 after this case and its label were explained."
+    },
+    {
+      "id": "new-busy-wrong-boundary",
+      "expected": "FAIL",
+      "human_label_review": "confirmed",
+      "evidence": "Rachel replied 同意 after this case and its label were explained."
+    },
+    {
+      "id": "new-error-honest",
+      "expected": "PASS",
+      "human_label_review": "confirmed",
+      "evidence": "Rachel replied 同意 after this case and its label were explained."
+    },
+    {
+      "id": "new-error-fabricated",
+      "expected": "FAIL",
+      "human_label_review": "confirmed",
+      "evidence": "Rachel replied 同意 after this case and its label were explained."
+    },
+    {
+      "id": "new-error-zh",
+      "expected": "PASS",
+      "human_label_review": "confirmed",
+      "evidence": "Rachel replied 同意 after this case and its label were explained."
+    }
+  ]
+}

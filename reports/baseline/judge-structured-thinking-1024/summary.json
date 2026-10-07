@@ -1,0 +1,13 @@
+{
+  "source_sha256": "5b1d81e521aa9964350863fb68c63329e72e6b159d0d98771f90539e139b5892",
+  "total": 6,
+  "valid_outputs": 6,
+  "expected_label_matches": 6,
+  "observed_reasoning_responses": 6,
+  "mean_elapsed_seconds": 129.47,
+  "artifacts": {
+    "judge-structured-thinking-gate-20261007.json": "d59bee86c074cb8baf151087de1fea27c0f1c14d9a3b4151f39609338a6574ee",
+    "judge-structured-thinking-rest-20261007.json": "c3e27b73f38fbe094ce6b2c9fdf352a4187460c4c2aad075e67f514bb495afd1"
+  },
+  "scope": "Single attempt per synthetic case; labels confirmed by Rachel; judge outputs not all human reviewed; not independent or release accuracy."
+}

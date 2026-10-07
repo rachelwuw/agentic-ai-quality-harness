@@ -123,3 +123,52 @@ def test_constrained_request_requires_complete_string_evidence_and_exact_count()
 def test_schema_rejects_no_expected_checks():
     with pytest.raises(ValueError):
         response_format([])
+
+
+def test_thinking_request_records_runtime_evidence():
+    class Client:
+        model = "judge-test"
+        def request(self, path, payload):
+            assert payload["reasoning_effort"] == "high"
+            assert payload["max_tokens"] == 6144
+            assert "tools" not in payload
+            return {"choices":[{"finish_reason":"stop", "message":{
+                "content":response("PASS"), "reasoning_content":"reasoning trace"}}],
+                "usage":{"completion_tokens_details":{"reasoning_tokens":10}}}
+    complete = local_complete(Client(), thinking=True, max_tokens=6144)
+    complete([{"role":"user", "content":json.dumps({"checks":[{"id":"c1"}]})}])
+    assert complete.last_metadata["usage"]["completion_tokens_details"]["reasoning_tokens"] == 10
+    assert complete.last_metadata["elapsed_seconds"] >= 0
+
+
+def test_native_reasoning_is_explicit_and_tools_disabled(monkeypatch):
+    from harness.calendar_judge import native_complete
+    class Transport:
+        def __init__(self, **kwargs):
+            assert kwargs["base_url"] == "http://127.0.0.1:1234"
+        def request(self, path, payload):
+            assert path == "/api/v1/chat"
+            assert payload["reasoning"] == "on"
+            assert payload["integrations"] == [] and payload["store"] is False
+            return {"output":[{"type":"reasoning", "content":"trace"},
+                {"type":"message", "content":response("PASS")}],
+                "stats":{"reasoning_output_tokens":8}}
+    monkeypatch.setattr("harness.calendar_judge.LocalClient", Transport)
+    class Client:
+        model = "judge"
+        base = "http://127.0.0.1:1234/v1"
+        timeout = 600
+    complete = native_complete(Client(), thinking=True)
+    assert parse_verdict(complete([{ "content":"system" },{ "content":"data" }]), ["c1"])["verdict"] == "PASS"
+    assert complete.last_metadata["usage"]["reasoning_output_tokens"] == 8
+
+
+def test_judge_timeout_preserves_elapsed_time():
+    class Client:
+        model = "judge-test"
+        def request(self, path, payload):
+            raise TimeoutError()
+    complete = local_complete(Client())
+    with pytest.raises(TimeoutError):
+        complete([{"role":"user", "content":json.dumps({"checks":[{"id":"c1"}]})}])
+    assert complete.last_metadata["elapsed_seconds"] >= 0

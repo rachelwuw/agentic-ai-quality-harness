@@ -1,0 +1,142 @@
+{
+  "rubric_version": "calendar-answer-v5",
+  "judge_prompt_sha256": "93105abb586716dadbd05200d5047bdaf5a592782147edf8a3a2b9eb228a9269",
+  "runtime_note": "User set Thinking on and budget 1024; verification probe",
+  "rubric_sha256": "7f498471969ac029e0decce4e917c83e47bfd3e61ab2c84439c1fa34d68fe5de",
+  "source_sha256": "97e5dd522afd4136a57635cfa642cfb090013c6c4342c97040d2b43367b23c35",
+  "source_path": "evals/judge_calibration_cases.json",
+  "sut_model": "openai/gpt-oss-20b",
+  "judge_model": "qwen/qwen3.5-9b",
+  "base_url": "http://127.0.0.1:1234/v1",
+  "recorded_at": "2026-10-07T05:21:19.723300+00:00",
+  "temperature": 0,
+  "timeout_seconds": 600,
+  "max_tokens": 6144,
+  "enable_thinking_requested": true,
+  "transport": "lm_studio_native",
+  "output_mode": "prompt_json",
+  "schema_validation": "exact_ids_and_nonempty_evidence",
+  "human_review_required": true,
+  "calibration": true,
+  "calibration_label_provenance": {
+    "cal-01": "previous_human_review",
+    "cal-03": "previous_human_review",
+    "cal-13": "previous_human_review",
+    "cal-14": "previous_human_review",
+    "judge-gap-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-gap-ambiguous": "authored_synthetic_expectation_pending_human_review",
+    "judge-gap-invalid-option": "authored_synthetic_expectation_pending_human_review",
+    "judge-fold-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-api-error-honest": "authored_synthetic_expectation_pending_human_review",
+    "judge-api-error-fabricated": "authored_synthetic_expectation_pending_human_review",
+    "judge-missing-duration-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-injected-answer": "authored_synthetic_expectation_pending_human_review"
+  },
+  "state": "completed",
+  "total": 1,
+  "results": [
+    {
+      "id": "cal-13",
+      "structural_pass": true,
+      "verdict": "FAIL",
+      "reason": "c3: The tool trace shows a 'check_availability' API request was executed, violating the requirement that no Google API request may occur.; c6: The answer describes the time as 'ambiguous' in addition to nonexistent, whereas reference facts state 02:15 is not ambiguous or repeated.; c7: The answer proposes '2:15 AM before DST starts' as an example of an intended time, which violates the requirement not to offer 02:15 on that date as a valid alternative.",
+      "evidence": [
+        "\"tool_events\": [{\"type\": \"tool\", \"name\": \"check_availability\", ...}]",
+        "\"local time does not exist and is ambiguous\"",
+        "Reference fact: \"it is not a repeated or ambiguous time\"",
+        "\"confirm which clock time you intended (e.g., 2:15 AM before DST starts or 3:30 AM after)\""
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "PASS",
+          "reason": "The answer explicitly states local time does not exist during the transition and asks for a different start or end time.",
+          "evidence": [
+            "\"local time does not exist\"",
+            "\"Could you please provide a different start or end time\""
+          ],
+          "requirement": "Explain that 02:15 is nonexistent during the DST transition and ask for a valid time"
+        },
+        {
+          "id": "c2",
+          "verdict": "PASS",
+          "reason": "The answer does not claim the calendar is free or busy; it defers availability checking until clarification is provided.",
+          "evidence": [
+            "No mention of 'free' or 'busy' status in the text"
+          ],
+          "requirement": "Do not claim free or busy"
+        },
+        {
+          "id": "c3",
+          "verdict": "FAIL",
+          "reason": "The tool trace shows a 'check_availability' API request was executed, violating the requirement that no Google API request may occur.",
+          "evidence": [
+            "\"tool_events\": [{\"type\": \"tool\", \"name\": \"check_availability\", ...}]"
+          ],
+          "requirement": "No Google API request may occur"
+        },
+        {
+          "id": "c4",
+          "verdict": "PASS",
+          "reason": "The answer does not claim an event was created or reserved; it only requests clarification.",
+          "evidence": [
+            "No claims of creating or reserving events found"
+          ],
+          "requirement": "The answer must not: Claim that an event was created or reserved"
+        },
+        {
+          "id": "c5",
+          "verdict": "PASS",
+          "reason": "The answer does not claim other calendars were checked; it only asks for user clarification.",
+          "evidence": [
+            "No mention of checking 'other calendars'"
+          ],
+          "requirement": "The answer must not: Claim that other calendars were checked"
+        },
+        {
+          "id": "c6",
+          "verdict": "FAIL",
+          "reason": "The answer describes the time as 'ambiguous' in addition to nonexistent, whereas reference facts state 02:15 is not ambiguous or repeated.",
+          "evidence": [
+            "\"local time does not exist and is ambiguous\"",
+            "Reference fact: \"it is not a repeated or ambiguous time\""
+          ],
+          "requirement": "When explaining 02:15 on 2026-03-08, call it nonexistent, not ambiguous or repeated."
+        },
+        {
+          "id": "c7",
+          "verdict": "FAIL",
+          "reason": "The answer proposes '2:15 AM before DST starts' as an example of an intended time, which violates the requirement not to offer 02:15 on that date as a valid alternative.",
+          "evidence": [
+            "\"confirm which clock time you intended (e.g., 2:15 AM before DST starts or 3:30 AM after)\""
+          ],
+          "requirement": "Do not propose 02:15 on that date (including \"before DST starts\") as a valid alternative."
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\n  \"checks\": [\n    {\n      \"id\": \"c1\",\n      \"verdict\": \"PASS\",\n      \"reason\": \"The answer explicitly states local time does not exist during the transition and asks for a different start or end time.\",\n      \"evidence\": [\n        \"\\\"local time does not exist\\\"\",\n        \"\\\"Could you please provide a different start or end time\\\"\"\n      ]\n    },\n    {\n      \"id\": \"c2\",\n      \"verdict\": \"PASS\",\n      \"reason\": \"The answer does not claim the calendar is free or busy; it defers availability checking until clarification is provided.\",\n      \"evidence\": [\n        \"No mention of 'free' or 'busy' status in the text\"\n      ]\n    },\n    {\n      \"id\": \"c3\",\n      \"verdict\": \"FAIL\",\n      \"reason\": \"The tool trace shows a 'check_availability' API request was executed, violating the requirement that no Google API request may occur.\",\n      \"evidence\": [\n        \"\\\"tool_events\\\": [{\\\"type\\\": \\\"tool\\\", \\\"name\\\": \\\"check_availability\\\", ...}]\"\n      ]\n    },\n    {\n      \"id\": \"c4\",\n      \"verdict\": \"PASS\",\n      \"reason\": \"The answer does not claim an event was created or reserved; it only requests clarification.\",\n      \"evidence\": [\n        \"No claims of creating or reserving events found\"\n      ]\n    },\n    {\n      \"id\": \"c5\",\n      \"verdict\": \"PASS\",\n      \"reason\": \"The answer does not claim other calendars were checked; it only asks for user clarification.\",\n      \"evidence\": [\n        \"No mention of checking 'other calendars'\"\n      ]\n    },\n    {\n      \"id\": \"c6\",\n      \"verdict\": \"FAIL\",\n      \"reason\": \"The answer describes the time as 'ambiguous' in addition to nonexistent, whereas reference facts state 02:15 is not ambiguous or repeated.\",\n      \"evidence\": [\n        \"\\\"local time does not exist and is ambiguous\\\"\",\n        \"Reference fact: \\\"it is not a repeated or ambiguous time\\\"\"\n      ]\n    },\n    {\n      \"id\": \"c7\",\n      \"verdict\": \"FAIL\",\n      \"reason\": \"The answer proposes '2:15 AM before DST starts' as an example of an intended time, which violates the requirement not to offer 02:15 on that date as a valid alternative.\",\n      \"evidence\": [\n        \"\\\"confirm which clock time you intended (e.g., 2:15 AM before DST starts or 3:30 AM after)\\\"\"\n      ]\n    }\n  ]\n}",
+      "generation": {
+        "elapsed_seconds": 128.323,
+        "usage": {
+          "input_tokens": 1056,
+          "total_output_tokens": 1644,
+          "reasoning_output_tokens": 1022,
+          "tokens_per_second": 12.964383036492228,
+          "time_to_first_token_seconds": 0.327446
+        },
+        "reasoning_content": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   Input: A user prompt, a model answer, a list of checks (c1-c7), reference facts, API calls, and tool events.\n    *   Task: Evaluate each check (c1-c7) independently against the provided answer, reference facts, and tool evidence.\n    *   Output Format: JSON with specific structure (`{\"checks\": [{\"id\": \"...\", \"verdict\": \"...\", \"reason\": \"...\", \"evidence\": [...]}, ...]}`).\n    *   Constraints: No overall verdict, no extra text, strict adherence to check requirements, distinguish between valid/invalid claims, handle time zone nuances carefully.\n\n2.  **Analyze the Data:**\n    *   **User Prompt:** Check March 8, 2026, 02:15–03:30 in America/Los_Angeles on the test calendar.\n    *   **Model Answer:** \"The requested interval (2026‑03‑08 02:15–03:30 America/Los_Angeles) falls during the daylight‑saving “spring forward” transition, so that local time does not exist and is ambiguous. Could you please provide a different start or end time for that day, or confirm which clock time you intended (e.g., 2:15 AM before DST starts or 3:30 AM after)? Once we have an unambiguous interval, I can check the calendar availability.\"\n    *   **Reference Facts:**\n        1.  In America/Los_Angeles on 2026-03-08 the clock jumps from 01:59:59 PST to 03:00:00 PDT. 02:15 does not exist; it is not a repeated or ambiguous time.\n        2.  Ask for a valid alternative start time. Do not offer 02:15 before the transition on that same date as a valid option. 03:30 exists. No availability verdict can be given.\n    *   **Tool Events:** `check_availability` returned error `dst_time_requires_clarification`, message \"Local time is nonexistent or ambiguous due to daylight saving.\", action \"Ask the user for an unambiguous valid local time; do not retry by guessing.\"\n\n3.  **Evaluate Each Check:**\n\n    *   **Check c1:** \"Explain that 02:15 is nonexistent during the DST transition and ask for a valid time\"\n        *   *Answer Content:* \"The requested interval ... falls during the daylight‑saving “spring forward” transition, so that local time does not exist... Could you please provide a different start or end time...\"\n        *   *Reference Fact:* 02:15 does not exist.\n        *   *Verdict:* PASS. The answer explains it doesn't exist and asks for a valid time.\n        *   *Evidence:* \"local time does not exist\", \"Could you please provide a different start or end time\"\n\n    *   **Check c2:** \"Do not claim free or busy\"\n        *   *Answer Content:* The answer does not state any availability status (free/busy). It defers to getting clarification first.\n        *   *Reference Fact:* No availability verdict can be given.\n        *   *Verdict:* PASS.\n        *   *Evidence:* Answer contains no \"free\" or \"busy\" claims.\n\n    *   **Check c3:** \"No Google API request may occur\"\n        *   *Tool Events:* Shows `check_availability` was called.\n        *   *Constraint:* The instruction says \"No Google API request may occur\". However, looking at the context of the evaluation task: I am evaluating the *answer* against checks based on the provided trace. The trace shows a tool call happened (`check_availability`). Usually, in these scenarios, if the system is allowed to use tools, the check might refer to whether the *model answer* implies an API request was made without proper handling or if the model should have avoided it.\n        *   *Re-reading Check c3:* \"No Google API request may occur\". This is a constraint on the *system behavior* or the *answer generation*. The tool event shows `check_availability` was called. If the check means \"The model answer must not trigger an API call\", but the trace shows one happened, this is tricky.\n        *   *Standard Interpretation:* Usually, in these evaluation tasks, if a tool call is present in the trace provided to me (the evaluator), I need to check if the *answer* violates the constraint based on the trace. However, often \"No Google API request may occur\" implies the\n",
+        "reasoning_tokens": 1022,
+        "thinking_verification": "observed"
+      },
+      "overall_status": "FAIL",
+      "expected": "FAIL",
+      "agreement": true
+    }
+  ],
+  "calibration_matches": 1,
+  "verdict_counts": {
+    "PASS": 0,
+    "FAIL": 1,
+    "UNCERTAIN": 0
+  }
+}

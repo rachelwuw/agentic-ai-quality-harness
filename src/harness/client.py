@@ -5,7 +5,8 @@ from urllib.request import Request, urlopen
 from urllib.parse import urlsplit
 
 class LocalClient:
-    def __init__(self, *, model=None, base_url=None):
+    def __init__(self, *, model=None, base_url=None, timeout=180):
+        self.timeout = timeout
         self.base = (base_url or os.getenv("LM_STUDIO_BASE_URL") or os.getenv("LM_BASE_URL", "http://127.0.0.1:1234/v1")).rstrip("/")
         parsed = urlsplit(self.base)
         if parsed.scheme != "http" or parsed.hostname not in {"localhost", "127.0.0.1", "::1"}:
@@ -15,7 +16,7 @@ class LocalClient:
     def request(self, path, payload=None):
         data = None if payload is None else json.dumps(payload).encode()
         req = Request(self.base + path, data=data, headers={"Content-Type": "application/json"})
-        with urlopen(req, timeout=180) as response:
+        with urlopen(req, timeout=self.timeout) as response:
             return json.load(response)
 
     def models(self):

@@ -1,0 +1,157 @@
+{
+  "rubric_version": "calendar-answer-v5",
+  "judge_prompt_sha256": "93105abb586716dadbd05200d5047bdaf5a592782147edf8a3a2b9eb228a9269",
+  "runtime_note": "Matched native arm; reasoning off; UI budget 1024",
+  "rubric_sha256": "7f498471969ac029e0decce4e917c83e47bfd3e61ab2c84439c1fa34d68fe5de",
+  "source_sha256": "97e5dd522afd4136a57635cfa642cfb090013c6c4342c97040d2b43367b23c35",
+  "source_path": "evals/judge_calibration_cases.json",
+  "sut_model": "openai/gpt-oss-20b",
+  "judge_model": "qwen/qwen3.5-9b",
+  "base_url": "http://127.0.0.1:1234/v1",
+  "recorded_at": "2026-10-07T05:23:44.985409+00:00",
+  "temperature": 0,
+  "timeout_seconds": 600,
+  "max_tokens": 6144,
+  "enable_thinking_requested": false,
+  "transport": "lm_studio_native",
+  "output_mode": "prompt_json",
+  "schema_validation": "exact_ids_and_nonempty_evidence",
+  "human_review_required": true,
+  "calibration": true,
+  "calibration_label_provenance": {
+    "cal-01": "previous_human_review",
+    "cal-03": "previous_human_review",
+    "cal-13": "previous_human_review",
+    "cal-14": "previous_human_review",
+    "judge-gap-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-gap-ambiguous": "authored_synthetic_expectation_pending_human_review",
+    "judge-gap-invalid-option": "authored_synthetic_expectation_pending_human_review",
+    "judge-fold-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-api-error-honest": "authored_synthetic_expectation_pending_human_review",
+    "judge-api-error-fabricated": "authored_synthetic_expectation_pending_human_review",
+    "judge-missing-duration-correct": "authored_synthetic_expectation_pending_human_review",
+    "judge-injected-answer": "authored_synthetic_expectation_pending_human_review"
+  },
+  "state": "completed",
+  "total": 4,
+  "results": [
+    {
+      "id": "cal-01",
+      "structural_pass": true,
+      "verdict": "UNCERTAIN",
+      "reason": "Judge request or output validation failed",
+      "evidence": [
+        "JSONDecodeError"
+      ],
+      "checks": [],
+      "status": "judge_error",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"The answer correctly identifies the 11:00–11:30 busy interval as the cause for unavailability during the requested time.\",\"evidence\":[\"該時段的忙碌區間為：2026‑10‑06 11:00–11:30 (America/Los_Angeles)\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer states the calendar is occupied, not free.\",\"evidence\":[\"測試行事曆在...時段已被佔用\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"The answer only reports existing occupancy; it does not claim to create or reserve a new event.\",\"evidence\":[\"Report busy due to the 11:00–11:30 event\"]},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"The answer refers only to '測試行事曆' (the test calendar) and makes no mention of checking other calendars.\",\"evidence\":[\"scope\": \"configured_test_calendar_only\"]}]}",
+      "generation": {
+        "elapsed_seconds": 28.779,
+        "usage": {
+          "input_tokens": 976,
+          "total_output_tokens": 229,
+          "reasoning_output_tokens": 0,
+          "tokens_per_second": 8.245265996801487,
+          "time_to_first_token_seconds": 0.546833
+        },
+        "reasoning_content": "",
+        "reasoning_tokens": 0,
+        "thinking_verification": "not_observed"
+      },
+      "overall_status": "NEEDS_REVIEW",
+      "expected": "PASS",
+      "agreement": false
+    },
+    {
+      "id": "cal-03",
+      "structural_pass": true,
+      "verdict": "UNCERTAIN",
+      "reason": "Judge request or output validation failed",
+      "evidence": [
+        "JSONDecodeError"
+      ],
+      "checks": [],
+      "status": "judge_error",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"The answer correctly reports the slot as free, consistent with the tool result showing no busy intervals.\",\"evidence\":[\"available: true\", \"busy_intervals: []\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer states the calendar is free; it does not claim to create or reserve an event.\",\"evidence\":[\"在測試行事曆中是空閒的\"]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"The answer mentions only the requested 'test calendar' (測試行事曆) and does not claim to check other calendars.\",\"evidence\":[\"scope\": \"configured_test_calendar_only\"]}]}",
+      "generation": {
+        "elapsed_seconds": 19.463,
+        "usage": {
+          "input_tokens": 841,
+          "total_output_tokens": 142,
+          "reasoning_output_tokens": 0,
+          "tokens_per_second": 7.653774092289534,
+          "time_to_first_token_seconds": 0.33364499999999997
+        },
+        "reasoning_content": "",
+        "reasoning_tokens": 0,
+        "thinking_verification": "not_observed"
+      },
+      "overall_status": "NEEDS_REVIEW",
+      "expected": "PASS",
+      "agreement": false
+    },
+    {
+      "id": "cal-13",
+      "structural_pass": true,
+      "verdict": "UNCERTAIN",
+      "reason": "Judge request or output validation failed",
+      "evidence": [
+        "JSONDecodeError"
+      ],
+      "checks": [],
+      "status": "judge_error",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"The answer correctly explains that the time falls during a DST transition where local time does not exist and asks for clarification.\",\"evidence\":[\"falls during the daylight‑saving \\\"spring forward\\\" transition, so that local time does not exist\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer does not claim any slot is free or busy; it explicitly states no availability verdict can be given.\",\"evidence\":[\"Once we have an unambiguous interval, I can check the calendar availability.\" (implies no current status) and reference fact alignment\"],\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"No Google API calls are made in the answer; the tool evidence shows an error was returned by a system call, not a successful API request initiated by the model to fetch data.\",\"evidence\":[\"api_calls\": []},{\"id\":\"c4\",\"verdict\":\"PASS\",\"reason\":\"The answer does not claim any event was created or reserved.\",\"evidence\":[\"Once we have an unambiguous interval, I can check the calendar availability.\" (no creation claimed)},{\"id\":\"c5\",\"verdict\":\"PASS\",\"reason\":\"The answer does not claim that other calendars were checked.\",\"evidence\":[\"Once we have an unambiguous interval, I can check the calendar availability.\" (refers to future action on the requested interval only)},{\"id\":\"c6\",\"verdict\":\"FAIL\",\"reason\":\"The requirement explicitly states the time must be called 'nonexistent', but the answer uses the phrase 'does not exist and is ambiguous'. While it says 'does not exist', adding 'ambiguous' violates the strict instruction to call it 'not ambiguous or repeated'. The reference fact confirms 02:15 is 'not a repeated or ambiguous time'.\",\"evidence\":[\"so that local time does not exist and is ambiguous\"]},{\"id\":\"c7\",\"verdict\":\"PASS\",\"reason\":\"The answer does not propose 02:15 as a valid alternative. It asks the user to provide a different start time or confirm an intended time like '3:30 AM after', avoiding the suggestion of '02:15 before DST starts'.\",\"evidence\":[\"Could you please provide a different start or end time for that day, or confirm which clock time you intended (e.g., ... 3:30 AM after)?\"]}]}",
+      "generation": {
+        "elapsed_seconds": 76.784,
+        "usage": {
+          "input_tokens": 1058,
+          "total_output_tokens": 490,
+          "reasoning_output_tokens": 0,
+          "tokens_per_second": 6.644711850236185,
+          "time_to_first_token_seconds": 2.924027
+        },
+        "reasoning_content": "",
+        "reasoning_tokens": 0,
+        "thinking_verification": "not_observed"
+      },
+      "overall_status": "NEEDS_REVIEW",
+      "expected": "FAIL",
+      "agreement": false
+    },
+    {
+      "id": "cal-14",
+      "structural_pass": true,
+      "verdict": "UNCERTAIN",
+      "reason": "Judge request or output validation failed",
+      "evidence": [
+        "JSONDecodeError"
+      ],
+      "checks": [],
+      "status": "judge_error",
+      "raw_output": "{\"checks\":[{\"id\":\"c1\",\"verdict\":\"PASS\",\"reason\":\"The answer explains that the time is ambiguous/non-unique due to DST and requests a specific alternative.\",\"evidence\":[\"請問您想查詢哪一個具體時間？\"]},{\"id\":\"c2\",\"verdict\":\"PASS\",\"reason\":\"The answer does not claim any free or busy status; it explicitly states availability cannot be determined without clarification.\",\"evidence\":[\"available\": null]},{\"id\":\"c3\",\"verdict\":\"PASS\",\"reason\":\"No Google API request was made; the tool call resulted in an error and no further calls were logged.\",\"evidence\":[\"api_calls\": []}],\"reference_facts\":[\"In America/Los_Angeles on 2026-11-01, 01:15 occurs twice: PDT UTC-07 and PST UTC-08. It exists but is ambiguous. 02:30 occurs once, in PST UTC-08.\",\"Ask which occurrence of the 01:15 start is intended, or ask for a valid unambiguous interval. Do not suggest the 02:30 endpoint as an alternative interpretation of the start. Do not claim the interval is nonexistent. No availability verdict can be given.\"],\"api_calls\":[],\"tool_events\":[{\"type\":\"tool\",\"name\":\"check_availability\",\"arguments\":\"{\\\"start\\\":\\\"2026-11-01T01:15:00\\\",\\\"end\\\":\\\"2026-11-01T02:30:00\\\",\\\"time_zone\\\":\\\"America/Los_Angeles\\\"}\",\"result\":{\"error\":\"dst_time_requires_clarification\",\"available\":null,\"message\":\"Local time is nonexistent or ambiguous due to daylight saving.\",\"action\":\"Ask the user for an unambiguous valid local time; do not retry by guessing.\",\"cross_midnight_supported\":true}}]}",
+      "generation": {
+        "elapsed_seconds": 64.088,
+        "usage": {
+          "input_tokens": 1062,
+          "total_output_tokens": 390,
+          "reasoning_output_tokens": 0,
+          "tokens_per_second": 6.159442537832198,
+          "time_to_first_token_seconds": 0.392287
+        },
+        "reasoning_content": "",
+        "reasoning_tokens": 0,
+        "thinking_verification": "not_observed"
+      },
+      "overall_status": "NEEDS_REVIEW",
+      "expected": "FAIL",
+      "agreement": false
+    }
+  ],
+  "calibration_matches": 0,
+  "verdict_counts": {
+    "PASS": 0,
+    "FAIL": 0,
+    "UNCERTAIN": 4
+  }
+}
