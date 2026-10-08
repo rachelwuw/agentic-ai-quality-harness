@@ -12,16 +12,22 @@ v0.2 Development Preview: real read-only Calendar availability, local SUT, custo
 
 ## Daily workflow
 
-Run these in the repository terminal:
+All changes follow **branch → commit/push → PR → CI passes → merge**. Do not push directly to `main` or use routine bypasses. Preserve uncommitted work before switching branches.
 
 ```sh
 git status
+git fetch origin main
+git switch -c docs/my-change origin/main
+# Make and inspect the changes; stage only the reviewed files.
 git diff
-# Stage only reviewed changes, then inspect the staged result.
-git add src/ tests/ evals/ README.md
+git add SOURCE_CONTROL.md
 git diff --cached
 git commit -m "Describe the concrete change"
-git log --oneline
+git push -u origin docs/my-change
 ```
 
-A tag names a checkpoint. Do not move existing checkpoint tags to newer work. No remote is required for local commits. Local Git history is not an off-machine backup; Push reviewed commits to the configured remote with `git push origin main`, then verify synchronization with `git status -sb`. A new machine should clone the source and recreate .venv and runtime/model installations, then configure secrets and reauthenticate Google.
+Open a pull request from the task branch to `main`. Wait for the existing **`pytest`** required status check supplied by **GitHub Actions** (workflow: `Deterministic tests`). The branch must be up to date with `main`; update it and wait for CI again if the base changes. Merge through the PR after the check succeeds and merge authorization is available. Confirm the PR is merged, then fetch and fast-forward the local `main`; a local commit or branch push does not mean the PR has merged.
+
+The `main` branch policy requires a PR, **0 approving reviews**, and no Code Owner or other-person approval. Deletion and force pushes are blocked; no routine bypass is configured. Restrict updates, signed commits and deployment requirements are not part of this policy. The short agent guidance is in [AGENTS.md](AGENTS.md).
+
+A tag names a reviewed checkpoint. Do not move existing checkpoint tags to newer work. Local Git history is not an off-machine backup; pushing the task branch provides a remote copy while merging publishes it on `main`. A new machine should clone the source and recreate `.venv` and runtime/model installations, then configure secrets and reauthenticate Google.
