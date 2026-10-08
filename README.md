@@ -1,5 +1,7 @@
 # Rachel’s Agentic AI Quality & Test Harness
 
+[![Deterministic tests](https://github.com/rachelwuw/agentic-ai-quality-harness/actions/workflows/deterministic-tests.yml/badge.svg?branch=main)](https://github.com/rachelwuw/agentic-ai-quality-harness/actions/workflows/deterministic-tests.yml)
+
 **Status: v0.2 Development Preview**
 
 A local **Calendar Availability Agent / Assistant** and a Python quality harness for testing tool selection, argument validation, time-zone handling, failure recovery and truthful final answers. It demonstrates Software Quality, Test Automation and Agentic AI Evaluation through inspectable evidence.
