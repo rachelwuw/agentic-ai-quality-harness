@@ -1,58 +1,65 @@
-# Rachel's Agentic AI Quality & Test Harness
+# Rachel’s Agentic AI Quality & Test Harness
 
 **Status: v0.2 Development Preview**
 
-A small Python quality harness for a real Calendar Availability Assistant, with local models running in LM Studio. The project explores how to test tool selection, argument validation, time-zone handling, failure recovery and truthful final answers. It is a development checkpoint, not production-ready scheduling software.
+A local **Calendar Availability Agent / Assistant** and a Python quality harness for testing tool selection, argument validation, time-zone handling, failure recovery and truthful final answers. It demonstrates Software Quality, Test Automation and Agentic AI Evaluation through inspectable evidence.
 
-Development machine: M5 MacBook Air, 32 GB RAM / 4 TB SSD. Future target: 64 GB Mac Studio.
+The assistant is **read-only** and queries a dedicated private test calendar. Event creation is future work. The local judge is **advisory**; it is not release signoff. Controlled evaluations use **simulated Calendar fixtures** with a real local SUT model.
 
-## What works now
+## Demo: tool success is not always answer success
 
-- Custom Python agent loop with tool allowlist, validated arguments, execution limit and JSON traces.
-- Real read-only Google Calendar availability checks against a dedicated private test calendar.
-- Optional MCP adapter for using the same Calendar tools in LM Studio chat.
-- 108 deterministic pytest tests, run without Google or model inference.
-- 15 controlled Calendar agent evaluation cases using the real local SUT model and simulated Calendar responses.
-- Separate local Qwen judge that grades saved answers criterion by criterion using strict JSON output.
-- Selected baseline reports and a documented assisted-review queue.
+- **cal-04, successful availability answer:** an interval ending when a busy event begins is available. The tool result and final answer agree.
+- **cal-08, failure analysis:** correct tool arguments and a “busy” result, but the answer incorrectly claims a displayed Los Angeles interval was converted to Taipei time.
 
-## Known limitations
+[View requests, exact tool arguments/results and saved final answers](docs/DEMO.md). Both examples use controlled simulated Calendar responses. They contain no private live Calendar data.
 
-- **Calendar writes are not implemented.** The assistant checks availability; it cannot create, reserve, modify or delete appointments. Scheduling with confirmed event creation is future work.
-- **The judge makes mistakes.** Historical v5 reviews returned 11 PASS / 4 FAIL with budget=0 and 10 PASS / 5 FAIL with Thinking. The latest full v7 review of new SUT answers returned 11 raw PASS / 4 FAIL with valid output in all 15 cases; known coverage gaps and criterion mistakes remain. These development results are not held-out accuracy. Assisted review identified false failures and missed failures. Scores are provisional and require targeted human review and PASS sampling.
-- **Calibration is a development set.** The 12-example v5 calibration matched all labels after tuning; eight labels are authored synthetic expectations pending human review. This is not held-out accuracy or release signoff.
-- **Migration is not fully verified.** Configuration and Git layout support portability, but a complete clean-machine Mac Studio rebuild, dependency locking and expanded doctor checks remain pending.
-- Real Calendar integration has manual live evidence; the controlled 15-case evaluation is not 15 live Google integration tests.
+## Three testing layers
 
-See [the latest 15-case review](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md) for known SUT failures and judge errors. Earlier failed runs remain preserved rather than replaced by passing results.
+| Layer | What it checks | Dependencies / evidence |
+| --- | --- | --- |
+| Deterministic pytest | Loop bounds, allowed tools, argument validation, time zones, error handling, trace facts and judge output parsing | Scripted model responses and mock APIs; no model or Google calls. [Tests](tests/) |
+| Live integration | Read-only adapter and OAuth against a dedicated test calendar | Real Google API; earlier manual checks, separate from controlled evaluations. [Status](SETUP_STATUS.md) |
+| Agent evaluation | Real local SUT tool use and answers; deterministic trace checks plus semantic judge review | Simulated Calendar fixtures; saved traces, criterion judgments and targeted human review. [Evaluation guide](evals/CALENDAR_EVALUATIONS.md) |
+
+## Latest saved evidence
+
+| Evidence | Recorded result | Source / limits |
+| --- | --- | --- |
+| Deterministic checkpoint | 108 tests passed | [Checkpoint history](CHANGELOG.md), [test source](tests/). A saved checkpoint count, not a new run. |
+| Controlled SUT baseline | 15 completed; 14/15 strict structural passes, including one recovered formatting error | [Saved trace](reports/baseline/calendar-baseline-v7-retry-20261007.json), [review](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md). Semantic signoff pending. |
+| Latest full judge baseline, v7 | 15 valid outputs; 11 raw PASS / 4 FAIL; combined 10 provisional passes / 5 failures | [Saved judgments](reports/baseline/calendar-judge-v7-budget1024-new-baseline-20261007.json), [review](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md). Known missed errors and false failures. |
+| Focused judge experiments, frozen v10 | Two negative single checks failed; two reused positive answers passed 18/18 checks. Four fresh cases matched 3/4 overall and 31/36 authored criterion labels | [Negative checks](reports/baseline/JUDGE_V10_TRACE_FACTS_REVIEW.md), [positive controls](reports/baseline/JUDGE_V10_POSITIVE_CONTROLS_REVIEW.md), [fresh review](reports/baseline/JUDGE_V10_FRESH_REVIEW.md). Correct winter answer falsely failed; boundary/reason inconsistencies remain. |
+| Live integration | Earlier manual overlap, adjacent and free-slot checks | [Public setup summary](SETUP_STATUS.md). Not an automated live suite; private raw traces are excluded. |
+
+A full v10 judge baseline and repeatability study have **not** been run. Authored expected labels and Codex-assisted reviews are distinct from Rachel’s human signoff. [Historical evidence remains preserved](reports/baseline/README.md).
 
 ## Architecture
 
 ```mermaid
 flowchart LR
     U[User request] --> A[Custom Python agent loop]
-    A <--> S[LM Studio: gpt-oss-20b SUT]
+    A <--> S[LM Studio: local SUT]
     A --> V[Validated read-only Calendar tools]
-    V --> G[Google Calendar API]
+    V --> G[Google Calendar API OR controlled fixture]
     G --> V
     V --> A
     A --> T[Saved trace and final answer]
-    E[Controlled evaluation cases] --> A
-    P[pytest: scripted responses and mock API] --> V
-    T --> F[Python: derive time and tool facts]
-    T --> D[Python: deterministic trace checks]
-    F --> J[LM Studio: Qwen semantic judge]
+    T --> F[Python: time and tool facts]
+    T --> D[Python: deterministic checks]
+    F --> J[LM Studio: local Qwen semantic judge]
     T --> J
-    D --> R
-    J --> R[Criterion scores and regression evidence]
+    D --> R[Criterion-level regression evidence]
+    J --> R
     R --> H[Targeted human review]
 ```
 
-Model inference is local. Calendar reads connect to Google. The judge reads saved controlled traces and has no Calendar tools or Google credentials. LM Studio chat owns its own loop; the Python entry point is used for harness traces.
+**Python establishes trace facts; Qwen interprets answer claims.** Python computes UTC/local conversions, date boundaries, interval overlap and recorded external-request counts. Qwen assesses contradictions and unsupported claims against that evidence. Missing facts stay unknown. Saved traces are not independent verification of network traffic.
+
+An overall verdict match can hide incorrect criterion judgments. We preserve criterion disagreements and reason/verdict contradictions instead of treating a matching overall verdict as proof that the judge is reliable. [Architecture](ARCHITECTURE.md) · [v10 fact boundary](evals/JUDGE_V10_TRACE_FACTS.md).
 
 ## Quick start
 
-Use Python 3.12+ and recreate the virtual environment on each machine:
+Use Python 3.12+ and recreate the environment on each machine:
 
 ```sh
 python3.12 -m venv .venv
@@ -61,99 +68,37 @@ python -m pip install -e '.[dev,calendar,mcp]'
 python -m pytest -q
 ```
 
-`requirements-dev.txt` records the initial test environment; optional Calendar/MCP dependency ranges are in `pyproject.toml`. A complete dependency lock is still pending. Do not copy `.venv` to another Mac.
-
-Install [LM Studio](https://lmstudio.ai/download), download/load the local SUT, and enable its loopback server. Keep model IDs configurable and use the IDs exposed by your runtime:
+Deterministic tests require no credentials or running model. Install LM Studio separately, configure the model IDs and loopback endpoint, then configure local Google OAuth for live read-only use:
 
 ```sh
 export SUT_MODEL='openai/gpt-oss-20b'
-export JUDGE_MODEL='qwen/qwen3.5-9b'
+export JUDGE_MODEL='qwen/qwen3.5-9b'  # use the identifier exposed by your runtime
 export LM_STUDIO_BASE_URL='http://127.0.0.1:1234/v1'
 python -m harness doctor
 ```
 
-`.env.example` is a reference; the CLI does not automatically load `.env`. The current doctor checks runtime/model listing, not every migration prerequisite. Legacy `LM_MODEL` and `LM_BASE_URL` remain supported.
-
-On this 32 GB Mac, load SUT and judge in turn rather than assuming both fit at once. Model weights remain on disk when unloaded. Historical Qwen judge baselines used an 8192-token context and Reasoning Budget 0. The saved Thinking experiment preset now uses a 1024-token budget; native requests select off/on explicitly and returned token counts verify whether reasoning occurred. See [the reasoning comparison](reports/baseline/JUDGE_REASONING_COMPARISON.md) for the matched experiment and its limitations.
-
-## Google Calendar setup
-
-Create a dedicated private test calendar, enable the Google Calendar API, and create a Desktop OAuth client. Store local files outside the repository in `~/.config/agentic-ai-quality-harness/`:
-
-- `google-client.json`: OAuth client credentials.
-- `calendar.json`: `{"calendar_id": "YOUR_TEST_CALENDAR_ID"}`; do not use `primary`.
-- `google-readonly-token.json`: generated during authorization.
-
-```sh
-python -m harness.calendar_setup
-```
-
-Complete Google consent yourself. The scope `calendar.events.owned.readonly` permits reads on owned calendars; the application restricts its tool to the configured test calendar. Keep the calendar private and do not commit credentials/tokens. Reauthenticate on a new machine.
-
-## Run the assistant
-
-With the SUT loaded:
+With the SUT loaded and Google authorization configured:
 
 ```sh
 python -m harness.calendar_agent 'Check October 6, 2026, 10:00–10:30 AM in America/Los_Angeles on the test calendar.'
 ```
 
-The agent uses local start/end values plus an IANA time zone; Python resolves UTC offsets and rejects nonexistent or ambiguous local times pending clarification. The low-level Calendar CLI accepts explicit RFC3339 instants. A completed loop means an answer was produced, not that its content is correct.
-
-For LM Studio chat, configure a local stdio MCP server to run your recreated virtual environment's Python with arguments `-m harness.calendar_mcp`. Enable the integration and restart it after tool updates. Its tools are `check_availability` and `get_current_time`; adjust the Python path on each machine. See [LM Studio MCP documentation](https://lmstudio.ai/docs/app/mcp).
-
-## Run evaluations and the judge
-
-With the SUT loaded:
+For the real local SUT with **simulated** Google responses:
 
 ```sh
 python -m harness.calendar_evaluate --output reports/runs/calendar-evaluation.json
 ```
 
-This runs the real local model against controlled simulated Calendar evidence. It does not access Google. Structural success is separate from answer quality. See [evaluation guidance](evals/CALENDAR_EVALUATIONS.md).
+[Detailed runtime, OAuth, MCP and judge instructions](docs/LOCAL_SETUP.md). `.env.example` is a reference; the CLI does not automatically load it. Current doctor coverage and dependency locking are incomplete. Use new report paths; do not overwrite baselines or rerun until green.
 
-Unload the SUT and load the configured Qwen judge. After every reload, verify Thinking on and the Reasoning Budget checkbox enabled at 1024 in the LM Studio UI; CLI loading did not preserve this budget in the recorded attempt. Then use strict JSON output (the default), `--max-tokens 6144` and `--timeout 600`. Verify observed reasoning in the returned report; the request alone is insufficient. Use a new output path for each run. Then:
+## Limits and detailed documents
 
-```sh
-# Replay frozen v10 development cases into a new output file:
-python -m harness.calendar_judge --thinking --rubric evals/calendar_judge_rubric_v10.json --input evals/judge_v10_fresh_cases.json --max-tokens 6144 --timeout 600 --output reports/runs/judge-v10-new.json
-# Optional historical v5 calibration, explicitly selecting its rubric:
-python -m harness.calendar_judge --thinking --rubric evals/calendar_judge_rubric_v5.json --input evals/judge_calibration_cases.json --calibrate --max-tokens 6144 --timeout 600 --output reports/runs/judge-v5-calibration-new.json
-```
+Calendar writes, event creation and production scheduling are not implemented. The judge still makes semantic mistakes; inspect FAIL/UNCERTAIN and sample PASS. Calibration and focused experiments are development evidence, not held-out accuracy. The complete clean-machine migration procedure remains unverified.
 
-The judge computes independent criterion scores; Python aggregates them. Invalid/truncated output becomes UNCERTAIN. No automatic retries or rerun-until-pass. Inspect FAIL/UNCERTAIN and sample PASS. Full suite scoring is not autonomous signoff. See [judge guidance](evals/CALENDAR_JUDGE.md) and [calibration review](evals/JUDGE_CALIBRATION_REVIEW.md).
+- [Scope and deferred functionality](PROJECT_SCOPE.md)
+- [Evaluation cases and runner](evals/CALENDAR_EVALUATIONS.md), [judge guidance](evals/CALENDAR_JUDGE.md)
+- [Retry policy](RETRY_POLICY.md): bounded retries; judge requests remain single-attempt
+- [Setup and hardware/migration](docs/LOCAL_SETUP.md), [local source control](SOURCE_CONTROL.md)
+- [Baseline history](reports/baseline/README.md), [change log](CHANGELOG.md)
 
-## Repository map
-
-- `src/harness/agent.py`: shared custom loop.
-- `calendar_agent.py`, `calendar_tools.py`, `calendar_mcp.py`: Calendar prompt, implementation and chat adapter.
-- `calendar_evaluate.py`, `calendar_judge.py`: controlled evaluations and saved-answer grading.
-- `tests/`: deterministic tests with scripted model responses and mock API.
-- `evals/`: cases, criteria and calibration examples.
-- `reports/baseline/`: selected controlled evidence, including known failures.
-- `reports/runs/`: ignored routine outputs.
-- `tools.py`, `evaluate.py`, `cases.json`: earlier QA mock prototype retained for learning/regression coverage.
-
-## Source control and migration
-
-Commit source, tests, evaluation definitions, project dependency files, docs and selected controlled baselines. Exclude `.venv`, caches, model weights, OAuth credentials/tokens, `.env` secrets and routine outputs. Never promote private live Calendar traces without reviewing their contents.
-
-Migration path: Git clone → recreate Python environment → reinstall LM Studio → download models → configure secrets → authenticate Google → doctor → pytest/evals. Full end-to-end migration verification remains pending. See [local Git workflow](SOURCE_CONTROL.md), [architecture](ARCHITECTURE.md), [scope](PROJECT_SCOPE.md) and [current status/history](SETUP_STATUS.md).
-
-No LangGraph, RAG, vector database, Jenkins or complex CI/CD is required for this preview. Judge reliability and read-only Calendar behavior remain the immediate quality focus.
-
-The subsequent strict-JSON Thinking validation produced 6/6 valid outputs matching Rachel-confirmed synthetic labels, with observed reasoning in all six responses. This is a small configuration validation, not general accuracy or release approval. See [the report](reports/baseline/JUDGE_STRUCTURED_THINKING_VALIDATION.md).
-
-Bounded transport retries and the Python Calendar agent correction budget are documented in [RETRY_POLICY.md](RETRY_POLICY.md). Judge requests remain single-attempt.
-
-## v0.2 evaluation design and evidence
-
-Python handles facts that can be derived directly from the saved trace: explicit-offset UTC/local time conversion, date boundaries, interval overlap and recorded external-request count. Qwen interprets natural-language answer claims against those facts, including contradictory claims and unsupported actions. Missing facts remain unknown. This makes failures easier to locate, but saved trace facts are not independent confirmation of Google traffic or real calendar state. See [architecture](ARCHITECTURE.md) and [v10 design](evals/JUDGE_V10_TRACE_FACTS.md).
-
-We evaluate both overall verdicts and criterion-level judgments. A correct overall verdict can hide missed errors or inconsistent reasoning in individual checks. We preserve these disagreements rather than treating an overall PASS/FAIL match as proof of judge reliability. Expected labels are authored development expectations unless explicitly reviewed by a human; Codex-assisted evidence review is separate from Rachel's signoff.
-
-Frozen v10 validation retained the same model and Thinking budget. Two known-negative single checks correctly failed, and two reused positive controls passed all nine checks each. Four fresh summer/winter cases then matched 3/4 authored overall expectations and 31/36 criterion labels. A correct winter answer was falsely failed even though its reason concluded it should pass. Criterion-scope disagreements also remain. These small development results are not independent held-out accuracy or evidence of repeatability. [Latest report](reports/baseline/JUDGE_V10_FRESH_REVIEW.md).
-
-The latest controlled SUT baseline has 15 completed cases and 14/15 strict structural passes, with one recovered formatting error. The latest full Judge baseline still uses v7; a full v10 baseline has not been run. Recent Judge experiments read saved answers only. Controlled SUT evaluations simulate Google responses; live read-only Google integration is separate and has earlier manual evidence. [Baseline history](reports/baseline/README.md).
-
-v0.2 is an evaluation-infrastructure checkpoint. Calendar event creation, autonomous release signoff, complete dependency locking, expanded doctor checks and clean-machine Mac Studio validation remain pending. Next work is to clarify criterion boundaries and diagnose label/reason inconsistency while preserving v10 as a comparison checkpoint.
+Commit source, tests, evaluation definitions and selected sanitized baselines. Exclude virtual environments, caches, model weights, secrets/OAuth files and disposable `reports/runs/`. No LangGraph, RAG, vector database, Jenkins or complex CI/CD is required.
