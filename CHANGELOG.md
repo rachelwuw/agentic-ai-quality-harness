@@ -1,5 +1,12 @@
 # Changelog
 
+## Engineering follow-up — October 8, 2026
+
+- Reorganize the public README, add sanitized saved-evidence demos and separate runtime details. Keep Calendar availability read-only and Judge advisory.
+- Add deterministic-only Python 3.12 GitHub Actions with required MCP dependencies.
+- Diagnose malformed saved inputs by case/field; distinguish output and transport errors from semantic UNCERTAIN. Preserve independent trace evidence and historical rubric behavior.
+- Verification: 143 deterministic tests passed in a recreated environment; no skips. No new SUT inference, Judge experiment or live Calendar call. See [verification](reports/baseline/ENGINEERING_CHECKPOINT_20261008.md).
+
 ## 0.2.0.dev0 — Development Preview, October 8, 2026
 
 - Add deterministic facts derived from saved Calendar traces: offset-aware intervals, conversions, overlap and recorded request count. Unknown or unsupported evidence stays unknown.

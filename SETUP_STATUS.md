@@ -2,10 +2,10 @@
 
 Current checkpoint: October 8, 2026 — v0.2 Development Preview.
 
-- GitHub repository: [rachelwuw/agentic-ai-quality-harness](https://github.com/rachelwuw/agentic-ai-quality-harness). Prior code checkpoint `3b97db3` was pushed to `main`. The v0.2 work follows it; a local commit does not imply a GitHub push.
+- GitHub repository: [rachelwuw/agentic-ai-quality-harness](https://github.com/rachelwuw/agentic-ai-quality-harness). The reviewed v0.2 code checkpoint is `1d195a6`; public documentation commit `feb918c` has been pushed to `main`. Later engineering changes are recorded separately.
 - Local gpt-oss-20b SUT and Qwen judge through a configurable LM Studio API, loaded in turn.
 - Real read-only Calendar availability via Python agent and optional LM Studio MCP. October 7 live Python regression verified overlap, adjacency and free intervals against Google; all three availability conclusions were correct, but overlap omitted explicit test-calendar scope. Raw live traces and assisted review stay in ignored `reports/runs/`; no live failure/retry or MCP-host regression was performed.
-- 108 deterministic tests passed in the latest recorded visible VS Code Terminal run. Transport retries and the Python correction budget are implemented; Judge remains single-attempt.
+- 143 deterministic tests passed in a recreated Python 3.12 environment, with no skips, in the visible VS Code Terminal. See [verification](reports/baseline/ENGINEERING_CHECKPOINT_20261008.md). Transport retries and the Python correction budget are implemented; Judge remains single-attempt.
 - The latest controlled 15-case SUT baseline completed after prompt/retry changes: 14/15 strict structural passes, with successful one-correction recovery on cal-06. Assisted review identified remaining language, scope, time-zone wording and DST issues; semantic review is pending. See [new baseline review](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md).
 - Latest full v7 Judge review: 15 valid outputs, 11 raw PASS / 4 FAIL; combined 10 PASS_PROVISIONAL / 5 FAIL including cal-06 structural failure. Thinking observed at 1009–1024 tokens; about 46m41s generation time. Known criterion errors and coverage gaps remain. [Evidence review](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md).
 - Historical full v5 judge reviews: budget=0 returned 11 raw PASS / 4 FAIL; Thinking returned 10 raw PASS / 5 FAIL. Neither is semantic signoff.
@@ -37,6 +37,8 @@ The dated entries below are historical records; earlier counts and next steps de
 The model is real and local; tool results are fixed mock data. A completed run does not imply every evaluation criterion passed.
 
 ## Approved new scope — October 5, 2026
+
+Historical planning record: event creation was proposed here, but was never implemented. The current Calendar Availability Agent is read-only; writes remain deferred.
 
 - System Under Test: Calendar Scheduling Assistant with real availability lookup and event creation.
 - Dedicated test calendar; own single events only; explicit confirmation before creation.

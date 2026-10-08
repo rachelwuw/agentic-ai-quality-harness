@@ -25,7 +25,7 @@ The assistant is **read-only** and queries a dedicated private test calendar. Ev
 
 | Evidence | Recorded result | Source / limits |
 | --- | --- | --- |
-| Deterministic checkpoint | 108 tests passed | [Checkpoint history](CHANGELOG.md), [test source](tests/). A saved checkpoint count, not a new run. |
+| Deterministic engineering check | 143 tests passed in a recreated Python 3.12 environment; no skips | [Verification](reports/baseline/ENGINEERING_CHECKPOINT_20261008.md), [test source](tests/). No Google or model inference. The earlier 108-test checkpoint remains in history. |
 | Controlled SUT baseline | 15 completed; 14/15 strict structural passes, including one recovered formatting error | [Saved trace](reports/baseline/calendar-baseline-v7-retry-20261007.json), [review](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md). Semantic signoff pending. |
 | Latest full judge baseline, v7 | 15 valid outputs; 11 raw PASS / 4 FAIL; combined 10 provisional passes / 5 failures | [Saved judgments](reports/baseline/calendar-judge-v7-budget1024-new-baseline-20261007.json), [review](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md). Known missed errors and false failures. |
 | Focused judge experiments, frozen v10 | Two negative single checks failed; two reused positive answers passed 18/18 checks. Four fresh cases matched 3/4 overall and 31/36 authored criterion labels | [Negative checks](reports/baseline/JUDGE_V10_TRACE_FACTS_REVIEW.md), [positive controls](reports/baseline/JUDGE_V10_POSITIVE_CONTROLS_REVIEW.md), [fresh review](reports/baseline/JUDGE_V10_FRESH_REVIEW.md). Correct winter answer falsely failed; boundary/reason inconsistencies remain. |
@@ -97,6 +97,7 @@ Calendar writes, event creation and production scheduling are not implemented. T
 
 - [Scope and deferred functionality](PROJECT_SCOPE.md)
 - [Evaluation cases and runner](evals/CALENDAR_EVALUATIONS.md), [judge guidance](evals/CALENDAR_JUDGE.md)
+- [Saved-input validation and deterministic CI](docs/SAVED_TRACE_VALIDATION.md)
 - [Retry policy](RETRY_POLICY.md): bounded retries; judge requests remain single-attempt
 - [Setup and hardware/migration](docs/LOCAL_SETUP.md), [local source control](SOURCE_CONTROL.md)
 - [Baseline history](reports/baseline/README.md), [change log](CHANGELOG.md)

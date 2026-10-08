@@ -7,6 +7,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from .client import LocalClient
+from .saved_trace import validate_case, validate_source
 from .trace_facts import derive_trace_facts, FACTS_VERSION
 
 RUBRIC_VERSION = "calendar-answer-v10"
@@ -45,6 +46,8 @@ def build_checks(item, extra=(), criteria=None):
 
 
 def parse_verdict(content, expected_ids):
+    if not isinstance(content, str):
+        raise ValueError("Judge output must be text")
     content = content.strip()
     if content.startswith("```json\n") and content.endswith("\n```"):
         content = content[8:-4]
@@ -58,7 +61,7 @@ def parse_verdict(content, expected_ids):
     for check in checks:
         if not isinstance(check, dict) or set(check) != {"id", "verdict", "reason", "evidence"}:
             raise ValueError("Invalid check")
-        if not isinstance(check["id"], str) or check["verdict"] not in {"PASS", "FAIL", "UNCERTAIN"}:
+        if not isinstance(check["id"], str) or not isinstance(check["verdict"], str) or check["verdict"] not in {"PASS", "FAIL", "UNCERTAIN"}:
             raise ValueError("Invalid check id or verdict")
         if not isinstance(check["reason"], str) or not check["reason"].strip():
             raise ValueError("Missing reason")
@@ -80,10 +83,24 @@ def aggregate_checks(checks):
 
 
 def review(item, facts, complete, extra=(), *, criteria=None, deterministic_requirements=(), derive_facts=False):
-    if item.get("run", {}).get("status") != "completed":
+    # A structurally valid incomplete run is a missing answer, not a model judgment.
+    run = item.get("run") if isinstance(item, dict) else None
+    if isinstance(run, dict) and isinstance(run.get("status"), str) and run["status"] != "completed":
         return {"verdict": "UNCERTAIN", "reason": "No completed answer to review",
                 "evidence": ["Saved run did not complete"], "checks": [], "status": "missing_answer"}
-    checks = build_checks(item, extra, criteria)
+    diagnostics = validate_case(item)
+    for field, values in (("rubric.criteria_override", criteria), ("rubric.additional_criteria", extra)):
+        if values is not None and (not isinstance(values, (list, tuple)) or
+                not all(isinstance(x, str) and x.strip() for x in values)):
+            diagnostics.append({"case_id": item.get("id", "<unknown>") if isinstance(item, dict) else "<unknown>",
+                                "field": field, "expected": "array of nonempty strings"})
+    derived = derive_trace_facts(item) if derive_facts else None
+    # Valid criterion definitions allow independent trace grading even if events are bad.
+    invalid_checks = any(d["field"].startswith(("answer_review", "rubric.")) or d["field"] == "case" for d in diagnostics)
+    checks = [] if invalid_checks else build_checks(item, extra, criteria)
+    if not checks and not diagnostics:
+        diagnostics.append({"case_id": item.get("id", "<unknown>"),
+                            "field": "answer_review", "expected": "at least one check"})
     automatic, semantic = [], []
     for check in checks:
         if check["requirement"] in deterministic_requirements:
@@ -99,6 +116,16 @@ def review(item, facts, complete, extra=(), *, criteria=None, deterministic_requ
                 "evidence": [reason], "grader": "deterministic_trace"})
         else:
             semantic.append(check)
+    if diagnostics:
+        blocked = [{**c, "verdict": "UNCERTAIN", "reason": "Saved input validation failed",
+                    "evidence": [d["field"] for d in diagnostics], "grader": "llm_judge"} for c in semantic]
+        merged = sorted(automatic + blocked, key=lambda c: int(c["id"][1:]))
+        scored = aggregate_checks(merged) if merged else {"verdict": "UNCERTAIN", "checks": [], "evidence": []}
+        if scored["verdict"] == "PASS":
+            scored["verdict"] = "UNCERTAIN"
+        return {**scored, "status": "input_error", "error_category": "input_format_error",
+                "reason": "Saved input validation failed", "diagnostics": diagnostics,
+                "raw_output": None, **({"computed_trace_facts": derived} if derive_facts else {})}
     data = {"user_prompt": item["prompt"], "answer": item["run"]["answer"],
             "checks": semantic, "reference_facts": facts, "api_calls": item.get("api_calls"),
             "tool_events": [e for e in item["run"]["events"] if e["type"] == "tool"]}
@@ -106,7 +133,6 @@ def review(item, facts, complete, extra=(), *, criteria=None, deterministic_requ
         data["trace_semantics"] = ("api_calls records external Calendar requests in this saved "
             "trace (simulated for controlled fixtures). A local tool invocation may reject "
             "arguments without an external request. Deterministic checks are scored separately.")
-    derived = derive_trace_facts(item) if derive_facts else None
     if derive_facts:
         data["computed_trace_facts"] = derived
         data["computed_facts_usage"] = ("Python computed these facts from the saved tool trace, "
@@ -116,11 +142,13 @@ def review(item, facts, complete, extra=(), *, criteria=None, deterministic_requ
             "facts for this criterion; matching one clause does not excuse a contradictory "
             "clause. Tool availability is reported evidence, not a semantic verdict.")
     raw = None
+    stage = "model_request"
     try:
         parsed_checks = []
         if semantic:
             raw = complete([{"role": "system", "content": SYSTEM},
                             {"role": "user", "content": json.dumps(data, ensure_ascii=False)}])
+            stage = "output_validation"
             parsed_checks = parse_verdict(raw, [c["id"] for c in semantic])["checks"]
         for check in parsed_checks:
             check["requirement"] = next(c["requirement"] for c in checks if c["id"] == check["id"])
@@ -129,14 +157,19 @@ def review(item, facts, complete, extra=(), *, criteria=None, deterministic_requ
         merged = sorted(automatic + parsed_checks, key=lambda c: int(c["id"][1:]))
         return {**aggregate_checks(merged), "status": "reviewed", "raw_output": raw, **({"computed_trace_facts": derived} if derive_facts else {})}
     except Exception as error:
+        category = ("model_output_error" if stage == "output_validation" or
+                    isinstance(error, (ValueError, KeyError, IndexError, TypeError)) else "transport_error")
+        detail = {"error_category": category, "diagnostics": [{
+            "case_id": item.get("id", "<unknown>"), "field": "judge.output" if category == "model_output_error" else "judge.request",
+            "error_type": type(error).__name__}]}
         # Preserve independent trace evidence even if the model output is unusable.
         if deterministic_requirements:
             failed = [{**c, "verdict": "UNCERTAIN", "reason": "Judge request or output validation failed",
                        "evidence": [type(error).__name__], "grader": "llm_judge"} for c in semantic]
             merged = sorted(automatic + failed, key=lambda c: int(c["id"][1:]))
-            return {**aggregate_checks(merged), "status": "judge_error", "raw_output": raw, **({"computed_trace_facts": derived} if derive_facts else {})}
+            return {**aggregate_checks(merged), "status": "judge_error", **detail, "raw_output": raw, **({"computed_trace_facts": derived} if derive_facts else {})}
         return {"verdict": "UNCERTAIN", "reason": "Judge request or output validation failed",
-                "evidence": [type(error).__name__], "checks": [], "status": "judge_error", "raw_output": raw, **({"computed_trace_facts": derived} if derive_facts else {})}
+                "evidence": [type(error).__name__], "checks": [], "status": "judge_error", **detail, "raw_output": raw, **({"computed_trace_facts": derived} if derive_facts else {})}
 
 
 def response_format(checks):
@@ -226,7 +259,11 @@ def main():
     if source_path.resolve() == output.resolve():
         parser.error("Judge output must not overwrite the source trace")
     source_bytes = source_path.read_bytes()
-    source = json.loads(source_bytes)
+    try:
+        source = json.loads(source_bytes)
+        validate_source(source)
+    except (ValueError, TypeError) as error:
+        parser.error("Saved input format error: " + str(error))
     if model == source.get("model"):
         parser.error("Judge model must differ from the saved SUT model")
     rubric_bytes = Path(args.rubric).read_bytes()
@@ -286,7 +323,7 @@ def main():
             "observed" if isinstance(reasoning_tokens, int) and reasoning_tokens > 0
             else "not_observed" if reasoning_tokens == 0 else "unknown")
         result["overall_status"] = ("FAIL" if not item["structural_pass"] or result["verdict"] == "FAIL"
-                                    else "PASS_PROVISIONAL" if result["verdict"] == "PASS" else "NEEDS_REVIEW")
+                                    else "PASS_PROVISIONAL" if result["status"] == "reviewed" and result["verdict"] == "PASS" else "NEEDS_REVIEW")
         if selected:
             result.update(expected=selected[item["id"]], agreement=result["verdict"] == selected[item["id"]])
         report["results"].append(result)

@@ -14,7 +14,7 @@ Build a real read-only Calendar assistant as the System Under Test (SUT), and a 
 - Python time-zone resolution, conflict boundaries, cross-midnight queries and rejection of ambiguous/nonexistent DST times.
 - Clarification of missing information. Missing end time or duration must be requested from the user, not supplied as a proposed default.
 - Bounded transport retries and one tool-argument correction opportunity in the Python agent. See [retry policy](RETRY_POLICY.md) for limits and the MCP host boundary.
-- 108 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
+- 143 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
 
 ## Expected behavior
 

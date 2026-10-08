@@ -30,17 +30,24 @@ def derive_trace_facts(item):
              "scope": "Recorded tool evidence only; controlled requests may be simulated. "
                       "No independent network verification or answer interpretation.",
              "external_request_count": None, "tool_observations": [], "issues": []}
+    if not isinstance(item, dict):
+        facts["issues"].append("case: expected object")
+        return facts
     calls = item.get("api_calls")
     if isinstance(calls, list) and all(isinstance(c, dict) for c in calls):
         facts["external_request_count"] = len(calls)
     else:
         facts["issues"].append("external_request_trace_missing_or_malformed")
-    events = item.get("run", {}).get("events")
+    run = item.get("run")
+    events = run.get("events") if isinstance(run, dict) else None
     if not isinstance(events, list):
         facts["issues"].append("tool_event_trace_missing_or_malformed")
         return facts
     for index, event in enumerate(events):
-        if not isinstance(event, dict) or event.get("type") != "tool":
+        if not isinstance(event, dict) or not isinstance(event.get("type"), str):
+            facts["issues"].append(f"run.events[{index}]: malformed event")
+            continue
+        if event.get("type") != "tool":
             continue
         observation = {"event_index": index, "tool_name": event.get("name"), "issues": []}
         facts["tool_observations"].append(observation)
