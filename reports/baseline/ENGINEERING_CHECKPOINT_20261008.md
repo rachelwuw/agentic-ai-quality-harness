@@ -13,3 +13,7 @@ No skipped tests were reported; the three existing MCP adapter tests were includ
 The initial validation run found two failures caused by treating historical `available: null` as malformed. The implementation was corrected to preserve unknown availability, then the full suite above passed. Historical fixtures/labels were not changed to make tests pass.
 
 This verifies a clean environment on the current Mac. The Linux GitHub Actions result is tracked separately; no clean Mac Studio rebuild, new model evaluation or long judge experiment is claimed.
+
+## GitHub verification
+
+The Python 3.12 Linux [GitHub Actions run](https://github.com/rachelwuw/agentic-ai-quality-harness/actions/runs/37850872081) for engineering commit `5362a52` completed with **success**. Dependency installation, required MCP imports and the deterministic pytest step all passed. This confirms the workflow ran, not merely that its YAML was added.

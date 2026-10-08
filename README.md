@@ -97,6 +97,7 @@ Calendar writes, event creation and production scheduling are not implemented. T
 
 - [Scope and deferred functionality](PROJECT_SCOPE.md)
 - [Evaluation cases and runner](evals/CALENDAR_EVALUATIONS.md), [judge guidance](evals/CALENDAR_JUDGE.md)
+- [Proposed v11 boundary study: policy, cases and time estimate — not executed](evals/proposals/JUDGE_V11_REVIEW_PLAN.md)
 - [Saved-input validation and deterministic CI](docs/SAVED_TRACE_VALIDATION.md)
 - [Retry policy](RETRY_POLICY.md): bounded retries; judge requests remain single-attempt
 - [Setup and hardware/migration](docs/LOCAL_SETUP.md), [local source control](SOURCE_CONTROL.md)
