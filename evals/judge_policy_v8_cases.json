@@ -1,0 +1,266 @@
+{
+  "model": "authored_synthetic_variants",
+  "description": "Four new development validation wording variants frozen before v8 execution. Derived controlled trace; not independent held-out benchmark or real SUT outputs. Expected labels withheld from the judge and pending Rachel review.",
+  "results": [
+    {
+      "id": "v8-conversion-correct",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
+          "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+          "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval.",
+          "Every claimed timezone label or conversion must match its displayed clock times and date. October 6 in Los Angeles is PDT (UTC-07), not PST. If 11:00–11:30 Los Angeles is described as converted to Taipei, the displayed result must be October 7, 02:00–02:30 Asia/Taipei; retaining 11:00–11:30 while claiming Taipei conversion violates this check. Omitting an optional conversion is allowed."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The test calendar is busy. The overlapping event is October 6, 11:00–11:30 PDT in Los Angeles, equivalent to October 7, 02:00–02:30 in Taipei. Your requested October 7, 02:15–02:45 Taipei slot overlaps that event.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          }
+        ]
+      },
+      "expected": "PASS",
+      "answer_origin": "authored_synthetic",
+      "label_provenance": "authored_expectation_pending_Rachel_review"
+    },
+    {
+      "id": "v8-conversion-wrong",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
+          "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+          "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval.",
+          "Every claimed timezone label or conversion must match its displayed clock times and date. October 6 in Los Angeles is PDT (UTC-07), not PST. If 11:00–11:30 Los Angeles is described as converted to Taipei, the displayed result must be October 7, 02:00–02:30 Asia/Taipei; retaining 11:00–11:30 while claiming Taipei conversion violates this check. Omitting an optional conversion is allowed."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The test calendar is busy. The overlapping event is October 6, 11:00–11:30 in Los Angeles, converted to Taipei as October 6, 11:00–11:30. Your requested October 7, 02:15–02:45 Taipei slot is not available.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          }
+        ]
+      },
+      "expected": "FAIL",
+      "answer_origin": "authored_synthetic",
+      "label_provenance": "authored_expectation_pending_Rachel_review"
+    },
+    {
+      "id": "v8-daylight-correct",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
+          "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+          "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval.",
+          "Every claimed timezone label or conversion must match its displayed clock times and date. October 6 in Los Angeles is PDT (UTC-07), not PST. If 11:00–11:30 Los Angeles is described as converted to Taipei, the displayed result must be October 7, 02:00–02:30 Asia/Taipei; retaining 11:00–11:30 while claiming Taipei conversion violates this check. Omitting an optional conversion is allowed."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "Your October 7, 02:15–02:45 Taipei slot is busy on the test calendar. The conflicting event is October 6, 11:00–11:30 Pacific Daylight Time in Los Angeles.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          }
+        ]
+      },
+      "expected": "PASS",
+      "answer_origin": "authored_synthetic",
+      "label_provenance": "authored_expectation_pending_Rachel_review"
+    },
+    {
+      "id": "v8-daylight-wrong",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
+          "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+          "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval.",
+          "Every claimed timezone label or conversion must match its displayed clock times and date. October 6 in Los Angeles is PDT (UTC-07), not PST. If 11:00–11:30 Los Angeles is described as converted to Taipei, the displayed result must be October 7, 02:00–02:30 Asia/Taipei; retaining 11:00–11:30 while claiming Taipei conversion violates this check. Omitting an optional conversion is allowed."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "Your October 7, 02:15–02:45 Taipei slot is busy on the test calendar. The conflicting event is October 6, 11:00–11:30 Pacific Standard Time in Los Angeles.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          }
+        ]
+      },
+      "expected": "FAIL",
+      "answer_origin": "authored_synthetic",
+      "label_provenance": "authored_expectation_pending_Rachel_review"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "model": "authored_controlled_fixtures",
+  "description": "New v10 diagnostic development cases authored after rubric freeze; two paired positive/negative cases, no independent benchmark. No expected labels in this input.",
+  "results": [
+    {
+      "id": "v10-fresh-summer-positive",
+      "prompt": "Check 2026-06-13 09:10–09:25 Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "answer_origin": "authored_synthetic",
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the conflicting event, preserve the event instant: 2026-06-12 18:00–18:30 America/Los_Angeles (PDT), or its equivalent 2026-06-13 09:00–09:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+          "If the answer converts the requested query window to Los Angeles time, it must use 2026-06-12 18:10–18:25. Omitting this optional conversion is acceptable.",
+          "Preserve the requested 2026-06-13 09:10–09:25 Asia/Taipei query interval.",
+          "Every claimed Pacific timezone label must match the date. 2026-06-12 in Los Angeles uses PDT (UTC-07:00).",
+          "Check conversion-claim consistency separately from whether the original event time matches the tool. The requested timezone is Asia/Taipei. If the event is described as converted to the requested timezone (including in parentheses), the answer must display that event in Asia/Taipei. A line still labelled America/Los_Angeles fails this check even if its original clock values match the tool. If no event conversion is claimed, PASS this check.",
+          "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display 2026-06-13 09:00–09:30. Every such conversion claim must be correct. If no event conversion is claimed, PASS this check."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2026-06-13T09:10:00+08:00",
+          "end": "2026-06-13T09:25:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "測試行事曆中，2026-06-13 09:10–09:25（Asia/Taipei）沒有空檔，因為它與現有活動重疊。活動換算成台北時間為 2026-06-13 09:00–09:30（Asia/Taipei）。我只查了專用測試行事曆，沒有建立預約。",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\": \"2026-06-13T09:10:00\", \"end\": \"2026-06-13T09:25:00\", \"time_zone\": \"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-06-13T09:10:00+08:00",
+              "end": "2026-06-13T09:25:00+08:00",
+              "time_zone": "Asia/Taipei",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-06-12T18:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-06-12T18:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "authored_controlled_fixture",
+              "scope": "configured_test_calendar_only"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "v10-fresh-summer-negative",
+      "prompt": "Check 2026-06-13 09:10–09:25 Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "answer_origin": "authored_synthetic",
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the conflicting event, preserve the event instant: 2026-06-12 18:00–18:30 America/Los_Angeles (PDT), or its equivalent 2026-06-13 09:00–09:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+          "If the answer converts the requested query window to Los Angeles time, it must use 2026-06-12 18:10–18:25. Omitting this optional conversion is acceptable.",
+          "Preserve the requested 2026-06-13 09:10–09:25 Asia/Taipei query interval.",
+          "Every claimed Pacific timezone label must match the date. 2026-06-12 in Los Angeles uses PDT (UTC-07:00).",
+          "Check conversion-claim consistency separately from whether the original event time matches the tool. The requested timezone is Asia/Taipei. If the event is described as converted to the requested timezone (including in parentheses), the answer must display that event in Asia/Taipei. A line still labelled America/Los_Angeles fails this check even if its original clock values match the tool. If no event conversion is claimed, PASS this check.",
+          "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display 2026-06-13 09:00–09:30. Every such conversion claim must be correct. If no event conversion is claimed, PASS this check."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2026-06-13T09:10:00+08:00",
+          "end": "2026-06-13T09:25:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "測試行事曆中，2026-06-13 09:10–09:25（Asia/Taipei）沒有空檔，因為它與現有活動重疊。活動換算成台北時間為 2026-06-13 09:00–09:30（Asia/Taipei）。我只查了專用測試行事曆，沒有建立預約。 同一活動的台北時間也可以寫成 2026-06-13 18:00–18:30（Asia/Taipei）。",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\": \"2026-06-13T09:10:00\", \"end\": \"2026-06-13T09:25:00\", \"time_zone\": \"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-06-13T09:10:00+08:00",
+              "end": "2026-06-13T09:25:00+08:00",
+              "time_zone": "Asia/Taipei",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-06-12T18:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-06-12T18:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "authored_controlled_fixture",
+              "scope": "configured_test_calendar_only"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "v10-fresh-winter-positive",
+      "prompt": "Check 2026-12-19 10:10–10:25 Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "answer_origin": "authored_synthetic",
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the conflicting event, preserve the event instant: 2026-12-18 18:00–18:30 America/Los_Angeles (PST), or its equivalent 2026-12-19 10:00–10:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+          "If the answer converts the requested query window to Los Angeles time, it must use 2026-12-18 18:10–18:25. Omitting this optional conversion is acceptable.",
+          "Preserve the requested 2026-12-19 10:10–10:25 Asia/Taipei query interval.",
+          "Every claimed Pacific timezone label must match the date. 2026-12-18 in Los Angeles uses PST (UTC-08:00).",
+          "Check conversion-claim consistency separately from whether the original event time matches the tool. The requested timezone is Asia/Taipei. If the event is described as converted to the requested timezone (including in parentheses), the answer must display that event in Asia/Taipei. A line still labelled America/Los_Angeles fails this check even if its original clock values match the tool. If no event conversion is claimed, PASS this check.",
+          "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display 2026-12-19 10:00–10:30. Every such conversion claim must be correct. If no event conversion is claimed, PASS this check."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2026-12-19T10:10:00+08:00",
+          "end": "2026-12-19T10:25:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The test calendar is busy for 2026-12-19 10:10–10:25 Asia/Taipei because an existing event overlaps. The event is 2026-12-18 18:00–18:30 America/Los_Angeles (PST). Only the dedicated test calendar was checked; no appointment was created.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\": \"2026-12-19T10:10:00\", \"end\": \"2026-12-19T10:25:00\", \"time_zone\": \"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-12-19T10:10:00+08:00",
+              "end": "2026-12-19T10:25:00+08:00",
+              "time_zone": "Asia/Taipei",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-12-18T18:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-12-18T18:30:00-08:00"
+                  }
+                }
+              ],
+              "source": "authored_controlled_fixture",
+              "scope": "configured_test_calendar_only"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "v10-fresh-winter-negative",
+      "prompt": "Check 2026-12-19 10:10–10:25 Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "answer_origin": "authored_synthetic",
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the conflicting event, preserve the event instant: 2026-12-18 18:00–18:30 America/Los_Angeles (PST), or its equivalent 2026-12-19 10:00–10:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+          "If the answer converts the requested query window to Los Angeles time, it must use 2026-12-18 18:10–18:25. Omitting this optional conversion is acceptable.",
+          "Preserve the requested 2026-12-19 10:10–10:25 Asia/Taipei query interval.",
+          "Every claimed Pacific timezone label must match the date. 2026-12-18 in Los Angeles uses PST (UTC-08:00).",
+          "Check conversion-claim consistency separately from whether the original event time matches the tool. The requested timezone is Asia/Taipei. If the event is described as converted to the requested timezone (including in parentheses), the answer must display that event in Asia/Taipei. A line still labelled America/Los_Angeles fails this check even if its original clock values match the tool. If no event conversion is claimed, PASS this check.",
+          "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display 2026-12-19 10:00–10:30. Every such conversion claim must be correct. If no event conversion is claimed, PASS this check."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2026-12-19T10:10:00+08:00",
+          "end": "2026-12-19T10:25:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The test calendar is busy for 2026-12-19 10:10–10:25 Asia/Taipei because an existing event overlaps. The event is 2026-12-18 18:00–18:30 America/Los_Angeles (PST). Only the dedicated test calendar was checked; no appointment was created. Converted to the requested timezone, that event is 2026-12-19 09:00–09:30 Asia/Taipei.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\": \"2026-12-19T10:10:00\", \"end\": \"2026-12-19T10:25:00\", \"time_zone\": \"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-12-19T10:10:00+08:00",
+              "end": "2026-12-19T10:25:00+08:00",
+              "time_zone": "Asia/Taipei",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-12-18T18:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-12-18T18:30:00-08:00"
+                  }
+                }
+              ],
+              "source": "authored_controlled_fixture",
+              "scope": "configured_test_calendar_only"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

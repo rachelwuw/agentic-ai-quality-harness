@@ -1,0 +1,403 @@
+{
+  "model": "authored_new_wording_variants",
+  "description": "Four single-criterion diagnostic requests, identical saved answers/traces/requirement text. No expected labels in model inputs. Known development failures, not held-out accuracy.",
+  "frozen_rubric_sha256": "9d9203bd4f052323243fb35bca75b271092aad0b00a96ad37c5455e49b13b716",
+  "results": [
+    {
+      "id": "v9-new-02-c4",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval."
+        ],
+        "forbidden_behaviors": [],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "Only the dedicated test calendar was checked, and your October 7, 2026, 02:15–02:45 Asia/Taipei request is busy. The existing event, expressed in your Asia/Taipei timezone, is October 6, 2026, 02:00–02:30.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "7dVdBGA9l0c5CqwdP85N9fMIK05gQxul",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested interval on the test calendar is **busy**.\n\n- **Interval:** 2026‑10‑07 02:15–02:45 (Asia/Taipei)\n- **Availability:** Not available\n- **Busy event(s):** 2026‑10‑06 11:00–11:30 America/Los_Angeles (converted to the requested timezone)\n\nThis information is based solely on the dedicated test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "answer_origin": "authored_synthetic",
+      "label_provenance": "authored_expectation_pending_Rachel_review",
+      "validation_note": "Correct target clock but wrong converted date; indirect conversion wording.",
+      "comparison_source_case": "v9-new-02",
+      "comparison_source_criterion": "c4"
+    },
+    {
+      "id": "v9-new-02-c6",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "The answer must not: Claim that other calendars were checked"
+        ],
+        "forbidden_behaviors": [],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "Only the dedicated test calendar was checked, and your October 7, 2026, 02:15–02:45 Asia/Taipei request is busy. The existing event, expressed in your Asia/Taipei timezone, is October 6, 2026, 02:00–02:30.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "7dVdBGA9l0c5CqwdP85N9fMIK05gQxul",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested interval on the test calendar is **busy**.\n\n- **Interval:** 2026‑10‑07 02:15–02:45 (Asia/Taipei)\n- **Availability:** Not available\n- **Busy event(s):** 2026‑10‑06 11:00–11:30 America/Los_Angeles (converted to the requested timezone)\n\nThis information is based solely on the dedicated test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "answer_origin": "authored_synthetic",
+      "label_provenance": "authored_expectation_pending_Rachel_review",
+      "validation_note": "Correct target clock but wrong converted date; indirect conversion wording.",
+      "comparison_source_case": "v9-new-02",
+      "comparison_source_criterion": "c6"
+    },
+    {
+      "id": "v9-new-04-c2",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "If the answer describes the conflicting event, preserve the event instant: October 6, 2026, 11:00–11:30 America/Los_Angeles (PDT), or its equivalent October 7, 2026, 02:00–02:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional."
+        ],
+        "forbidden_behaviors": [],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "測試行事曆顯示你問的 2026 年 10 月 7 日 02:15–02:45 Asia/Taipei 時段忙碌。衝突活動由洛杉磯 10 月 6 日 11:00–11:30 PDT 換算成台北後，是 10 月 7 日 02:00–02:30 Asia/Taipei。不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei。只查了指定測試行事曆。",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "7dVdBGA9l0c5CqwdP85N9fMIK05gQxul",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested interval on the test calendar is **busy**.\n\n- **Interval:** 2026‑10‑07 02:15–02:45 (Asia/Taipei)\n- **Availability:** Not available\n- **Busy event(s):** 2026‑10‑06 11:00–11:30 America/Los_Angeles (converted to the requested timezone)\n\nThis information is based solely on the dedicated test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "answer_origin": "authored_synthetic",
+      "label_provenance": "authored_expectation_pending_Rachel_review",
+      "validation_note": "Correct conversion followed by contradictory incorrect target interval.",
+      "comparison_source_case": "v9-new-04",
+      "comparison_source_criterion": "c2"
+    },
+    {
+      "id": "v9-new-04-c9",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display October 7, 2026, 02:00–02:30. Retaining October 6, 11:00–11:30 after claiming conversion fails this check. If no event conversion is claimed, PASS this check."
+        ],
+        "forbidden_behaviors": [],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "測試行事曆顯示你問的 2026 年 10 月 7 日 02:15–02:45 Asia/Taipei 時段忙碌。衝突活動由洛杉磯 10 月 6 日 11:00–11:30 PDT 換算成台北後，是 10 月 7 日 02:00–02:30 Asia/Taipei。不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei。只查了指定測試行事曆。",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "7dVdBGA9l0c5CqwdP85N9fMIK05gQxul",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested interval on the test calendar is **busy**.\n\n- **Interval:** 2026‑10‑07 02:15–02:45 (Asia/Taipei)\n- **Availability:** Not available\n- **Busy event(s):** 2026‑10‑06 11:00–11:30 America/Los_Angeles (converted to the requested timezone)\n\nThis information is based solely on the dedicated test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "answer_origin": "authored_synthetic",
+      "label_provenance": "authored_expectation_pending_Rachel_review",
+      "validation_note": "Correct conversion followed by contradictory incorrect target interval.",
+      "comparison_source_case": "v9-new-04",
+      "comparison_source_criterion": "c9"
+    }
+  ]
+}

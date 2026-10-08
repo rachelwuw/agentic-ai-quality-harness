@@ -1,0 +1,51 @@
+{
+  "label_provenance": "Codex_authored_expected_labels_pending_Rachel_review",
+  "human_signoff": false,
+  "batch_criterion_agreement": {
+    "matched": 31,
+    "total": 36
+  },
+  "selected_single_agreement": {
+    "matched": 3,
+    "total": 4
+  },
+  "selected_batch_agreement": {
+    "matched": 0,
+    "total": 4
+  },
+  "selection": "four known batch failures; not representative accuracy",
+  "results": [
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c4",
+      "expected": "PASS",
+      "batch_verdict": "FAIL",
+      "single_verdict": "PASS",
+      "single_agreement": true
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c6",
+      "expected": "PASS",
+      "batch_verdict": "FAIL",
+      "single_verdict": "PASS",
+      "single_agreement": true
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c2",
+      "expected": "FAIL",
+      "batch_verdict": "PASS",
+      "single_verdict": "PASS",
+      "single_agreement": false
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c9",
+      "expected": "FAIL",
+      "batch_verdict": "PASS",
+      "single_verdict": "FAIL",
+      "single_agreement": true
+    }
+  ]
+}

@@ -1,52 +1,49 @@
-# Project Scope — Calendar Scheduling Assistant
+# Project scope — Calendar Availability Assistant
 
-Approved direction: October 5, 2026. This document describes planned behavior, not implemented functionality.
+Current v0.2 Development Preview, October 8, 2026. This document describes the implemented scope and separates future scheduling work.
 
 ## Objective
 
-Build a useful local-model scheduling assistant and a quality harness that tests its decisions against real calendar outcomes. The assistant is the System Under Test; the harness measures its behavior.
+Build a real read-only Calendar assistant as the System Under Test (SUT), and a small Python harness that records and evaluates its behavior. Local inference uses LM Studio; Google Calendar is the external service.
 
-## v0.1 user journey
+## Implemented scope
 
-Request a personal appointment in natural language. Clarify missing information, check calendar availability, propose a specific slot, obtain explicit confirmation, create the event, and report the actual event link or error.
+- Local gpt-oss-20b SUT and a separate local Qwen3.5-9B judge, loaded in turn on the M5 MacBook Air (32 GB / 4 TB).
+- Custom Python agent loop, a tool allowlist, six-step limit and JSON traces.
+- `check_availability` against a dedicated private test calendar, using read-only OAuth. The optional LM Studio MCP adapter also exposes `get_current_time`.
+- Python time-zone resolution, conflict boundaries, cross-midnight queries and rejection of ambiguous/nonexistent DST times.
+- Clarification of missing information. Missing end time or duration must be requested from the user, not supplied as a proposed default.
+- Bounded transport retries and one tool-argument correction opportunity in the Python agent. See [retry policy](RETRY_POLICY.md) for limits and the MCP host boundary.
+- 108 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
 
-## Included
+## Expected behavior
 
-- LM Studio and one local gpt-oss-20b artifact on Rachel's M5 MacBook Air, 32 GB / 4 TB.
-- Custom Python loop, validated tools, bounded execution, and JSON traces.
-- Two real tools: `check_availability` and `create_event`.
-- Google Calendar API with user OAuth authorization and a designated test calendar.
-- Single events for the user, with no attendee invitations.
-- Date, duration, timezone, conflict, clarification, confirmation, duplicate-request, and truthful-result handling.
-- A Python-enforced confirmation gate bound to the exact proposed event; model output alone cannot authorize creation.
+Query the tool before claiming availability. Report the requested dates, time zone and dedicated-calendar scope. Distinguish the query interval from the event interval: different intervals can overlap. Report unknown availability after errors. Tool data is evidence, not instructions.
 
-## Acceptance criteria
+The assistant cannot create, reserve, modify or delete events. A booking request must receive a clear explanation of this limit. A completed agent loop or structural pass does not establish a correct answer.
 
-- Resolve relative dates against an explicit current date and timezone; ask when meaning is ambiguous.
-- Query availability before proposing a conflict-free slot. Recheck before creation and report a newly detected conflict. This is not an atomic reservation of the slot.
-- Show title, date, start, end, and timezone before requesting confirmation.
-- Do not create without explicit confirmation of that proposal. A changed proposal requires new confirmation.
-- Verify actual API success and the returned event before claiming creation.
-- Repeated submissions and uncertain API outcomes must not silently create duplicates; reconcile or ask for clarification.
-- Keep writes confined to the configured test calendar in this first version.
-- Preserve trace evidence for decisions, tool arguments, results, and errors; keep OAuth credentials out of Git and traces.
+## Testing and acceptance boundaries
 
-## Testing
+Deterministic tests use scripted model responses and simulated APIs. Live integration checks use the real read-only Google API. The 15-case controlled evaluations use the real local SUT with simulated Calendar evidence; they are not 15 live integration tests.
 
-Deterministic tests use scripted model responses and mock API results. Integration tests exercise the real Calendar API on the designated test calendar. Agent evaluations use the real local model to assess task understanding and tool behavior, reviewing traces and resulting calendar state. Live write tests need explicit test authorization; ordinary evaluation runs must not silently create events.
+The local judge scores saved answers without Google credentials or Calendar tools. Invalid output is UNCERTAIN. Judge verdicts are provisional; assisted evidence review is distinct from Rachel's human signoff. The v7 focused development check matched three expectations, but does not establish held-out accuracy. Known failures and earlier results remain preserved.
 
-Calendar cases will replace or supplement the existing 15 QA prototype cases. Existing passing pytest results and QA traces do not establish Calendar readiness.
+The latest prompt/retry changes have deterministic verification and a new controlled 15-case SUT baseline: 14/15 strict structural passes, with one recovered formatting error. Full v7 scoring completed with 15 valid outputs and raw 11 PASS / 4 FAIL; known coverage gaps and criterion mistakes remain. Human semantic signoff is pending. See [evidence review](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md).
+
+## Portability requirements
+
+Keep source, tests, evaluation definitions, docs, dependency declarations and selected sanitized baselines in Git. Exclude virtual environments, model weights, secrets, OAuth tokens and disposable outputs. Recreate the environment and reauthenticate Google on the future 64 GB Mac Studio. Runtime URLs and model roles remain configurable. Complete dependency locking, expanded doctor checks and clean-machine migration validation remain pending.
 
 ## Deferred
 
-Attendee invitations, recurring events, rescheduling, deletion, LangGraph, RAG, vector databases, Jenkins, real Jira, LLM judges, complex CI/CD, and automated root-cause analysis.
+Event creation, proposals with a Python confirmation gate, duplicate-write prevention, invitations, recurring events, rescheduling and deletion. These are future scheduling capabilities, not current preview acceptance requirements.
 
-## Next implementation steps
+LangGraph, RAG, vector databases, Jenkins, complex CI/CD, real Jira and automated root-cause analysis remain outside this preview.
 
-1. Configure Google API access, OAuth, and the designated test calendar.
-2. Implement and verify availability lookup.
-3. Implement proposals and Python-controlled confirmation.
-4. Implement creation and read-back verification, including duplicate handling.
-5. Adapt the agent role, tests, and evaluation cases incrementally.
+## Next quality work
 
-Current implementation: the original QA agent with mock requirements and mock suite results. No Calendar integration exists yet.
+Use the completed live read-only regression and controlled SUT/judge baselines to prioritize findings. Confirm missing rubric coverage, grade trace facts deterministically, then freeze the revision before validating unseen examples with targeted human review. Improve migration reproducibility without expanding product scope.
+
+## v0.2 checkpoint boundary
+
+The new capability is evaluation infrastructure: Python-derived time/tool facts, deterministic trace grading, semantic Qwen review and preserved overall/criterion comparisons. The Calendar product remains read-only. Frozen v10 fresh validation found 3/4 overall and 31/36 criterion matches against authored expectations, with known false failure and scope disagreement. These counts do not establish overall accuracy; full v10 baseline, human review and repeatability remain pending. Prior raw evidence is retained.

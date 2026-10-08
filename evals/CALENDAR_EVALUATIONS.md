@@ -1,6 +1,6 @@
 # Calendar evaluation cases
 
-These 15 cases evaluate the read-only Calendar Assistant, separately from the original QA prototype `cases.json`. Definitions and exact expected arguments are in `calendar_cases.json`. All cases start as **not_run**: creating this dataset is not a model evaluation result. Earlier smoke runs are documented in `../LIVE_CALENDAR_REVIEW.md` and do not count as executing this suite.
+These 15 cases evaluate the read-only Calendar Assistant, separately from the original QA prototype `cases.json`. Definitions and exact expected arguments are in `calendar_cases.json`. Dataset templates retain **not_run**; actual execution status belongs in saved reports. A new controlled 15-case baseline after prompt/retry changes completed with 14/15 strict structural passes and one successful correction. See [assisted review](../reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md); semantic review remains separate. Earlier smoke runs are documented in `../LIVE_CALENDAR_REVIEW.md` and do not count as executing this suite.
 
 ## Case inventory
 
@@ -36,7 +36,7 @@ These 15 cases evaluate the read-only Calendar Assistant, separately from the or
 
 ## Grading boundaries
 
-These cases cover bilingual requests, conflict boundaries, cross-midnight dates, summer/winter offsets, another IANA zone, missing information, ambiguous abbreviations, DST gaps/folds, and API failure. They are a starter dataset, not proof of general scheduling reliability. Repeat runs and paraphrases should be added after the baseline. The Calendar-specific runner provides structural checks and a pending manual answer-review field; no LLM judge is used.
+These cases cover bilingual requests, conflict boundaries, cross-midnight dates, summer/winter offsets, another IANA zone, missing information, ambiguous abbreviations, DST gaps/folds, and API failure. They are a starter dataset, not proof of general scheduling reliability. Repeat runs and paraphrases should be added after the baseline. The Calendar-specific runner provides structural checks and a pending manual answer-review field; this runner does not invoke a judge. The separate [saved-answer judge](CALENDAR_JUDGE.md) produces provisional criterion scores.
 
 
 ## Calendar runner
@@ -44,9 +44,9 @@ These cases cover bilingual requests, conflict boundaries, cross-midnight dates,
 Run from the repository root:
 
 ```sh
-.venv/bin/python -m harness.calendar_evaluate --ids cal-01 cal-03 cal-10 --output reports/calendar-evaluation-smoke.json
+.venv/bin/python -m harness.calendar_evaluate --ids cal-01 cal-03 cal-10 --output reports/runs/calendar-evaluation-smoke.json
 # Full baseline (15 real local-model cases):
-.venv/bin/python -m harness.calendar_evaluate --output reports/calendar-evaluation.json
+.venv/bin/python -m harness.calendar_evaluate --output reports/runs/calendar-evaluation.json
 ```
 
 This uses the real LM Studio local model and controlled Calendar responses. It never connects to Google or changes events. It freezes the reference clock, begins a fresh agent conversation per case, checks exact tool arguments and resolved API intervals, and validates availability/unknown outcomes. Progress is saved after each case. Exit code 1 indicates structural failures; code 0 means only structural checks passed, never semantic approval.

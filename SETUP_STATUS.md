@@ -1,14 +1,21 @@
 # Setup / verification status
 
-Current checkpoint: October 6, 2026 — v0.1 development preview.
+Current checkpoint: October 8, 2026 — v0.2 Development Preview.
 
-- Local gpt-oss-20b SUT and Qwen judge through configurable LM Studio API.
-- Real read-only Calendar availability via Python agent and optional LM Studio MCP.
-- 77 deterministic tests passed visibly; saved 15-case SUT trace passed structural checks.
-- Judge v5 calibration: 12/12 agreement on tuned development examples; full saved-answer run: 11 raw PASS / 4 raw FAIL. Assisted review found judge mistakes; human signoff is pending.
-- Review queue: reports/baseline/CALENDAR_REVIEW_V5.md.
-- Event creation is not implemented. Full scheduling scope and complete clean-machine migration checks remain unfinished.
-- This is a reproducible development checkpoint, not release acceptance. No GitHub remote/publication.
+- GitHub repository: [rachelwuw/agentic-ai-quality-harness](https://github.com/rachelwuw/agentic-ai-quality-harness). Prior code checkpoint `3b97db3` was pushed to `main`. The v0.2 work follows it; a local commit does not imply a GitHub push.
+- Local gpt-oss-20b SUT and Qwen judge through a configurable LM Studio API, loaded in turn.
+- Real read-only Calendar availability via Python agent and optional LM Studio MCP. October 7 live Python regression verified overlap, adjacency and free intervals against Google; all three availability conclusions were correct, but overlap omitted explicit test-calendar scope. Raw live traces and assisted review stay in ignored `reports/runs/`; no live failure/retry or MCP-host regression was performed.
+- 108 deterministic tests passed in the latest recorded visible VS Code Terminal run. Transport retries and the Python correction budget are implemented; Judge remains single-attempt.
+- The latest controlled 15-case SUT baseline completed after prompt/retry changes: 14/15 strict structural passes, with successful one-correction recovery on cal-06. Assisted review identified remaining language, scope, time-zone wording and DST issues; semantic review is pending. See [new baseline review](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md).
+- Latest full v7 Judge review: 15 valid outputs, 11 raw PASS / 4 FAIL; combined 10 PASS_PROVISIONAL / 5 FAIL including cal-06 structural failure. Thinking observed at 1009–1024 tokens; about 46m41s generation time. Known criterion errors and coverage gaps remain. [Evidence review](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md).
+- Historical full v5 judge reviews: budget=0 returned 11 raw PASS / 4 FAIL; Thinking returned 10 raw PASS / 5 FAIL. Neither is semantic signoff.
+- v6 focused synthetic check matched 4/4 expectations, but original cal-08 was still falsely failed. cal-10 correctly failed under the confirmed missing-duration policy.
+- v7 split interval criteria and explicit reference facts: original cal-08 and two positive/negative examples matched 3/3 expectations. Development validation, not held-out accuracy or Rachel's individual answer signoff.
+- Judge v8 implemented: external-request fact graded from trace; timezone wording criteria added. 101 deterministic tests passed in 3.50 seconds. Four synthetic Qwen cases completed on October 8 with valid outputs and 4/4 matching authored expectations; about 11m11s. This is focused development evidence, not overall accuracy. [Plan](evals/JUDGE_V8_VALIDATION.md).
+- Current evidence: [baseline index](reports/baseline/README.md). Source answer-review statuses remain pending.
+- Event creation, full dependency locking, expanded doctor checks and clean-machine Mac Studio validation remain pending.
+
+Latest v10 evidence: Python derives time/tool facts; Qwen judges claims. Two reused positive controls passed; four fresh cases matched 3/4 overall and 31/36 criterion expectations, including a false FAIL with contradictory reasoning. Full v10 baseline and human signoff are pending. [Review](reports/baseline/JUDGE_V10_FRESH_REVIEW.md).
 
 The dated entries below are historical records; earlier counts and next steps describe their date, not current completion.
 
@@ -116,3 +123,13 @@ Restart the `rachel-calendar-readonly` MCP integration (or LM Studio) and begin 
 - Model-facing validation now distinguishes invalid formatting, invalid dates/zones/intervals, and DST clarification. Formatting feedback includes a valid example and explicit cross-midnight support; the agent is instructed to retry formatting without changing user intent. Shared MCP validation returns the same structured errors before connecting to Google.
 - Verified visibly in VS Code Terminal: 58 deterministic tests passed, including a scripted malformed-then-corrected cross-midnight retry and DST clarification without API calls.
 - Real local-model controlled reruns cal-06/cal-13/cal-14 passed structural checks 3/3; trace: reports/calendar-format-feedback-fixed.json. Full baseline not rerun. Semantic DST explanations still require improvement. LM Studio MCP must be restarted to load the changes; GUI entry point not live-retested.
+
+Original-answer follow-up: v8 correctly failed cal-03 but still passed cal-08 despite its false conversion claim. Two valid single-attempt outputs, about 4m58s. [Review and preserved raw results](reports/baseline/JUDGE_V8_ORIGINAL_CASE_REVIEW.md). Judge reliability remains unresolved.
+
+- v9 focused validation completed: 101 pytest tests passed in 3.40s; three valid single-attempt Judge outputs matched authored expectations (FAIL/PASS/PASS), about 9m36s. [Review](reports/baseline/JUDGE_POLICY_V9_VALIDATION.md). This is development validation; human signoff and broader reliability remain pending.
+
+Frozen v9 new-wording validation completed: 4 valid outputs, 3/4 authored aggregate matches, one false PASS on a contradictory Chinese event interval and additional criterion-level errors. [Evidence review](reports/baseline/JUDGE_V9_NEW_WORDING_REVIEW.md). Judge remains advisory; no overall reliability or human signoff is established.
+
+Criterion-level diagnostic: 36 authored labels, 31/36 original batch matches. Four selected failed checks scored separately matched 3/4; one contradiction check still misses. This is failure-selected development evidence, not accuracy. [Comparison](reports/baseline/JUDGE_V9_CRITERION_COMPARISON.md). Default scoring mode is unchanged; Judge remains advisory.
+
+- v10 adds Python-computed time/tool trace facts for semantic review. 108 pytest tests passed; two known-negative single checks scored FAIL/FAIL as expected under unchanged model/budget settings. [Review](reports/baseline/JUDGE_V10_TRACE_FACTS_REVIEW.md). Positive controls and broader reliability remain pending; Judge stays advisory.

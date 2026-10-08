@@ -1,5 +1,5 @@
 {
-  "version": "calendar-answer-v10",
+  "version": "calendar-answer-v9",
   "calibration_labels": {
     "cal-01": "PASS",
     "cal-03": "PASS",
@@ -135,11 +135,9 @@
     "confirmed_date": "2026-10-07",
     "scope": "Query and event intervals must be distinguished; missing duration requires an open clarification, not a proposed default. No human approval of all source answers or judge outputs is implied.",
     "v8_change": "External-request trace checks are deterministic; timezone labels and claimed conversions must be truthful. New synthetic validation labels are authored and pending human review.",
-    "v9_change": "Split event conversion claim consistency and converted clock/date checks; permit correctly converted event intervals. Original cal-08 v8 false PASS is preserved. Focused labels remain authored expectations pending human review.",
-    "v10_change": "Python derives offset-aware query/event intervals and conversions from saved trace. Answer claim interpretation stays semantic; no new criterion text or model settings."
+    "v9_change": "Split event conversion claim consistency and converted clock/date checks; permit correctly converted event intervals. Original cal-08 v8 false PASS is preserved. Focused labels remain authored expectations pending human review."
   },
   "deterministic_requirements": [
     "No Google API request may occur"
-  ],
-  "derive_trace_facts": true
+  ]
 }

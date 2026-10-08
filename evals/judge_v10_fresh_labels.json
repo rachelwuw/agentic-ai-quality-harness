@@ -1,0 +1,72 @@
+{
+  "rubric_sha256": "7f3e2b5bd48c0a8309a8b41e336af76a88cb0a1e72de21a9c58504b19e1ea484",
+  "source_sha256": "79b3feeadf84acc07b4ea9bba3ec0115456e885ca2f7876f0ab5ca97fffdc08f",
+  "implementation_sha256": {
+    "src/harness/calendar_judge.py": "bafc91f29c6c8faa8616982c0eb2caa20d75ca686f16d5f144aa0e6b9a01f051",
+    "src/harness/trace_facts.py": "5bfddf88a7c9464413d2b716c5682d8ebb66a9c2fcfefa6b48c8dc60471745e5"
+  },
+  "label_provenance": "Codex authored before execution; pending Rachel review; not independent human gold labels",
+  "labels": {
+    "v10-fresh-summer-positive": {
+      "expected": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "rationale": "Event instant, query, timezone and limited scope are preserved."
+    },
+    "v10-fresh-summer-negative": {
+      "expected": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "rationale": "Late claim contradicts the correct event conversion."
+    },
+    "v10-fresh-winter-positive": {
+      "expected": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "rationale": "Event instant, query, timezone and limited scope are preserved."
+    },
+    "v10-fresh-winter-negative": {
+      "expected": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "rationale": "Late claim contradicts the correct event conversion."
+    }
+  },
+  "protocol": "Frozen v10, same nine-check layout/order, two new seasonal date pairs; single attempt each; Qwen Thinking UI budget 1024 unchanged; no tuning or automatic reruns."
+}

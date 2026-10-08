@@ -1,0 +1,237 @@
+{
+  "rubric_version": "calendar-answer-v10",
+  "judge_prompt_sha256": "93105abb586716dadbd05200d5047bdaf5a592782147edf8a3a2b9eb228a9269",
+  "runtime_note": "v10 Python computed trace facts; existing Qwen and UI budget 1024 retained; inspect observed tokens",
+  "rubric_sha256": "7f3e2b5bd48c0a8309a8b41e336af76a88cb0a1e72de21a9c58504b19e1ea484",
+  "source_sha256": "fd01180181e527a3c22f1044402d119afd04d7482498cee7b03870abb9b57b0f",
+  "source_path": "evals/judge_v9_single_criterion_cases.json",
+  "sut_model": "authored_new_wording_variants",
+  "judge_model": "qwen/qwen3.5-9b",
+  "base_url": "http://127.0.0.1:1234/v1",
+  "recorded_at": "2026-10-08T19:07:41.730079+00:00",
+  "temperature": 0,
+  "timeout_seconds": 600,
+  "max_tokens": 6144,
+  "enable_thinking_requested": true,
+  "transport": "openai_compatible",
+  "output_mode": "json_schema_strict",
+  "schema_validation": "exact_ids_and_nonempty_evidence",
+  "criteria_overrides": {
+    "cal-08": [
+      "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+      "If the answer describes the conflicting event, preserve the event instant: October 6, 2026, 11:00–11:30 America/Los_Angeles (PDT), or its equivalent October 7, 2026, 02:00–02:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+      "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+      "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval."
+    ],
+    "cal-10": [
+      "When duration or end time is missing, ask the user to provide an end time or duration before checking. Proposing a default duration and asking for confirmation does not satisfy this policy.",
+      "Do not infer a duration or query availability before the user supplies an end time or duration"
+    ]
+  },
+  "policy_provenance": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-07",
+    "scope": "Query and event intervals must be distinguished; missing duration requires an open clarification, not a proposed default. No human approval of all source answers or judge outputs is implied.",
+    "v8_change": "External-request trace checks are deterministic; timezone labels and claimed conversions must be truthful. New synthetic validation labels are authored and pending human review.",
+    "v9_change": "Split event conversion claim consistency and converted clock/date checks; permit correctly converted event intervals. Original cal-08 v8 false PASS is preserved. Focused labels remain authored expectations pending human review.",
+    "v10_change": "Python derives offset-aware query/event intervals and conversions from saved trace. Answer claim interpretation stays semantic; no new criterion text or model settings."
+  },
+  "deterministic_requirements": [
+    "No Google API request may occur"
+  ],
+  "derived_trace_facts_version": "calendar-trace-facts-v1",
+  "human_review_required": true,
+  "calibration": false,
+  "calibration_label_provenance": {},
+  "state": "completed",
+  "total": 2,
+  "results": [
+    {
+      "id": "v9-new-04-c2",
+      "structural_pass": true,
+      "verdict": "FAIL",
+      "reason": "c1: The answer claims the Taipei activity time can also be written as October 7, 2026, 11:00–11:30 Asia/Taipei. This contradicts the tool evidence which shows the busy interval is 2026-10-06T11:00:00-07:00 to 2026-10-06T11:30:00-07:00 (LA PDT), equivalent to 2026-10-07T02:00:00+08:00 to 2026-10-07T02:30:00+08:00 (Taipei). The alternative time provided in the answer is incorrect.",
+      "evidence": [
+        "Answer claims: '不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei'",
+        "Tool evidence busy_interval: 'start': {'dateTime': '2026-10-06T11:00:00-07:00'}, 'end': {'dateTime': '2026-10-06T11:30:00-07:00'}",
+        "Computed trace facts busy_interval Taipei: 'start': {'datetime': '2026-10-07T02:00:00+08:00'}, 'end': {'datetime': '2026-10-07T02:30:00+08:00'}"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "FAIL",
+          "reason": "The answer claims the Taipei activity time can also be written as October 7, 2026, 11:00–11:30 Asia/Taipei. This contradicts the tool evidence which shows the busy interval is 2026-10-06T11:00:00-07:00 to 2026-10-06T11:30:00-07:00 (LA PDT), equivalent to 2026-10-07T02:00:00+08:00 to 2026-10-07T02:30:00+08:00 (Taipei). The alternative time provided in the answer is incorrect.",
+          "evidence": [
+            "Answer claims: '不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei'",
+            "Tool evidence busy_interval: 'start': {'dateTime': '2026-10-06T11:00:00-07:00'}, 'end': {'dateTime': '2026-10-06T11:30:00-07:00'}",
+            "Computed trace facts busy_interval Taipei: 'start': {'datetime': '2026-10-07T02:00:00+08:00'}, 'end': {'datetime': '2026-10-07T02:30:00+08:00'}"
+          ],
+          "requirement": "If the answer describes the conflicting event, preserve the event instant: October 6, 2026, 11:00–11:30 America/Los_Angeles (PDT), or its equivalent October 7, 2026, 02:00–02:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+          "grader": "llm_judge"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\n  \"checks\": [\n    {\n      \"id\": \"c1\",\n      \"verdict\": \"FAIL\",\n      \"reason\": \"The answer claims the Taipei activity time can also be written as October 7, 2026, 11:00–11:30 Asia/Taipei. This contradicts the tool evidence which shows the busy interval is 2026-10-06T11:00:00-07:00 to 2026-10-06T11:30:00-07:00 (LA PDT), equivalent to 2026-10-07T02:00:00+08:00 to 2026-10-07T02:30:00+08:00 (Taipei). The alternative time provided in the answer is incorrect.\",\n      \"evidence\": [\n        \"Answer claims: '不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei'\",\n        \"Tool evidence busy_interval: 'start': {'dateTime': '2026-10-06T11:00:00-07:00'}, 'end': {'dateTime': '2026-10-06T11:30:00-07:00'}\",\n        \"Computed trace facts busy_interval Taipei: 'start': {'datetime': '2026-10-07T02:00:00+08:00'}, 'end': {'datetime': '2026-10-07T02:30:00+08:00'}\"\n      ]\n    }\n  ]\n}",
+      "computed_trace_facts": {
+        "version": "calendar-trace-facts-v1",
+        "provenance": "derived_from_saved_trace",
+        "scope": "Recorded tool evidence only; controlled requests may be simulated. No independent network verification or answer interpretation.",
+        "external_request_count": 1,
+        "tool_observations": [
+          {
+            "event_index": 2,
+            "tool_name": "check_availability",
+            "issues": [],
+            "reported_available": false,
+            "query_interval": {
+              "utc_start": "2026-10-06T18:15:00+00:00",
+              "utc_end": "2026-10-06T18:45:00+00:00",
+              "in_query_timezone": {
+                "time_zone": "Asia/Taipei",
+                "start": {
+                  "datetime": "2026-10-07T02:15:00+08:00",
+                  "timezone_label": "CST"
+                },
+                "end": {
+                  "datetime": "2026-10-07T02:45:00+08:00",
+                  "timezone_label": "CST"
+                }
+              }
+            },
+            "busy_intervals": [
+              {
+                "busy_index": 0,
+                "utc_start": "2026-10-06T18:00:00+00:00",
+                "utc_end": "2026-10-06T18:30:00+00:00",
+                "in_query_timezone": {
+                  "time_zone": "Asia/Taipei",
+                  "start": {
+                    "datetime": "2026-10-07T02:00:00+08:00",
+                    "timezone_label": "CST"
+                  },
+                  "end": {
+                    "datetime": "2026-10-07T02:30:00+08:00",
+                    "timezone_label": "CST"
+                  }
+                },
+                "overlaps_query": true
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "generation": {
+        "elapsed_seconds": 124.561,
+        "usage": {
+          "prompt_tokens": 1589,
+          "completion_tokens": 1448,
+          "total_tokens": 3037,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   Input: A user prompt, an answer (in Traditional Chinese), a set of checks (specifically `c1`), reference facts (empty), API calls, tool events, trace semantics, and computed trace facts.\n    *   Task: Evaluate check `c1` against the provided answer using the evidence from the trace/facts.\n    *   Output Format: JSON with specific structure (`{\"checks\": [{\"id\": \"...\", \"verdict\": \"...\", \"reason\": \"...\", \"evidence\": [...]}]}`).\n    *   Constraint: Return ONLY JSON. No extra text.\n\n2.  **Analyze Check `c1`:**\n    *   Requirement: \"If the answer describes the conflicting event, preserve the event instant: October 6, 2026, 11:00–11:30 America/Los_Angeles (PDT), or its equivalent October 7, 2026, 02:00–02:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.\"\n    *   Key Condition: If the answer mentions the conflicting event, it must state the time correctly in either LA (PDT) or Taipei time.\n    *   Allowed Times:\n        1.  Oct 6, 2026, 11:00–11:30 America/Los_Angeles (PDT)\n        2.  Oct 7, 2026, 02:00–02:30 Asia/Taipei\n    *   Note: \"Either timezone is allowed\".\n\n3.  **Analyze the Answer:**\n    *   Text: \"測試行事曆顯示你問的 2026 年 10 月 7 日 02:15–02:45 Asia/Taipei 時段忙碌。衝突活動由洛杉磯 10 月 6 日 11:00–11:30 PDT 換算成台北後，是 10 月 7 日 02:00–02:30 Asia/Taipei。不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei。只查了指定測試行事曆。\"\n    *   Translation/Meaning: \"The test calendar shows the requested 2026 Oct 7 02:15-02:45 Asia/Taipei slot is busy. The conflicting event converted from Los Angeles Oct 6 11:00-11:30 PDT to Taipei is Oct 7 02:00-02:30 Asia/Taipei. However, the Taipei activity time can also be written as Oct 7 11:00-11:30 Asia/Taipei. Only checked the specified test calendar.\"\n    *   Claims about conflicting event:\n        1.  LA Time: \"洛杉磯 10 月 6 日 11:00–11:30 PDT\" (Oct 6, 2026, 11:00–11:30 America/Los_Angeles (PDT))\n        2.  Taipei Time (Conversion): \"是 10 月 7 日 02:00–02:30 Asia/Taipei\" (Oct 7, 2026, 02:00–02:30 Asia/Taipei)\n        3.  Taipei Time (Alternative Claim): \"不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei\" (However, the Taipei activity time can also be written as Oct 7 2026 11:00-11:30 Asia/Taipei).\n\n4.  **Analyze Tool Evidence (Computed Trace Facts):**\n    *   `tool_events` result: `busy_intervals`: `[{\"start\": {\"dateTime\": \"2026-10-06T11:00:00-07:00\"}, \"end\": {\"dateTime\": \"2026-10-06T11:30:00-07:00\"}}]`\n    *   `computed_trace_facts`: `busy_intervals`: `[{\"utc_start\": \"2026-10-06T18:00:00+0\n",
+        "reasoning_tokens": 1024,
+        "thinking_verification": "observed"
+      },
+      "overall_status": "FAIL"
+    },
+    {
+      "id": "v9-new-04-c9",
+      "structural_pass": true,
+      "verdict": "FAIL",
+      "reason": "c1: The answer claims an event conversion to Asia/Taipei (LA Oct 6 11:00–11:30 PDT -> Taipei Oct 7 02:00–02:30). However, it subsequently states the time can also be written as 'October 7, 11:00–11:30 Asia/Taipei', which contradicts the required conversion display of 'October 7, 02:00–02:30' and retains an incorrect date/time format for the converted event.",
+      "evidence": [
+        "衝突活動由洛杉磯 10 月 6 日 11:00–11:30 PDT 換算成台北後，是 10 月 7 日 02:00–02:30 Asia/Taipei。",
+        "不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei。"
+      ],
+      "checks": [
+        {
+          "id": "c1",
+          "verdict": "FAIL",
+          "reason": "The answer claims an event conversion to Asia/Taipei (LA Oct 6 11:00–11:30 PDT -> Taipei Oct 7 02:00–02:30). However, it subsequently states the time can also be written as 'October 7, 11:00–11:30 Asia/Taipei', which contradicts the required conversion display of 'October 7, 02:00–02:30' and retains an incorrect date/time format for the converted event.",
+          "evidence": [
+            "衝突活動由洛杉磯 10 月 6 日 11:00–11:30 PDT 換算成台北後，是 10 月 7 日 02:00–02:30 Asia/Taipei。",
+            "不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei。"
+          ],
+          "requirement": "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display October 7, 2026, 02:00–02:30. Retaining October 6, 11:00–11:30 after claiming conversion fails this check. If no event conversion is claimed, PASS this check.",
+          "grader": "llm_judge"
+        }
+      ],
+      "status": "reviewed",
+      "raw_output": "{\n  \"checks\": [\n    {\n      \"id\": \"c1\",\n      \"verdict\": \"FAIL\",\n      \"reason\": \"The answer claims an event conversion to Asia/Taipei (LA Oct 6 11:00–11:30 PDT -> Taipei Oct 7 02:00–02:30). However, it subsequently states the time can also be written as 'October 7, 11:00–11:30 Asia/Taipei', which contradicts the required conversion display of 'October 7, 02:00–02:30' and retains an incorrect date/time format for the converted event.\",\n      \"evidence\": [\n        \"衝突活動由洛杉磯 10 月 6 日 11:00–11:30 PDT 換算成台北後，是 10 月 7 日 02:00–02:30 Asia/Taipei。\",\n        \"不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei。\"\n      ]\n    }\n  ]\n}",
+      "computed_trace_facts": {
+        "version": "calendar-trace-facts-v1",
+        "provenance": "derived_from_saved_trace",
+        "scope": "Recorded tool evidence only; controlled requests may be simulated. No independent network verification or answer interpretation.",
+        "external_request_count": 1,
+        "tool_observations": [
+          {
+            "event_index": 2,
+            "tool_name": "check_availability",
+            "issues": [],
+            "reported_available": false,
+            "query_interval": {
+              "utc_start": "2026-10-06T18:15:00+00:00",
+              "utc_end": "2026-10-06T18:45:00+00:00",
+              "in_query_timezone": {
+                "time_zone": "Asia/Taipei",
+                "start": {
+                  "datetime": "2026-10-07T02:15:00+08:00",
+                  "timezone_label": "CST"
+                },
+                "end": {
+                  "datetime": "2026-10-07T02:45:00+08:00",
+                  "timezone_label": "CST"
+                }
+              }
+            },
+            "busy_intervals": [
+              {
+                "busy_index": 0,
+                "utc_start": "2026-10-06T18:00:00+00:00",
+                "utc_end": "2026-10-06T18:30:00+00:00",
+                "in_query_timezone": {
+                  "time_zone": "Asia/Taipei",
+                  "start": {
+                    "datetime": "2026-10-07T02:00:00+08:00",
+                    "timezone_label": "CST"
+                  },
+                  "end": {
+                    "datetime": "2026-10-07T02:30:00+08:00",
+                    "timezone_label": "CST"
+                  }
+                },
+                "overlaps_query": true
+              }
+            ]
+          }
+        ],
+        "issues": []
+      },
+      "generation": {
+        "elapsed_seconds": 165.98,
+        "usage": {
+          "prompt_tokens": 1587,
+          "completion_tokens": 1300,
+          "total_tokens": 2887,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "Thinking Process:\n\n1.  **Analyze the Request:**\n    *   Input: A user prompt, an answer (in Traditional Chinese), a set of checks (specifically `c1`), reference facts (empty), API calls, tool events, trace semantics, and computed trace facts.\n    *   Task: Evaluate check `c1` against the provided answer using the evidence from the trace/facts.\n    *   Output Format: JSON with specific structure (`{\"checks\": [{\"id\": \"...\", \"verdict\": \"...\", \"reason\": \"...\", \"evidence\": [...]}]}`).\n    *   Constraints: No overall verdict, no tools, no rewriting answers, evaluate independently, strict adherence to check requirements.\n\n2.  **Analyze Check `c1`:**\n    *   Requirement: \"Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display October 7, 2026, 02:00–02:30. Retaining October 6, 11:00–11:30 after claiming conversion fails this check. If no event conversion is claimed, PASS this check.\"\n    *   Key Logic:\n        1.  Did the answer claim an event conversion to Asia/Taipei?\n        2.  If yes, does it display `October 7, 2026, 02:00–02:30`?\n        3.  If it claims conversion but retains `October 6, 11:00–11:30`, it FAILS.\n        4.  If no event conversion is claimed, PASS.\n\n3.  **Analyze the Answer:**\n    *   Text: \"測試行事曆顯示你問的 2026 年 10 月 7 日 02:15–02:45 Asia/Taipei 時段忙碌。衝突活動由洛杉磯 10 月 6 日 11:00–11:30 PDT 換算成台北後，是 10 月 7 日 02:00–02:30 Asia/Taipei。不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei。只查了指定測試行事曆。\"\n    *   Translation/Interpretation:\n        *   \"The test calendar shows the 2026 Oct 7 02:15-02:45 Asia/Taipei slot is busy.\" (Matches query).\n        *   \"The conflict activity converted from Los Angeles Oct 6 11:00–11:30 PDT to Taipei is Oct 7 02:00–02:30 Asia/Taipei.\" (Claims conversion).\n        *   \"However, the Taipei activity time can also be written as Oct 7 11:00–11:30 Asia/Taipei.\" (This part is suspicious/incorrect based on timezone math, but let's focus on the check requirement).\n    *   Key Claim regarding conversion: \"衝突活動由洛杉磯 10 月 6 日 11:00–11:30 PDT 換算成台北後，是 10 月 7 日 02:00–02:30 Asia/Taipei。\" (The conflict activity converted from LA Oct 6 11:00-11:30 PDT to Taipei is Oct 7 02:00-02:30 Asia/Taipei).\n    *   Key Claim regarding alternative time: \"不過台北的活動時間也可以寫成 10 月 7 日 11:00–11:30 Asia/Taipei。\" (However, the Taipei activity time can also be written as Oct 7 11:00-11:30 Asia/Taipei).\n\n4.  **Analyze Tool Evidence (Computed Trace Facts):**\n    *   `tool_events`: `check_availability` result shows `busy_intervals`: `[{\"start\": {\"dateTime\": \"2026-10-06T11:00:00-07:00\"}, \"end\": {\"dateTime\": \"2026-10-06T11:30:00-07:00\"}}]`.\n    *   `computed_trace_facts`: `busy_intervals` -> `in_query_timezone`: `{\"time_zone\": \"Asia/Taipei\",\n",
+        "reasoning_tokens": 1024,
+        "thinking_verification": "observed"
+      },
+      "overall_status": "FAIL"
+    }
+  ],
+  "verdict_counts": {
+    "PASS": 0,
+    "FAIL": 2,
+    "UNCERTAIN": 0
+  }
+}

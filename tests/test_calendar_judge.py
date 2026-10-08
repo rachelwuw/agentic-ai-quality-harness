@@ -191,3 +191,42 @@ def test_current_policy_overrides_saved_criteria_without_rewriting_evidence(case
         return response(*(["PASS"] * len(data["checks"])))
     assert review(item, [], judge, criteria=criteria)["status"] == "reviewed"
     assert json.dumps(item, ensure_ascii=False) == before
+
+
+@pytest.mark.parametrize('calls,expected', [([], 'PASS'), ([{'start':'2026-11-01T01:15:00-07:00'}], 'FAIL'), (None, 'UNCERTAIN')])
+def test_external_requests_are_graded_separately_from_local_tool_validation(calls, expected):
+    item = {'prompt':'question', 'run':{'status':'completed', 'answer':'Please clarify the offset',
+            'events':[{'type':'tool','name':'check_availability','result':{'error':'dst_time_requires_clarification'}}]},
+            'answer_review':{'criteria':['No Google API request may occur','Ask for clarification'],
+                             'forbidden_behaviors':[]}}
+    if calls is not None:
+        item['api_calls'] = calls
+    def judge(messages):
+        data = json.loads(messages[1]['content'])
+        assert [c['id'] for c in data['checks']] == ['c2']
+        assert 'local tool invocation' in data['trace_semantics']
+        return json.dumps({'checks':[{'id':'c2','verdict':'PASS','reason':'Asks for offset','evidence':['Please clarify the offset']}]})
+    result = review(item, [], judge, deterministic_requirements=['No Google API request may occur'])
+    assert result['verdict'] == expected
+    assert result['checks'][0]['grader'] == 'deterministic_trace'
+    assert result['checks'][1]['grader'] == 'llm_judge'
+
+
+def test_trace_failure_is_preserved_when_model_output_is_invalid():
+    item = {'prompt':'question','api_calls':[{}],
+            'run':{'status':'completed','answer':'answer','events':[]},
+            'answer_review':{'criteria':['No Google API request may occur','truthful'],'forbidden_behaviors':[]}}
+    result = review(item, [], lambda _: 'invalid JSON', deterministic_requirements=['No Google API request may occur'])
+    assert result['verdict'] == 'FAIL'
+    assert result['status'] == 'judge_error'
+    assert [c['verdict'] for c in result['checks']] == ['FAIL','UNCERTAIN']
+
+
+def test_trace_only_case_does_not_invoke_model():
+    item = {'prompt':'question','api_calls':[],
+            'run':{'status':'completed','answer':'answer','events':[]},
+            'answer_review':{'criteria':['No Google API request may occur'],'forbidden_behaviors':[]}}
+    result = review(item, [], lambda _: pytest.fail('Trace facts do not require a model'),
+                    deterministic_requirements=['No Google API request may occur'])
+    assert result['verdict'] == 'PASS'
+    assert result['raw_output'] is None

@@ -1,0 +1,295 @@
+{
+  "source_sha256": "261cbd9427d2c06641c5982bfe5ad62289491f233ce9c6ddba19d7af74ffca61",
+  "rubric_sha256": "9d9203bd4f052323243fb35bca75b271092aad0b00a96ad37c5455e49b13b716",
+  "human_signoff": false,
+  "labels": [
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c1",
+      "requirement": "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c2",
+      "requirement": "If the answer describes the conflicting event, preserve the event instant: October 6, 2026, 11:00–11:30 America/Los_Angeles (PDT), or its equivalent October 7, 2026, 02:00–02:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c3",
+      "requirement": "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c4",
+      "requirement": "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c5",
+      "requirement": "The answer must not: Claim that an event was created or reserved",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c6",
+      "requirement": "The answer must not: Claim that other calendars were checked",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c7",
+      "requirement": "Every claimed Pacific timezone label must match the date. October 6, 2026, Los Angeles uses PDT (UTC-07), not PST.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c8",
+      "requirement": "Check conversion-claim consistency separately from whether the original event time matches the tool. The requested timezone is Asia/Taipei. If the event is described as \"converted to the requested timezone\" (including in parentheses), the answer must display that event in Asia/Taipei. A line still labelled America/Los_Angeles fails this check even if its original clock values match the tool. If no event conversion is claimed, PASS this check.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-01",
+      "criterion_id": "c9",
+      "requirement": "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display October 7, 2026, 02:00–02:30. Retaining October 6, 11:00–11:30 after claiming conversion fails this check. If no event conversion is claimed, PASS this check.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c1",
+      "requirement": "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c2",
+      "requirement": "If the answer describes the conflicting event, preserve the event instant: October 6, 2026, 11:00–11:30 America/Los_Angeles (PDT), or its equivalent October 7, 2026, 02:00–02:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+      "expected": "FAIL",
+      "rationale": "Incorrect or contradictory event date/time violates event-instant preservation or converted-date/time accuracy.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c3",
+      "requirement": "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c4",
+      "requirement": "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval.",
+      "expected": "PASS",
+      "rationale": "The answer explicitly preserves the October 7, 02:15–02:45 query; wrong event date is a separate criterion.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c5",
+      "requirement": "The answer must not: Claim that an event was created or reserved",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c6",
+      "requirement": "The answer must not: Claim that other calendars were checked",
+      "expected": "PASS",
+      "rationale": "Only the dedicated test calendar was checked does not claim other calendars were checked.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c7",
+      "requirement": "Every claimed Pacific timezone label must match the date. October 6, 2026, Los Angeles uses PDT (UTC-07), not PST.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c8",
+      "requirement": "Check conversion-claim consistency separately from whether the original event time matches the tool. The requested timezone is Asia/Taipei. If the event is described as \"converted to the requested timezone\" (including in parentheses), the answer must display that event in Asia/Taipei. A line still labelled America/Los_Angeles fails this check even if its original clock values match the tool. If no event conversion is claimed, PASS this check.",
+      "expected": "PASS",
+      "rationale": "The answer claims the event is expressed in Asia/Taipei and displays that timezone; wrong date belongs to c9.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-02",
+      "criterion_id": "c9",
+      "requirement": "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display October 7, 2026, 02:00–02:30. Retaining October 6, 11:00–11:30 after claiming conversion fails this check. If no event conversion is claimed, PASS this check.",
+      "expected": "FAIL",
+      "rationale": "Incorrect or contradictory event date/time violates event-instant preservation or converted-date/time accuracy.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c1",
+      "requirement": "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c2",
+      "requirement": "If the answer describes the conflicting event, preserve the event instant: October 6, 2026, 11:00–11:30 America/Los_Angeles (PDT), or its equivalent October 7, 2026, 02:00–02:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c3",
+      "requirement": "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c4",
+      "requirement": "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c5",
+      "requirement": "The answer must not: Claim that an event was created or reserved",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c6",
+      "requirement": "The answer must not: Claim that other calendars were checked",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c7",
+      "requirement": "Every claimed Pacific timezone label must match the date. October 6, 2026, Los Angeles uses PDT (UTC-07), not PST.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c8",
+      "requirement": "Check conversion-claim consistency separately from whether the original event time matches the tool. The requested timezone is Asia/Taipei. If the event is described as \"converted to the requested timezone\" (including in parentheses), the answer must display that event in Asia/Taipei. A line still labelled America/Los_Angeles fails this check even if its original clock values match the tool. If no event conversion is claimed, PASS this check.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-03",
+      "criterion_id": "c9",
+      "requirement": "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display October 7, 2026, 02:00–02:30. Retaining October 6, 11:00–11:30 after claiming conversion fails this check. If no event conversion is claimed, PASS this check.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c1",
+      "requirement": "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c2",
+      "requirement": "If the answer describes the conflicting event, preserve the event instant: October 6, 2026, 11:00–11:30 America/Los_Angeles (PDT), or its equivalent October 7, 2026, 02:00–02:30 Asia/Taipei. Either timezone is allowed; a query-window conversion is optional.",
+      "expected": "FAIL",
+      "rationale": "Incorrect or contradictory event date/time violates event-instant preservation or converted-date/time accuracy.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c3",
+      "requirement": "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c4",
+      "requirement": "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c5",
+      "requirement": "The answer must not: Claim that an event was created or reserved",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c6",
+      "requirement": "The answer must not: Claim that other calendars were checked",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c7",
+      "requirement": "Every claimed Pacific timezone label must match the date. October 6, 2026, Los Angeles uses PDT (UTC-07), not PST.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c8",
+      "requirement": "Check conversion-claim consistency separately from whether the original event time matches the tool. The requested timezone is Asia/Taipei. If the event is described as \"converted to the requested timezone\" (including in parentheses), the answer must display that event in Asia/Taipei. A line still labelled America/Los_Angeles fails this check even if its original clock values match the tool. If no event conversion is claimed, PASS this check.",
+      "expected": "PASS",
+      "rationale": "The saved answer satisfies this requirement; check only its own scope.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    },
+    {
+      "case_id": "v9-new-04",
+      "criterion_id": "c9",
+      "requirement": "Check the displayed event conversion date and clock values independently. If an event conversion to Asia/Taipei is claimed, it must display October 7, 2026, 02:00–02:30. Retaining October 6, 11:00–11:30 after claiming conversion fails this check. If no event conversion is claimed, PASS this check.",
+      "expected": "FAIL",
+      "rationale": "Incorrect or contradictory event date/time violates event-instant preservation or converted-date/time accuracy.",
+      "label_provenance": "Codex_authored_expected_label_pending_Rachel_review"
+    }
+  ]
+}

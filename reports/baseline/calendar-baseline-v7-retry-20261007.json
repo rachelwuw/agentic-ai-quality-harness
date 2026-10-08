@@ -1,0 +1,1229 @@
+{
+  "entry_point": "python_agent",
+  "calendar_mode": "controlled_no_google_access",
+  "reference_now": "2026-10-05T12:00:00-07:00",
+  "total": 15,
+  "structural_passes": 14,
+  "semantic_review_required": true,
+  "results": [
+    {
+      "id": "cal-01",
+      "prompt": "2026 年 10 月 6 日洛杉磯時間 11:15 到 11:45，測試行事曆有空嗎？",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report busy due to the 11:00–11:30 event",
+          "Do not label the requested interval as free"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-06T11:15:00-07:00",
+          "end": "2026-10-06T11:45:00-07:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "**Availability check (2026‑10‑06, 11:15 – 11:45 AM America/Los_Angeles)**  \nThe requested slot is **not free**.  \n\nBusy interval(s) that overlap this time:  \n- 2026‑10‑06 11:00 – 11:30 AM (America/Los_Angeles)\n\nIf you need a different time, let me know!",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "ZrrNdM47FvFALl5nQMGi07uxe9476GeI",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T11:15:00\",\"end\":\"2026-10-06T11:45:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T11:15:00\",\"end\":\"2026-10-06T11:45:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2026-10-06T11:15:00-07:00",
+              "end": "2026-10-06T11:45:00-07:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**Availability check (2026‑10‑06, 11:15 – 11:45 AM America/Los_Angeles)**  \nThe requested slot is **not free**.  \n\nBusy interval(s) that overlap this time:  \n- 2026‑10‑06 11:00 – 11:30 AM (America/Los_Angeles)\n\nIf you need a different time, let me know!",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-02",
+      "prompt": "Am I free on the test calendar on October 6, 2026, from 11:15 to 11:45 in Los Angeles?",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report a conflict with 11:00–11:30",
+          "State that only the test calendar was checked"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-06T11:15:00-07:00",
+          "end": "2026-10-06T11:45:00-07:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "I’m sorry, but you’re **not free** during that time.\n\nOn the test calendar there is a busy event from **11:00 am to 11:30 am** on October 6, 2026 (America/Los_Angeles). That overlaps with your requested slot of 11:15 am–11:45 am.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "46exNRFuY3hLF6x2lN53K6xV9Zu2590D",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T11:15:00\",\"end\":\"2026-10-06T11:45:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T11:15:00\",\"end\":\"2026-10-06T11:45:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2026-10-06T11:15:00-07:00",
+              "end": "2026-10-06T11:45:00-07:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "I’m sorry, but you’re **not free** during that time.\n\nOn the test calendar there is a busy event from **11:00 am to 11:30 am** on October 6, 2026 (America/Los_Angeles). That overlaps with your requested slot of 11:15 am–11:45 am.",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-03",
+      "prompt": "2026 年 10 月 6 日洛杉磯時間 11:30 到 12:00，測試行事曆有空嗎？",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report free; an event ending exactly at the requested start does not overlap"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-06T11:30:00-07:00",
+          "end": "2026-10-06T12:00:00-07:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "測試行事曆在 2026 年 10 月 6 日洛杉磯時間（美國太平洋標準時）11:30 到 12:00 的區間是空閒的。",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "NeKaeFcnX83Zzd0LkImQW14tYDorb50Y",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T11:30:00\",\"end\":\"2026-10-06T12:00:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T11:30:00\",\"end\":\"2026-10-06T12:00:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2026-10-06T11:30:00-07:00",
+              "end": "2026-10-06T12:00:00-07:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "測試行事曆在 2026 年 10 月 6 日洛杉磯時間（美國太平洋標準時）11:30 到 12:00 的區間是空閒的。",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-04",
+      "prompt": "Check October 6, 2026, 10:30–11:00 in Los Angeles on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report free; an event starting exactly at the requested end does not overlap"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-06T10:30:00-07:00",
+          "end": "2026-10-06T11:00:00-07:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "POv0ARYa7fMWhou2XxCgDJ2BHP4W5vnx",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T10:30:00\",\"end\":\"2026-10-06T11:00:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T10:30:00\",\"end\":\"2026-10-06T11:00:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2026-10-06T10:30:00-07:00",
+              "end": "2026-10-06T11:00:00-07:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "October 6, 2026, 10:30 – 11:00 AM (America/Los_Angeles) is **available** on the test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-05",
+      "prompt": "查詢 2026 年 10 月 6 日洛杉磯時間 11:05 到 11:20 的測試行事曆。",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report busy even though the requested interval is contained inside the event"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-06T11:05:00-07:00",
+          "end": "2026-10-06T11:20:00-07:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "在 2026 年 10 月 6 日洛杉磯時間（美國太平洋夏令時，UTC-07:00）11:05 到 11:20 的區間內，測試行事曆已被佔用。該時間段落於 11:00–11:30 的忙碌事件之中。",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "ujUIlJqI6JP0nIJv0BBEb9A0TAqmuXuh",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T11:05:00\",\"end\":\"2026-10-06T11:20:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T11:05:00\",\"end\":\"2026-10-06T11:20:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2026-10-06T11:05:00-07:00",
+              "end": "2026-10-06T11:20:00-07:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "在 2026 年 10 月 6 日洛杉磯時間（美國太平洋夏令時，UTC-07:00）11:05 到 11:20 的區間內，測試行事曆已被佔用。該時間段落於 11:00–11:30 的忙碌事件之中。",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-06",
+      "prompt": "Check the test calendar from October 6, 2026 at 23:45 to October 7 at 00:15, Los Angeles time.",
+      "structural_pass": false,
+      "checks": {
+        "completed": true,
+        "tool_arguments": false,
+        "api_interval": true,
+        "tool_outcome": false
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report free and preserve the two different calendar dates"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "failed_structure",
+      "api_calls": [
+        {
+          "start": "2026-10-06T23:45:00-07:00",
+          "end": "2026-10-07T00:15:00-07:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested interval from **2026‑10‑06 23:45** to **2026‑10‑07 00:15** (America/Los_Angeles time) is **available** on the test calendar.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "edKXSY0bHjvxc8YkAfzOneSMAQcb0gHr",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T23:45:00\",\"end\":\"2026-10-07T0015:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T23:45:00\",\"end\":\"2026-10-07T0015:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "error": "invalid_time_format",
+              "available": null,
+              "message": "Expected YYYY-MM-DDTHH:MM:SS without offset, e.g. 2026-10-07T00:15:00.",
+              "action": "Correct your timestamp formatting and retry using the original user dates and times. Cross-midnight intervals are supported; do not change the requested interval or invent a limitation.",
+              "cross_midnight_supported": true,
+              "corrections_remaining": 1
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "cHsgAUTtR80CsdvAvMQwZTOPFObqp1XR",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T23:45:00\",\"end\":\"2026-10-07T00:15:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T23:45:00\",\"end\":\"2026-10-07T00:15:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2026-10-06T23:45:00-07:00",
+              "end": "2026-10-07T00:15:00-07:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 2,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 2,
+            "message": {
+              "role": "assistant",
+              "content": "The requested interval from **2026‑10‑06 23:45** to **2026‑10‑07 00:15** (America/Los_Angeles time) is **available** on the test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-07",
+      "prompt": "2026 年 12 月 6 日洛杉磯時間 11:00 到 11:30，測試行事曆有空嗎？",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report free",
+          "Python must resolve UTC−08:00, not the October UTC−07:00 offset"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-12-06T11:00:00-08:00",
+          "end": "2026-12-06T11:30:00-08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "是的，測試行事曆在 2026 年 12 月 6 日洛杉磯時間（美國太平洋標準時）上午 11:00 到 11:30 之間沒有任何預約。",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "XcZ2d9URPJAb7nfVVCGgD46mAvjG8FkC",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-12-06T11:00:00\",\"end\":\"2026-12-06T11:30:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-12-06T11:00:00\",\"end\":\"2026-12-06T11:30:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2026-12-06T11:00:00-08:00",
+              "end": "2026-12-06T11:30:00-08:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "是的，測試行事曆在 2026 年 12 月 6 日洛杉磯時間（美國太平洋標準時）上午 11:00 到 11:30 之間沒有任何預約。",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-08",
+      "prompt": "Check October 7, 2026, 02:15–02:45 in Asia/Taipei on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report that the requested slot is busy or unavailable because it overlaps an existing event.",
+          "If the answer describes the event interval, it must use October 6, 2026, 11:00–11:30 Los Angeles (Pacific daylight time). Do not require it to state the query-window conversion.",
+          "If the answer converts the requested query window to Los Angeles time, it must use October 6, 2026, 11:15–11:45. Omitting this optional conversion is acceptable.",
+          "Preserve the requested October 7, 2026, 02:15–02:45 Asia/Taipei query interval."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested interval on the test calendar is **busy**.\n\n- **Interval:** 2026‑10‑07 02:15–02:45 (Asia/Taipei)\n- **Availability:** Not available\n- **Busy event(s):** 2026‑10‑06 11:00–11:30 America/Los_Angeles (converted to the requested timezone)\n\nThis information is based solely on the dedicated test calendar.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "7dVdBGA9l0c5CqwdP85N9fMIK05gQxul",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T02:15:00\",\"end\":\"2026-10-07T02:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2026-10-07T02:15:00+08:00",
+              "end": "2026-10-07T02:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei"
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested interval on the test calendar is **busy**.\n\n- **Interval:** 2026‑10‑07 02:15–02:45 (Asia/Taipei)\n- **Availability:** Not available\n- **Busy event(s):** 2026‑10‑06 11:00–11:30 America/Los_Angeles (converted to the requested timezone)\n\nThis information is based solely on the dedicated test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-09",
+      "prompt": "幫我約明天",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Ask for a start time and an end time or duration",
+          "Explain that this version cannot create a booking"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [],
+      "run": {
+        "status": "completed",
+        "answer": "請問您想在「明天」的哪個時間段安排？  \n- 具體開始與結束時間（例如：2026‑10‑06T09:00:00 至 2026‑10‑06T10:30:00）  \n- 或者只提供持續時長（例如：1 小時）\n\n若您只想確認明天整日是否有空，請告訴我。",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "請問您想在「明天」的哪個時間段安排？  \n- 具體開始與結束時間（例如：2026‑10‑06T09:00:00 至 2026‑10‑06T10:30:00）  \n- 或者只提供持續時長（例如：1 小時）\n\n若您只想確認明天整日是否有空，請告訴我。",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-10",
+      "prompt": "Am I free tomorrow at 11 AM in Los Angeles?",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "When duration or end time is missing, ask the user to provide an end time or duration before checking. Proposing a default duration and asking for confirmation does not satisfy this policy.",
+          "Do not infer a duration or query availability before the user supplies an end time or duration"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [],
+      "run": {
+        "status": "completed",
+        "answer": "I’m not sure how long you’d like to check—could you let me know the end time (or how many hours) for that slot?",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "I’m not sure how long you’d like to check—could you let me know the end time (or how many hours) for that slot?",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-11",
+      "prompt": "洛杉磯時間 11:00 到 11:30 有空嗎？",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Ask which date before checking"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [],
+      "run": {
+        "status": "completed",
+        "answer": "請問您想查詢哪一天的 11:00–11:30 時段呢？（例如：2026‑10‑05）",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "請問您想查詢哪一天的 11:00–11:30 時段呢？（例如：2026‑10‑05）",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-12",
+      "prompt": "Check October 6, 2026, 11:00–11:30 CST on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Ask which time zone CST refers to; do not choose America/Chicago or Asia/Shanghai without clarification"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [],
+      "run": {
+        "status": "completed",
+        "answer": "I’m not sure which “CST” you mean—Central Standard Time (America/Chicago) or China Standard Time (Asia/Shanghai). Could you let me know the intended time zone?",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "I’m not sure which “CST” you mean—Central Standard Time (America/Chicago) or China Standard Time (Asia/Shanghai). Could you let me know the intended time zone?",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-13",
+      "prompt": "Check March 8, 2026, 02:15–03:30 in America/Los_Angeles on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Explain that 02:15 is nonexistent during the DST transition and ask for a valid time",
+          "Do not claim free or busy",
+          "No Google API request may occur"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [],
+      "run": {
+        "status": "completed",
+        "answer": "The requested interval (02:15 – 03:30 on 2026‑03‑08 in America/Los_Angeles) falls during the daylight‑saving “spring forward” transition, so that local time does not exist or is ambiguous.  \n\nCould you please provide a different, unambiguous start and end time for that day?",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "l6lKW1KT1iWsGXLdO88ZOlqMxsdWx04e",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-03-08T02:15:00\",\"end\":\"2026-03-08T03:30:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-03-08T02:15:00\",\"end\":\"2026-03-08T03:30:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "error": "dst_time_requires_clarification",
+              "available": null,
+              "message": "Local time is nonexistent or ambiguous due to daylight saving.",
+              "action": "Ask the user for an unambiguous valid local time; do not retry by guessing.",
+              "cross_midnight_supported": true
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested interval (02:15 – 03:30 on 2026‑03‑08 in America/Los_Angeles) falls during the daylight‑saving “spring forward” transition, so that local time does not exist or is ambiguous.  \n\nCould you please provide a different, unambiguous start and end time for that day?",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-14",
+      "prompt": "查詢 2026 年 11 月 1 日 America/Los_Angeles 01:15 到 02:30 的測試行事曆。",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Explain that 01:15 occurs twice and request an unambiguous alternative",
+          "Do not claim free or busy",
+          "No Google API request may occur"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [],
+      "run": {
+        "status": "completed",
+        "answer": "抱歉，11 月 1 日的 **01:15–02:30** 時間段在 America/Los_Angeles 時區因為夏令時結束而不存在或不唯一。請問您想查詢哪一個具體時間（例如 2026‑11‑01 01:15 AM 或 2026‑11‑01 01:15 PM）？如果需要跨午夜的安排，也請告訴我正確的日期與時段。",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "oCumHP8SZMhuuo2n79eXDH5yCE72hFvE",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-11-01T01:15:00\",\"end\":\"2026-11-01T02:30:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-11-01T01:15:00\",\"end\":\"2026-11-01T02:30:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "error": "dst_time_requires_clarification",
+              "available": null,
+              "message": "Local time is nonexistent or ambiguous due to daylight saving.",
+              "action": "Ask the user for an unambiguous valid local time; do not retry by guessing.",
+              "cross_midnight_supported": true
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "抱歉，11 月 1 日的 **01:15–02:30** 時間段在 America/Los_Angeles 時區因為夏令時結束而不存在或不唯一。請問您想查詢哪一個具體時間（例如 2026‑11‑01 01:15 AM 或 2026‑11‑01 01:15 PM）？如果需要跨午夜的安排，也請告訴我正確的日期與時段。",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "cal-15",
+      "prompt": "Check October 6, 2026, 11:30–12:00 in Los Angeles on the test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "State that availability could not be determined because the Calendar read failed",
+          "Do not interpret an error as free or as a successful booking",
+          "Do not expose credentials or API response bodies"
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-06T11:30:00-07:00",
+          "end": "2026-10-06T12:00:00-07:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "I’m sorry, but I can’t determine whether that slot is free on the test calendar.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "hE8lentnk9FX2g44fRGLpTKa8sMA8kU0",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T11:30:00\",\"end\":\"2026-10-06T12:00:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T11:30:00\",\"end\":\"2026-10-06T12:00:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "error": "calendar_unavailable",
+              "available": null
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "I’m sorry, but I can’t determine whether that slot is free on the test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "model": "openai/gpt-oss-20b",
+  "base_url": "http://127.0.0.1:1234/v1",
+  "recorded_at": "2026-10-07T17:11:46.602866-07:00"
+}

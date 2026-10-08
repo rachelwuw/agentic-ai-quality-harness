@@ -1,0 +1,260 @@
+{
+  "source_sha256": "79b3feeadf84acc07b4ea9bba3ec0115456e885ca2f7876f0ab5ca97fffdc08f",
+  "rubric_sha256": "7f3e2b5bd48c0a8309a8b41e336af76a88cb0a1e72de21a9c58504b19e1ea484",
+  "label_file_sha256": "7df04f54d4238a6bb18fe8df6f2671b41f71329ec1146f1b19350ef8ef662342",
+  "raw_output_sha256": "bc105a7184b21a8c9fe73fb7839b8d2505bc77fe28739b4e49a7e2a6f6747928",
+  "label_provenance": "Codex authored before execution; pending Rachel review; not independent human gold labels",
+  "aggregate_matches": 3,
+  "criterion_matches": 31,
+  "criterion_total": 36,
+  "cases": [
+    {
+      "id": "v10-fresh-summer-positive",
+      "expected": "PASS",
+      "observed": "PASS",
+      "aggregate_match": true,
+      "checks": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "v10-fresh-summer-negative",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "aggregate_match": true,
+      "checks": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "PASS",
+          "match": false
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "UNCERTAIN",
+          "match": false
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "match": false
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "match": true
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "v10-fresh-winter-positive",
+      "expected": "PASS",
+      "observed": "FAIL",
+      "aggregate_match": false,
+      "checks": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "match": false
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        }
+      ]
+    },
+    {
+      "id": "v10-fresh-winter-negative",
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "aggregate_match": true,
+      "checks": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "match": true
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "match": false
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "match": true
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "match": true
+        }
+      ]
+    }
+  ]
+}
