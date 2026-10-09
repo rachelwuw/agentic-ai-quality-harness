@@ -119,6 +119,9 @@ class CalendarTools:
                 finally:
                     self.attempt_events.extend({"page": len(seen_pages) + 1, **a} for a in attempts)
                 data = response.json()
+                if not isinstance(data, dict):
+                    raise ValueError('Invalid Calendar response object')
+                # Google may omit items for an empty projected collection.
                 items = data.get('items', [])
                 if not isinstance(items, list):
                     raise ValueError('Invalid event list')
@@ -130,11 +133,13 @@ class CalendarTools:
                     # Google filters overlaps, including all-day and recurring instances.
                     busy.append({'start': event['start'], 'end': event['end']})
                 page = data.get('nextPageToken')
+                if 'nextPageToken' in data and (not isinstance(page, str) or not page.strip()):
+                    raise CalendarError('Incomplete Calendar response; availability is unknown.')
             except CalendarError:
                 raise
             except Exception:
                 raise CalendarError('Calendar query failed; availability is unknown.') from None
-            if not page:
+            if page is None:
                 return {'start': start, 'end': end, 'available': not busy,
                         'busy_intervals': busy, 'source': 'google_calendar',
                         'scope': 'configured_test_calendar_only', 'attempts': self.attempt_events}
