@@ -84,3 +84,45 @@ def test_offsets_are_compared_as_instants():
 def test_primary_calendar_rejected():
     with pytest.raises(ValueError):
         CalendarTools('primary', Session())
+
+
+def test_omitted_items_on_final_page_is_an_empty_collection():
+    result = CalendarTools('test', Session(Response({}))).check_availability(START, END)
+    assert result['available'] is True
+    assert result['busy_intervals'] == []
+
+
+def test_omitted_items_does_not_skip_a_later_conflict():
+    session = Session(Response({'nextPageToken': 'next'}), Response({'items': [BUSY]}))
+    result = CalendarTools('test', session).check_availability(START, END)
+    assert result['available'] is False
+    assert result['busy_intervals'] == [BUSY]
+    assert session.calls[1][1]['params']['pageToken'] == 'next'
+
+
+@pytest.mark.parametrize('token', [None, False, 0, '', ' ', [], {}, 7])
+def test_present_invalid_page_token_never_reports_availability(token):
+    session = Session(Response({'items': [], 'nextPageToken': token}))
+    with pytest.raises(CalendarError):
+        CalendarTools('test', session).check_availability(START, END)
+    assert len(session.calls) == 1
+
+
+@pytest.mark.parametrize('data', [None, [], 'invalid', 0])
+def test_non_object_response_never_reports_availability(data):
+    with pytest.raises(CalendarError):
+        CalendarTools('test', Session(Response(data))).check_availability(START, END)
+
+
+def test_omitted_items_followed_by_failed_page_never_reports_availability():
+    session = Session(Response({'nextPageToken': 'next'}), Response({}, 403))
+    with pytest.raises(CalendarError):
+        CalendarTools('test', session).check_availability(START, END)
+    assert len(session.calls) == 2
+
+
+def test_repeated_page_token_never_reports_availability():
+    session = Session(Response({'nextPageToken': 'next'}), Response({'nextPageToken': 'next'}))
+    with pytest.raises(CalendarError):
+        CalendarTools('test', session).check_availability(START, END)
+    assert len(session.calls) == 2
