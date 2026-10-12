@@ -1,0 +1,101 @@
+{
+  "status": "Rachel_approved",
+  "provenance": "Codex-authored synthetic expectations reviewed and approved by Rachel in this chat on 2026-10-12; not independent benchmark labels",
+  "labels": {
+    "v11-draft-A": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "v11-draft-B": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "v11-draft-C": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "v11-draft-D": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "FAIL",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "v11-draft-E": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "v11-draft-F": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    }
+  },
+  "approval": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-12",
+    "scope": "c2/c6/c7 boundaries and all A-F expected labels; separate authorization for 12 single-attempt requests received in this chat; no judge-output or release signoff"
+  }
+}

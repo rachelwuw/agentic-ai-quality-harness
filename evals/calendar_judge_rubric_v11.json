@@ -1,0 +1,16 @@
+{
+  "version": "calendar-answer-v11",
+  "reference_facts": {},
+  "additional_criteria": {},
+  "criteria_overrides": {},
+  "deterministic_requirements": [
+    "No Google API request may occur"
+  ],
+  "derive_trace_facts": true,
+  "policy_provenance": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-12",
+    "scope": "c2/c6/c7 boundaries and all A-F expected labels; separate authorization for 12 single-attempt requests received in this chat; no judge-output or release signoff"
+  },
+  "scope": "Explicit opt-in six-case boundary study; default v10 unchanged. Exact approved nine criteria are read from each saved case. External-request deterministic grader is preserved but none of these cases requires zero simulated requests."
+}

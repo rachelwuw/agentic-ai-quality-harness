@@ -2,6 +2,7 @@
 
 ## Start here
 
+- [Approved v11 boundary/repeatability study](JUDGE_V11_BOUNDARY_REVIEW.md): 12 valid outputs, 8/12 overall and 94/108 criterion matches; 54/54 repeat labels agree, including mistakes. Expected labels approved by Rachel; result review and independent validation remain separate.
 - [Latest engineering verification](ENGINEERING_CHECKPOINT_20261008.md): recreated Python 3.12 environment, deterministic tests and GitHub CI evidence; no model or Google calls.
 - [Controlled SUT baseline](CALENDAR_BASELINE_V7_RETRY_REVIEW.md): real local agent, simulated Calendar responses, structural results and separate answer review.
 - [Frozen v10 judge fresh-case review](JUDGE_V10_FRESH_REVIEW.md): new authored cases, criterion disagreements and remaining limits; expected labels are not Rachel’s human signoff.

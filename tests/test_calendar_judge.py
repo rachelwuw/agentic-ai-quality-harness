@@ -230,3 +230,37 @@ def test_trace_only_case_does_not_invoke_model():
                     deterministic_requirements=['No Google API request may occur'])
     assert result['verdict'] == 'PASS'
     assert result['raw_output'] is None
+
+
+def test_v11_opt_in_cli_uses_approved_order_and_keeps_labels_out_of_requests(tmp_path, monkeypatch):
+    from harness import calendar_judge
+    root = Path(__file__).parents[1]
+    output = tmp_path / 'study.json'
+    monkeypatch.setenv('JUDGE_MODEL', 'stub-judge')
+    monkeypatch.setattr('sys.argv', ['judge', '--input', str(root / 'evals/judge_v11_cases.json'),
+        '--rubric', str(root / 'evals/calendar_judge_rubric_v11.json'), '--output', str(output)])
+    observed = []
+    class Client:
+        base = 'http://127.0.0.1:1234/v1'
+        def __init__(self, model, timeout):
+            self.model = model
+        def models(self):
+            return {'data': [{'id': self.model}]}
+        def request(self, path, payload):
+            data = json.loads(payload['messages'][-1]['content'])
+            assert set(data) == {'user_prompt', 'answer', 'checks', 'reference_facts', 'api_calls',
+                'tool_events', 'trace_semantics', 'computed_trace_facts', 'computed_facts_usage'}
+            assert len(data['checks']) == 9
+            assert data['computed_trace_facts']['tool_observations'][0]['busy_intervals'][0]['overlaps_query']
+            observed.append(data['answer'])
+            raw = response(*(['PASS'] * 9))
+            return {'choices': [{'finish_reason': 'stop', 'message': {'content': raw}}]}
+    monkeypatch.setattr(calendar_judge, 'LocalClient', Client)
+    assert calendar_judge.main() == 0
+    report = json.loads(output.read_text())
+    assert [x['id'] for x in report['results']] == ['v11-draft-' + x for x in 'ADBECF']
+    source = json.loads((root / 'evals/judge_v11_cases.json').read_text())
+    assert observed == [x['run']['answer'] for x in source['results']]
+    assert report['rubric_version'] == 'calendar-answer-v11'
+    assert calendar_judge.RUBRIC_VERSION == 'calendar-answer-v10'
+    assert json.loads((root / 'evals/calendar_judge_rubric.json').read_text())['version'] == 'calendar-answer-v10'
