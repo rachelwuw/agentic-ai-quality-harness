@@ -1,0 +1,90 @@
+{
+  "state": "frozen_before_inference",
+  "approval": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-13",
+    "scope": "Approved single-criterion diagnostic D/c7 PASS, E/c6 PASS, D/c6 FAIL, E/c7 FAIL; two rounds, exactly 8 requests. No release or merge signoff."
+  },
+  "rounds": 2,
+  "planned_requests": 8,
+  "order": [
+    "single-D-c7",
+    "single-E-c6",
+    "single-D-c6",
+    "single-E-c7"
+  ],
+  "sha256": {
+    "evals/judge_single_boundary_cases.json": "3bddebcb13fbac1123b91a639b2f76ea3a3fa9d3740698aeb4950bcdd70c4978",
+    "evals/judge_single_boundary_labels.json": "4369c213e760022c2da89846c49e1808b79da9cada26e9b6ce982af3afcc22d2",
+    "evals/calendar_judge_rubric_v13.json": "7619fb61f56d0a2ef9a54246a90c751e5abe385ffee8b74021fa38057cbefc25",
+    "evals/judge_single_boundary_batch_reference.json": "ef285d5317b7df16519cdfdee47b3a8183962033d7909d369a60076bb4e64bda",
+    "src/harness/calendar_judge.py": "e5a746d58314a6c704a075a177693205c2ea7cf39a064631a1b22f3d72dd9c3b",
+    "src/harness/trace_facts.py": "18476a00b291b2ff850e8f96bbee5c0e15372c11c95dcdc44eb9a326133666f0",
+    "src/harness/saved_trace.py": "2b5dd1e97bbc5579e3a0734a021ed84c9413df5d2d3c3d4598eea9a0e0aac312",
+    "src/harness/client.py": "a7c8a8ac73df20fd82a72ee6422265db75b9943a254c86ce7abda056238f10a6",
+    "evals/calendar_judge_rubric.json": "7f3e2b5bd48c0a8309a8b41e336af76a88cb0a1e72de21a9c58504b19e1ea484"
+  },
+  "system_prompt_sha256": "93105abb586716dadbd05200d5047bdaf5a592782147edf8a3a2b9eb228a9269",
+  "runtime": {
+    "type": "llm",
+    "publisher": "qwen",
+    "key": "qwen/qwen3.5-9b",
+    "display_name": "Qwen3.5 9B",
+    "architecture": "qwen35",
+    "quantization": {
+      "name": "Q8_0",
+      "bits_per_weight": 8
+    },
+    "size_bytes": 10449384671,
+    "params_string": "9B",
+    "loaded_instances": [
+      {
+        "id": "qwen/qwen3.5-9b",
+        "config": {
+          "context_length": 8192,
+          "eval_batch_size": 2048,
+          "physical_batch_size": 512,
+          "parallel": 4,
+          "flash_attention": true,
+          "context_checkpoints": 32,
+          "reasoning_budget_message": "",
+          "speculative_draft_mtp": false,
+          "speculative_draft_simple": false,
+          "speculative_draft_model": "",
+          "speculative_draft_max_tokens": 3,
+          "speculative_draft_min_tokens": 0,
+          "speculative_draft_min_continue_probability": 0,
+          "offload_kv_cache_to_gpu": true
+        }
+      }
+    ],
+    "max_context_length": 262144,
+    "format": "gguf",
+    "capabilities": {
+      "vision": true,
+      "trained_for_tool_use": true,
+      "reasoning": {
+        "allowed_options": [
+          "off",
+          "on"
+        ],
+        "default": "on"
+      }
+    },
+    "description": null,
+    "variants": [
+      "qwen/qwen3.5-9b@q8_0"
+    ],
+    "selected_variant": "qwen/qwen3.5-9b@q8_0"
+  },
+  "lm_studio_version": "0.4.25+1",
+  "ui_verified": {
+    "thinking": true,
+    "reasoning_budget_enabled": true,
+    "reasoning_budget": 1024
+  },
+  "temperature": 0,
+  "max_tokens": 6144,
+  "timeout_seconds": 600,
+  "limits": "Selected prior errors and negative controls; count/context/schema/id changed together; historical batch comparison is not randomized or isolated causal evidence."
+}
