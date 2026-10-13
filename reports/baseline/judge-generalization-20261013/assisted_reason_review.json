@@ -1,0 +1,510 @@
+{
+  "reviewer": "Codex-assisted evidence analysis; not a separate live Judge call",
+  "human_output_signoff": false,
+  "label_signoff": "Rachel approved inputs/labels before inference",
+  "scope": "All 32 c6/c7 target reason/evidence pairs checked against approved answers, rubric and Python facts.",
+  "reason_gate_passed": false,
+  "scoped_reason_issues": 6,
+  "direct_PASS_with_violation_reason_observed": false,
+  "interpretation": "Scope violations and one matching label using the wrong target remain; raw outputs are not repaired. A correct label is insufficient evidence of correct evaluation.",
+  "rows": [
+    {
+      "id": "generalization-P1",
+      "criterion": "c6",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "No event-conversion claim to Asia/Taipei is made, so no display attribution error possible.",
+      "evidence": [
+        "Answer does not claim conversion to Asia/Taipei."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "No conversion claim; original LA event retained. PASS is supported by the answer and trace."
+    },
+    {
+      "id": "generalization-P1",
+      "criterion": "c6",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer does not make an event-conversion claim to Asia/Taipei. It states the event time in America/Los_Angeles without explicitly converting or attributing the event's display time to Asia/Taipei.",
+      "evidence": [
+        "The recorded event runs from 2029-07-08 18:40 to 19:10 America/Los_Angeles."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "No conversion claim; original LA event retained. PASS is supported by the answer and trace."
+    },
+    {
+      "id": "generalization-P1",
+      "criterion": "c7",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "No event-conversion claim is made, so no numeric accuracy check required against target timezone.",
+      "evidence": [
+        "Answer does not make an event-conversion claim."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "No conversion claim; original LA event retained. PASS is supported by the answer and trace."
+    },
+    {
+      "id": "generalization-P1",
+      "criterion": "c7",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer does not make an explicit claim of converting event date/clock values to a target timezone for assessment. It states the event runs in America/Los_Angeles but does not explicitly claim to have converted it against Python facts for that specific conversion check; it simply reports the busy status and the original event time.",
+      "evidence": [
+        "The recorded event runs from 2029-07-08 18:40 to 19:10 America/Los_Angeles.",
+        "If the answer makes no event-conversion claim, return PASS for this check."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "No conversion claim; original LA event retained. PASS is supported by the answer and trace."
+    },
+    {
+      "id": "generalization-P2",
+      "criterion": "c6",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "Answer claims conversion to Asia/Taipei and displays event times explicitly attributed to that zone (22:20–22:50).",
+      "evidence": [
+        "After conversion to Asia/Taipei, that event runs on 2029-02-03 from 22:20 to 22:50"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Explicit Taipei conversion and attribution; converted Feb 3 22:20–22:50 matches Python facts."
+    },
+    {
+      "id": "generalization-P2",
+      "criterion": "c6",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer explicitly claims conversion to Asia/Taipei ('After conversion to Asia/Taipei') and attributes the resulting time (22:20 to 22:50) within that context. The computed trace facts confirm the busy interval in Asia/Taipei matches the claimed times.",
+      "evidence": [
+        "Answer text: 'After conversion to Asia/Taipei, that event runs on 2029-02-03 from 22:20 to 22:50.'",
+        "Computed trace facts busy_intervals in_query_timezone: 'start: {datetime: 2029-02-03T22:20:00+08:00...}'"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Explicit Taipei conversion and attribution; converted Feb 3 22:20–22:50 matches Python facts."
+    },
+    {
+      "id": "generalization-P2",
+      "criterion": "c7",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "Converted event times (22:20–22:50) match Python computed facts for the claimed target timezone.",
+      "evidence": [
+        "busy_intervals... in_query_timezone... start: 2029-02-03T22:20:00+08:00"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Explicit Taipei conversion and attribution; converted Feb 3 22:20–22:50 matches Python facts."
+    },
+    {
+      "id": "generalization-P2",
+      "criterion": "c7",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer explicitly claims conversion to Asia/Taipei and provides specific event times (22:20–22:50) that match the computed trace facts for the query timezone.",
+      "evidence": [
+        "Answer: 'After conversion to Asia/Taipei, that event runs on 2029-02-03 from 22:20 to 22:50.'",
+        "computed_trace_facts busy_intervals in_query_timezone: start 2029-02-03T22:20:00+08:00, end 2029-02-03T22:50:00+08:00"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Explicit Taipei conversion and attribution; converted Feb 3 22:20–22:50 matches Python facts."
+    },
+    {
+      "id": "generalization-P3",
+      "criterion": "c6",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer attributes the event display to 'Taipei local time', which aligns with the claimed conversion target (Asia/Taipei).",
+      "evidence": [
+        "In Taipei local time, the conflicting event runs on 2029-08-12 from 15:10 to 15:40."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Recognizes Taipei local time as the conversion expression. Attribution and Aug 12 15:10–15:40 match facts."
+    },
+    {
+      "id": "generalization-P3",
+      "criterion": "c6",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer claims an event conversion to Taipei local time (equivalent to Asia/Taipei) and explicitly attributes the display to 'Taipei local time', satisfying the attribution requirement.",
+      "evidence": [
+        "In Taipei local time, the conflicting event runs on 2029-08-12 from 15:10 to 15:40."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Recognizes Taipei local time as the conversion expression. Attribution and Aug 12 15:10–15:40 match facts."
+    },
+    {
+      "id": "generalization-P3",
+      "criterion": "c7",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The converted event date/clock values (15:10–15:40 in Taipei) match the Python computed facts for the claimed target timezone.",
+      "evidence": [
+        "computed_trace_facts... busy_intervals... in_query_timezone... start: 2029-08-12T15:10:00+08:00, end: 2029-08-12T15:40:00+08:00"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Recognizes Taipei local time as the conversion expression. Attribution and Aug 12 15:10–15:40 match facts."
+    },
+    {
+      "id": "generalization-P3",
+      "criterion": "c7",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer explicitly claims the conflicting event runs from 15:10 to 15:40 in Taipei local time. This matches the computed trace facts which report the busy interval in Asia/Taipei as 2029-08-12T15:10:00+08:00 to 2029-08-12T15:40:00+08:00.",
+      "evidence": [
+        "Answer: 'In Taipei local time, the conflicting event runs on 2029-08-12 from 15:10 to 15:40.'",
+        "computed_trace_facts busy_intervals in_query_timezone: start 2029-08-12T15:10:00+08:00, end 2029-08-12T15:40:00+08:00"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Recognizes Taipei local time as the conversion expression. Attribution and Aug 12 15:10–15:40 match facts."
+    },
+    {
+      "id": "generalization-P4",
+      "criterion": "c6",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "Answer claims conversion to Asia/Taipei and displays the interval explicitly attributed to that timezone.",
+      "evidence": [
+        "Converted to Asia/Taipei, its interval is 2029-12-16 15:50–16:20"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Explicit Taipei conversion; Dec 16 15:50–16:20 is correct despite the source event crossing midnight."
+    },
+    {
+      "id": "generalization-P4",
+      "criterion": "c6",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer explicitly claims conversion to Asia/Taipei ('Converted to Asia/Taipei, its interval is...') and attributes the resulting interval to that timezone context without ambiguity.",
+      "evidence": [
+        "\"Converted to Asia/Taipei, its interval is 2029-12-16 15:50–16:20.\"",
+        "\"overlaps your requested 2029-12-16 16:00–16:30 Asia/Taipei slot\""
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Explicit Taipei conversion; Dec 16 15:50–16:20 is correct despite the source event crossing midnight."
+    },
+    {
+      "id": "generalization-P4",
+      "criterion": "c7",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "Converted event date/clock values (15:50–16:20) match Python computed facts for Asia/Taipei.",
+      "evidence": [
+        "in_query_timezone ... start: {datetime: 2029-12-16T15:50:00+08:00}, end: {datetime: 2029-12-16T16:20:00+08:00}"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Explicit Taipei conversion; Dec 16 15:50–16:20 is correct despite the source event crossing midnight."
+    },
+    {
+      "id": "generalization-P4",
+      "criterion": "c7",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer explicitly claims a conversion to Asia/Taipei with interval 2029-12-16 15:50–16:20. This matches the computed trace facts for busy_intervals in_query_timezone (Asia/Taipei) exactly.",
+      "evidence": [
+        "Answer: Converted to Asia/Taipei, its interval is 2029-12-16 15:50–16:20",
+        "computed_trace_facts busy_intervals in_query_timezone: start 2029-12-16T15:50:00+08:00, end 2029-12-16T16:20:00+08:00"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Explicit Taipei conversion; Dec 16 15:50–16:20 is correct despite the source event crossing midnight."
+    },
+    {
+      "id": "generalization-N1",
+      "criterion": "c6",
+      "format": "batch",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "Answer claims event conversion to Asia/Taipei ('After conversion to Asia/Taipei...'). However, it displays the times as 'America/Los_Angeles'. This contradicts the claim that the displayed values are in Asia/Taipei.",
+      "evidence": [
+        "After conversion to Asia/Taipei, that event runs on 2029-02-03 from 22:20 to 22:50 America/Los_Angeles"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "c6 correctly identifies Taipei conversion claim versus contradictory LA display attribution."
+    },
+    {
+      "id": "generalization-N1",
+      "criterion": "c6",
+      "format": "single",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "The answer claims the event runs 'from 22:20 to 22:50 America/Los_Angeles' after conversion to Asia/Taipei. This attributes the display time to America/Los_Angeles, not Asia/Taipei, violating the requirement that if conversion to Asia/Taipei is claimed, the display must be attributed to Asia/Taipei.",
+      "evidence": [
+        "Answer: 'After conversion to Asia/Taipei, that event runs on 2029-02-03 from 22:20 to 22:50 America/Los_Angeles.'",
+        "Computed trace facts busy interval in query timezone (Asia/Taipei): 'start': {'datetime': '2029-02-03T22:20:00+08:00', ...}, 'end': {'datetime': '2029-02-03T22:50:00+08:00', ...}"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "c6 correctly identifies Taipei conversion claim versus contradictory LA display attribution."
+    },
+    {
+      "id": "generalization-N1",
+      "criterion": "c7",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "FAIL",
+      "label_matches": false,
+      "reason": "Answer claims conversion to Asia/Taipei but displays times labeled as America/Los_Angeles. The computed facts show the event in Asia/Taipei is 22:20-22:50, but the answer attributes these specific clock values to Los Angeles.",
+      "evidence": [
+        "runs on 2029-02-03 from 22:20 to 22:50 America/Los_Angeles"
+      ],
+      "reason_supports_scoped_verdict": false,
+      "issue_type": "criterion_scope_violation",
+      "assisted_assessment": "Uses the wrong displayed LA label to fail numeric c7 even though the claimed Taipei date/clock values match Python facts. Label attribution belongs to c6."
+    },
+    {
+      "id": "generalization-N1",
+      "criterion": "c7",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "FAIL",
+      "label_matches": false,
+      "reason": "The answer makes an explicit event-conversion claim ('After conversion to Asia/Taipei...') but provides incorrect clock values against the computed facts. The tool evidence shows the busy interval in Asia/Taipei is 22:20–22:50+08:00, not America/Los_Angeles times.",
+      "evidence": [
+        "Answer claims: 'After conversion to Asia/Taipei, that event runs on 2029-02-03 from 22:20 to 22:50 America/Los_Angeles.'",
+        "Tool evidence shows busy interval in query timezone (Asia/Taipei): 'start': {'datetime': '2029-02-03T22:20:00+08:00', ...}, 'end': {'datetime': '2029-02-03T22:50:00+08:00', ...}"
+      ],
+      "reason_supports_scoped_verdict": false,
+      "issue_type": "unsupported_numeric_error_and_scope_violation",
+      "assisted_assessment": "Claims incorrect clock values while its own evidence contains the same correct Taipei values, 22:20–22:50. The contradictory LA label is c6, not c7."
+    },
+    {
+      "id": "generalization-N2",
+      "criterion": "c6",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "FAIL",
+      "label_matches": false,
+      "reason": "Answer claims conversion to Asia/Taipei. Displayed timezone attribution is Taipei local time (implied). However, the date value (2029-12-15) contradicts the computed fact for that timezone (2029-12-16). The check assesses conversion claim vs displayed timezone attribution. Since it claims conversion to Taipei and displays a date inconsistent with the query timezone facts, it fails the consistency requirement implied by 'assess only conversion claim versus displayed timezone attribution' combined with c7's numeric accuracy expectation for claimed conversions.",
+      "evidence": [
+        "In Taipei local time, the conflicting event runs on 2029-12-15 from 15:50 to 16:20."
+      ],
+      "reason_supports_scoped_verdict": false,
+      "issue_type": "criterion_scope_violation",
+      "assisted_assessment": "Acknowledges Taipei attribution, then explicitly combines c7 numeric/date expectations into c6. Dec 15 versus Dec 16 is c7, not attribution."
+    },
+    {
+      "id": "generalization-N2",
+      "criterion": "c6",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "FAIL",
+      "label_matches": false,
+      "reason": "The answer claims the event runs on 2029-12-15 in Taipei local time, but the tool evidence (computed trace facts) shows the busy interval in Asia/Taipei is on 2029-12-16 from 15:50 to 16:20. While the check instruction says not to score numeric date/clock accuracy, it requires that if a conversion claim is made, the display must be explicitly or unambiguously attributed to Asia/Taipei. The answer attributes the time to 'Taipei local time' but provides a date (Dec 15) that contradicts the evidence's explicit timezone attribution (Dec 16 +08:00). This creates an ambiguous/incorrect conversion claim regarding the specific date in the claimed timezone.",
+      "evidence": [
+        "Answer: 'In Taipei local time, the conflicting event runs on 2029-12-15 from 15:50 to 16:20.'",
+        "Computed Trace Facts: 'in_query_timezone': {'time_zone': 'Asia/Taipei', 'start': {'datetime': '2029-12-16T15:50:00+08:00', ...}}"
+      ],
+      "reason_supports_scoped_verdict": false,
+      "issue_type": "criterion_scope_violation",
+      "assisted_assessment": "Acknowledges the instruction not to score numbers but fails c6 because of the date mismatch. Taipei local time unambiguously supplies the required attribution."
+    },
+    {
+      "id": "generalization-N2",
+      "criterion": "c7",
+      "format": "batch",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "Answer makes an explicit claim of conversion to Asia/Taipei. The converted date (2029-12-15) does not match the computed trace fact for that timezone (2029-12-16).",
+      "evidence": [
+        "In Taipei local time, the conflicting event runs on 2029-12-15 from 15:50 to 16:20."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "c7 correctly compares claimed Dec 15 with computed Taipei Dec 16; implicit conversion is recognized."
+    },
+    {
+      "id": "generalization-N2",
+      "criterion": "c7",
+      "format": "single",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "The answer claims the conflicting event runs on 2029-12-15 in Taipei time, but computed trace facts show the busy interval in Asia/Taipei is 2029-12-16T15:50 to 2029-12-16T16:20.",
+      "evidence": [
+        "In Taipei local time, the conflicting event runs on 2029-12-15 from 15:50 to 16:20.",
+        "in_query_timezone: {\"time_zone\": \"Asia/Taipei\", \"start\": {\"datetime\": \"2029-12-16T15:50:00+08:00\", \"timezone_label\": \"CST\"}, \"end\": {\"datetime\": \"2029-12-16T16:20:00+08:00\", \"timezone_label\": \"CST\"}}"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "c7 correctly compares claimed Dec 15 with computed Taipei Dec 16; implicit conversion is recognized."
+    },
+    {
+      "id": "generalization-N3",
+      "criterion": "c6",
+      "format": "batch",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "The answer claims conversion to Asia/Taipei ('Converted to Asia/Taipei...'). The displayed timezone label for the event is 'America/Los_Angeles', not 'Asia/Taipei'. This contradicts the claim that it was converted *to* Asia/Taipei.",
+      "evidence": [
+        "Answer: Converted to Asia/Taipei",
+        "Answer: ... America/Los_Angeles"
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "c6 correctly detects contradictory LA attribution. Single c7 compares 14:10–14:40 against the correct claimed Taipei values 15:10–15:40."
+    },
+    {
+      "id": "generalization-N3",
+      "criterion": "c6",
+      "format": "single",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "The answer claims conversion 'to Asia/Taipei' but attributes the resulting time display to America/Los_Angeles, violating the requirement that if conversion to Asia/Taipei is claimed, its display must be attributed to Asia/Taipei.",
+      "evidence": [
+        "Converted to Asia/Taipei, the conflicting event runs on 2029-08-12 from 14:10 to 14:40 America/Los_Angeles."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "c6 correctly detects contradictory LA attribution. Single c7 compares 14:10–14:40 against the correct claimed Taipei values 15:10–15:40."
+    },
+    {
+      "id": "generalization-N3",
+      "criterion": "c7",
+      "format": "batch",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "The answer claims conversion of the event. The claimed values (14:10–14:40) do not match the computed facts for the event in the target timezone (America/Los_Angeles). Tool evidence shows 00:10–00:40 -07:00.",
+      "evidence": [
+        "Answer: 14:10 to 14:40",
+        "tool_events... start: 2029-08-12T00:10:00-07:00"
+      ],
+      "reason_supports_scoped_verdict": false,
+      "issue_type": "matching_label_wrong_target",
+      "assisted_assessment": "FAIL matches the approved label, but reason treats America/Los_Angeles as the target and compares 14:10–14:40 against 00:10–00:40. The explicit claimed target is Asia/Taipei, whose correct values are 15:10–15:40."
+    },
+    {
+      "id": "generalization-N3",
+      "criterion": "c7",
+      "format": "single",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "The answer claims a conversion to 'Asia/Taipei' but provides conflicting clock values ('14:10 to 14:40 America/Los_Angeles') that do not match the tool evidence for the busy interval in Asia/Taipei (15:10–15:40). The check requires assessing converted event date/clock values against Python facts for the claimed target timezone.",
+      "evidence": [
+        "Answer claims: 'Converted to Asia/Taipei, the conflicting event runs on 2029-08-12 from 14:10 to 14:40 America/Los_Angeles.'",
+        "Tool evidence busy interval in query timezone (Asia/Taipei): 'start': '2029-08-12T15:10:00+08:00', 'end': '2029-08-12T15:40:00+08:00'",
+        "Answer claims conversion target is Asia/Taipei but provides America/Los_Angeles times."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "c6 correctly detects contradictory LA attribution. Single c7 compares 14:10–14:40 against the correct claimed Taipei values 15:10–15:40."
+    },
+    {
+      "id": "generalization-N4",
+      "criterion": "c6",
+      "format": "batch",
+      "expected": "PASS",
+      "judge_verdict": "FAIL",
+      "label_matches": false,
+      "reason": "Answer claims conversion to Asia/Taipei but displays two conflicting intervals for the same event in that timezone. The second interval (10:40–11:10) is not attributed correctly or matches facts.",
+      "evidence": [
+        "In Taipei local time, that same event is also 2029-07-09 10:40–11:10."
+      ],
+      "reason_supports_scoped_verdict": false,
+      "issue_type": "criterion_scope_violation",
+      "assisted_assessment": "Fails attribution because two Taipei numeric intervals conflict. Both clauses are unambiguously attributed to Taipei; numeric contradiction belongs to c7/c2."
+    },
+    {
+      "id": "generalization-N4",
+      "criterion": "c6",
+      "format": "single",
+      "expected": "PASS",
+      "judge_verdict": "PASS",
+      "label_matches": true,
+      "reason": "The answer claims an event conversion to Asia/Taipei ('Converted to Asia/Taipei, the event runs on...'). The display of this converted time (09:40–10:10) is explicitly attributed to the context of 'Asia/Taipei' in that same sentence. A second claim ('In Taipei local time') also attributes a time to Taipei. Both conversion claims are unambiguously linked to the Asia/Taipei timezone label.",
+      "evidence": [
+        "Converted to Asia/Taipei, the event runs on 2029-07-09 from 09:40 to 10:10.",
+        "In Taipei local time, that same event is also 2029-07-09 10:40–11:10."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Single c6 correctly attributes both clauses to Taipei without scoring numbers. Both c7 outputs catch the later 10:40–11:10 contradiction against 09:40–10:10."
+    },
+    {
+      "id": "generalization-N4",
+      "criterion": "c7",
+      "format": "batch",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "Answer claims conversion to Asia/Taipei. The second interval (10:40–11:10) does not match the computed trace facts for that timezone (09:40–10:10).",
+      "evidence": [
+        "In Taipei local time, that same event is also 2029-07-09 10:40–11:10."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Single c6 correctly attributes both clauses to Taipei without scoring numbers. Both c7 outputs catch the later 10:40–11:10 contradiction against 09:40–10:10."
+    },
+    {
+      "id": "generalization-N4",
+      "criterion": "c7",
+      "format": "single",
+      "expected": "FAIL",
+      "judge_verdict": "FAIL",
+      "label_matches": true,
+      "reason": "The answer claims the event runs from 09:40 to 10:10 in Asia/Taipei, but computed facts show the busy interval in Taipei is 09:40–10:10. However, the answer also claims 'In Taipei local time, that same event is also 2029-07-09 10:40–11:10', which contradicts the computed fact of 09:40–10:10 for the busy interval in Taipei. The check requires assessing converted values against facts; providing a contradictory second conversion claim violates this.",
+      "evidence": [
+        "Answer claims: 'Converted to Asia/Taipei, the event runs on 2029-07-09 from 09:40 to 10:10.'",
+        "Answer claims: 'In Taipei local time, that same event is also 2029-07-09 10:40–11:10.'",
+        "Computed facts show busy interval in query timezone (Asia/Taipei): start 09:40, end 10:10.",
+        "Answer claims a second conversion to Taipei time as 10:40–11:10 which contradicts the first claim and the computed fact."
+      ],
+      "reason_supports_scoped_verdict": true,
+      "issue_type": null,
+      "assisted_assessment": "Single c6 correctly attributes both clauses to Taipei without scoring numbers. Both c7 outputs catch the later 10:40–11:10 contradiction against 09:40–10:10."
+    }
+  ]
+}

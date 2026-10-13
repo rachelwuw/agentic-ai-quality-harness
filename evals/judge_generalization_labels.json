@@ -1,0 +1,131 @@
+{
+  "status": "Rachel_approved",
+  "provenance": "Codex-authored new development candidates; same author as prior studies; not independent benchmark or model-generated SUT answers. Inference authorized by Rachel on 2026-10-13 for this 24-request study only.",
+  "labels": {
+    "generalization-P1": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "generalization-P2": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "generalization-P3": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "generalization-P4": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "generalization-N1": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "FAIL",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "generalization-N2": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "generalization-N3": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "FAIL",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "generalization-N4": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    }
+  },
+  "approval": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-13",
+    "scope": "Reviewed and approved all eight exact answers, reference facts, criterion labels including implicit-conversion interpretation, acceptance criteria and execution of 24 requests. No output/release signoff or merge authorization."
+  }
+}

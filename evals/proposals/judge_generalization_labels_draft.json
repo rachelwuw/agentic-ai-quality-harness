@@ -1,0 +1,126 @@
+{
+  "status": "draft_pending_Rachel_review",
+  "provenance": "Codex-authored new development candidates; same author as prior studies; not independent benchmark or model-generated SUT answers. No inference authorized.",
+  "labels": {
+    "generalization-P1": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": false
+    },
+    "generalization-P2": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": false
+    },
+    "generalization-P3": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": false
+    },
+    "generalization-P4": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": false
+    },
+    "generalization-N1": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "FAIL",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": false
+    },
+    "generalization-N2": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": false
+    },
+    "generalization-N3": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "FAIL",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": false
+    },
+    "generalization-N4": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": false
+    }
+  }
+}

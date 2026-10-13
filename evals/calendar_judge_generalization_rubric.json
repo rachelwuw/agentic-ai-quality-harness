@@ -1,0 +1,16 @@
+{
+  "version": "calendar-answer-v13",
+  "reference_facts": {},
+  "additional_criteria": {},
+  "criteria_overrides": {},
+  "derive_trace_facts": true,
+  "deterministic_requirements": [
+    "No Google API request may occur"
+  ],
+  "policy_provenance": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-13",
+    "scope": "Reviewed and approved all eight exact answers, reference facts, criterion labels including implicit-conversion interpretation, acceptance criteria and execution of 24 requests. No output/release signoff or merge authorization."
+  },
+  "scope": "Approved 24-request new-case development validation: batch versus single c6/c7. Unchanged clarified criterion text read from saved cases; default v10 unchanged."
+}

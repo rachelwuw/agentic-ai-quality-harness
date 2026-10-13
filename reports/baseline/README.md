@@ -2,6 +2,7 @@
 
 ## Start here
 
+- [Judge experiment history and dispositions](JUDGE_EXPERIMENT_HISTORY.md): includes the unmerged negative v11/wording results and the merged narrow single-criterion checkpoint; full evidence remains traceable by commit.
 - [Approved single-criterion boundary diagnostic](JUDGE_SINGLE_BOUNDARY_REVIEW.md): 8/8 selected labels matched versus 4/8 historical batch labels; positive and negative controls repeat. Promising narrow-format evidence, not independent accuracy or default activation.
 - [Latest engineering verification](ENGINEERING_CHECKPOINT_20261008.md): recreated Python 3.12 environment, deterministic tests and GitHub CI evidence; no model or Google calls.
 - [Controlled SUT baseline](CALENDAR_BASELINE_V7_RETRY_REVIEW.md): real local agent, simulated Calendar responses, structural results and separate answer review.
@@ -62,3 +63,5 @@ These focused results are separate from the full 15-case baseline. They do not v
 [v10 positive-control review](JUDGE_V10_POSITIVE_CONTROLS_REVIEW.md): two reused correct answers PASS on all nine checks each, valid JSON, observed reasoning tokens 1024 each; about 4m57s. No new false failures in these attempts; general reliability remains unverified.
 
 [Frozen v10 fresh-case review](JUDGE_V10_FRESH_REVIEW.md): four new authored cases, 3/4 aggregate and 31/36 criterion matches to pre-run expectations. One correct winter answer falsely failed; label/reason contradiction and criterion-scope overlap preserved. About 13m20s; Judge remains advisory.
+
+[New-case generalization validation](JUDGE_GENERALIZATION_REVIEW.md): 24 valid requests, batch 13/16 versus single 14/16 targets, one improvement and zero regressions. Preset improvement and reason gates failed; same-author development evidence, default v10 unchanged.
