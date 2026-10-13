@@ -1,6 +1,6 @@
 # Google live read-only regression — 待執行核准
 
-實作已準備；**沒有執行 Google、OAuth 或模型連線測試**。pytest 只使用假的 HTTP／模型與受控資料。本套件不加入一般 CI 的 live 執行、不建立或修改活動、不改模型設定，不啟動 Judge 調校。PR #8 已合併為有已知生成缺陷的時間事實傳遞 checkpoint；本工作從該最新 main 另外開分支。
+實作已完成離線驗證；**首輪已核准嘗試止於 OAuth refresh 失敗，Google events 與模型推論皆為零**。pytest 只使用假的 HTTP／模型與受控資料。本套件不加入一般 CI 的 live 執行、不建立或修改活動、不改模型設定，不啟動 Judge 調校。PR #8 已合併為有已知生成缺陷的時間事實傳遞 checkpoint；本工作從該最新 main 另外開分支。
 
 ## 三個固定案例
 
@@ -31,7 +31,7 @@ OAuth refresh 由現有 Google auth transport 處理，可能另有認證網路�
 
 模組入口為 `harness.calendar_live_regression`。沒有 `--live-readonly` 時，必須在讀取案例／OAuth／模型前退出。執行還需要 Rachel 在聊天中確認本輪 Google／模型呼叫範圍；旗標本身不是人類授權的替代品。
 
-既有 OAuth 三個檔案先前已確認存在；程式要求 `calendar.events.owned.readonly`，並拒用 primary。**尚未讀取憑證內容或驗證 token 有效性／實際 Calendar 狀態**。執行核准後才由既有 `connect()` 使用憑證，必要時刷新；不得在日誌、repo 或摘要顯示憑證內容或 Calendar ID。不啟動 setup 的七日查詢或另外查 Calendar 列表。
+既有 OAuth 三個檔案先前已確認存在；程式要求 `calendar.events.owned.readonly`，並拒用 primary。**未在聊天或報告查看／輸出憑證內容；首輪由 SDK 使用既有 OAuth 時 refresh 失敗，尚未驗證 Calendar 狀態**。執行核准後才由既有 `connect()` 使用憑證，必要時刷新；不得在日誌、repo 或摘要顯示憑證內容或 Calendar ID。不啟動 setup 的七日查詢或另外查 Calendar 列表。
 
 核准後、確認模型與案例均未改動，從 repo 根目錄使用一個不存在的新目錄，例如：
 
@@ -39,7 +39,7 @@ OAuth refresh 由現有 Google auth transport 處理，可能另有認證網路�
 .venv/bin/python -m harness.calendar_live_regression --live-readonly --private-dir reports/runs/live-readonly-session-001
 ```
 
-**此文件中的命令尚未執行。** 模型未載入或設定不符時停止，不自行載入／卸載或調整 context、Thinking、temperature、tokens。沿用原 SUT gpt-oss-20b；不以 Qwen 代跑。
+**此命令已依首輪核准嘗試一次，但止於 OAuth 前置錯誤；不是重新執行的授權。** 模型未載入或設定不符時停止，不自行載入／卸載或調整 context、Thinking、temperature、tokens。沿用原 SUT gpt-oss-20b；不以 Qwen 代跑。
 
 ## 三層結果不能混為一談
 
@@ -64,3 +64,9 @@ stdout 也只印 allowlisted summary。執行後先人工檢查摘要，再決�
 `tests/test_calendar_live_regression.py` 使用受控 Calendar、假 HTTP transport 與 scripted model，涵蓋完整 CLI、opt-in、fixture 不符、API 失敗、錯／額外查詢阻擋、fixture drift、實際傳送與推論重試上限、私人資料 canary、檔案權限、模型未載入、中斷時保存部分結果，以及未嘗試／操作錯誤不冒充已評分失敗。一般 CI 只跑這些 deterministic tests，不帶憑證，也不會啟動 live suite。
 
 先完成 branch → push → PR → required pytest CI；本輪實作與執行核准是分開的。請 Rachel 確認三例、6＋6 預期請求、各 12 次上限與時間預算後，才執行一次 live suite。合併仍需另外明確授權。Judge 維持 advisory，暫停新增調校實驗。
+
+## 首輪已核准嘗試：授權前置中止
+
+Rachel 已核准三例一輪與既定呼叫預算。SUT runtime 前置檢查通過，但既有 OAuth refresh 失敗，停止於 preflight；沒有 Google events 查詢，沒有模型推論，三例均未執行，fixture 尚未驗證。OAuth auth transport 的實際網路嘗試未獨立量測，不能宣稱所有 Google HTTP 流量為零。
+
+只發布人工檢查過的 [去識別摘要](../reports/baseline/calendar-live-readonly-attempt-v1-summary.json)，原始本機紀錄／錯誤類型不提交。這是操作阻礙，不是三例 semantic FAIL。不重新登入、不修改／刪除憑證、不修改模型、不補跑。互動式 OAuth 重新授權仍需另外確認；既有 setup 入口還會查詢未來七日行程，不能把它當成已核准三例的一部分直接執行。PR 保持未合併。
