@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "suite": "calendar_timezone_transfer_candidates_v1",
+  "reference_now": "2026-10-05T12:00:00-07:00",
+  "default_time_zone": "America/Los_Angeles",
+  "scope": "configured_test_calendar_only",
+  "fixtures": {
+    "busy_fixture": {
+      "title": "[QA TEST] Availability fixture",
+      "start": "2026-10-06T11:00:00-07:00",
+      "end": "2026-10-06T11:30:00-07:00",
+      "time_zone": "America/Los_Angeles",
+      "transparency": "opaque",
+      "calendar": "Agentic Harness Test"
+    },
+    "empty_interval": "Verify the requested interval has no other busy events before a live run.",
+    "raise_calendar_error": "Controlled adapter raises CalendarError; never revoke OAuth or break real service access.",
+    "none": "No calendar fixture required."
+  },
+  "provenance": "Three authored post-implementation candidates, not used to tune the prompt or run through a live SUT. Same-author development validation, not independent held-out evidence.",
+  "execution_status": "pending_Rachel_approval",
+  "cases": [
+    {
+      "id": "tz-new-01",
+      "category": "timezone_transfer_new_candidate",
+      "prompt": "請查詢 2027 年 1 月 18 日洛杉磯時間 09:00 到 09:30，測試行事曆有空嗎？",
+      "entry_points": [
+        "python_agent"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "empty_interval",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2027-01-18T09:00:00",
+            "end": "2027-01-18T09:30:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": true,
+      "answer_criteria": [
+        "Report free on the dedicated test calendar only; preserve 2027-01-18 09:00–09:30 America/Los_Angeles.",
+        "Use winter UTC-08:00; do not describe this interval as daylight time or invent a busy event."
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2027-01-18T09:00:00-08:00",
+        "end": "2027-01-18T09:30:00-08:00"
+      }
+    },
+    {
+      "id": "tz-new-02",
+      "category": "timezone_transfer_new_candidate",
+      "prompt": "Check October 6, 2026, 08:10–08:40 Pacific/Honolulu on the dedicated test calendar.",
+      "entry_points": [
+        "python_agent"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T08:10:00",
+            "end": "2026-10-06T08:40:00",
+            "time_zone": "Pacific/Honolulu"
+          }
+        }
+      ],
+      "expected_available": false,
+      "answer_criteria": [
+        "Report busy on the dedicated test calendar only; preserve query 2026-10-06 08:10–08:40 Pacific/Honolulu.",
+        "If describing the event, preserve original 2026-10-06 11:00–11:30 UTC-07:00; its converted interval is 2026-10-06 08:00–08:30 Pacific/Honolulu UTC-10:00.",
+        "Do not substitute or clip the query interval for the whole event interval; label original and converted values accurately."
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T08:10:00-10:00",
+        "end": "2026-10-06T08:40:00-10:00"
+      }
+    },
+    {
+      "id": "tz-new-03",
+      "category": "timezone_transfer_new_candidate",
+      "prompt": "查詢 2026 年 10 月 7 日 Pacific/Auckland 07:15 到 07:45 的測試行事曆。",
+      "entry_points": [
+        "python_agent"
+      ],
+      "execution_mode": "controlled",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-07T07:15:00",
+            "end": "2026-10-07T07:45:00",
+            "time_zone": "Pacific/Auckland"
+          }
+        }
+      ],
+      "expected_available": false,
+      "answer_criteria": [
+        "Report busy on the dedicated test calendar only; preserve query 2026-10-07 07:15–07:45 Pacific/Auckland.",
+        "If describing the event, preserve original 2026-10-06 11:00–11:30 UTC-07:00; the converted whole event is 2026-10-07 07:00–07:30 Pacific/Auckland UTC+13:00.",
+        "Preserve the date rollover and distinguish the query window from both original and converted event intervals."
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-07T07:15:00+13:00",
+        "end": "2026-10-07T07:45:00+13:00"
+      }
+    }
+  ]
+}

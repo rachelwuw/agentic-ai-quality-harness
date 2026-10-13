@@ -25,6 +25,32 @@ def interval(start, end, target=None):
     return result
 
 
+def with_availability_time_facts(result, start, end, time_zone):
+    """Add model-facing facts using the same conversion as saved-trace review.
+
+    start/end are the resolved query sent to the calendar. Raw busy intervals
+    remain untouched; unsupported/all-day values never get guessed timestamps.
+    ISO datetimes include an explicit UTC offset, including at each DST endpoint.
+    """
+    facts = {"version": "calendar-availability-time-facts-v1",
+             "provenance": "python_zoneinfo_from_tool_intervals",
+             "query_interval": interval(start, end, time_zone),
+             "busy_intervals": [], "issues": []}
+    busy = result.get("busy_intervals")
+    if not isinstance(busy, list):
+        facts["issues"].append("busy_intervals_missing_or_malformed")
+    else:
+        for index, entry in enumerate(busy):
+            record = {"busy_index": index}
+            try:
+                record.update(interval(entry["start"]["dateTime"],
+                                       entry["end"]["dateTime"], time_zone))
+            except (KeyError, TypeError, ValueError):
+                record["issue"] = "busy_interval_unavailable_or_all_day"
+            facts["busy_intervals"].append(record)
+    return {**result, "time_zone": time_zone, "time_facts": facts}
+
+
 def derive_trace_facts(item):
     facts = {"version": FACTS_VERSION, "provenance": "derived_from_saved_trace",
              "scope": "Recorded tool evidence only; controlled requests may be simulated. "

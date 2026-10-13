@@ -52,3 +52,7 @@ Run from the repository root:
 This uses the real LM Studio local model and controlled Calendar responses. It never connects to Google or changes events. It freezes the reference clock, begins a fresh agent conversation per case, checks exact tool arguments and resolved API intervals, and validates availability/unknown outcomes. Progress is saved after each case. Exit code 1 indicates structural failures; code 0 means only structural checks passed, never semantic approval.
 
 Review each saved answer against `answer_review.criteria` and `forbidden_behaviors`; mark its review pass/fail and add notes in a copy of the report. The runner does not convert manual review into an automatic overall pass. LM Studio chat MCP and live Google integration remain separate manual checks. The JSON dataset retains `not_run` as a template; actual execution status belongs in each report.
+
+## Pending timezone-answer validation
+
+The [cal-03/cal-08 implementation and five-case review plan](CALENDAR_TIMEZONE_ANSWER_REVIEW_PLAN.md) reuses Python interval conversion in model-facing tool results. Deterministic checks cover facts and message delivery; real SUT executions await Rachel's approval. Original expected labels and baselines remain unchanged. Tool structure, Python facts and final-answer quality must be reported separately.

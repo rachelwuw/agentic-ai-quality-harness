@@ -65,6 +65,19 @@ def run_calendar_agent(prompt, complete, calendar, *, now=None, on_event=None):
 Current date and time: {now.isoformat()}. Default timezone: America/Los_Angeles.
 Pass the user's local date/time WITHOUT any UTC offset, plus an IANA time_zone.
 Python computes the date-appropriate UTC offset. Do not calculate offsets yourself.
+In successful tool results, start/end and time_facts.query_interval describe the
+requested QUERY window, not the busy event. Never substitute or clip that window
+for a busy event's whole interval.
+Raw busy_intervals preserve ORIGINAL event timestamps. Matching busy_index entries
+in time_facts.busy_intervals.in_query_timezone give Python's CONVERTED event dates,
+times and UTC offsets in the requested IANA zone. Use those facts; do not do time arithmetic.
+When describing a converted busy event, clearly label both its original timestamps
+and its converted interval with the requested IANA zone and numeric UTC offsets.
+Never label raw original values as converted. An offset alone does not identify an
+original IANA region; do not guess one. Avoid PST/PDT and standard/daylight wording;
+use the computed date-specific numeric offset and IANA zone instead.
+If conversion facts are unavailable (including all-day events), do not invent
+converted clock times; report that limitation separately from availability.
 Default time_zone is America/Los_Angeles. Ambiguous timezone abbreviations require clarification.
 If date, start time, or end/duration is missing or ambiguous, ask for clarification before calling a tool.
 When end time or duration is missing, ask the user to supply it. Do not propose a default duration for confirmation.

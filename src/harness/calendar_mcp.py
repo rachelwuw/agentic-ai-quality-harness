@@ -3,6 +3,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 from mcp.server.fastmcp import FastMCP
 from .calendar_tools import connect, resolve_local_interval, LocalTimeError
+from .trace_facts import with_availability_time_facts
 
 server = FastMCP('Rachel Calendar Read Only', instructions=(
     'Only the configured test calendar is checked. No booking or event changes are supported. '
@@ -19,6 +20,11 @@ def check_availability(start: str, end: str, time_zone: str = 'America/Los_Angel
     time_zone is an IANA name; Python computes the correct UTC offset.
     Ambiguous or nonexistent daylight-saving times require clarification.
     Cross-midnight intervals are supported. Correct invalid formatting and retry the original interval; DST ambiguity requires user clarification.
+    time_facts.query_interval is the requested window, not an event.
+    time_facts.busy_intervals contains whole event intervals in the requested zone,
+    with date-specific UTC offsets. Keep raw busy_intervals as original evidence;
+    do not describe original values as converted. Use IANA zone plus numeric offset
+    rather than guessing PST/PDT. Unsupported/all-day conversions remain unknown.
     Does not reserve or create an event. Other calendars are not checked.
     """
     try:
@@ -27,7 +33,8 @@ def check_availability(start: str, end: str, time_zone: str = 'America/Los_Angel
         return error.result()
     calendar = connect()
     try:
-        return {**calendar.check_availability(start, end), 'time_zone': time_zone}
+        return with_availability_time_facts(calendar.check_availability(start, end),
+                                            start, end, time_zone)
     finally:
         calendar.session.close()
 

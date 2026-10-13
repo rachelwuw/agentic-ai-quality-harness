@@ -1,0 +1,123 @@
+{
+  "scope": "Offline controlled tool execution and Python calculations; zero model/Google calls.",
+  "sut_evaluations_executed": false,
+  "results": [
+    {
+      "id": "cal-03",
+      "mode": "offline_tool_and_python_only",
+      "api_calls_simulated": [
+        {
+          "start": "2026-10-06T11:30:00-07:00",
+          "end": "2026-10-06T12:00:00-07:00"
+        }
+      ],
+      "tool_result": {
+        "start": "2026-10-06T11:30:00-07:00",
+        "end": "2026-10-06T12:00:00-07:00",
+        "available": true,
+        "busy_intervals": [],
+        "source": "controlled_calendar_fixture",
+        "scope": "configured_test_calendar_only",
+        "time_zone": "America/Los_Angeles",
+        "time_facts": {
+          "version": "calendar-availability-time-facts-v1",
+          "provenance": "python_zoneinfo_from_tool_intervals",
+          "query_interval": {
+            "utc_start": "2026-10-06T18:30:00+00:00",
+            "utc_end": "2026-10-06T19:00:00+00:00",
+            "in_query_timezone": {
+              "time_zone": "America/Los_Angeles",
+              "start": {
+                "datetime": "2026-10-06T11:30:00-07:00",
+                "timezone_label": "PDT"
+              },
+              "end": {
+                "datetime": "2026-10-06T12:00:00-07:00",
+                "timezone_label": "PDT"
+              }
+            }
+          },
+          "busy_intervals": [],
+          "issues": []
+        }
+      },
+      "final_answer": null,
+      "semantic_quality": "not_evaluated"
+    },
+    {
+      "id": "cal-08",
+      "mode": "offline_tool_and_python_only",
+      "api_calls_simulated": [
+        {
+          "start": "2026-10-07T02:15:00+08:00",
+          "end": "2026-10-07T02:45:00+08:00"
+        }
+      ],
+      "tool_result": {
+        "start": "2026-10-07T02:15:00+08:00",
+        "end": "2026-10-07T02:45:00+08:00",
+        "available": false,
+        "busy_intervals": [
+          {
+            "start": {
+              "dateTime": "2026-10-06T11:00:00-07:00"
+            },
+            "end": {
+              "dateTime": "2026-10-06T11:30:00-07:00"
+            }
+          }
+        ],
+        "source": "controlled_calendar_fixture",
+        "scope": "configured_test_calendar_only",
+        "time_zone": "Asia/Taipei",
+        "time_facts": {
+          "version": "calendar-availability-time-facts-v1",
+          "provenance": "python_zoneinfo_from_tool_intervals",
+          "query_interval": {
+            "utc_start": "2026-10-06T18:15:00+00:00",
+            "utc_end": "2026-10-06T18:45:00+00:00",
+            "in_query_timezone": {
+              "time_zone": "Asia/Taipei",
+              "start": {
+                "datetime": "2026-10-07T02:15:00+08:00",
+                "timezone_label": "CST"
+              },
+              "end": {
+                "datetime": "2026-10-07T02:45:00+08:00",
+                "timezone_label": "CST"
+              }
+            }
+          },
+          "busy_intervals": [
+            {
+              "busy_index": 0,
+              "utc_start": "2026-10-06T18:00:00+00:00",
+              "utc_end": "2026-10-06T18:30:00+00:00",
+              "in_query_timezone": {
+                "time_zone": "Asia/Taipei",
+                "start": {
+                  "datetime": "2026-10-07T02:00:00+08:00",
+                  "timezone_label": "CST"
+                },
+                "end": {
+                  "datetime": "2026-10-07T02:30:00+08:00",
+                  "timezone_label": "CST"
+                }
+              }
+            }
+          ],
+          "issues": []
+        }
+      },
+      "final_answer": null,
+      "semantic_quality": "not_evaluated"
+    }
+  ],
+  "source_suite_sha256": "c0f8ebe2d5d9c82912803cdc01069f6ad4d8fec38a5a59e7ed93bb2bcc7d8bee",
+  "implementation_sha256": {
+    "src/harness/calendar_tools.py": "540d65f4a6612242744eac4728e66535d282413dba170e469407d515af979f32",
+    "src/harness/trace_facts.py": "9359c7535f8d013ab06960bd614aa23543d9097b4a0fd931c8f480dd15e987c3",
+    "src/harness/calendar_agent.py": "3b21833ef90081c41b5b7a3fef2131074f4faa5f293c1f7651fec88e8277729b",
+    "src/harness/calendar_mcp.py": "601a5c397478c6628dc3580554e7de66f66ce3b894ce2be2d03fd3c93fd76d43"
+  }
+}
