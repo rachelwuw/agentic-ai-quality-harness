@@ -1,0 +1,66 @@
+# Google live read-only regression — 待執行核准
+
+實作已準備；**沒有執行 Google、OAuth 或模型連線測試**。pytest 只使用假的 HTTP／模型與受控資料。本套件不加入一般 CI 的 live 執行、不建立或修改活動、不改模型設定，不啟動 Judge 調校。PR #8 已合併為有已知生成缺陷的時間事實傳遞 checkpoint；本工作從該最新 main 另外開分支。
+
+## 三個固定案例
+
+沿用 `LIVE_CALENDAR_REVIEW.md` 已記錄的專用測試行事曆 fixture：2026-10-06 America/Los_Angeles 11:00–11:30（UTC-07:00）。歷史日期可用於 read-only 回歸，無須為每輪建立新活動。文件中的 fixture 不代表目前仍存在；查詢前必須驗證。
+
+| ID | 查詢，2026-10-06 America/Los_Angeles | 事前條件與預期 |
+| --- | --- | --- |
+| live-overlap | 11:15–11:45，-07:00 | Busy；只回傳 fixture 的完整 11:00–11:30 區間 |
+| live-adjacent | 11:30–12:00，-07:00 | Free；事件結束恰好等於查詢開始，不重疊 |
+| live-empty | 12:00–12:30，-07:00 | Free；與 fixture 分開，且目前沒有其他忙碌活動 |
+
+完整 prompts、新套件的預期參數／答案準則在 `calendar_live_readonly_cases.json`。既有 `calendar_cases.json`、Judge rubric 與所有 baseline 不變。若三例前提不符，停止，不修改 Calendar 來製造通過條件；缺 fixture 不算 agent 回歸失敗。
+
+## 執行順序與呼叫預算
+
+1. 本機確認案例格式、原 SUT 已載入 context 8192、輸出是全新私人目錄，才使用既有 OAuth connection。
+2. Python adapter 直接讀取三個區間，檢查 availability 與完整 busy intervals。任一 API／解析錯誤或 fixture 不符，即停止，模型請求為零。
+3. 三例各開一個真實 agent 對話；使用 `run_calendar_agent()` 與既有模型 client 設定。每例只允許一個符合原預期的已解析 Calendar 查詢；錯時間或額外查詢在傳到 Google 前阻擋，保留其嘗試參數與失敗。既有格式修正規則仍有效。
+4. 將 agent 讀到的 availability／busy intervals 與直接查詢快照比較。發生差異時標記 `fixture_changed` 並停止，不把資料變動當成已證明的 agent 語意錯誤。
+
+正常預期 **6 次 Google events 查詢＋6 次模型推論請求**。Google events HTTP 傳送嘗試與模型請求各自 **硬上限 12 次**：包含分頁、transport retry，以及 AuthorizedSession 因 401 認證重試而重新送出的 events 請求。多餘呼叫在送出前拒絕。計數代表傳送嘗試，不代表伺服器成功收到或處理。
+
+OAuth refresh 由現有 Google auth transport 處理，可能另有認證網路請求，不計入 events 上限；summary 明示未獨立量測，不能把 events 數冒充所有 Google HTTP 流量。不新增 scope，不執行互動式重新授權，認證失敗就停止。Calendar session 的 transport 只放行固定 Calendar events endpoint 的 GET，拒絕其他 Calendar、端點、host 或寫入方法。
+
+規劃預估 **3–10 分鐘，預留 15 分鐘**；是保守估計，不是量測或硬性總 timeout。舊五例 SUT 曾約 43 秒完成，但 live API、refresh、重試與硬體負載會增加耗時。既有模型單次 timeout 180 秒、Calendar 單次 30 秒，遇到長 timeout 總時間仍可能超過預留。此輪沒有 Judge、Calendar 寫入或失敗後補跑。
+
+## Opt-in 與 OAuth 狀態
+
+模組入口為 `harness.calendar_live_regression`。沒有 `--live-readonly` 時，必須在讀取案例／OAuth／模型前退出。執行還需要 Rachel 在聊天中確認本輪 Google／模型呼叫範圍；旗標本身不是人類授權的替代品。
+
+既有 OAuth 三個檔案先前已確認存在；程式要求 `calendar.events.owned.readonly`，並拒用 primary。**尚未讀取憑證內容或驗證 token 有效性／實際 Calendar 狀態**。執行核准後才由既有 `connect()` 使用憑證，必要時刷新；不得在日誌、repo 或摘要顯示憑證內容或 Calendar ID。不啟動 setup 的七日查詢或另外查 Calendar 列表。
+
+核准後、確認模型與案例均未改動，從 repo 根目錄使用一個不存在的新目錄，例如：
+
+```sh
+.venv/bin/python -m harness.calendar_live_regression --live-readonly --private-dir reports/runs/live-readonly-session-001
+```
+
+**此文件中的命令尚未執行。** 模型未載入或設定不符時停止，不自行載入／卸載或調整 context、Thinking、temperature、tokens。沿用原 SUT gpt-oss-20b；不以 Qwen 代跑。
+
+## 三層結果不能混為一談
+
+- **Python adapter／實際 Google**：保留實際 timeMin/timeMax、分頁／重試的 HTTP 傳送嘗試、status 與成功 200 的 projected response（只取 items／nextPageToken），以及 adapter 解讀後的結果。不保留 Authorization headers 或認證錯誤 body。
+- **Agent 工具與參數**：原工具名稱、JSON arguments、解析後查詢與實際 HTTP 結果分開。沿用 strict structure grading；沒有成功查詢時不得靠文字 busy/free 判定通過。錯誤工具／時間範圍可能被阻擋而不碰 Google，此結果仍是工具行為失敗，不是假稱查過正確區間。
+- **最終回答與 scope**：保存原文與 pending review，全文審閱 query／busy event、日期、offset、來源／轉換宣稱、語言與僅專用測試行事曆範圍。工具通過不等於回答通過，不以關鍵字或 Judge 分數自動放行。
+
+保留資料變動、操作失敗、語意失敗與未嘗試案例的分母。三例讀取不是原子快照；相同 interval 的活動被替換可能無法辨識，因為既有 fields 不讀 event ID。本輪只比較 availability 與忙碌區間，不宣稱證明活動身份或沒有任何資料變動。
+
+## 私人證據與公開摘要
+
+只允許在 repo 的 ignored `reports/runs/` 下建立全新目錄，拒絕 baseline、覆寫既有目錄與 symlink 逃逸。目錄 0700，JSON 檔 0600：
+
+- `raw.json`：私人的案例快照、實際 clock、Google 查詢／結果、agent 工具 trace、原始回答、pending review 與操作錯誤類型。
+- `manifest.json`：來源 hashes、案例 hash、前後模型 runtime、wall time、上限與設定來源；沒有憑證內容。
+- `summary.json`：嚴格 allowlist，只含固定匿名案例 ID、階段結果、呼叫數、wall time、implementation hash、資料變動指標及 review pending／未產生答案狀態；不含日期、時間、Calendar ID、URL、例外文字或原始回答。
+
+stdout 也只印 allowlisted summary。執行後先人工檢查摘要，再決定是否將去識別摘要另存 repo；**不自動提交或上傳任何 live raw trace**。不要把一般 `reports/baseline/` 受控案例的提交慣例套到真實 Calendar 資料。
+
+## 離線驗證與後續
+
+`tests/test_calendar_live_regression.py` 使用受控 Calendar、假 HTTP transport 與 scripted model，涵蓋完整 CLI、opt-in、fixture 不符、API 失敗、錯／額外查詢阻擋、fixture drift、實際傳送與推論重試上限、私人資料 canary、檔案權限、模型未載入、中斷時保存部分結果，以及未嘗試／操作錯誤不冒充已評分失敗。一般 CI 只跑這些 deterministic tests，不帶憑證，也不會啟動 live suite。
+
+先完成 branch → push → PR → required pytest CI；本輪實作與執行核准是分開的。請 Rachel 確認三例、6＋6 預期請求、各 12 次上限與時間預算後，才執行一次 live suite。合併仍需另外明確授權。Judge 維持 advisory，暫停新增調校實驗。

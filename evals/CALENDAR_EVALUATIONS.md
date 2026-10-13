@@ -56,3 +56,7 @@ Review each saved answer against `answer_review.criteria` and `forbidden_behavio
 ## Timezone-answer validation
 
 The [cal-03/cal-08 implementation and five-case review plan](CALENDAR_TIMEZONE_ANSWER_REVIEW_PLAN.md) reuses Python interval conversion in model-facing tool results. Deterministic checks cover facts and message delivery; Rachel approved the five-case real SUT run; [results and remaining defects](../reports/baseline/CALENDAR_TIMEZONE_SUT_REVIEW_V1.md) are preserved separately. Original expected labels and baselines remain unchanged. Tool structure, Python facts and final-answer quality must be reported separately.
+
+## Opt-in Google live regression
+
+The separate [live read-only three-case plan](CALENDAR_LIVE_READONLY_REGRESSION.md) and `harness.calendar_live_regression` check the documented fixture, exact adjacency and an empty interval before three agent conversations. Explicit opt-in and separate execution approval are required. Live private traces stay under ignored `reports/runs/`; only a reviewed allowlisted summary may be published. Ordinary CI runs fake-transport tests only. No live run has been performed for this implementation.
