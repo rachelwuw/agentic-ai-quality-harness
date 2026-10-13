@@ -29,3 +29,23 @@ def test_invalid_time_does_not_open_google_connection(monkeypatch):
     result = calendar_mcp.check_availability('tomorrow', 'later')
     assert result['error'] == 'invalid_time_format'
     assert result['available'] is None
+
+
+def test_mcp_and_python_agent_share_converted_event_facts(monkeypatch):
+    from harness.calendar_agent import executor_for
+    import json
+    closed = []
+    class Session:
+        def close(self): closed.append(True)
+    class Calendar:
+        session = Session()
+        def check_availability(self, start, end):
+            return {'start': start, 'end': end, 'available': False, 'busy_intervals': [
+                {'start': {'dateTime': '2026-10-06T11:00:00-07:00'},
+                 'end': {'dateTime': '2026-10-06T11:30:00-07:00'}}]}
+    monkeypatch.setattr(calendar_mcp, 'connect', lambda: Calendar())
+    args = {'start': '2026-10-07T02:15:00', 'end': '2026-10-07T02:45:00', 'time_zone': 'Asia/Taipei'}
+    actual = calendar_mcp.check_availability(**args)
+    assert actual == executor_for(Calendar())('check_availability', json.dumps(args))
+    assert actual['time_facts']['busy_intervals'][0]['in_query_timezone']['start']['datetime'] == '2026-10-07T02:00:00+08:00'
+    assert closed == [True]

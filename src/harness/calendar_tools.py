@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 from urllib.parse import quote
 from .retry import retry_call, transient, TRANSIENT_STATUS
 from .calendar_setup import CONFIG_DIR, SCOPES, save_token
+from .trace_facts import with_availability_time_facts
 
 
 class CalendarError(RuntimeError):
@@ -80,7 +81,8 @@ def resolve_local_interval(start, end, time_zone):
 
 def check_local_availability(calendar, start, end, time_zone):
     start, end = resolve_local_interval(start, end, time_zone)
-    return {**calendar.check_availability(start, end), 'time_zone': time_zone}
+    return with_availability_time_facts(calendar.check_availability(start, end),
+                                        start, end, time_zone)
 
 
 class CalendarTools:

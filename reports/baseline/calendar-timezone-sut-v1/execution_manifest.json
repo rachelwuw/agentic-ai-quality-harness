@@ -1,0 +1,164 @@
+{
+  "state": "completed",
+  "recorded_at": "2026-10-13T22:50:39.276191+00:00",
+  "code_commit": "d505eb713cc32dcb6f1c4bd106013f07e567a809",
+  "approval": "Rachel approved five cases and subsequently authorized agent-operated SUT loading.",
+  "model_load": "lms load openai/gpt-oss-20b --context-length 8192 --gpu max --identifier openai/gpt-oss-20b",
+  "sut_model": "openai/gpt-oss-20b",
+  "base_url": "http://127.0.0.1:1234/v1",
+  "initial_runtime": {
+    "type": "llm",
+    "publisher": "openai",
+    "key": "openai/gpt-oss-20b",
+    "display_name": "GPT-OSS 20B",
+    "architecture": "gpt-oss",
+    "quantization": {
+      "name": "MXFP4",
+      "bits_per_weight": 4
+    },
+    "size_bytes": 12109664217,
+    "params_string": "20B",
+    "loaded_instances": [
+      {
+        "id": "openai/gpt-oss-20b",
+        "config": {
+          "context_length": 8192,
+          "eval_batch_size": 2048,
+          "physical_batch_size": 512,
+          "parallel": 4,
+          "flash_attention": true,
+          "context_checkpoints": 32,
+          "reasoning_budget_message": "",
+          "speculative_draft_mtp": false,
+          "speculative_draft_simple": false,
+          "speculative_draft_model": "",
+          "speculative_draft_max_tokens": 3,
+          "speculative_draft_min_tokens": 0,
+          "speculative_draft_min_continue_probability": 0,
+          "num_experts": 4,
+          "offload_kv_cache_to_gpu": true
+        }
+      }
+    ],
+    "max_context_length": 131072,
+    "format": "gguf",
+    "capabilities": {
+      "vision": false,
+      "trained_for_tool_use": true,
+      "reasoning": {
+        "allowed_options": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "low"
+      }
+    },
+    "description": null,
+    "variants": [
+      "openai/gpt-oss-20b@mxfp4"
+    ],
+    "selected_variant": "openai/gpt-oss-20b@mxfp4"
+  },
+  "source_sha256": {
+    "src/harness/calendar_agent.py": "3b21833ef90081c41b5b7a3fef2131074f4faa5f293c1f7651fec88e8277729b",
+    "src/harness/calendar_tools.py": "540d65f4a6612242744eac4728e66535d282413dba170e469407d515af979f32",
+    "src/harness/calendar_mcp.py": "601a5c397478c6628dc3580554e7de66f66ce3b894ce2be2d03fd3c93fd76d43",
+    "src/harness/trace_facts.py": "9359c7535f8d013ab06960bd614aa23543d9097b4a0fd931c8f480dd15e987c3",
+    "src/harness/calendar_evaluate.py": "5b6833a6529d3744fffb0e3e8cd2684c03d750481455f77d009f84331c324bc7",
+    "src/harness/client.py": "a7c8a8ac73df20fd82a72ee6422265db75b9943a254c86ce7abda056238f10a6",
+    "src/harness/agent.py": "5ea48cb8996aea913c2ca01c117c2875855f62388c83e7ac670f168fd0bd1b82",
+    "src/harness/retry.py": "da36045e85d881858394cc055065c3a85dc692b987e7c7d6831e424a83bf07e1",
+    "evals/calendar_cases.json": "c0f8ebe2d5d9c82912803cdc01069f6ad4d8fec38a5a59e7ed93bb2bcc7d8bee",
+    "evals/calendar_timezone_transfer_cases.json": "067bc63bd382a8bcb0326b48c831ea1e33df8e46bfd6fd8308af0a61b682c6ba",
+    "evals/calendar_judge_rubric_v10.json": "7f3e2b5bd48c0a8309a8b41e336af76a88cb0a1e72de21a9c58504b19e1ea484",
+    "reports/baseline/calendar-baseline-v7-retry-20261007.json": "309b12f696c4e18d37ea1b0d476671f5bf277a19a1541390294fca133a58d646"
+  },
+  "google_calls": 0,
+  "judge_calls": 0,
+  "manual_reruns": 0,
+  "client_settings": {
+    "temperature": 0,
+    "max_tokens": 2048,
+    "timeout_seconds": 180,
+    "transport_retries": 2,
+    "reasoning_setting": "not_overridden; existing runtime default"
+  },
+  "groups": [
+    {
+      "name": "known",
+      "output": "reports/runs/calendar-timezone-sut-known-v1.json",
+      "state": "finished",
+      "started_at": "2026-10-13T22:50:39.322544+00:00",
+      "returncode": 0,
+      "elapsed_seconds": 14.432,
+      "finished_at": "2026-10-13T22:50:53.754476+00:00",
+      "output_sha256": "82908a3605cc1fd405763e277d44d705f016ddacbb8c3d6bfd158c8a862ab4c4"
+    },
+    {
+      "name": "transfer",
+      "output": "reports/runs/calendar-timezone-sut-transfer-v1.json",
+      "state": "finished",
+      "started_at": "2026-10-13T22:50:53.762556+00:00",
+      "returncode": 0,
+      "elapsed_seconds": 28.23,
+      "finished_at": "2026-10-13T22:51:21.993351+00:00",
+      "output_sha256": "40587fbf0fa8b452a4e9a9a1696695c8d2cef99387dda5902097c4142e70b9cc"
+    }
+  ],
+  "final_runtime": {
+    "type": "llm",
+    "publisher": "openai",
+    "key": "openai/gpt-oss-20b",
+    "display_name": "GPT-OSS 20B",
+    "architecture": "gpt-oss",
+    "quantization": {
+      "name": "MXFP4",
+      "bits_per_weight": 4
+    },
+    "size_bytes": 12109664217,
+    "params_string": "20B",
+    "loaded_instances": [
+      {
+        "id": "openai/gpt-oss-20b",
+        "config": {
+          "context_length": 8192,
+          "eval_batch_size": 2048,
+          "physical_batch_size": 512,
+          "parallel": 4,
+          "flash_attention": true,
+          "context_checkpoints": 32,
+          "reasoning_budget_message": "",
+          "speculative_draft_mtp": false,
+          "speculative_draft_simple": false,
+          "speculative_draft_model": "",
+          "speculative_draft_max_tokens": 3,
+          "speculative_draft_min_tokens": 0,
+          "speculative_draft_min_continue_probability": 0,
+          "num_experts": 4,
+          "offload_kv_cache_to_gpu": true
+        }
+      }
+    ],
+    "max_context_length": 131072,
+    "format": "gguf",
+    "capabilities": {
+      "vision": false,
+      "trained_for_tool_use": true,
+      "reasoning": {
+        "allowed_options": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "low"
+      }
+    },
+    "description": null,
+    "variants": [
+      "openai/gpt-oss-20b@mxfp4"
+    ],
+    "selected_variant": "openai/gpt-oss-20b@mxfp4"
+  },
+  "finished_at": "2026-10-13T22:51:22.039276+00:00"
+}

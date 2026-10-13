@@ -80,3 +80,31 @@ def test_dst_feedback_requires_clarification_not_format_retry():
     assert feedback['error'] == 'dst_time_requires_clarification'
     assert 'do not retry by guessing' in feedback['action']
     assert not calendar.calls
+
+
+def test_busy_event_time_facts_reach_next_model_message_without_replacing_query():
+    import copy
+    from harness.calendar_evaluate import ControlledCalendar
+    calendar = ControlledCalendar('busy_fixture', {
+        'start': '2026-10-06T11:00:00-07:00', 'end': '2026-10-06T11:30:00-07:00'})
+    args = {'start': '2026-10-07T02:15:00', 'end': '2026-10-07T02:45:00', 'time_zone': 'Asia/Taipei'}
+    observed = []
+    def model(messages, tools):
+        observed.append(copy.deepcopy(messages))
+        if len(observed) == 1:
+            return {'role': 'assistant', 'tool_calls': [{'id': 'busy', 'type': 'function',
+                'function': {'name': 'check_availability', 'arguments': json.dumps(args)}}]}
+        data = json.loads(messages[-1]['content'])
+        facts = data['time_facts']
+        assert data['available'] is False
+        assert data['busy_intervals'][0]['start']['dateTime'] == '2026-10-06T11:00:00-07:00'
+        assert facts['query_interval']['in_query_timezone']['start']['datetime'] == '2026-10-07T02:15:00+08:00'
+        assert facts['busy_intervals'][0]['in_query_timezone']['start']['datetime'] == '2026-10-07T02:00:00+08:00'
+        assert facts['busy_intervals'][0]['in_query_timezone']['end']['datetime'] == '2026-10-07T02:30:00+08:00'
+        # Scripted text verifies transport only; it is not semantic model evidence.
+        return {'role': 'assistant', 'content': 'Offline fixture; semantic review pending.'}
+    run = run_calendar_agent('Check Taipei availability', model, calendar)
+    assert run['status'] == 'completed'
+    assert calendar.calls == [{'start': '2026-10-07T02:15:00+08:00', 'end': '2026-10-07T02:45:00+08:00'}]
+    saved = next(e['result'] for e in run['events'] if e['type'] == 'tool')
+    assert saved == json.loads(observed[1][-1]['content'])

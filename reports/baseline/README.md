@@ -62,3 +62,5 @@ These focused results are separate from the full 15-case baseline. They do not v
 [v10 positive-control review](JUDGE_V10_POSITIVE_CONTROLS_REVIEW.md): two reused correct answers PASS on all nine checks each, valid JSON, observed reasoning tokens 1024 each; about 4m57s. No new false failures in these attempts; general reliability remains unverified.
 
 [Frozen v10 fresh-case review](JUDGE_V10_FRESH_REVIEW.md): four new authored cases, 3/4 aggregate and 31/36 criterion matches to pre-run expectations. One correct winter answer falsely failed; label/reason contradiction and criterion-scope overlap preserved. About 13m20s; Judge remains advisory.
+
+[Calendar timezone SUT review v1](CALENDAR_TIMEZONE_SUT_REVIEW_V1.md): five approved real-model cases, tool structure and Python facts 5/5, 42.662 seconds runner wall time. Targeted cal-03/cal-08 defects not observed in these attempts; language, scope and conversion-table defects remain. No aggregate semantic pass claim or Judge inference.
