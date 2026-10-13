@@ -53,6 +53,6 @@ This uses the real LM Studio local model and controlled Calendar responses. It n
 
 Review each saved answer against `answer_review.criteria` and `forbidden_behaviors`; mark its review pass/fail and add notes in a copy of the report. The runner does not convert manual review into an automatic overall pass. LM Studio chat MCP and live Google integration remain separate manual checks. The JSON dataset retains `not_run` as a template; actual execution status belongs in each report.
 
-## Pending timezone-answer validation
+## Timezone-answer validation
 
-The [cal-03/cal-08 implementation and five-case review plan](CALENDAR_TIMEZONE_ANSWER_REVIEW_PLAN.md) reuses Python interval conversion in model-facing tool results. Deterministic checks cover facts and message delivery; real SUT executions await Rachel's approval. Original expected labels and baselines remain unchanged. Tool structure, Python facts and final-answer quality must be reported separately.
+The [cal-03/cal-08 implementation and five-case review plan](CALENDAR_TIMEZONE_ANSWER_REVIEW_PLAN.md) reuses Python interval conversion in model-facing tool results. Deterministic checks cover facts and message delivery; Rachel approved the five-case real SUT run; [results and remaining defects](../reports/baseline/CALENDAR_TIMEZONE_SUT_REVIEW_V1.md) are preserved separately. Original expected labels and baselines remain unchanged. Tool structure, Python facts and final-answer quality must be reported separately.

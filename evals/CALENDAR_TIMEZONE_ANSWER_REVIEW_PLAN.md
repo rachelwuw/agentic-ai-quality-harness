@@ -1,6 +1,6 @@
 # Calendar 時區回答改善：SUT 執行前審閱
 
-狀態：程式與 deterministic tests 已完成；**真實 SUT 評估尚未執行，等待 Rachel 核准下列五個案例與時間預算。** 無 Google 呼叫、無 Judge 模型呼叫。PR #7 仍為另一個未合併草稿，本分支來自 main `8c2e854`，沒有取用其 runner、案例、標籤或 rubric。
+狀態：Rachel 已核准五例並後續授權 agent 載入原 SUT；**五例已完成一輪，工具／Python 各 5/5，最終回答仍有缺陷，待輸出審閱。** 無 Google 呼叫、無 Judge 模型呼叫。PR #7 仍為另一個未合併草稿，本分支來自 main `8c2e854`，沒有取用其 runner、案例、標籤或 rubric。
 
 ## 已確認問題與修正
 
@@ -16,7 +16,7 @@ Agent 提示明確區分 QUERY／ORIGINAL／CONVERTED，要求依事實呈現 IA
 
 既有 `interval()`、`derive_trace_facts()` 行為、Judge rubric／預設、原始案例 expected labels 與舊 baseline 均未修改。
 
-## 待核准的五個模型案例
+## 已核准五例（保留事前案例與預期）
 
 | ID | 輸入與情境 | 工具／Python 預期 | 最終回答檢查 |
 | --- | --- | --- | --- |
@@ -54,3 +54,7 @@ Agent 提示明確區分 QUERY／ORIGINAL／CONVERTED，要求依事實呈現 IA
 cal-03／cal-08 的已知文字錯誤須不再出現，新題不得出現錯誤轉換或區間混淆，才有初步生成品質改善證據。一輪結果仍不足以證明重複性或普遍可靠。模型結果、成本與 merge 授權另行回報；CI 綠燈只代表 deterministic checks 通過。
 
 已保存的 [離線工具／Python 證據](../reports/baseline/calendar-timezone-facts-offline-v1.json) 沒有模型答案；不得當作 SUT 評估通過。
+
+後續授權：Rachel 在僅載入 Qwen 的阻礙回報後，要求 agent 代為處理載入。已以既有 SUT、context 8192 與完整 GPU offload 載入，未卸載 Qwen。上述不自行載入條款保留為事前範圍紀錄；後續授權只擴充模型載入，不授權換模型、調參、補跑或合併。
+
+[本輪結果、耗時與原始證據](../reports/baseline/CALENDAR_TIMEZONE_SUT_REVIEW_V1.md)。原準則、驗收邊界與預期未依結果調整。

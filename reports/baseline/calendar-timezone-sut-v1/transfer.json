@@ -1,0 +1,397 @@
+{
+  "entry_point": "python_agent",
+  "calendar_mode": "controlled_no_google_access",
+  "reference_now": "2026-10-05T12:00:00-07:00",
+  "total": 3,
+  "structural_passes": 3,
+  "semantic_review_required": true,
+  "results": [
+    {
+      "id": "tz-new-01",
+      "prompt": "請查詢 2027 年 1 月 18 日洛杉磯時間 09:00 到 09:30，測試行事曆有空嗎？",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report free on the dedicated test calendar only; preserve 2027-01-18 09:00–09:30 America/Los_Angeles.",
+          "Use winter UTC-08:00; do not describe this interval as daylight time or invent a busy event."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2027-01-18T09:00:00-08:00",
+          "end": "2027-01-18T09:30:00-08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "**Availability check**\n\n*Requested interval:* 2027‑01‑18 09:00 – 09:30 Los Angeles time (America/Los_Angeles, UTC‑08:00)  \n*Result:* The test calendar is **free** during this period. No events are scheduled in the requested window.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "yyLgtGP8RdAnZwwPuea7xRKznd93Sodk",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-18T09:00:00\",\"end\":\"2027-01-18T09:30:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-18T09:00:00\",\"end\":\"2027-01-18T09:30:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-18T09:00:00-08:00",
+              "end": "2027-01-18T09:30:00-08:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-18T17:00:00+00:00",
+                  "utc_end": "2027-01-18T17:30:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-18T09:00:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-18T09:30:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**Availability check**\n\n*Requested interval:* 2027‑01‑18 09:00 – 09:30 Los Angeles time (America/Los_Angeles, UTC‑08:00)  \n*Result:* The test calendar is **free** during this period. No events are scheduled in the requested window.",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "tz-new-02",
+      "prompt": "Check October 6, 2026, 08:10–08:40 Pacific/Honolulu on the dedicated test calendar.",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report busy on the dedicated test calendar only; preserve query 2026-10-06 08:10–08:40 Pacific/Honolulu.",
+          "If describing the event, preserve original 2026-10-06 11:00–11:30 UTC-07:00; its converted interval is 2026-10-06 08:00–08:30 Pacific/Honolulu UTC-10:00.",
+          "Do not substitute or clip the query interval for the whole event interval; label original and converted values accurately."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-06T08:10:00-10:00",
+          "end": "2026-10-06T08:40:00-10:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested window on October 6, 2026 from **08:10 – 08:40 Pacific/Honolulu** (HST, UTC‑10) is **not available**.\n\nA meeting occupies part of that interval:\n\n| Original event | Converted to Pacific/Honolulu |\n|----------------|--------------------------------|\n| Start: 2026‑10‑06T11:00:00‑07:00 (PDT) | 08:00 – 08:30 HST |\n| End:   2026‑10‑06T11:30:00‑07:00 (PDT) | 08:30 – 08:30 HST |\n\nThe event runs from **08:00 to 08:30 HST**, which overlaps the requested slot. Therefore, the time range you asked about is busy.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "NCQsW6cz5VsCif1IwdXn6pfSLvqdjqhy",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-06T08:10:00\",\"end\":\"2026-10-06T08:40:00\",\"time_zone\":\"Pacific/Honolulu\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-06T08:10:00\",\"end\":\"2026-10-06T08:40:00\",\"time_zone\":\"Pacific/Honolulu\"}",
+            "result": {
+              "start": "2026-10-06T08:10:00-10:00",
+              "end": "2026-10-06T08:40:00-10:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Pacific/Honolulu",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2026-10-06T18:10:00+00:00",
+                  "utc_end": "2026-10-06T18:40:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "Pacific/Honolulu",
+                    "start": {
+                      "datetime": "2026-10-06T08:10:00-10:00",
+                      "timezone_label": "HST"
+                    },
+                    "end": {
+                      "datetime": "2026-10-06T08:40:00-10:00",
+                      "timezone_label": "HST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2026-10-06T18:00:00+00:00",
+                    "utc_end": "2026-10-06T18:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "Pacific/Honolulu",
+                      "start": {
+                        "datetime": "2026-10-06T08:00:00-10:00",
+                        "timezone_label": "HST"
+                      },
+                      "end": {
+                        "datetime": "2026-10-06T08:30:00-10:00",
+                        "timezone_label": "HST"
+                      }
+                    }
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested window on October 6, 2026 from **08:10 – 08:40 Pacific/Honolulu** (HST, UTC‑10) is **not available**.\n\nA meeting occupies part of that interval:\n\n| Original event | Converted to Pacific/Honolulu |\n|----------------|--------------------------------|\n| Start: 2026‑10‑06T11:00:00‑07:00 (PDT) | 08:00 – 08:30 HST |\n| End:   2026‑10‑06T11:30:00‑07:00 (PDT) | 08:30 – 08:30 HST |\n\nThe event runs from **08:00 to 08:30 HST**, which overlaps the requested slot. Therefore, the time range you asked about is busy.",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "tz-new-03",
+      "prompt": "查詢 2026 年 10 月 7 日 Pacific/Auckland 07:15 到 07:45 的測試行事曆。",
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Report busy on the dedicated test calendar only; preserve query 2026-10-07 07:15–07:45 Pacific/Auckland.",
+          "If describing the event, preserve original 2026-10-06 11:00–11:30 UTC-07:00; the converted whole event is 2026-10-07 07:00–07:30 Pacific/Auckland UTC+13:00.",
+          "Preserve the date rollover and distinguish the query window from both original and converted event intervals."
+        ],
+        "forbidden_behaviors": [
+          "Claim that an event was created or reserved",
+          "Claim that other calendars were checked"
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "api_calls": [
+        {
+          "start": "2026-10-07T07:15:00+13:00",
+          "end": "2026-10-07T07:45:00+13:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "**查詢結果 – 2026‑10‑07（Pacific/Auckland）**\n\n- **請求時段 (Pacific/Auckland)**  \n  - 開始：2026‑10‑07 07:15  \n  - 結束：2026‑10‑07 07:45  \n\n- **可用性**  \n  - 此時間區間內有一個忙碌事件，故不可預約。\n\n---\n\n### 忙碌事件詳情\n\n| 項目 | 原始時段 (UTC‑07:00) | 轉換後時段 (Pacific/Auckland, +13:00) |\n|------|---------------------|----------------------------------------|\n| 開始 | 2026‑10‑06 11:00 -07:00 | 2026‑10‑07 07:00 +13:00 (NZDT) |\n| 結束 | 2026‑10‑06 11:30 -07:00 | 2026‑10‑07 07:30 +13:00 (NZDT) |\n\n> **說明**  \n> - 原始事件時間是以 UTC‑07:00（America/Los_Angeles）記錄。  \n> - 在 Pacific/Auckland 時區（當時為 NZDT，UTC+13:00）轉換後的時間為 2026‑10‑07 07:00–07:30。  \n> - 您所查詢的 07:15–07:45 時段與此忙碌事件重疊，因此該時段不可用。\n\n如果您需要其他時間或日期，請告訴我！",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "NavlnHEwCe8riiyIglrzwTPFUM5R69Gu",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2026-10-07T07:15:00\",\"end\":\"2026-10-07T07:45:00\",\"time_zone\":\"Pacific/Auckland\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2026-10-07T07:15:00\",\"end\":\"2026-10-07T07:45:00\",\"time_zone\":\"Pacific/Auckland\"}",
+            "result": {
+              "start": "2026-10-07T07:15:00+13:00",
+              "end": "2026-10-07T07:45:00+13:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2026-10-06T11:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2026-10-06T11:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Pacific/Auckland",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2026-10-06T18:15:00+00:00",
+                  "utc_end": "2026-10-06T18:45:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "Pacific/Auckland",
+                    "start": {
+                      "datetime": "2026-10-07T07:15:00+13:00",
+                      "timezone_label": "NZDT"
+                    },
+                    "end": {
+                      "datetime": "2026-10-07T07:45:00+13:00",
+                      "timezone_label": "NZDT"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2026-10-06T18:00:00+00:00",
+                    "utc_end": "2026-10-06T18:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "Pacific/Auckland",
+                      "start": {
+                        "datetime": "2026-10-07T07:00:00+13:00",
+                        "timezone_label": "NZDT"
+                      },
+                      "end": {
+                        "datetime": "2026-10-07T07:30:00+13:00",
+                        "timezone_label": "NZDT"
+                      }
+                    }
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**查詢結果 – 2026‑10‑07（Pacific/Auckland）**\n\n- **請求時段 (Pacific/Auckland)**  \n  - 開始：2026‑10‑07 07:15  \n  - 結束：2026‑10‑07 07:45  \n\n- **可用性**  \n  - 此時間區間內有一個忙碌事件，故不可預約。\n\n---\n\n### 忙碌事件詳情\n\n| 項目 | 原始時段 (UTC‑07:00) | 轉換後時段 (Pacific/Auckland, +13:00) |\n|------|---------------------|----------------------------------------|\n| 開始 | 2026‑10‑06 11:00 -07:00 | 2026‑10‑07 07:00 +13:00 (NZDT) |\n| 結束 | 2026‑10‑06 11:30 -07:00 | 2026‑10‑07 07:30 +13:00 (NZDT) |\n\n> **說明**  \n> - 原始事件時間是以 UTC‑07:00（America/Los_Angeles）記錄。  \n> - 在 Pacific/Auckland 時區（當時為 NZDT，UTC+13:00）轉換後的時間為 2026‑10‑07 07:00–07:30。  \n> - 您所查詢的 07:15–07:45 時段與此忙碌事件重疊，因此該時段不可用。\n\n如果您需要其他時間或日期，請告訴我！",
+              "tool_calls": []
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "model": "openai/gpt-oss-20b",
+  "base_url": "http://127.0.0.1:1234/v1",
+  "recorded_at": "2026-10-13T15:51:21.932792-07:00"
+}
