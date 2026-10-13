@@ -2,6 +2,7 @@
 
 ## Start here
 
+- [Approved single-criterion boundary diagnostic](JUDGE_SINGLE_BOUNDARY_REVIEW.md): 8/8 selected labels matched versus 4/8 historical batch labels; positive and negative controls repeat. Promising narrow-format evidence, not independent accuracy or default activation.
 - [Latest engineering verification](ENGINEERING_CHECKPOINT_20261008.md): recreated Python 3.12 environment, deterministic tests and GitHub CI evidence; no model or Google calls.
 - [Controlled SUT baseline](CALENDAR_BASELINE_V7_RETRY_REVIEW.md): real local agent, simulated Calendar responses, structural results and separate answer review.
 - [Frozen v10 judge fresh-case review](JUDGE_V10_FRESH_REVIEW.md): new authored cases, criterion disagreements and remaining limits; expected labels are not Rachel’s human signoff.

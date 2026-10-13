@@ -1,0 +1,41 @@
+import json,hashlib,statistics
+from pathlib import Path
+root=Path('/Users/rachelwu/dev/agentic-ai-quality-harness');p=root/'reports/runs/single-boundary-20261013'
+manifest=json.loads((p/'manifest.json').read_text())
+for path,digest in manifest['sha256'].items():assert hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,path
+labels=json.loads((root/'evals/judge_single_boundary_labels.json').read_text())['labels']
+reference=json.loads((root/'evals/judge_single_boundary_batch_reference.json').read_text())
+reports=[json.loads((p/f'round{i}.json').read_text()) for i in (1,2)]
+rows=[]
+for i,report in enumerate(reports,1):
+ assert report['state']=='completed' and [x['id'] for x in report['results']]==manifest['order']
+ for x in report['results']:
+  label=labels[x['id']];old=next(item for item in reference['reports'][i-1]['results'] if item['id']==label['source_case_id'])
+  oldcheck=next(c for c in old['checks'] if c['id']==label['source_criterion_id'])
+  valid=x['status']=='reviewed';check=x['checks'][0] if valid else None
+  if valid:assert len(x['checks'])==1 and check['id']=='c1'
+  rows.append({'round':i,'id':x['id'],'source_case_id':label['source_case_id'],'source_criterion_id':label['source_criterion_id'],
+   'expected':label['overall'],'batch':oldcheck['verdict'],'observed':check['verdict'] if valid else None,'status':x['status'],
+   'error_category':x.get('error_category'),'reason':check['reason'] if valid else x['reason'],'evidence':check['evidence'] if valid else x['evidence'],
+   'batch_reason':oldcheck['reason'],'generation':x['generation']})
+pairs=[]
+for ident in labels:
+ a,b=[next(x for x in rows if x['round']==i and x['id']==ident) for i in (1,2)]
+ available=a['observed'] is not None and b['observed'] is not None
+ pairs.append({'id':ident,'available':available,'consistent':available and a['observed']==b['observed']})
+durations=[x['generation']['elapsed_seconds'] for x in rows]
+result={'scope':'Selected historical errors and negative controls; single-criterion result is not full-answer acceptance or independent accuracy.',
+ 'planned_requests':8,'valid_outputs':sum(x['observed'] is not None for x in rows),'matches':sum(x['observed']==x['expected'] for x in rows),
+ 'batch_matches':sum(x['batch']==x['expected'] for x in rows),'improvements':sum(x['batch']!=x['expected'] and x['observed']==x['expected'] for x in rows),
+ 'regressions':sum(x['observed'] is not None and x['batch']==x['expected'] and x['observed']!=x['expected'] for x in rows),
+ 'positive_matches':sum(x['expected']=='PASS' and x['observed']=='PASS' for x in rows),
+ 'negative_matches':sum(x['expected']=='FAIL' and x['observed']=='FAIL' for x in rows),
+ 'semantic_uncertain':sum(x['observed']=='UNCERTAIN' for x in rows),'operational_errors':sum(x['observed'] is None for x in rows),
+ 'repeat_available':sum(x['available'] for x in pairs),'repeat_consistent':sum(x['consistent'] for x in pairs),
+ 'duration_seconds':{'sum':sum(durations),'median':statistics.median(durations),'maximum':max(durations)},
+ 'raw_sha256':{f'round{i}.json':hashlib.sha256((p/f'round{i}.json').read_bytes()).hexdigest() for i in (1,2)},
+ 'manifest':manifest,'rows':rows,'repeat_pairs':pairs}
+assert not (p/'comparison.json').exists()
+(p/'comparison.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({k:v for k,v in result.items() if k not in {'manifest','rows','repeat_pairs'}},indent=2))
+for x in rows:print(x['round'],x['id'],x['expected'],x['observed'],x['reason'])

@@ -1,0 +1,46 @@
+{
+  "approval": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-13",
+    "scope": "Approved single-criterion diagnostic D/c7 PASS, E/c6 PASS, D/c6 FAIL, E/c7 FAIL; two rounds, exactly 8 requests. No release or merge signoff."
+  },
+  "labels": {
+    "single-D-c7": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS"
+      },
+      "human_signoff": true,
+      "source_case_id": "wording-D",
+      "source_criterion_id": "c7"
+    },
+    "single-E-c6": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS"
+      },
+      "human_signoff": true,
+      "source_case_id": "wording-E",
+      "source_criterion_id": "c6"
+    },
+    "single-D-c6": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "FAIL"
+      },
+      "human_signoff": true,
+      "source_case_id": "wording-D",
+      "source_criterion_id": "c6"
+    },
+    "single-E-c7": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "FAIL"
+      },
+      "human_signoff": true,
+      "source_case_id": "wording-E",
+      "source_criterion_id": "c7"
+    }
+  },
+  "provenance": "Previously approved synthetic labels; selected development diagnostics, not independent benchmark"
+}

@@ -1,0 +1,16 @@
+{
+  "version": "calendar-answer-v13",
+  "reference_facts": {},
+  "additional_criteria": {},
+  "criteria_overrides": {},
+  "derive_trace_facts": true,
+  "deterministic_requirements": [
+    "No Google API request may occur"
+  ],
+  "policy_provenance": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-13",
+    "scope": "Approved single-criterion diagnostic D/c7 PASS, E/c6 PASS, D/c6 FAIL, E/c7 FAIL; two rounds, exactly 8 requests. No release or merge signoff."
+  },
+  "scope": "Explicit opt-in single-criterion diagnostic using unchanged clarified v12 requirement text. Default v10 unchanged."
+}

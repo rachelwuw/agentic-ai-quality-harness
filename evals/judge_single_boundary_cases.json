@@ -1,0 +1,228 @@
+{
+  "version": "single-criterion-v12-diagnostic",
+  "state": "frozen_Rachel_approved",
+  "model": "authored_synthetic_not_a_model_run",
+  "approval": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-13",
+    "scope": "Approved single-criterion diagnostic D/c7 PASS, E/c6 PASS, D/c6 FAIL, E/c7 FAIL; two rounds, exactly 8 requests. No release or merge signoff."
+  },
+  "results": [
+    {
+      "id": "single-D-c7",
+      "prompt": "Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.",
+      "structural_pass": true,
+      "api_calls": [
+        {
+          "start": "2027-07-21T00:15:00+08:00",
+          "end": "2027-07-21T00:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles. Only the dedicated test calendar was checked.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\": \"2027-07-21T00:15:00\", \"end\": \"2027-07-21T00:45:00\", \"time_zone\": \"Asia/Taipei\"}",
+            "result": {
+              "start": "2027-07-21T00:15:00+08:00",
+              "end": "2027-07-21T00:45:00+08:00",
+              "time_zone": "Asia/Taipei",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-07-20T09:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-07-20T09:30:00-07:00"
+                  }
+                }
+              ],
+              "scope": "configured_test_calendar_only",
+              "source": "authored_controlled_fixture"
+            }
+          }
+        ]
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Draft c7: assess only converted event date/clock values against Python facts for the claimed target timezone. An explicit claim of conversion supplies that target even if a displayed timezone label contradicts it (that label belongs to c6). If the answer makes no event-conversion claim, return PASS for this check."
+        ],
+        "forbidden_behaviors": []
+      },
+      "answer_origin": "Codex-authored synthetic draft, not SUT generation",
+      "source_mapping": {
+        "source_commit": "f63939b",
+        "source_case_id": "wording-D",
+        "source_criterion_id": "c7",
+        "output_criterion_id": "c1"
+      }
+    },
+    {
+      "id": "single-E-c6",
+      "prompt": "Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.",
+      "structural_pass": true,
+      "api_calls": [
+        {
+          "start": "2027-01-21T01:15:00+08:00",
+          "end": "2027-01-21T01:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\": \"2027-01-21T01:15:00\", \"end\": \"2027-01-21T01:45:00\", \"time_zone\": \"Asia/Taipei\"}",
+            "result": {
+              "start": "2027-01-21T01:15:00+08:00",
+              "end": "2027-01-21T01:45:00+08:00",
+              "time_zone": "Asia/Taipei",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-01-20T09:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-01-20T09:30:00-08:00"
+                  }
+                }
+              ],
+              "scope": "configured_test_calendar_only",
+              "source": "authored_controlled_fixture"
+            }
+          }
+        ]
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Draft c6: assess only conversion claim versus displayed timezone attribution. If event conversion to Asia/Taipei is claimed, its display must be explicitly or unambiguously attributed to Asia/Taipei. Do not score numeric date/clock accuracy here. If the answer makes no event-conversion claim, return PASS for this check."
+        ],
+        "forbidden_behaviors": []
+      },
+      "answer_origin": "Codex-authored synthetic draft, not SUT generation",
+      "source_mapping": {
+        "source_commit": "f63939b",
+        "source_case_id": "wording-E",
+        "source_criterion_id": "c6",
+        "output_criterion_id": "c1"
+      }
+    },
+    {
+      "id": "single-D-c6",
+      "prompt": "Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.",
+      "structural_pass": true,
+      "api_calls": [
+        {
+          "start": "2027-07-21T00:15:00+08:00",
+          "end": "2027-07-21T00:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles. Only the dedicated test calendar was checked.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\": \"2027-07-21T00:15:00\", \"end\": \"2027-07-21T00:45:00\", \"time_zone\": \"Asia/Taipei\"}",
+            "result": {
+              "start": "2027-07-21T00:15:00+08:00",
+              "end": "2027-07-21T00:45:00+08:00",
+              "time_zone": "Asia/Taipei",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-07-20T09:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-07-20T09:30:00-07:00"
+                  }
+                }
+              ],
+              "scope": "configured_test_calendar_only",
+              "source": "authored_controlled_fixture"
+            }
+          }
+        ]
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Draft c6: assess only conversion claim versus displayed timezone attribution. If event conversion to Asia/Taipei is claimed, its display must be explicitly or unambiguously attributed to Asia/Taipei. Do not score numeric date/clock accuracy here. If the answer makes no event-conversion claim, return PASS for this check."
+        ],
+        "forbidden_behaviors": []
+      },
+      "answer_origin": "Codex-authored synthetic draft, not SUT generation",
+      "source_mapping": {
+        "source_commit": "f63939b",
+        "source_case_id": "wording-D",
+        "source_criterion_id": "c6",
+        "output_criterion_id": "c1"
+      }
+    },
+    {
+      "id": "single-E-c7",
+      "prompt": "Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.",
+      "structural_pass": true,
+      "api_calls": [
+        {
+          "start": "2027-01-21T01:15:00+08:00",
+          "end": "2027-01-21T01:45:00+08:00"
+        }
+      ],
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.",
+        "events": [
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\": \"2027-01-21T01:15:00\", \"end\": \"2027-01-21T01:45:00\", \"time_zone\": \"Asia/Taipei\"}",
+            "result": {
+              "start": "2027-01-21T01:15:00+08:00",
+              "end": "2027-01-21T01:45:00+08:00",
+              "time_zone": "Asia/Taipei",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-01-20T09:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-01-20T09:30:00-08:00"
+                  }
+                }
+              ],
+              "scope": "configured_test_calendar_only",
+              "source": "authored_controlled_fixture"
+            }
+          }
+        ]
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Draft c7: assess only converted event date/clock values against Python facts for the claimed target timezone. An explicit claim of conversion supplies that target even if a displayed timezone label contradicts it (that label belongs to c6). If the answer makes no event-conversion claim, return PASS for this check."
+        ],
+        "forbidden_behaviors": []
+      },
+      "answer_origin": "Codex-authored synthetic draft, not SUT generation",
+      "source_mapping": {
+        "source_commit": "f63939b",
+        "source_case_id": "wording-E",
+        "source_criterion_id": "c7",
+        "output_criterion_id": "c1"
+      }
+    }
+  ]
+}
