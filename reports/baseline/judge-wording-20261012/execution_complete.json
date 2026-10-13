@@ -1,0 +1,72 @@
+{
+  "requests": 24,
+  "state": "completed_with_transport_error",
+  "post_run_runtime": {
+    "type": "llm",
+    "publisher": "qwen",
+    "key": "qwen/qwen3.5-9b",
+    "display_name": "Qwen3.5 9B",
+    "architecture": "qwen35",
+    "quantization": {
+      "name": "Q8_0",
+      "bits_per_weight": 8
+    },
+    "size_bytes": 10449384671,
+    "params_string": "9B",
+    "loaded_instances": [
+      {
+        "id": "qwen/qwen3.5-9b",
+        "config": {
+          "context_length": 8192,
+          "eval_batch_size": 2048,
+          "physical_batch_size": 512,
+          "parallel": 4,
+          "flash_attention": true,
+          "context_checkpoints": 32,
+          "reasoning_budget_message": "",
+          "speculative_draft_mtp": false,
+          "speculative_draft_simple": false,
+          "speculative_draft_model": "",
+          "speculative_draft_max_tokens": 3,
+          "speculative_draft_min_tokens": 0,
+          "speculative_draft_min_continue_probability": 0,
+          "offload_kv_cache_to_gpu": true
+        }
+      }
+    ],
+    "max_context_length": 262144,
+    "format": "gguf",
+    "capabilities": {
+      "vision": true,
+      "trained_for_tool_use": true,
+      "reasoning": {
+        "allowed_options": [
+          "off",
+          "on"
+        ],
+        "default": "on"
+      }
+    },
+    "description": null,
+    "variants": [
+      "qwen/qwen3.5-9b@q8_0"
+    ],
+    "selected_variant": "qwen/qwen3.5-9b@q8_0"
+  },
+  "post_run_hashes": {
+    "evals/judge_wording_cases.json": "efd697a0a405c2724828d99d9d5e89f820167db1260e7c37245d2ae312f46ed7",
+    "evals/judge_wording_expected_labels.json": "f81bc26c4faed7b91d74727673b62d2255860e5201ed62de7357fc06328922c6",
+    "evals/calendar_judge_wording_original.json": "4bea33405e0c1a632fdc37f798836283154b9de893233c31d0b70b6ea8148853",
+    "evals/calendar_judge_wording_clarified.json": "93cec7c0841021f7e47028830b9f18af79f380c53b7afd7fe20cf138f7e467e1",
+    "evals/run_judge_wording_study.py": "07d7636993b633750120d139840ef36a80230579467ee7605deb2ee7390c24f1",
+    "src/harness/calendar_judge.py": "228e6a1775048c3d2fa692e7279af8ea586815fd157be1c500594d7a7ed04fc3",
+    "src/harness/trace_facts.py": "18476a00b291b2ff850e8f96bbee5c0e15372c11c95dcdc44eb9a326133666f0",
+    "src/harness/saved_trace.py": "2b5dd1e97bbc5579e3a0734a021ed84c9413df5d2d3c3d4598eea9a0e0aac312",
+    "src/harness/client.py": "a7c8a8ac73df20fd82a72ee6422265db75b9943a254c86ce7abda056238f10a6",
+    "evals/calendar_judge_rubric.json": "7f3e2b5bd48c0a8309a8b41e336af76a88cb0a1e72de21a9c58504b19e1ea484"
+  },
+  "report_paths": {
+    "original-round2.json": "resumed-original-round2.json"
+  },
+  "no_retry_of_failed_request": true
+}

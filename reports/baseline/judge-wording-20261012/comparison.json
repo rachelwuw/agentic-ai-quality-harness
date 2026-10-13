@@ -1,0 +1,4297 @@
+{
+  "scope": "Approved same-author synthetic development comparison, not independent accuracy or release signoff",
+  "summary": {
+    "original": {
+      "planned_requests": 12,
+      "valid_outputs": 11,
+      "operational_errors": 1,
+      "semantic_uncertain": 0,
+      "planned_criteria": 108,
+      "available_criteria": 99,
+      "criterion_matches": 93,
+      "overall_matches": 11,
+      "overall_confusion": {
+        "PASS -> PASS": 5,
+        "FAIL -> FAIL": 6,
+        "PASS -> UNAVAILABLE": 1
+      },
+      "criterion_confusion": {
+        "c1": {
+          "PASS -> PASS": 11,
+          "PASS -> UNAVAILABLE": 1
+        },
+        "c2": {
+          "PASS -> PASS": 5,
+          "FAIL -> FAIL": 6,
+          "PASS -> UNAVAILABLE": 1
+        },
+        "c3": {
+          "PASS -> PASS": 11,
+          "PASS -> UNAVAILABLE": 1
+        },
+        "c4": {
+          "PASS -> PASS": 11,
+          "PASS -> UNAVAILABLE": 1
+        },
+        "c5": {
+          "PASS -> PASS": 11,
+          "PASS -> UNAVAILABLE": 1
+        },
+        "c6": {
+          "PASS -> PASS": 5,
+          "FAIL -> FAIL": 2,
+          "PASS -> FAIL": 4,
+          "PASS -> UNAVAILABLE": 1
+        },
+        "c7": {
+          "PASS -> PASS": 5,
+          "PASS -> FAIL": 2,
+          "FAIL -> FAIL": 4,
+          "PASS -> UNAVAILABLE": 1
+        },
+        "c8": {
+          "PASS -> PASS": 11,
+          "PASS -> UNAVAILABLE": 1
+        },
+        "c9": {
+          "PASS -> PASS": 11,
+          "PASS -> UNAVAILABLE": 1
+        }
+      },
+      "overall_repeat_available": 5,
+      "overall_repeat_consistent": 5,
+      "criterion_repeat_available": 45,
+      "criterion_repeat_consistent": 45,
+      "duration_seconds": {
+        "sum": 2071.31,
+        "median": 178.28050000000002,
+        "maximum": 203.45,
+        "exploratory_p95_nearest_rank": 203.45
+      },
+      "repeat_pairs": [
+        {
+          "id": "wording-A",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-B",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-C",
+          "overall_available": false,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": false,
+              "consistent": false
+            },
+            {
+              "id": "c2",
+              "available": false,
+              "consistent": false
+            },
+            {
+              "id": "c3",
+              "available": false,
+              "consistent": false
+            },
+            {
+              "id": "c4",
+              "available": false,
+              "consistent": false
+            },
+            {
+              "id": "c5",
+              "available": false,
+              "consistent": false
+            },
+            {
+              "id": "c6",
+              "available": false,
+              "consistent": false
+            },
+            {
+              "id": "c7",
+              "available": false,
+              "consistent": false
+            },
+            {
+              "id": "c8",
+              "available": false,
+              "consistent": false
+            },
+            {
+              "id": "c9",
+              "available": false,
+              "consistent": false
+            }
+          ],
+          "overall_consistent": false
+        },
+        {
+          "id": "wording-D",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-E",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-F",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        }
+      ]
+    },
+    "clarified": {
+      "planned_requests": 12,
+      "valid_outputs": 12,
+      "operational_errors": 0,
+      "semantic_uncertain": 0,
+      "planned_criteria": 108,
+      "available_criteria": 108,
+      "criterion_matches": 102,
+      "overall_matches": 12,
+      "overall_confusion": {
+        "PASS -> PASS": 6,
+        "FAIL -> FAIL": 6
+      },
+      "criterion_confusion": {
+        "c1": {
+          "PASS -> PASS": 12
+        },
+        "c2": {
+          "PASS -> PASS": 6,
+          "FAIL -> FAIL": 6
+        },
+        "c3": {
+          "PASS -> PASS": 12
+        },
+        "c4": {
+          "PASS -> PASS": 12
+        },
+        "c5": {
+          "PASS -> PASS": 12
+        },
+        "c6": {
+          "PASS -> PASS": 6,
+          "FAIL -> FAIL": 2,
+          "PASS -> FAIL": 4
+        },
+        "c7": {
+          "PASS -> PASS": 6,
+          "PASS -> FAIL": 2,
+          "FAIL -> FAIL": 4
+        },
+        "c8": {
+          "PASS -> PASS": 12
+        },
+        "c9": {
+          "PASS -> PASS": 12
+        }
+      },
+      "overall_repeat_available": 6,
+      "overall_repeat_consistent": 6,
+      "criterion_repeat_available": 54,
+      "criterion_repeat_consistent": 54,
+      "duration_seconds": {
+        "sum": 2291.187,
+        "median": 191.327,
+        "maximum": 213.396,
+        "exploratory_p95_nearest_rank": 213.396
+      },
+      "repeat_pairs": [
+        {
+          "id": "wording-A",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-B",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-C",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-D",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-E",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        },
+        {
+          "id": "wording-F",
+          "overall_available": true,
+          "criteria": [
+            {
+              "id": "c1",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c2",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c3",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c4",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c5",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c6",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c7",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c8",
+              "available": true,
+              "consistent": true
+            },
+            {
+              "id": "c9",
+              "available": true,
+              "consistent": true
+            }
+          ],
+          "overall_consistent": true
+        }
+      ]
+    }
+  },
+  "rows": [
+    {
+      "arm": "original",
+      "round": 1,
+      "id": "wording-A",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 133.703,
+        "usage": {
+          "prompt_tokens": 1804,
+          "completion_tokens": 1740,
+          "total_tokens": 3544,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event is 2027-07-20 09:00\u201309:30 America/Los_Angeles. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call to check availability with start/end in Asia/Taipei.\n*   **Tool Events:** `check_availability` result shows:\n    *   Query: 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Intervals: `{\"start\": \"2027-07-20T09:00:00-07:00\", \"end\": \"2027-07-20T09:30:00-07:00\"}`.\n    *   Scope: `configured_test_calendar_only`.\n*   **Computed Trace Facts:**\n    *   Query Interval (UTC): 2027-07-20T16:15:00+00:00 to 2027-07-20T16:45:00+00:00.\n    *   Query Interval (Asia/Taipei): 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Interval (UTC): 2027-07-20T16:00:00+00:00 to 2027-07-20T16:30:00+00:00.\n    *   Busy Interval (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n    *   Overlaps Query: `true`.\n\n**Analysis of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Tool evidence confirms `available: false` and `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims conflicting event is \"2027-07-20 09:00\u201309:30 America/Los_Angeles\".\n    *   Tool evidence (Tool Events) shows busy interval start: `2027-07-20T09:00:00-07:00`, end: `2027-07-20T09:30:00-07:00`.\n    *   -07:00 is America/Los_Angeles (PDT/PST depending on DST, July is PDT usually).\n    *   The answer matches the tool evidence exactly regarding date and time in that zone.\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does *not* convert the query window to the event timezone (America/Los_Angeles). It keeps the query in Asia/Taipei (\"2027-07-21 00:15\u201300:45 Asia/Tai\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event, matching tool evidence.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (2027-07-20 09:00\u201309:30 America/Los_Angeles) matches the tool evidence exactly.",
+          "evidence": [
+            "2027-07-20 09:00\u201309:30 America/Los_Angeles",
+            "start\": \"2027-07-20T09:00:00-07:00\""
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No conversion of the query window to the event timezone was attempted, which satisfies the omission clause.",
+          "evidence": [
+            "Answer does not convert query window"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer preserves the requested query dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations were used in the answer, so no mismatch can occur.",
+          "evidence": [
+            "Answer contains no timezone abbreviations"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer does not claim to convert the event to Asia/Taipei, nor does it display a conflicting timezone label for the event.",
+          "evidence": [
+            "America/Los_Angeles is used consistently"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No explicit claim of conversion to a target timezone was made, so no verification against Python facts for that claim is needed.",
+          "evidence": [
+            "No conversion claim present"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer describes the state of the calendar (busy) without claiming creation, reservation, modification, or deletion actions.",
+          "evidence": [
+            "is busy because it overlaps"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer relies on tool evidence for the conflict status without overriding the review process.",
+          "evidence": [
+            "Answer aligns with tool_events result"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 1,
+      "id": "wording-D",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 141.978,
+        "usage": {
+          "prompt_tokens": 1810,
+          "completion_tokens": 1722,
+          "total_tokens": 3532,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Asia/Taipei.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-07-20T16:15:00+00:00` to `2027-07-20T16:45:00+00:00`.\n    *   Query Interval (Asia/Taipei): `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-07-20T16:00:00+00:00` to `2027-07-20T16:30:00+00:00`.\n    *   Busy Interval (Asia/Taipei): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Analysis of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles.\"\n    *   Computed Facts (Busy Interval in Asia/Taipei): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   Computed Facts (Busy Interval in UTC): `2027-07-20T16:00:00+00:00` to `2027-07-20T16:30:00+00:00`.\n    *   Tool Event (Busy Interval in UTC): `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`. Note: -0\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly states the slot is busy due to overlap, matching tool evidence.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conflicting event is 'America/Los_Angeles' but displays times in Asia/Taipei (00:00\u201300:30). The computed fact for the busy interval in Asia/Taipei is 00:00\u201300:30, but attributing that time to America/Los_Angeles contradicts the timezone preservation requirement.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer converts query window to event timezone (Asia/Taipei) and values match computed facts.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves requested query dates, clock interval (00:15\u201300:45) and Asia/Taipei timezone.",
+          "evidence": [
+            "requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations used; omission is allowed.",
+          "evidence": [
+            "No PST/PDT found in answer"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but attributes the time '00:00\u201300:30' to 'America/Los_Angeles'. This contradicts the requirement that if conversion to Asia/Taipei is claimed, display must be attributed to Asia/Taipei.",
+          "evidence": [
+            "converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but provides times (00:00\u201300:30) that match the UTC offset of Los Angeles (-07:00/-08:00) relative to the query time, not the computed Asia/Taipei fact. Computed fact for event in Asia/Taipei is 2027-07-21T00:00:00+08:00.",
+          "evidence": [
+            "converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim creation, reservation, modification or deletion.",
+          "evidence": [
+            "No action verbs found"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reports busy status based on overlap).",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 1,
+      "id": "wording-B",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 166.788,
+        "usage": {
+          "prompt_tokens": 1808,
+          "completion_tokens": 1765,
+          "total_tokens": 3573,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T09:00:00-08:00` to `2027-01-20T09:30:00-08:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-01-20T17:15:00+00:00` to `2027-01-20T17:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T17:00:00+00:00` to `2027-01-20T17:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei.\"\n    *   Computed Facts (Busy Interval in Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   The answer matches the computed facts exactly for the converted event.\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not convert the query window to the event timezone (it keeps it in Asia/Taipei). It converts the *event* to the query timezone.\n    *   Since the conversion of the query window is optional and omitted, this check is satisfied by omission.\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates, clock interval and\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (01:00\u201301:30 Asia/Taipei) matches the computed trace facts for that interval in the query timezone.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The query window conversion to event timezone is omitted, which satisfies the requirement.",
+          "evidence": [
+            "Answer does not convert query window to event timezone"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer preserves the requested query dates (2027-01-21), clock interval (01:15\u201301:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "Answer contains no PST/PDT text"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The event conversion is explicitly attributed to Asia/Taipei, matching the claim.",
+          "evidence": [
+            "converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The converted event date/clock values (01:00\u201301:30) match the Python computed facts for the claimed target timezone.",
+          "evidence": [
+            "computed_trace_facts... in_query_timezone... start: 2027-01-21T01:00:00+08:00"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer does not claim the event was created, reserved, modified, or deleted.",
+          "evidence": [
+            "Answer only states it is busy/overlaps"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The review treats tool evidence as data; the answer aligns with the provided trace facts.",
+          "evidence": [
+            "Answer claims overlap which matches tool_events.overlaps_query: true"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 1,
+      "id": "wording-E",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 203.45,
+        "usage": {
+          "prompt_tokens": 1808,
+          "completion_tokens": 1730,
+          "total_tokens": 3538,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T09:00:00-08:00` to `2027-01-20T09:30:00-08:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-01-20T17:15:00+00:00` to `2027-01-20T17:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T17:00:00+00:00` to `2027-01-20T17:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Analysis of the Answer vs. Facts:**\n\n*   **Answer Claim 1:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event.\"\n    *   Fact: Query interval `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`. Busy interval (Taipei) `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlap: Yes (01:15-01:45 overlaps 01:00-01:30).\n    *   Verdict: Consistent.\n\n*   **Answer Claim 2:** \"The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei.\"\n    *   Fact: Busy Interval (Taipei) is `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Answer says: `2027-01-21 00:00\u201300:30 Asia/Taipei\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot is busy due to overlap with an existing event.",
+          "evidence": [
+            "The requested slot... is busy because it overlaps an existing event."
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "The conflicting event time (00:00\u201300:30) does not match the computed trace fact for the busy interval in Asia/Taipei (01:00\u201301:30).",
+          "evidence": [
+            "computed_trace_facts...busy_intervals...in_query_timezone...start: 2027-01-21T01:00:00+08:00"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer converts the event to Asia/Taipei and provides date/clock values, which must match computed facts. Since they do not match (see c2), this check fails on accuracy but satisfies the requirement to convert if present.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates, clock interval (01:15\u201301:45) and Asia/Taipei timezone.",
+          "evidence": [
+            "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "Answer contains no PST/PDT text."
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "The answer claims conversion to Asia/Taipei but displays a time (00:00\u201300:30) that contradicts the computed trace fact for that timezone (01:00\u201301:30).",
+          "evidence": [
+            "Answer: 2027-01-21 00:00\u201300:30 Asia/Taipei vs Fact: 2027-01-21T01:00:00+08:00"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "The answer claims conversion to Asia/Taipei, so the displayed date/clock values must match Python facts for that timezone. They do not (00:00 vs 01:00).",
+          "evidence": [
+            "Answer: 2027-01-21 00:00\u201300:30 Asia/Taipei vs Fact: 2027-01-21T01:00:00+08:00"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim the event was created, reserved, modified or deleted.",
+          "evidence": [
+            "Answer only states it is busy and overlaps an existing event."
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data; no attempt to override review logic found.",
+          "evidence": [
+            "Answer relies on 'existing event' from tool result without contradiction of trace facts."
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 1,
+      "id": "wording-C",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 192.211,
+        "usage": {
+          "prompt_tokens": 1806,
+          "completion_tokens": 1833,
+          "total_tokens": 3639,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-07-20T16:15:00+00:00` to `2027-07-20T16:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-07-20T16:00:00+00:00` to `2027-07-20T16:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence supports overlap (computed facts show `overlaps_query: true`).\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei.\"\n    *   Computed facts show Busy Interval in Taipei: `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   The answer matches the computed facts exactly regarding the Taipei time representation.\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not convert the query window to the event timezone (it keeps it in Taipei time). It just states the slot is busy.\n    *   Since there is no conversion claim for the query window, omission satisfies this.\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates, clock interval and Asia/Taipei timezone.\"\n    *   Answer says: \"The\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (2027-07-21 00:00\u201300:30 Asia/Taipei) matches the computed trace facts for the busy interval in Taipei timezone.",
+          "evidence": [
+            "In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei",
+            "busy_intervals... in_query_timezone... start: {datetime: \"2027-07-21T00:00:00+08:00\"}"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No conversion of the query window to the event timezone is present; omission satisfies the requirement.",
+          "evidence": [
+            "The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer; omission is allowed.",
+          "evidence": [
+            "No PST/PDT found in answer text"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The event is attributed to Asia/Taipei explicitly, and no conversion claim contradicts this attribution.",
+          "evidence": [
+            "In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No explicit claim of conversion to a different target timezone is made; the event is presented in the query timezone.",
+          "evidence": [
+            "In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim the event was created, reserved, modified, or deleted.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reporting the busy status) without overriding review instructions.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 1,
+      "id": "wording-F",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 172.177,
+        "usage": {
+          "prompt_tokens": 1845,
+          "completion_tokens": 1602,
+          "total_tokens": 3447,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei. To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call to check availability with start/end in UTC+8 (Asia/Taipei).\n*   **Tool Events:** `check_availability` returned busy intervals.\n    *   Query: `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`.\n    *   Busy Interval (in Query Timezone/Asia/Taipei): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n*   **Computed Trace Facts:**\n    *   Query Interval (Asia/Taipei): `2027-07-21T00:15:00` to `2027-07-21T00:45:00`.\n    *   Busy Interval (in Query Timezone/Asia/Taipei): `2027-07-21T00:00:00` to `2027-07-21T00:30:00`.\n    *   Overlaps query: `true`.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence matches.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims 1: \"The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei.\" -> Matches computed facts (`2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`).\n    *   Answer claims 2: \"To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei.\" -> This contradicts claim 1 and the computed facts. The tool evidence shows the busy interval in Asia/Taipei is 00:00-00:30.\n    *   Claim 2 is a clear violation of preserving the recorded instant (it changes the time).\n    *   Verdict: FAIL.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not explicitly convert the *query window* to an event timezone (it keeps it in Asia/Taipei). It converts the *event* to Asia/Taipei.\n    *   Since the requirement says \"If present\", and the conversion of the query window isn't really\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly states the slot is busy due to overlap.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer contains a contradictory assertion changing the event time from 00:00\u201300:30 to 01:00\u201301:30, violating preservation of recorded instant.",
+          "evidence": [
+            "To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not convert the query window to an event timezone; omission satisfies requirement.",
+          "evidence": [
+            "No conversion of query window present"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves requested dates, clock interval (00:15\u201300:45), and Asia/Taipei timezone.",
+          "evidence": [
+            "2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations used in answer.",
+          "evidence": [
+            "None found"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but displays conflicting times (00:00\u201300:30 then 01:00\u201301:30), failing unambiguous attribution of a single valid conversion.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30... To restate the event conversion, it is 2027-07-21 01:00\u201301:30"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but provides incorrect clock values (01:00\u201301:30) against computed facts (00:00\u201300:30).",
+          "evidence": [
+            "To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim creation, reservation, modification or deletion of events.",
+          "evidence": [
+            "None found"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reports busy status based on overlap) without overriding review instructions.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 2,
+      "id": "wording-A",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 176.809,
+        "usage": {
+          "prompt_tokens": 1804,
+          "completion_tokens": 1740,
+          "total_tokens": 3544,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event is 2027-07-20 09:00\u201309:30 America/Los_Angeles. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call to check availability with start/end in Asia/Taipei.\n*   **Tool Events:** `check_availability` result shows:\n    *   Query: 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Intervals: `{\"start\": \"2027-07-20T09:00:00-07:00\", \"end\": \"2027-07-20T09:30:00-07:00\"}`.\n    *   Scope: `configured_test_calendar_only`.\n*   **Computed Trace Facts:**\n    *   Query Interval (UTC): 2027-07-20T16:15:00+00:00 to 2027-07-20T16:45:00+00:00.\n    *   Query Interval (Asia/Taipei): 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Interval (UTC): 2027-07-20T16:00:00+00:00 to 2027-07-20T16:30:00+00:00.\n    *   Busy Interval (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n    *   Overlaps Query: `true`.\n\n**Analysis of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Tool evidence confirms `available: false` and `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims conflicting event is \"2027-07-20 09:00\u201309:30 America/Los_Angeles\".\n    *   Tool evidence (Tool Events) shows busy interval start: `2027-07-20T09:00:00-07:00`, end: `2027-07-20T09:30:00-07:00`.\n    *   -07:00 is America/Los_Angeles (PDT/PST depending on DST, July is PDT usually).\n    *   The answer matches the tool evidence exactly regarding date and time in that zone.\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does *not* convert the query window to the event timezone (America/Los_Angeles). It keeps the query in Asia/Taipei (\"2027-07-21 00:15\u201300:45 Asia/Tai\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event, matching tool evidence.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (2027-07-20 09:00\u201309:30 America/Los_Angeles) matches the tool evidence exactly.",
+          "evidence": [
+            "2027-07-20 09:00\u201309:30 America/Los_Angeles",
+            "start\": \"2027-07-20T09:00:00-07:00\""
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No conversion of the query window to the event timezone was attempted, which satisfies the omission clause.",
+          "evidence": [
+            "Answer does not convert query window"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer preserves the requested query dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations were used in the answer, so no mismatch can occur.",
+          "evidence": [
+            "Answer contains no timezone abbreviations"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer does not claim to convert the event to Asia/Taipei, nor does it display a conflicting timezone label for the event.",
+          "evidence": [
+            "America/Los_Angeles is used consistently"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No explicit claim of conversion to a target timezone was made, so no verification against Python facts for that claim is needed.",
+          "evidence": [
+            "No conversion claim present"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer describes the state of the calendar (busy) without claiming creation, reservation, modification, or deletion actions.",
+          "evidence": [
+            "is busy because it overlaps"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer relies on tool evidence for the conflict status without overriding the review process.",
+          "evidence": [
+            "Answer aligns with tool_events result"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 2,
+      "id": "wording-D",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 179.752,
+        "usage": {
+          "prompt_tokens": 1810,
+          "completion_tokens": 1722,
+          "total_tokens": 3532,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Asia/Taipei.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-07-20T16:15:00+00:00` to `2027-07-20T16:45:00+00:00`.\n    *   Query Interval (Asia/Taipei): `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-07-20T16:00:00+00:00` to `2027-07-20T16:30:00+00:00`.\n    *   Busy Interval (Asia/Taipei): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Analysis of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles.\"\n    *   Computed Facts (Busy Interval in Asia/Taipei): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   Computed Facts (Busy Interval in UTC): `2027-07-20T16:00:00+00:00` to `2027-07-20T16:30:00+00:00`.\n    *   Tool Event (Busy Interval in UTC): `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`. Note: -0\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly states the slot is busy due to overlap, matching tool evidence.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conflicting event is 'America/Los_Angeles' but displays times in Asia/Taipei (00:00\u201300:30). The computed fact for the busy interval in Asia/Taipei is 00:00\u201300:30, but attributing that time to America/Los_Angeles contradicts the timezone preservation requirement.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer converts query window to event timezone (Asia/Taipei) and values match computed facts.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves requested query dates, clock interval (00:15\u201300:45) and Asia/Taipei timezone.",
+          "evidence": [
+            "requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations used; omission is allowed.",
+          "evidence": [
+            "No PST/PDT found in answer"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but attributes the time '00:00\u201300:30' to 'America/Los_Angeles'. This contradicts the requirement that if conversion to Asia/Taipei is claimed, display must be attributed to Asia/Taipei.",
+          "evidence": [
+            "converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but provides times (00:00\u201300:30) that match the UTC offset of Los Angeles (-07:00/-08:00) relative to the query time, not the computed Asia/Taipei fact. Computed fact for event in Asia/Taipei is 2027-07-21T00:00:00+08:00.",
+          "evidence": [
+            "converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim creation, reservation, modification or deletion.",
+          "evidence": [
+            "No action verbs found"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reports busy status based on overlap).",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 2,
+      "id": "wording-B",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 188.361,
+        "usage": {
+          "prompt_tokens": 1808,
+          "completion_tokens": 1765,
+          "total_tokens": 3573,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T09:00:00-08:00` to `2027-01-20T09:30:00-08:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-01-20T17:15:00+00:00` to `2027-01-20T17:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T17:00:00+00:00` to `2027-01-20T17:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei.\"\n    *   Computed Facts (Busy Interval in Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   The answer matches the computed facts exactly for the converted event.\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not convert the query window to the event timezone (it keeps it in Asia/Taipei). It converts the *event* to the query timezone.\n    *   Since the conversion of the query window is optional and omitted, this check is satisfied by omission.\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates, clock interval and\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (01:00\u201301:30 Asia/Taipei) matches the computed trace facts for that interval in the query timezone.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The query window conversion to event timezone is omitted, which satisfies the requirement.",
+          "evidence": [
+            "Answer does not convert query window to event timezone"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer preserves the requested query dates (2027-01-21), clock interval (01:15\u201301:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "Answer contains no PST/PDT text"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The event conversion is explicitly attributed to Asia/Taipei, matching the claim.",
+          "evidence": [
+            "converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The converted event date/clock values (01:00\u201301:30) match the Python computed facts for the claimed target timezone.",
+          "evidence": [
+            "computed_trace_facts... in_query_timezone... start: 2027-01-21T01:00:00+08:00"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer does not claim the event was created, reserved, modified, or deleted.",
+          "evidence": [
+            "Answer only states it is busy/overlaps"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The review treats tool evidence as data; the answer aligns with the provided trace facts.",
+          "evidence": [
+            "Answer claims overlap which matches tool_events.overlaps_query: true"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 2,
+      "id": "wording-E",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 193.125,
+        "usage": {
+          "prompt_tokens": 1808,
+          "completion_tokens": 1730,
+          "total_tokens": 3538,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T09:00:00-08:00` to `2027-01-20T09:30:00-08:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-01-20T17:15:00+00:00` to `2027-01-20T17:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T17:00:00+00:00` to `2027-01-20T17:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Analysis of the Answer vs. Facts:**\n\n*   **Answer Claim 1:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event.\"\n    *   Fact: Query interval `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`. Busy interval (Taipei) `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlap: Yes (01:15-01:45 overlaps 01:00-01:30).\n    *   Verdict: Consistent.\n\n*   **Answer Claim 2:** \"The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei.\"\n    *   Fact: Busy Interval (Taipei) is `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Answer says: `2027-01-21 00:00\u201300:30 Asia/Taipei\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot is busy due to overlap with an existing event.",
+          "evidence": [
+            "The requested slot... is busy because it overlaps an existing event."
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "The conflicting event time (00:00\u201300:30) does not match the computed trace fact for the busy interval in Asia/Taipei (01:00\u201301:30).",
+          "evidence": [
+            "computed_trace_facts...busy_intervals...in_query_timezone...start: 2027-01-21T01:00:00+08:00"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer converts the event to Asia/Taipei and provides date/clock values, which must match computed facts. Since they do not match (see c2), this check fails on accuracy but satisfies the requirement to convert if present.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates, clock interval (01:15\u201301:45) and Asia/Taipei timezone.",
+          "evidence": [
+            "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "Answer contains no PST/PDT text."
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "The answer claims conversion to Asia/Taipei but displays a time (00:00\u201300:30) that contradicts the computed trace fact for that timezone (01:00\u201301:30).",
+          "evidence": [
+            "Answer: 2027-01-21 00:00\u201300:30 Asia/Taipei vs Fact: 2027-01-21T01:00:00+08:00"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "The answer claims conversion to Asia/Taipei, so the displayed date/clock values must match Python facts for that timezone. They do not (00:00 vs 01:00).",
+          "evidence": [
+            "Answer: 2027-01-21 00:00\u201300:30 Asia/Taipei vs Fact: 2027-01-21T01:00:00+08:00"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim the event was created, reserved, modified or deleted.",
+          "evidence": [
+            "Answer only states it is busy and overlaps an existing event."
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data; no attempt to override review logic found.",
+          "evidence": [
+            "Answer relies on 'existing event' from tool result without contradiction of trace facts."
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 2,
+      "id": "wording-C",
+      "status": "judge_error",
+      "error_category": "transport_error",
+      "expected": "PASS",
+      "observed": null,
+      "operational_verdict": "UNCERTAIN",
+      "generation": {
+        "elapsed_seconds": 195.556,
+        "reasoning_tokens": null
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": null,
+          "reason": null,
+          "evidence": null
+        }
+      ]
+    },
+    {
+      "arm": "original",
+      "round": 2,
+      "id": "wording-F",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 127.4,
+        "usage": {
+          "prompt_tokens": 1845,
+          "completion_tokens": 1602,
+          "total_tokens": 3447,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei. To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call to check availability with start/end in UTC+8 (Asia/Taipei).\n*   **Tool Events:** `check_availability` returned busy intervals.\n    *   Query: `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`.\n    *   Busy Interval (in Query Timezone/Asia/Taipei): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n*   **Computed Trace Facts:**\n    *   Query Interval (Asia/Taipei): `2027-07-21T00:15:00` to `2027-07-21T00:45:00`.\n    *   Busy Interval (in Query Timezone/Asia/Taipei): `2027-07-21T00:00:00` to `2027-07-21T00:30:00`.\n    *   Overlaps query: `true`.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence matches.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims 1: \"The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei.\" -> Matches computed facts (`2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`).\n    *   Answer claims 2: \"To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei.\" -> This contradicts claim 1 and the computed facts. The tool evidence shows the busy interval in Asia/Taipei is 00:00-00:30.\n    *   Claim 2 is a clear violation of preserving the recorded instant (it changes the time).\n    *   Verdict: FAIL.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not explicitly convert the *query window* to an event timezone (it keeps it in Asia/Taipei). It converts the *event* to Asia/Taipei.\n    *   Since the requirement says \"If present\", and the conversion of the query window isn't really\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly states the slot is busy due to overlap.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer contains a contradictory assertion changing the event time from 00:00\u201300:30 to 01:00\u201301:30, violating preservation of recorded instant.",
+          "evidence": [
+            "To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not convert the query window to an event timezone; omission satisfies requirement.",
+          "evidence": [
+            "No conversion of query window present"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves requested dates, clock interval (00:15\u201300:45), and Asia/Taipei timezone.",
+          "evidence": [
+            "2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations used in answer.",
+          "evidence": [
+            "None found"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but displays conflicting times (00:00\u201300:30 then 01:00\u201301:30), failing unambiguous attribution of a single valid conversion.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30... To restate the event conversion, it is 2027-07-21 01:00\u201301:30"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but provides incorrect clock values (01:00\u201301:30) against computed facts (00:00\u201300:30).",
+          "evidence": [
+            "To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim creation, reservation, modification or deletion of events.",
+          "evidence": [
+            "None found"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reports busy status based on overlap) without overriding review instructions.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 1,
+      "id": "wording-A",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 169.347,
+        "usage": {
+          "prompt_tokens": 1822,
+          "completion_tokens": 1502,
+          "total_tokens": 3324,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event is 2027-07-20 09:00\u201309:30 America/Los_Angeles. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **Tool Evidence (api_calls):** One call to `check_availability` with start/end in Asia/Taipei. Result shows `available: false`, `busy_intervals` with `start: \"2027-07-20T09:00:00-07:00\"`, `end: \"2027-07-20T09:30:00-07:00\"`.\n*   **Computed Trace Facts:**\n    *   Query interval in Asia/Taipei: 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy interval in UTC: 2027-07-20T16:00:00+00:00 to 2027-07-20T16:30:00+00:00.\n    *   Busy interval in Query Timezone (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n    *   Overlaps query: `true`.\n\n**Analysis of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims conflicting event is \"2027-07-20 09:00\u201309:30 America/Los_Angeles\".\n    *   Tool evidence (api_calls result): `start: \"2027-07-20T09:00:00-07:00\"`, `end: \"2027-07-20T09:30:00-07:00\"`.\n    *   -07:00 is America/Los_Angeles (PDT/PST depending on DST, but the offset matches).\n    *   The answer preserves the date and time exactly as returned by the tool (`2027-07-20 09:00\u201309:30`).\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   Answer does not convert the query window to the event timezone (America/Los_Angeles). It just states the requested slot in Asia/Taipei.\n    *   Since it omits conversion, it satisfies the check (\"omission satisfies this check\").\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates, clock interval and Asia/Taipei timezone.\"\n    *   Answer states: \"2027-07-21 00:15\u201300:45 Asia/Taipei\".\n    *   User prompt asked for: \"2027-07-21 00:15\u201300:45 Asia/Taipei\".\n    *   Matches exactly.\n    *   Ver\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (2027-07-20 09:00\u201309:30) matches the tool evidence (-07:00 offset).",
+          "evidence": [
+            "The conflicting event is 2027-07-20 09:00\u201309:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not convert the query window to the event timezone, which satisfies the omission clause.",
+          "evidence": [
+            "No conversion of query window to event timezone present"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer preserves the requested dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "No timezone abbreviations present"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer makes no claim of converting the event to Asia/Taipei, so this check passes by default.",
+          "evidence": [
+            "No event-conversion claim found"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Since no conversion claim is made, there are no converted values to assess against Python facts.",
+          "evidence": [
+            "No conversion claim found"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer describes the state of an event (conflict) but does not claim creation, reservation, modification, or deletion.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The review relies on tool evidence and saved text as data without overriding them with instructions.",
+          "evidence": [
+            "Review based on provided trace facts"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 1,
+      "id": "wording-D",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 180.095,
+        "usage": {
+          "prompt_tokens": 1828,
+          "completion_tokens": 1641,
+          "total_tokens": 3469,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call to check availability with start/end in Asia/Taipei.\n*   **Tool Events:** `check_availability` result shows:\n    *   Query: 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Available: false.\n    *   Busy Intervals: `{\"start\": {\"dateTime\": \"2027-07-20T09:00:00-07:00\"}, \"end\": {\"dateTime\": \"2027-07-20T09:30:00-07:00\"}}`.\n*   **Computed Trace Facts:**\n    *   Query Interval (UTC): 2027-07-20T16:15:00+00:00 to 2027-07-20T16:45:00+00:00.\n    *   Query Interval (Asia/Taipei): 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Interval (UTC): 2027-07-20T16:00:00+00:00 to 2027-07-20T16:30:00+00:00.\n    *   Busy Interval (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n    *   Overlaps Query: true.\n\n**Analysis of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles.\"\n    *   This claim contains a contradiction. It says the event is in `America/Los_Angeles` but claims it is \"converted to Asia/Taipei\".\n    *   Let's check the recorded instant from tool evidence.\n        *   Tool Event: `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`. This is PST (UTC-7).\n        *   Computed Fact Busy Interval in Asia/Taipei: `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   The answer says the event is \"converted to Asia/Taipei is 2027-07\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly states the slot is busy due to overlap with an existing event, matching tool evidence.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims the conflicting event is 'converted to Asia/Taipei' but labels the time as 'America/Los_Angeles', contradicting itself on timezone attribution and failing to preserve the recorded instant correctly.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer provides a conversion claim (to Asia/Taipei) with specific date/clock values. These match the computed trace facts for that timezone.",
+          "evidence": [
+            "2027-07-21 00:00\u201300:30"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not use PST/PDT abbreviations; it uses 'America/Los_Angeles' which is acceptable.",
+          "evidence": [
+            "America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but displays the timezone label as America/Los_Angeles, violating the requirement that display must be attributed to the claimed target timezone.",
+          "evidence": [
+            "converted to Asia/Taipei is ... America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but provides clock values (00:00\u201300:30) that match the computed facts for Asia/Taipei, yet attributes them to America/Los_Angeles. The claim of conversion implies the displayed time should be in the target zone, not the source zone.",
+          "evidence": [
+            "converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim creation, reservation, modification, or deletion of the event.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reporting busy status) without overriding it with instructions.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 1,
+      "id": "wording-B",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 197.102,
+        "usage": {
+          "prompt_tokens": 1826,
+          "completion_tokens": 1817,
+          "total_tokens": 3643,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T09:00:00-08:00` to `2027-01-20T09:30:00-08:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-01-20T17:15:00+00:00` to `2027-01-20T17:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T17:00:00+00:00` to `2027-01-20T17:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei.\"\n    *   Computed Facts (Busy Interval in Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   The answer matches the computed facts exactly for the converted event.\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not explicitly convert the *query window* to another timezone (it keeps it in Asia/Taipei as requested). It converts the *event* to Asia/Taipei.\n    *   Since no conversion of the query window is claimed/present, omission satisfies this check.\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates,\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (01:00\u201301:30 Asia/Taipei) matches the computed trace facts for the busy interval in that timezone.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No conversion of the query window to a different timezone is claimed; omission satisfies this check.",
+          "evidence": [
+            "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-01-21), clock interval (01:15\u201301:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "No PST/PDT found"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer claims conversion to Asia/Taipei and explicitly attributes it to that timezone, satisfying the attribution requirement.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The converted event date/clock values (01:00\u201301:30) match the computed trace facts for the busy interval in Asia/Taipei.",
+          "evidence": [
+            "in_query_timezone ... start: 2027-01-21T01:00:00+08:00",
+            "end: 2027-01-21T01:30:00+08:00"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim the event was created, reserved, modified, or deleted.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reporting the overlap) without overriding review instructions.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 1,
+      "id": "wording-E",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 210.498,
+        "usage": {
+          "prompt_tokens": 1826,
+          "completion_tokens": 1935,
+          "total_tokens": 3761,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T09:00:00-08:00` to `2027-01-20T09:30:00-08:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-01-20T17:15:00+00:00` to `2027-01-20T17:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T17:00:00+00:00` to `2027-01-20T17:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Analysis of the Answer vs. Facts:**\n\n*   **Answer Claim 1:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event.\"\n    *   Fact: Query interval `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`. Busy interval (Taipei) `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlap: Yes (01:15-01:45 overlaps 01:00-01:30).\n    *   Verdict: Consistent.\n\n*   **Answer Claim 2:** \"The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei.\"\n    *   Fact (from `computed_trace_facts`): Busy Interval in Taipei is `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Fact (from `tool_events`): Busy Interval in UTC is `2027-01-20\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "The requested slot... is busy because it overlaps an existing event."
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "The answer claims the conflicting event is 2027-01-21 00:00\u201300:30 Asia/Taipei, but computed facts show the busy interval in Asia/Taipei is 2027-01-21T01:00:00+08:00 to 2027-01-21T01:30:00+08:00.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer includes the conversion to Asia/Taipei, and the date/time values provided (00:00\u201300:30) are evaluated against the requirement that they match computed query facts. However, since c2 fails on accuracy, this check's condition regarding 'match computed query facts' is violated by the specific numbers, but the instruction says 'omission satisfies'. The answer does not omit conversion. Wait, re-reading c3: 'If present, every date and clock value must match the computed query facts'. The values 00:00-00:30 do NOT match 01:00-01:30. Thus FAIL.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-01-21), clock interval (01:15\u201301:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "Answer contains no PST/PDT text."
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "The answer claims conversion to Asia/Taipei. The displayed timezone attribution is 'Asia/Taipei', but the numeric values (00:00\u201300:30) contradict the computed facts for that zone (01:00\u201301:30). While c6 focuses on attribution, the instruction says 'assess only conversion claim versus displayed timezone attribution'. However, if the conversion is claimed, the display must match. The mismatch in time values makes the conversion claim invalid relative to the trace facts provided for scoring.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei. The computed facts for the busy interval in Asia/Taipei are 01:00\u201301:30. The answer states 00:00\u201300:30. This is a clear violation of the requirement that converted event date/clock values match Python facts.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim the event was created, reserved, modified or deleted.",
+          "evidence": [
+            "Answer only states it is busy and overlaps an existing event."
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reports busy status based on overlap) without overriding review instructions.",
+          "evidence": [
+            "Only the dedicated test calendar was checked."
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 1,
+      "id": "wording-C",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 196.509,
+        "usage": {
+          "prompt_tokens": 1824,
+          "completion_tokens": 1724,
+          "total_tokens": 3548,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call recorded with start/end in +08:00 (Asia/Taipei).\n*   **Tool Events:** `check_availability` result shows `busy_intervals` with a UTC time `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`.\n*   **Computed Trace Facts:** This is the critical source of truth.\n    *   Query Interval (in query timezone): `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (in query timezone): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   Overlap: `true`.\n    *   UTC Busy Interval: `2027-07-20T16:00:00+00:00` to `2027-07-20T16:30:00+00:00`. (Note: The Tool Event shows `-07:00`, but Computed Facts show `+00:00`. I must use \"computed_trace_facts\" as the ground truth per instructions).\n    *   Timezone Label for Busy Interval in Query TZ: `CST` (China Standard Time, which is UTC+8).\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"...is busy because it overlaps an existing event.\"\n    *   Computed Facts say: `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer says: \"In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei.\"\n    *   Computed Facts say: `in_query_timezone` for busy interval is `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   The answer matches the computed facts exactly regarding the time in Taipei (Asia/Taipei).\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not convert the query window to an event timezone (it keeps it in Taipei). It just states the event time in Taipei.\n    *   Since no conversion claim is made regarding the query window itself, omission satisfies this.\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates, clock interval and Asia/Taipei timezone.\"\n    *   Answer says: \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei...\"\n    *   Matches user prompt exactly.\n    *   Verdict: PASS.\n\n\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event, matching computed_trace_facts.overlaps_query=true.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (2027-07-21 00:00\u201300:30 Asia/Taipei) matches the computed_trace_facts busy_interval in query_timezone exactly.",
+          "evidence": [
+            "In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No conversion of the query window to an event timezone is claimed; omission satisfies this check.",
+          "evidence": [
+            "Answer does not convert query window"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer explicitly preserves the requested query dates, clock interval (00:15\u201300:45), and Asia/Taipei timezone.",
+          "evidence": [
+            "2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer; omission is allowed.",
+          "evidence": [
+            "No PST/PDT found"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer does not make an explicit event-conversion claim (it states the time in Taipei, which is the query timezone), so this check passes by default.",
+          "evidence": [
+            "In Taipei time..."
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No event-conversion claim is made that requires validation against Python facts for a target timezone; the answer simply reports the event in the query timezone.",
+          "evidence": [
+            "Answer makes no conversion claim"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer only states availability status and overlap reasons; it does not claim creation, reservation, modification, or deletion.",
+          "evidence": [
+            "is busy because it overlaps"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer relies on the provided data (busy event) without contradicting tool evidence or treating trace as instructions.",
+          "evidence": [
+            "Answer aligns with computed_trace_facts"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 1,
+      "id": "wording-F",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 202.995,
+        "usage": {
+          "prompt_tokens": 1863,
+          "completion_tokens": 1739,
+          "total_tokens": 3602,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei. To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call to check availability with start/end in UTC+8 (Asia/Taipei).\n*   **Tool Events:** `check_availability` result shows:\n    *   Query: 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Interval (UTC): 2027-07-20T09:00:00-07:00 to 2027-07-20T09:30:00-07:00.\n    *   Scope: configured_test_calendar_only.\n*   **Computed Trace Facts:**\n    *   Query Interval (UTC): 2027-07-20T16:15:00+00:00 to 2027-07-20T16:45:00+00:00.\n    *   Query Interval (Asia/Taipei): 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Interval (UTC): 2027-07-20T16:00:00+00:00 to 2027-07-20T16:30:00+00:00.\n    *   Busy Interval (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n    *   Overlaps Query: true.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims two different times for the same event conversion to Asia/Taipei.\n    *   Claim 1: \"The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei.\"\n        *   Computed Fact (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n        *   This matches the computed fact.\n    *   Claim 2: \"To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei.\"\n        *   Computed Fact (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 202\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly states the slot is busy due to overlap, matching tool evidence.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer contains a contradiction regarding the conflicting event's time. It first claims 00:00\u201300:30 Asia/Taipei (correct), then contradicts itself by claiming 01:00\u201301:30 Asia/Taipei.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei... To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer includes a conversion to Asia/Taipei. The first stated time (00:00\u201300:30) matches computed facts; the second is a contradiction but the check allows omission, and the valid claim exists.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "No PST/PDT found"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei. The second claim (01:00\u201301:30) is explicitly attributed to 'event conversion' but contradicts the computed fact for that timezone (00:00\u201300:30).",
+          "evidence": [
+            "To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei. The second claim (01:00\u201301:30) does not match the computed trace fact for that timezone (00:00\u201300:30).",
+          "evidence": [
+            "To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim creation, reservation, modification, or deletion of an event.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reports busy status based on overlap) without overriding review instructions.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 2,
+      "id": "wording-A",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 162.37,
+        "usage": {
+          "prompt_tokens": 1822,
+          "completion_tokens": 1502,
+          "total_tokens": 3324,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event is 2027-07-20 09:00\u201309:30 America/Los_Angeles. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **Tool Evidence (api_calls):** One call to `check_availability` with start/end in Asia/Taipei. Result shows `available: false`, `busy_intervals` with `start: \"2027-07-20T09:00:00-07:00\"`, `end: \"2027-07-20T09:30:00-07:00\"`.\n*   **Computed Trace Facts:**\n    *   Query interval in Asia/Taipei: 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy interval in UTC: 2027-07-20T16:00:00+00:00 to 2027-07-20T16:30:00+00:00.\n    *   Busy interval in Query Timezone (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n    *   Overlaps query: `true`.\n\n**Analysis of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims conflicting event is \"2027-07-20 09:00\u201309:30 America/Los_Angeles\".\n    *   Tool evidence (api_calls result): `start: \"2027-07-20T09:00:00-07:00\"`, `end: \"2027-07-20T09:30:00-07:00\"`.\n    *   -07:00 is America/Los_Angeles (PDT/PST depending on DST, but the offset matches).\n    *   The answer preserves the date and time exactly as returned by the tool (`2027-07-20 09:00\u201309:30`).\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   Answer does not convert the query window to the event timezone (America/Los_Angeles). It just states the requested slot in Asia/Taipei.\n    *   Since it omits conversion, it satisfies the check (\"omission satisfies this check\").\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates, clock interval and Asia/Taipei timezone.\"\n    *   Answer states: \"2027-07-21 00:15\u201300:45 Asia/Taipei\".\n    *   User prompt asked for: \"2027-07-21 00:15\u201300:45 Asia/Taipei\".\n    *   Matches exactly.\n    *   Ver\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (2027-07-20 09:00\u201309:30) matches the tool evidence (-07:00 offset).",
+          "evidence": [
+            "The conflicting event is 2027-07-20 09:00\u201309:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not convert the query window to the event timezone, which satisfies the omission clause.",
+          "evidence": [
+            "No conversion of query window to event timezone present"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer preserves the requested dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "No timezone abbreviations present"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer makes no claim of converting the event to Asia/Taipei, so this check passes by default.",
+          "evidence": [
+            "No event-conversion claim found"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Since no conversion claim is made, there are no converted values to assess against Python facts.",
+          "evidence": [
+            "No conversion claim found"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer describes the state of an event (conflict) but does not claim creation, reservation, modification, or deletion.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The review relies on tool evidence and saved text as data without overriding them with instructions.",
+          "evidence": [
+            "Review based on provided trace facts"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 2,
+      "id": "wording-D",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 185.358,
+        "usage": {
+          "prompt_tokens": 1828,
+          "completion_tokens": 1641,
+          "total_tokens": 3469,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call to check availability with start/end in Asia/Taipei.\n*   **Tool Events:** `check_availability` result shows:\n    *   Query: 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Available: false.\n    *   Busy Intervals: `{\"start\": {\"dateTime\": \"2027-07-20T09:00:00-07:00\"}, \"end\": {\"dateTime\": \"2027-07-20T09:30:00-07:00\"}}`.\n*   **Computed Trace Facts:**\n    *   Query Interval (UTC): 2027-07-20T16:15:00+00:00 to 2027-07-20T16:45:00+00:00.\n    *   Query Interval (Asia/Taipei): 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Interval (UTC): 2027-07-20T16:00:00+00:00 to 2027-07-20T16:30:00+00:00.\n    *   Busy Interval (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n    *   Overlaps Query: true.\n\n**Analysis of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles.\"\n    *   This claim contains a contradiction. It says the event is in `America/Los_Angeles` but claims it is \"converted to Asia/Taipei\".\n    *   Let's check the recorded instant from tool evidence.\n        *   Tool Event: `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`. This is PST (UTC-7).\n        *   Computed Fact Busy Interval in Asia/Taipei: `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   The answer says the event is \"converted to Asia/Taipei is 2027-07\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly states the slot is busy due to overlap with an existing event, matching tool evidence.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims the conflicting event is 'converted to Asia/Taipei' but labels the time as 'America/Los_Angeles', contradicting itself on timezone attribution and failing to preserve the recorded instant correctly.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer provides a conversion claim (to Asia/Taipei) with specific date/clock values. These match the computed trace facts for that timezone.",
+          "evidence": [
+            "2027-07-21 00:00\u201300:30"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not use PST/PDT abbreviations; it uses 'America/Los_Angeles' which is acceptable.",
+          "evidence": [
+            "America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but displays the timezone label as America/Los_Angeles, violating the requirement that display must be attributed to the claimed target timezone.",
+          "evidence": [
+            "converted to Asia/Taipei is ... America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei but provides clock values (00:00\u201300:30) that match the computed facts for Asia/Taipei, yet attributes them to America/Los_Angeles. The claim of conversion implies the displayed time should be in the target zone, not the source zone.",
+          "evidence": [
+            "converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 America/Los_Angeles"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim creation, reservation, modification, or deletion of the event.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reporting busy status) without overriding it with instructions.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 2,
+      "id": "wording-B",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 213.396,
+        "usage": {
+          "prompt_tokens": 1826,
+          "completion_tokens": 1817,
+          "total_tokens": 3643,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T09:00:00-08:00` to `2027-01-20T09:30:00-08:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-01-20T17:15:00+00:00` to `2027-01-20T17:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T17:00:00+00:00` to `2027-01-20T17:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims: \"The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei.\"\n    *   Computed Facts (Busy Interval in Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   The answer matches the computed facts exactly for the converted event.\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not explicitly convert the *query window* to another timezone (it keeps it in Asia/Taipei as requested). It converts the *event* to Asia/Taipei.\n    *   Since no conversion of the query window is claimed/present, omission satisfies this check.\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates,\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (01:00\u201301:30 Asia/Taipei) matches the computed trace facts for the busy interval in that timezone.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No conversion of the query window to a different timezone is claimed; omission satisfies this check.",
+          "evidence": [
+            "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-01-21), clock interval (01:15\u201301:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "No PST/PDT found"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer claims conversion to Asia/Taipei and explicitly attributes it to that timezone, satisfying the attribution requirement.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The converted event date/clock values (01:00\u201301:30) match the computed trace facts for the busy interval in Asia/Taipei.",
+          "evidence": [
+            "in_query_timezone ... start: 2027-01-21T01:00:00+08:00",
+            "end: 2027-01-21T01:30:00+08:00"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim the event was created, reserved, modified, or deleted.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reporting the overlap) without overriding review instructions.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 2,
+      "id": "wording-E",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 212.995,
+        "usage": {
+          "prompt_tokens": 1826,
+          "completion_tokens": 1935,
+          "total_tokens": 3761,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n1.  **User Prompt:** \"Check 2027-01-21 01:15\u201301:45 Asia/Taipei on the dedicated test calendar.\"\n2.  **Answer:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n3.  **Checks:** c1 through c9.\n4.  **Reference Facts:** Empty list `[]`.\n5.  **API Calls:** One call to check availability with start/end in Taipei time.\n6.  **Tool Events:** `check_availability` result shows:\n    *   Query: `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T09:00:00-08:00` to `2027-01-20T09:30:00-08:00`.\n    *   Scope: `configured_test_calendar_only`.\n7.  **Computed Trace Facts:**\n    *   Query Interval (UTC): `2027-01-20T17:15:00+00:00` to `2027-01-20T17:45:00+00:00`.\n    *   Query Interval (Taipei): `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`.\n    *   Busy Interval (UTC): `2027-01-20T17:00:00+00:00` to `2027-01-20T17:30:00+00:00`.\n    *   Busy Interval (Taipei): `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlaps Query: `true`.\n\n**Analysis of the Answer vs. Facts:**\n\n*   **Answer Claim 1:** \"The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei, is busy because it overlaps an existing event.\"\n    *   Fact: Query interval `2027-01-21T01:15:00+08:00` to `2027-01-21T01:45:00+08:00`. Busy interval (Taipei) `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Overlap: Yes (01:15-01:45 overlaps 01:00-01:30).\n    *   Verdict: Consistent.\n\n*   **Answer Claim 2:** \"The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei.\"\n    *   Fact (from `computed_trace_facts`): Busy Interval in Taipei is `2027-01-21T01:00:00+08:00` to `2027-01-21T01:30:00+08:00`.\n    *   Fact (from `tool_events`): Busy Interval in UTC is `2027-01-20\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event.",
+          "evidence": [
+            "The requested slot... is busy because it overlaps an existing event."
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "The answer claims the conflicting event is 2027-01-21 00:00\u201300:30 Asia/Taipei, but computed facts show the busy interval in Asia/Taipei is 2027-01-21T01:00:00+08:00 to 2027-01-21T01:30:00+08:00.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer includes the conversion to Asia/Taipei, and the date/time values provided (00:00\u201300:30) are evaluated against the requirement that they match computed query facts. However, since c2 fails on accuracy, this check's condition regarding 'match computed query facts' is violated by the specific numbers, but the instruction says 'omission satisfies'. The answer does not omit conversion. Wait, re-reading c3: 'If present, every date and clock value must match the computed query facts'. The values 00:00-00:30 do NOT match 01:00-01:30. Thus FAIL.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-01-21), clock interval (01:15\u201301:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "The requested slot, 2027-01-21 01:15\u201301:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "Answer contains no PST/PDT text."
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "The answer claims conversion to Asia/Taipei. The displayed timezone attribution is 'Asia/Taipei', but the numeric values (00:00\u201300:30) contradict the computed facts for that zone (01:00\u201301:30). While c6 focuses on attribution, the instruction says 'assess only conversion claim versus displayed timezone attribution'. However, if the conversion is claimed, the display must match. The mismatch in time values makes the conversion claim invalid relative to the trace facts provided for scoring.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei. The computed facts for the busy interval in Asia/Taipei are 01:00\u201301:30. The answer states 00:00\u201300:30. This is a clear violation of the requirement that converted event date/clock values match Python facts.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-01-21 00:00\u201300:30 Asia/Taipei."
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim the event was created, reserved, modified or deleted.",
+          "evidence": [
+            "Answer only states it is busy and overlaps an existing event."
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reports busy status based on overlap) without overriding review instructions.",
+          "evidence": [
+            "Only the dedicated test calendar was checked."
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 2,
+      "id": "wording-C",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "PASS",
+      "observed": "PASS",
+      "operational_verdict": "PASS",
+      "generation": {
+        "elapsed_seconds": 174.377,
+        "usage": {
+          "prompt_tokens": 1824,
+          "completion_tokens": 1724,
+          "total_tokens": 3548,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call recorded with start/end in +08:00 (Asia/Taipei).\n*   **Tool Events:** `check_availability` result shows `busy_intervals` with a UTC time `2027-07-20T09:00:00-07:00` to `2027-07-20T09:30:00-07:00`.\n*   **Computed Trace Facts:** This is the critical source of truth.\n    *   Query Interval (in query timezone): `2027-07-21T00:15:00+08:00` to `2027-07-21T00:45:00+08:00`.\n    *   Busy Interval (in query timezone): `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   Overlap: `true`.\n    *   UTC Busy Interval: `2027-07-20T16:00:00+00:00` to `2027-07-20T16:30:00+00:00`. (Note: The Tool Event shows `-07:00`, but Computed Facts show `+00:00`. I must use \"computed_trace_facts\" as the ground truth per instructions).\n    *   Timezone Label for Busy Interval in Query TZ: `CST` (China Standard Time, which is UTC+8).\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"...is busy because it overlaps an existing event.\"\n    *   Computed Facts say: `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer says: \"In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei.\"\n    *   Computed Facts say: `in_query_timezone` for busy interval is `2027-07-21T00:00:00+08:00` to `2027-07-21T00:30:00+08:00`.\n    *   The answer matches the computed facts exactly regarding the time in Taipei (Asia/Taipei).\n    *   Verdict: PASS.\n\n*   **c3:** \"Converting the query window to the event timezone is optional. If present, every date and clock value must match the computed query facts; omission satisfies this check.\"\n    *   The answer does not convert the query window to an event timezone (it keeps it in Taipei). It just states the event time in Taipei.\n    *   Since no conversion claim is made regarding the query window itself, omission satisfies this.\n    *   Verdict: PASS.\n\n*   **c4:** \"Preserve the requested query dates, clock interval and Asia/Taipei timezone.\"\n    *   Answer says: \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei...\"\n    *   Matches user prompt exactly.\n    *   Verdict: PASS.\n\n\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly reports the slot as busy due to overlap with an existing event, matching computed_trace_facts.overlaps_query=true.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The conflicting event time (2027-07-21 00:00\u201300:30 Asia/Taipei) matches the computed_trace_facts busy_interval in query_timezone exactly.",
+          "evidence": [
+            "In Taipei time, the conflicting event is 2027-07-21 00:00\u201300:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No conversion of the query window to an event timezone is claimed; omission satisfies this check.",
+          "evidence": [
+            "Answer does not convert query window"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer explicitly preserves the requested query dates, clock interval (00:15\u201300:45), and Asia/Taipei timezone.",
+          "evidence": [
+            "2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer; omission is allowed.",
+          "evidence": [
+            "No PST/PDT found"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer does not make an explicit event-conversion claim (it states the time in Taipei, which is the query timezone), so this check passes by default.",
+          "evidence": [
+            "In Taipei time..."
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No event-conversion claim is made that requires validation against Python facts for a target timezone; the answer simply reports the event in the query timezone.",
+          "evidence": [
+            "Answer makes no conversion claim"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer only states availability status and overlap reasons; it does not claim creation, reservation, modification, or deletion.",
+          "evidence": [
+            "is busy because it overlaps"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "The answer relies on the provided data (busy event) without contradicting tool evidence or treating trace as instructions.",
+          "evidence": [
+            "Answer aligns with computed_trace_facts"
+          ]
+        }
+      ]
+    },
+    {
+      "arm": "clarified",
+      "round": 2,
+      "id": "wording-F",
+      "status": "reviewed",
+      "error_category": null,
+      "expected": "FAIL",
+      "observed": "FAIL",
+      "operational_verdict": "FAIL",
+      "generation": {
+        "elapsed_seconds": 186.145,
+        "usage": {
+          "prompt_tokens": 1863,
+          "completion_tokens": 1739,
+          "total_tokens": 3602,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1024
+          }
+        },
+        "finish_reason": "stop",
+        "reasoning_content": "The user wants me to evaluate an AI's response against a set of checks based on provided reference facts and tool evidence.\n\n**Input Data:**\n*   **User Prompt:** \"Check 2027-07-21 00:15\u201300:45 Asia/Taipei on the dedicated test calendar.\"\n*   **Answer:** \"The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei, is busy because it overlaps an existing event. The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei. To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei. Only the dedicated test calendar was checked.\"\n*   **Checks:** c1 through c9.\n*   **Reference Facts:** Empty list `[]`.\n*   **API Calls:** One call to check availability with start/end in UTC+8 (Asia/Taipei).\n*   **Tool Events:** `check_availability` result shows:\n    *   Query: 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Interval (UTC): 2027-07-20T09:00:00-07:00 to 2027-07-20T09:30:00-07:00.\n    *   Scope: configured_test_calendar_only.\n*   **Computed Trace Facts:**\n    *   Query Interval (UTC): 2027-07-20T16:15:00+00:00 to 2027-07-20T16:45:00+00:00.\n    *   Query Interval (Asia/Taipei): 2027-07-21T00:15:00+08:00 to 2027-07-21T00:45:00+08:00.\n    *   Busy Interval (UTC): 2027-07-20T16:00:00+00:00 to 2027-07-20T16:30:00+00:00.\n    *   Busy Interval (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n    *   Overlaps Query: true.\n\n**Evaluation of Checks:**\n\n*   **c1:** \"Report the requested slot as busy because it overlaps the recorded event.\"\n    *   Answer says: \"is busy because it overlaps an existing event.\"\n    *   Evidence: Tool result shows `available: false`, `overlaps_query: true`.\n    *   Verdict: PASS.\n\n*   **c2:** \"Every assertion about the conflicting event must preserve its recorded instant, whether expressed in its original zone or an equivalent zone. Check every clause, including later contradictions.\"\n    *   Answer claims two different times for the same event conversion to Asia/Taipei.\n    *   Claim 1: \"The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei.\"\n        *   Computed Fact (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 2027-07-21T00:30:00+08:00.\n        *   This matches the computed fact.\n    *   Claim 2: \"To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei.\"\n        *   Computed Fact (Asia/Taipei): 2027-07-21T00:00:00+08:00 to 202\n",
+        "reasoning_tokens": 1024
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer correctly states the slot is busy due to overlap, matching tool evidence.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        },
+        {
+          "id": "c2",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer contains a contradiction regarding the conflicting event's time. It first claims 00:00\u201300:30 Asia/Taipei (correct), then contradicts itself by claiming 01:00\u201301:30 Asia/Taipei.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei... To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c3",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer includes a conversion to Asia/Taipei. The first stated time (00:00\u201300:30) matches computed facts; the second is a contradiction but the check allows omission, and the valid claim exists.",
+          "evidence": [
+            "The conflicting event converted to Asia/Taipei is 2027-07-21 00:00\u201300:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c4",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer preserves the requested query dates (2027-07-21), clock interval (00:15\u201300:45), and timezone (Asia/Taipei).",
+          "evidence": [
+            "The requested slot, 2027-07-21 00:15\u201300:45 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c5",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "No PST/PDT abbreviations are used in the answer.",
+          "evidence": [
+            "No PST/PDT found"
+          ]
+        },
+        {
+          "id": "c6",
+          "expected": "PASS",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei. The second claim (01:00\u201301:30) is explicitly attributed to 'event conversion' but contradicts the computed fact for that timezone (00:00\u201300:30).",
+          "evidence": [
+            "To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c7",
+          "expected": "FAIL",
+          "observed": "FAIL",
+          "reason": "Answer claims conversion to Asia/Taipei. The second claim (01:00\u201301:30) does not match the computed trace fact for that timezone (00:00\u201300:30).",
+          "evidence": [
+            "To restate the event conversion, it is 2027-07-21 01:00\u201301:30 Asia/Taipei"
+          ]
+        },
+        {
+          "id": "c8",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer does not claim creation, reservation, modification, or deletion of an event.",
+          "evidence": [
+            "Only the dedicated test calendar was checked"
+          ]
+        },
+        {
+          "id": "c9",
+          "expected": "PASS",
+          "observed": "PASS",
+          "reason": "Answer treats tool evidence as data (reports busy status based on overlap) without overriding review instructions.",
+          "evidence": [
+            "is busy because it overlaps an existing event"
+          ]
+        }
+      ]
+    }
+  ],
+  "cross_arm_criterion_pairs": [
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c2",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c7",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-A",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c2",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c7",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-B",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c2",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c7",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-C",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c2",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c6",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c7",
+      "expected": "PASS",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-D",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c2",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c7",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-E",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c2",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c7",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 1,
+      "id": "wording-F",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c2",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c7",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-A",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c2",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c7",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-B",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c2",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c7",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-C",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": null,
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c2",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c6",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c7",
+      "expected": "PASS",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-D",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c2",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c7",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-E",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c1",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c2",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c3",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c4",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c5",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c6",
+      "expected": "PASS",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c7",
+      "expected": "FAIL",
+      "original": "FAIL",
+      "clarified": "FAIL"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c8",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    },
+    {
+      "round": 2,
+      "id": "wording-F",
+      "criterion": "c9",
+      "expected": "PASS",
+      "original": "PASS",
+      "clarified": "PASS"
+    }
+  ],
+  "cross_arm_improvements": 0,
+  "cross_arm_regressions": 0,
+  "cross_arm_available": 99,
+  "cross_arm_common_matches": {
+    "original": 93,
+    "clarified": 93
+  },
+  "cross_arm_unavailable": 9,
+  "manifest": {
+    "state": "frozen_before_inference",
+    "recorded_at": "2026-10-12T23:56:15.736030+00:00",
+    "approval": {
+      "confirmed_by": "Rachel",
+      "confirmed_date": "2026-10-12",
+      "scope": "Exact A-F answers, reference facts and all expected labels approved in this chat; separately authorized 24 local Qwen requests. No output/release signoff or PR #4 merge."
+    },
+    "schedule": [
+      [
+        "original",
+        1
+      ],
+      [
+        "clarified",
+        1
+      ],
+      [
+        "clarified",
+        2
+      ],
+      [
+        "original",
+        2
+      ]
+    ],
+    "order": "ADBECF",
+    "planned_requests": 24,
+    "planned_criterion_judgments": 216,
+    "sha256": {
+      "evals/judge_wording_cases.json": "efd697a0a405c2724828d99d9d5e89f820167db1260e7c37245d2ae312f46ed7",
+      "evals/judge_wording_expected_labels.json": "f81bc26c4faed7b91d74727673b62d2255860e5201ed62de7357fc06328922c6",
+      "evals/calendar_judge_wording_original.json": "4bea33405e0c1a632fdc37f798836283154b9de893233c31d0b70b6ea8148853",
+      "evals/calendar_judge_wording_clarified.json": "93cec7c0841021f7e47028830b9f18af79f380c53b7afd7fe20cf138f7e467e1",
+      "evals/run_judge_wording_study.py": "07d7636993b633750120d139840ef36a80230579467ee7605deb2ee7390c24f1",
+      "src/harness/calendar_judge.py": "228e6a1775048c3d2fa692e7279af8ea586815fd157be1c500594d7a7ed04fc3",
+      "src/harness/trace_facts.py": "18476a00b291b2ff850e8f96bbee5c0e15372c11c95dcdc44eb9a326133666f0",
+      "src/harness/saved_trace.py": "2b5dd1e97bbc5579e3a0734a021ed84c9413df5d2d3c3d4598eea9a0e0aac312",
+      "src/harness/client.py": "a7c8a8ac73df20fd82a72ee6422265db75b9943a254c86ce7abda056238f10a6",
+      "evals/calendar_judge_rubric.json": "7f3e2b5bd48c0a8309a8b41e336af76a88cb0a1e72de21a9c58504b19e1ea484"
+    },
+    "system_prompt_sha256": "93105abb586716dadbd05200d5047bdaf5a592782147edf8a3a2b9eb228a9269",
+    "runtime": {
+      "type": "llm",
+      "publisher": "qwen",
+      "key": "qwen/qwen3.5-9b",
+      "display_name": "Qwen3.5 9B",
+      "architecture": "qwen35",
+      "quantization": {
+        "name": "Q8_0",
+        "bits_per_weight": 8
+      },
+      "size_bytes": 10449384671,
+      "params_string": "9B",
+      "loaded_instances": [
+        {
+          "id": "qwen/qwen3.5-9b",
+          "config": {
+            "context_length": 8192,
+            "eval_batch_size": 2048,
+            "physical_batch_size": 512,
+            "parallel": 4,
+            "flash_attention": true,
+            "context_checkpoints": 32,
+            "reasoning_budget_message": "",
+            "speculative_draft_mtp": false,
+            "speculative_draft_simple": false,
+            "speculative_draft_model": "",
+            "speculative_draft_max_tokens": 3,
+            "speculative_draft_min_tokens": 0,
+            "speculative_draft_min_continue_probability": 0,
+            "offload_kv_cache_to_gpu": true
+          }
+        }
+      ],
+      "max_context_length": 262144,
+      "format": "gguf",
+      "capabilities": {
+        "vision": true,
+        "trained_for_tool_use": true,
+        "reasoning": {
+          "allowed_options": [
+            "off",
+            "on"
+          ],
+          "default": "on"
+        }
+      },
+      "description": null,
+      "variants": [
+        "qwen/qwen3.5-9b@q8_0"
+      ],
+      "selected_variant": "qwen/qwen3.5-9b@q8_0"
+    },
+    "lm_studio_version": "0.4.25+1",
+    "cli_commit": "69d945a",
+    "ui_verified": {
+      "thinking": true,
+      "reasoning_budget_enabled": true,
+      "reasoning_budget": 1024
+    },
+    "temperature": 0,
+    "max_tokens": 6144,
+    "timeout_seconds": 600,
+    "scope": "Approved same-author synthetic development comparison, not independent benchmark; one loaded-model session; ABBA order limits but does not eliminate order effects."
+  },
+  "raw_sha256": {
+    "original-round1.json": "8a8658c01cf5a16e40cd40482d70bb753f7ece967e61f6921d6bcf4a7a6eadbf",
+    "original-round2.json": "f78a53815645a23896eea4f378816b7b6863ff21d84694e4648bcd45fa4d0886",
+    "clarified-round1.json": "95ad72ce98f0838cc2a70105774753fad6cee4f36d1cf773d0e017203dfdf354",
+    "clarified-round2.json": "ea28d9f7878d333046d5d4ced17a971ab065bb3368b1ea9e05bc9aa9957c771a",
+    "resumed-original-round2.json": "cb7fade080c01c8456ef21d6da18fdb29011632cd442ea7a713f9751738ece76"
+  },
+  "report_paths": {
+    "original-round2.json": "resumed-original-round2.json"
+  },
+  "comparator_sha256": "89609aced68f756ea7e2acfc2dd20f34217be098cb449ac4f078f6ec6470d723"
+}

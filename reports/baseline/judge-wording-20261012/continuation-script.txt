@@ -1,0 +1,38 @@
+import importlib.util,json,hashlib
+from pathlib import Path
+from datetime import datetime,timezone
+root=Path('/Users/rachelwu/dev/agentic-ai-quality-harness')
+spec=importlib.util.spec_from_file_location('study',root/'evals/run_judge_wording_study.py')
+study=importlib.util.module_from_spec(spec);spec.loader.exec_module(study)
+p=root/'reports/runs/judge-wording-20261012'
+manifest=json.loads((p/'manifest.json').read_text())
+assert study.hashes()==manifest['sha256']
+assert study.runtime()==manifest['runtime']
+original=p/'original-round2.json'
+report=json.loads(original.read_text())
+assert report['state']=='blocked_runtime' and len(report['results'])==5
+assert report['results'][-1]['id']=='wording-C' and report['results'][-1]['error_category']=='transport_error'
+assert all(not (p/name).exists() for name in ('resumed-original-round2.json','execution_complete.json','continuation.json'))
+source=json.loads((root/'evals/judge_wording_cases.json').read_text())
+item=source['results'][-1]; assert item['id']=='wording-F'
+continuation={'resumed_at':datetime.now(timezone.utc).isoformat(),'authorization':'User requested continue after execution began; only the unattempted request 24 is resumed, request 23 is not retried.',
+ 'original_block_sha256':hashlib.sha256(original.read_bytes()).hexdigest(),'original_block_state':'blocked_runtime',
+ 'completed_attempts_before_resume':23,'request_to_execute':24,'case_id':item['id'],
+ 'verified_hashes':study.hashes(),'verified_runtime':study.runtime(),'ui_verified':{'thinking':True,'reasoning_budget_enabled':True,'reasoning_budget':1024},
+ 'continuation_script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
+(p/'continuation.json').write_text(json.dumps(continuation,indent=2)+'\n')
+report['state']='resuming_unattempted_final_request';report['continuation']='continuation.json'
+path=p/'resumed-original-round2.json';path.write_text(json.dumps(report,indent=2)+'\n')
+complete=study.local_complete(study.LocalClient(model='qwen/qwen3.5-9b',timeout=600),thinking=True,max_tokens=6144,constrained=True)
+print('[24/24] original round 2: wording-F requesting; no retry of C',flush=True)
+scored=study.review(item,[],complete,deterministic_requirements=['No Google API request may occur'],derive_facts=True)
+generation=dict(complete.last_metadata)
+generation['reasoning_tokens']=generation.get('usage',{}).get('completion_tokens_details',{}).get('reasoning_tokens')
+report['results'].append({'id':item['id'],'structural_pass':item['structural_pass'],**scored,'generation':generation})
+report['state']='completed_with_transport_error'
+path.write_text(json.dumps(report,indent=2)+'\n')
+assert study.hashes()==manifest['sha256']
+(p/'execution_complete.json').write_text(json.dumps({'requests':24,'state':'completed_with_transport_error',
+ 'post_run_runtime':study.runtime(),'post_run_hashes':study.hashes(),'report_paths':{'original-round2.json':'resumed-original-round2.json'},
+ 'no_retry_of_failed_request':True},indent=2)+'\n')
+print('[24/24]',scored['status'],scored['verdict'],generation,flush=True)

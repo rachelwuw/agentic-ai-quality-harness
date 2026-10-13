@@ -2,6 +2,7 @@
 
 ## Start here
 
+- [Approved wording comparison](JUDGE_WORDING_COMPARISON_REVIEW.md): 24 attempts, 23 valid judgments and one preserved transport failure; no label improvements on 99 common available criterion pairs. Sentence clarification did not resolve c6/c7 boundary errors; default v10 stays unchanged.
 - [Latest engineering verification](ENGINEERING_CHECKPOINT_20261008.md): recreated Python 3.12 environment, deterministic tests and GitHub CI evidence; no model or Google calls.
 - [Controlled SUT baseline](CALENDAR_BASELINE_V7_RETRY_REVIEW.md): real local agent, simulated Calendar responses, structural results and separate answer review.
 - [Frozen v10 judge fresh-case review](JUDGE_V10_FRESH_REVIEW.md): new authored cases, criterion disagreements and remaining limits; expected labels are not Rachel’s human signoff.

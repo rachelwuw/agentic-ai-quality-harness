@@ -1,0 +1,101 @@
+{
+  "status": "Rachel_approved",
+  "provenance": "Codex-authored synthetic expectations approved by Rachel in this chat; same-author development controls, not independent benchmark.",
+  "labels": {
+    "wording-A": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "wording-B": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "wording-C": {
+      "overall": "PASS",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "PASS",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "wording-D": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "FAIL",
+        "c7": "PASS",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "wording-E": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    },
+    "wording-F": {
+      "overall": "FAIL",
+      "criteria": {
+        "c1": "PASS",
+        "c2": "FAIL",
+        "c3": "PASS",
+        "c4": "PASS",
+        "c5": "PASS",
+        "c6": "PASS",
+        "c7": "FAIL",
+        "c8": "PASS",
+        "c9": "PASS"
+      },
+      "human_signoff": true
+    }
+  },
+  "approval": {
+    "confirmed_by": "Rachel",
+    "confirmed_date": "2026-10-12",
+    "scope": "Exact A-F answers, reference facts and all expected labels approved in this chat; separately authorized 24 local Qwen requests. No output/release signoff or PR #4 merge."
+  }
+}
