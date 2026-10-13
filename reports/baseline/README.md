@@ -2,6 +2,7 @@
 
 ## Start here
 
+- [Judge experiment history and dispositions](JUDGE_EXPERIMENT_HISTORY.md): includes the unmerged negative v11/wording results and the merged narrow single-criterion checkpoint; full evidence remains traceable by commit.
 - [Approved single-criterion boundary diagnostic](JUDGE_SINGLE_BOUNDARY_REVIEW.md): 8/8 selected labels matched versus 4/8 historical batch labels; positive and negative controls repeat. Promising narrow-format evidence, not independent accuracy or default activation.
 - [Latest engineering verification](ENGINEERING_CHECKPOINT_20261008.md): recreated Python 3.12 environment, deterministic tests and GitHub CI evidence; no model or Google calls.
 - [Controlled SUT baseline](CALENDAR_BASELINE_V7_RETRY_REVIEW.md): real local agent, simulated Calendar responses, structural results and separate answer review.
