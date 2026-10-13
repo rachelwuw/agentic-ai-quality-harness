@@ -1,6 +1,6 @@
-# Judge 新案例推廣驗證 — 審閱草稿
+# Judge 新案例推廣驗證 — 核准設計
 
-**狀態：僅設計，尚未執行模型。** 八份答案及預期標籤由 Codex 撰寫，待 Rachel 審閱；不是獨立 benchmark，也不是新的 SUT 回答。
+**狀態：Rachel 已審閱並核准案例、標籤、驗收標準及 24 次請求執行。** 八份答案由 Codex 撰寫，不是獨立 benchmark 或新的 SUT 回答；此核准不代表認可未產生的 Judge 輸出或授權合併。
 
 PR #6 已合併為研究 checkpoint；PR #4、#5 關閉但分支與原始證據保留。預設 v10 不變。
 
@@ -10,7 +10,7 @@ PR #6 已合併為研究 checkpoint；PR #4、#5 關閉但分支與原始證據�
 
 沿用 #6 所用的修正版準則原文。所有案例的九項文字均相同，沒有加入日期特例或結果導向修改。此研究不修改 Python 事實、system prompt 或正式評分模式。
 
-## 案例與擬議標籤
+## 已核准案例與標籤
 
 | 案例 | 主要特徵 | c6 | c7 | 完整九項預期 |
 | --- | --- | --- | --- | --- |
@@ -23,9 +23,9 @@ PR #6 已合併為研究 checkpoint；PR #4、#5 關閉但分支與原始證據�
 | N3 | 時區標籤與數值都錯 | FAIL | FAIL | FAIL |
 | N4 | 正確開頭、後段隱含重述矛盾 | PASS | FAIL | FAIL |
 
-P1–P4 九項皆擬議 PASS；N1–N4 的 c2 皆 FAIL，另有上表 c6/c7 的 FAIL。其他準則擬議 PASS。全體有 16 個目標準則標籤，其中 11 PASS、5 FAIL。這些仍是草稿，沒有 human sign-off。
+P1–P4 九項皆核准 PASS；N1–N4 的 c2 皆 FAIL，另有上表 c6/c7 的 FAIL。其他準則核准 PASS。全體有 16 個目標準則標籤，其中 11 PASS、5 FAIL。預期標籤已由 Rachel 核准；原始草稿 JSON 保留，核准副本位於 evals/judge_generalization_cases.json 與 evals/judge_generalization_labels.json。
 
-**需明確審閱 N2：**「In Taipei local time」視為事件轉換表達，即使沒有 converted 字樣；錯誤日期因此應使 c7 FAIL。P3 同樣表達正確的隱含轉換。此解讀及 N1 的 c7 PASS 分配須在執行前核准，不能看結果後改標籤。
+**已核准的 N2 解讀：**「In Taipei local time」視為事件轉換表達，即使沒有 converted 字樣；錯誤日期因此應使 c7 FAIL。P3 同樣表達正確的隱含轉換。Rachel 已核准此解讀及 N1 的 c7 PASS 分配，執行期間不得修改標籤。
 
 以下為完整模型候選答案；只把這些固定答案與工具證據送入 Judge，不生成新 SUT 回覆。
 
@@ -125,7 +125,7 @@ There is an overlapping event on the dedicated test calendar, so 2029-08-12 15:2
 The dedicated test calendar has a conflict overlapping 2029-07-09 09:50–10:20 Asia/Taipei, so that requested slot is busy. Converted to Asia/Taipei, the event runs on 2029-07-09 from 09:40 to 10:10. In Taipei local time, that same event is also 2029-07-09 10:40–11:10. This result covers the test calendar only.
 ```
 
-## 執行設計：待另行核准
+## 已核准執行設計
 
 - 一輪共 24 個單次請求：八個答案各有一次九項批次、一次 c6 單項、一次 c7 單項。
 - 各案例交錯格式順序：依固定順序 P1/P2/P3/P4/N1/N2/N3/N4，輪替 batch→c6→c7、c6→c7→batch、c7→batch→c6。事先固定、不依結果改變；非隨機化且只跑一輪。
@@ -135,7 +135,7 @@ The dedicated test calendar has a conflict overlapping 2029-07-09 09:50–10:20 
 - 只比較兩格式共同的 16 個 c6/c7 判定；其餘批次準則保留作證據，不納入目標準確率分母。輸入、輸出、傳輸錯誤與有效語意 UNCERTAIN 分開報告。
 - 已見過的 #6 四項作既有開發回歸證據，不混入這輪新案例成績。
 
-## 擬議驗收標準
+## 已核准驗收標準
 
 此標準只決定是否值得繼續驗證單項候選模式，不批准部署或改預設。
 
@@ -149,6 +149,8 @@ The dedicated test calendar has a conflict overlapping 2029-07-09 09:50–10:20 
 
 ## 授權與後續
 
-目前只授權準備可審閱設計。完整答案、參考事實、逐準則標籤、驗收標準仍待 Rachel 確認；24 次模型執行需另外明確核准。沒有啟用新模式或新增自動模型 CI。
+Rachel 已在本對話明確表示完成審閱並同意繼續執行，授權此 24 次請求。結果需另外審閱；沒有啟用新模式、新增自動模型 CI 或授權合併 PR #7。
 
 來源：[候選輸入 JSON](judge_generalization_cases_draft.json)、[候選標籤 JSON](judge_generalization_labels_draft.json)、[已合併的診斷方法](../JUDGE_SINGLE_BOUNDARY_DIAGNOSTIC.md)。
+
+24 次執行已完成，事前門檻未全部通過；[結果與原始證據](../../reports/baseline/JUDGE_GENERALIZATION_REVIEW.md)。本計畫的準則、標籤與門檻未因結果調整。

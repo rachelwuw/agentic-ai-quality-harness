@@ -1,0 +1,27 @@
+{
+  "study": "Approved 24-request new-case development validation",
+  "raw_output_preserved_byte_for_byte": true,
+  "frozen_source_hashes_verified_after_run": true,
+  "initial_final_runtime_equal": true,
+  "request_count": 24,
+  "valid_outputs": 24,
+  "retries": 0,
+  "google_calls_during_experiment": 0,
+  "sut_generation_calls": 0,
+  "runtime_limitations": "UI Thinking ON and checked budget 1024 verified before run. Mac later locked; GUI could not be re-read. Native metadata checked before every request and after run; observed reasoning tokens 1024 in all 24 responses.",
+  "gates": {
+    "complete_24_valid": true,
+    "at_least_two_improvements_zero_regressions": false,
+    "positive_8_and_expected_fail_5": true,
+    "reason_evidence_review": false,
+    "cost_acceptance": "pending_Rachel_review"
+  },
+  "quality_threshold_met": false,
+  "default_changed": false,
+  "output_signoff": false,
+  "files_sha256": {
+    "raw_report.json": "9bf67d820c3bdde645860c7e9a446503afce1c20402a16b150431de4b87c522e",
+    "assisted_reason_review.json": "5736c1db58a17777d394ee25c456be0d94cfb4afb5773edb48235a95bdec4985",
+    "comparison.json": "3b544ce5c3109ec7641683dba1c67c37ac4eab2abfc27b9dec9aa72d08fa1a52"
+  }
+}

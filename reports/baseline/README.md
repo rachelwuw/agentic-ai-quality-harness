@@ -63,3 +63,5 @@ These focused results are separate from the full 15-case baseline. They do not v
 [v10 positive-control review](JUDGE_V10_POSITIVE_CONTROLS_REVIEW.md): two reused correct answers PASS on all nine checks each, valid JSON, observed reasoning tokens 1024 each; about 4m57s. No new false failures in these attempts; general reliability remains unverified.
 
 [Frozen v10 fresh-case review](JUDGE_V10_FRESH_REVIEW.md): four new authored cases, 3/4 aggregate and 31/36 criterion matches to pre-run expectations. One correct winter answer falsely failed; label/reason contradiction and criterion-scope overlap preserved. About 13m20s; Judge remains advisory.
+
+[New-case generalization validation](JUDGE_GENERALIZATION_REVIEW.md): 24 valid requests, batch 13/16 versus single 14/16 targets, one improvement and zero regressions. Preset improvement and reason gates failed; same-author development evidence, default v10 unchanged.
