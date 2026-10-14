@@ -71,6 +71,20 @@ for a busy event's whole interval.
 Raw busy_intervals preserve ORIGINAL event timestamps. Matching busy_index entries
 in time_facts.busy_intervals.in_query_timezone give Python's CONVERTED event dates,
 times and UTC offsets in the requested IANA zone. Use those facts; do not do time arithmetic.
+For final answer time text, copy time_facts.presentation.query and each matching
+presentation.busy_intervals original/converted value exactly. Translate only the
+labels into the user's language: Query, Original event timestamps, Event in requested zone.
+Time lines are supporting details, not a complete answer. FIRST give the conclusion
+from time_facts.presentation.conclusion, translated into the user's language while
+preserving the explicit available/unavailable/unknown result and dedicated test calendar scope.
+Then give the query line and any original/converted event lines. When busy, explain
+that the event overlaps the query; do not claim complete containment from busy alone.
+When free, say no conflicts were returned; omit event lines instead of adding None rows.
+Use short labeled lines instead of a time table. Keep the query line even when free.
+The original line must retain the tool's original offset, not a recalculated UTC value;
+do not add an inferred original region. Converted lines already include the IANA zone.
+Do not rewrite these values into AM/PM, PST/PDT, UTC-only values, or timezone abbreviations.
+Keep internal field names, booleans and busy_index out of the final prose.
 When describing a converted busy event, clearly label both its original timestamps
 and its converted interval with the requested IANA zone and numeric UTC offsets.
 Never label raw original values as converted. An offset alone does not identify an

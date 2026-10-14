@@ -97,10 +97,15 @@ def test_busy_event_time_facts_reach_next_model_message_without_replacing_query(
         data = json.loads(messages[-1]['content'])
         facts = data['time_facts']
         assert data['available'] is False
+        assert facts['presentation']['conclusion'] == 'Unavailable on the dedicated test calendar.'
         assert data['busy_intervals'][0]['start']['dateTime'] == '2026-10-06T11:00:00-07:00'
         assert facts['query_interval']['in_query_timezone']['start']['datetime'] == '2026-10-07T02:15:00+08:00'
         assert facts['busy_intervals'][0]['in_query_timezone']['start']['datetime'] == '2026-10-07T02:00:00+08:00'
         assert facts['busy_intervals'][0]['in_query_timezone']['end']['datetime'] == '2026-10-07T02:30:00+08:00'
+        assert facts['presentation']['busy_intervals'][0] == {
+            'busy_index': 0,
+            'original': '2026-10-06T11:00:00-07:00 to 2026-10-06T11:30:00-07:00',
+            'converted': '2026-10-07T02:00:00+08:00 to 2026-10-07T02:30:00+08:00 (Asia/Taipei)'}
         # Scripted text verifies transport only; it is not semantic model evidence.
         return {'role': 'assistant', 'content': 'Offline fixture; semantic review pending.'}
     run = run_calendar_agent('Check Taipei availability', model, calendar)

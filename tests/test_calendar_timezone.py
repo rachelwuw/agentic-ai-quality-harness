@@ -66,6 +66,11 @@ def test_tool_event_facts_use_existing_conversion_and_preserve_original(
     assert busy['in_query_timezone']['start'] == {'datetime': local_start, 'timezone_label': start_label}
     assert busy['in_query_timezone']['end'] == {'datetime': local_end, 'timezone_label': end_label}
     assert busy['in_query_timezone'] != facts['query_interval']['in_query_timezone']
+    display = facts['presentation']
+    assert display['busy_intervals'] == [{'busy_index': 0,
+        'original': f'{event_start} to {event_end}',
+        'converted': f'{local_start} to {local_end} ({zone})'}]
+    assert display['query'] == f'{calendar.calls[0][0]} to {calendar.calls[0][1]} ({zone})'
 
 
 def test_cal03_free_query_has_daylight_offset_but_no_invented_busy_event():
@@ -79,6 +84,9 @@ def test_cal03_free_query_has_daylight_offset_but_no_invented_busy_event():
     assert facts['query_interval']['in_query_timezone']['start'] == {
         'datetime': '2026-10-06T11:30:00-07:00', 'timezone_label': 'PDT'}
     assert facts['busy_intervals'] == [] and facts['issues'] == []
+    assert facts['presentation']['busy_intervals'] == []
+    assert facts['presentation']['query'] == ('2026-10-06T11:30:00-07:00 to '
+        '2026-10-06T12:00:00-07:00 (America/Los_Angeles)')
 
 
 @pytest.mark.parametrize('entry', [
@@ -96,3 +104,33 @@ def test_unsupported_event_conversion_preserves_busy_and_raw_evidence(entry):
     assert result['available'] is False and result['busy_intervals'] == [entry]
     assert result['time_facts']['busy_intervals'] == [
         {'busy_index': 0, 'issue': 'busy_interval_unavailable_or_all_day'}]
+    assert result['time_facts']['presentation']['busy_intervals'] == []
+
+
+def test_display_matches_indices_when_unsupported_event_precedes_valid_event():
+    from harness.trace_facts import with_availability_time_facts
+    result = with_availability_time_facts({'available': False, 'busy_intervals': [
+        {'start': {'date': '2027-07-14'}, 'end': {'date': '2027-07-15'}},
+        {'start': {'dateTime': '2027-07-14T18:00:00Z'},
+         'end': {'dateTime': '2027-07-14T18:30:00Z'}}]},
+        '2027-07-14T11:15:00-07:00', '2027-07-14T11:45:00-07:00', 'America/Los_Angeles')
+    assert result['time_facts']['presentation']['busy_intervals'] == [{
+        'busy_index': 1, 'original': '2027-07-14T18:00:00Z to 2027-07-14T18:30:00Z',
+        'converted': '2027-07-14T11:00:00-07:00 to 2027-07-14T11:30:00-07:00 (America/Los_Angeles)'}]
+
+
+@pytest.mark.parametrize('available,conclusion', [
+    (True, 'Available on the dedicated test calendar.'),
+    (False, 'Unavailable on the dedicated test calendar.'),
+    (None, 'Availability unknown on the dedicated test calendar.'),
+])
+def test_conclusion_preserves_reported_availability_even_without_convertible_events(available, conclusion):
+    from harness.trace_facts import with_availability_time_facts
+    # Unsupported conversion must never turn a reported busy/unknown result free.
+    raw = {'available': available, 'busy_intervals': [
+        {'start': {'date': '2027-07-14'}, 'end': {'date': '2027-07-15'}}]}
+    facts = with_availability_time_facts(raw, '2027-07-14T11:15:00-07:00',
+                                       '2027-07-14T11:45:00-07:00', 'America/Los_Angeles')['time_facts']
+    assert facts['presentation']['conclusion'] == conclusion
+    assert facts['presentation']['busy_intervals'] == []
+    assert raw['available'] is available
