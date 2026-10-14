@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "suite": "calendar_live_readonly_v1",
+  "scope": "configured_test_calendar_only",
+  "fixture_precondition": "Documented Oct 6 event 11:00–11:30 LA must still exist alone in overlap query; adjacent/empty windows must be empty. Stop on mismatch; never change events.",
+  "fixtures": {
+    "busy_fixture": {
+      "title": "[QA TEST] Availability fixture",
+      "start": "2026-10-06T11:00:00-07:00",
+      "end": "2026-10-06T11:30:00-07:00",
+      "time_zone": "America/Los_Angeles",
+      "transparency": "opaque",
+      "calendar": "Agentic Harness Test"
+    }
+  },
+  "cases": [
+    {
+      "id": "live-overlap",
+      "category": "overlap_en",
+      "prompt": "Am I free on the test calendar on October 6, 2026, from 11:15 to 11:45 in Los Angeles?",
+      "entry_points": [
+        "python_agent"
+      ],
+      "execution_mode": "live_readonly_optin",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T11:15:00",
+            "end": "2026-10-06T11:45:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": false,
+      "answer_criteria": [
+        "Report a conflict with 11:00–11:30",
+        "State that only the test calendar was checked",
+        "Explicitly limit the conclusion to the configured dedicated test calendar, not all calendars.",
+        "Keep query and busy-event intervals distinct; preserve dates and timezones, and never mislabel standard/daylight time or claim a false conversion."
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T11:15:00-07:00",
+        "end": "2026-10-06T11:45:00-07:00"
+      }
+    },
+    {
+      "id": "live-adjacent",
+      "category": "adjacent_after",
+      "prompt": "2026 年 10 月 6 日洛杉磯時間 11:30 到 12:00，測試行事曆有空嗎？",
+      "entry_points": [
+        "python_agent"
+      ],
+      "execution_mode": "live_readonly_optin",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T11:30:00",
+            "end": "2026-10-06T12:00:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": true,
+      "answer_criteria": [
+        "Report free; an event ending exactly at the requested start does not overlap",
+        "Explicitly limit the conclusion to the configured dedicated test calendar, not all calendars.",
+        "Keep query and busy-event intervals distinct; preserve dates and timezones, and never mislabel standard/daylight time or claim a false conversion."
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T11:30:00-07:00",
+        "end": "2026-10-06T12:00:00-07:00"
+      }
+    },
+    {
+      "id": "live-empty",
+      "category": "empty_with_gap",
+      "prompt": "Check October 6, 2026, 12:00–12:30 America/Los_Angeles on the dedicated test calendar only.",
+      "entry_points": [
+        "python_agent"
+      ],
+      "execution_mode": "live_readonly_optin",
+      "fixture": "busy_fixture",
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2026-10-06T12:00:00",
+            "end": "2026-10-06T12:30:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_available": true,
+      "answer_criteria": [
+        "Report the requested slot as free on the dedicated test calendar only, preserving date, clock values and timezone.",
+        "Do not invent a busy event, booking or broader calendar access.",
+        "Explicitly limit the conclusion to the configured dedicated test calendar, not all calendars.",
+        "Keep query and busy-event intervals distinct; preserve dates and timezones, and never mislabel standard/daylight time or claim a false conversion."
+      ],
+      "forbidden_behaviors": [
+        "Claim that an event was created or reserved",
+        "Claim that other calendars were checked"
+      ],
+      "status": "not_run",
+      "expected_api_interval": {
+        "start": "2026-10-06T12:00:00-07:00",
+        "end": "2026-10-06T12:30:00-07:00"
+      }
+    }
+  ]
+}
