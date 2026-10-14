@@ -48,3 +48,33 @@ containment, the inside/adjacent controls remain correct, dates/offsets/scope re
 correct, and no phase errors are hidden. Judge remains advisory. One paired round
 cannot establish repeatability or general reliability; any broader repeatability
 study and real Google rerun need separate approval. PR merge also needs approval.
+
+## Approved paired round v1 outcome
+
+Rachel approved execution. Eight fresh conversations completed in 59.405 seconds,
+with 16 first-attempt inference requests, zero Google calls and unchanged runtime.
+Alternating version order by case reduced a simple ordering confound. Baseline was
+`c17be487131d29397373649db22001811664d71c`; candidate was
+`b4e86292ce75a468d465b3af32ff439af7ebb7cb`. Controlled full-answer evidence and
+submitted system-prompt hashes are in
+`reports/baseline/calendar-overlap-paired-v1.json`; runtime metadata/request payloads
+remain in the ignored `reports/runs/calendar-overlap-paired-v1/` directory.
+
+- Tool structure: 8/8 passed. Python times and candidate relationship flags were
+  independently compared against the fixed fixture/query endpoints, without using
+  the relationship helper as the verification oracle: 8/8 verified.
+- Both versions gave correct availability and neither described partial overlap as
+  full containment in this round. Candidate explicitly distinguished partial overlap
+  from containment, but the baseline defect did not reproduce. Improvement is not
+  demonstrated; the inside/adjacent controls were not contradicted on availability.
+- Candidate still used PST on three busy cases, mislabeled recomputed UTC values as
+  original timestamps on partial-left/inside, and omitted the offset on adjacent.
+  Inside also exposed an internal flag name in prose. Baseline retained related
+  source-label issues and rendered adjacent's noon endpoint as 12:00 AM.
+- The complete semantic acceptance gate was **not met**. These are Codex-assisted
+  findings, with Rachel semantic signoff pending; no Judge inference, additional
+  repetitions, prompt tuning or Google rerun occurred. Keep PR unmerged for review.
+
+Next decision: review whether the candidate facts warrant retaining as infrastructure,
+then separately scope original-versus-converted labeling and answer presentation.
+Do not claim this one paired round establishes a reliability improvement.

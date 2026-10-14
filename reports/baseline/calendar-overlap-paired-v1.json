@@ -1,0 +1,1353 @@
+{
+  "state": "completed",
+  "baseline_commit": "c17be487131d29397373649db22001811664d71c",
+  "candidate_commit": "b4e86292ce75a468d465b3af32ff439af7ebb7cb",
+  "model": "openai/gpt-oss-20b",
+  "calendar_mode": "controlled_no_google_access",
+  "reference_now": "2027-01-13T12:00:00-08:00",
+  "fixture": {
+    "start": "2027-01-14T11:00:00-08:00",
+    "end": "2027-01-14T11:30:00-08:00"
+  },
+  "elapsed_seconds": 59.405,
+  "model_requests": 16,
+  "google_requests": 0,
+  "runtime_unchanged": true,
+  "temperature": 0,
+  "max_tokens": 2048,
+  "context_length": 8192,
+  "order": "Alternating baseline/candidate order by case; fresh conversations",
+  "results": [
+    {
+      "version": "baseline",
+      "case": {
+        "id": "partial-right",
+        "prompt": "Please check whether 11:15–11:45 on January 14, 2027 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-01-14T11:15:00",
+              "end": "2027-01-14T11:45:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-01-14T11:15:00-08:00",
+          "end": "2027-01-14T11:45:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "expected_containment": false
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot — **January 14, 2027 from 11:15 AM to 11:45 AM America/Los_Angeles (UTC‑08:00)** — is **not available**.\n\nA busy event overlaps this window:\n\n| Event | Original timestamps (America/Los_Angeles) | Converted interval in requested zone |\n|-------|-------------------------------------------|-------------------------------------|\n| Busy event #0 | 2027‑01‑14 11:00 AM – 11:30 AM (UTC‑08:00) | 2027‑01‑14 11:00 AM – 11:30 AM America/Los_Angeles (UTC‑08:00) |\n\nBecause the event runs from 11:00 to 11:30, it conflicts with the requested 11:15–11:45 slot. No other events overlap this interval on the dedicated test calendar.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "vGpXXjWLgnUdAU7PMsiLjo1qa5DQOzES",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-14T11:15:00\",\"end\":\"2027-01-14T11:45:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-14T11:15:00\",\"end\":\"2027-01-14T11:45:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-14T11:15:00-08:00",
+              "end": "2027-01-14T11:45:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-01-14T11:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-01-14T11:30:00-08:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-14T19:15:00+00:00",
+                  "utc_end": "2027-01-14T19:45:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-14T11:15:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-14T11:45:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-01-14T19:00:00+00:00",
+                    "utc_end": "2027-01-14T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2027-01-14T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2027-01-14T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    }
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot — **January 14, 2027 from 11:15 AM to 11:45 AM America/Los_Angeles (UTC‑08:00)** — is **not available**.\n\nA busy event overlaps this window:\n\n| Event | Original timestamps (America/Los_Angeles) | Converted interval in requested zone |\n|-------|-------------------------------------------|-------------------------------------|\n| Busy event #0 | 2027‑01‑14 11:00 AM – 11:30 AM (UTC‑08:00) | 2027‑01‑14 11:00 AM – 11:30 AM America/Los_Angeles (UTC‑08:00) |\n\nBecause the event runs from 11:00 to 11:30, it conflicts with the requested 11:15–11:45 slot. No other events overlap this interval on the dedicated test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-01-14T11:15:00-08:00",
+          "end": "2027-01-14T11:45:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 8.745,
+      "system_prompt_sha256": "35411081efc84a6b926c8bf3f223676b15abd0743f551aa1cb7d1118fbcd0865",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "availability_correct": true,
+        "false_full_containment": false,
+        "inside_control_not_contradicted": null,
+        "specific_findings": [
+          "Original event column infers America/Los_Angeles from raw offset alone."
+        ]
+      }
+    },
+    {
+      "version": "candidate",
+      "case": {
+        "id": "partial-right",
+        "prompt": "Please check whether 11:15–11:45 on January 14, 2027 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-01-14T11:15:00",
+              "end": "2027-01-14T11:45:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-01-14T11:15:00-08:00",
+          "end": "2027-01-14T11:45:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "expected_containment": false
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot — **2027‑01‑14 11:15 – 11:45 America/Los_Angeles** — is **not available**.\n\nThere is a busy event that overlaps part of the interval:\n\n| Original event | Converted (America/Los_Angeles) |\n|----------------|---------------------------------|\n| Start: 2027‑01‑14T11:00:00‑08:00, End: 2027‑01‑14T11:30:00‑08:00 | 2027‑01‑14 11:00 – 11:30 PST (UTC‑08:00) |\n\nThe event runs from 11:00 to 11:30.  \nYour requested window starts at 11:15, so the two intervals overlap for 15 minutes (11:15 – 11:30). Because the event does **not** fully contain your entire request, only that portion is blocked.\n\nThus, the slot from **11:15 to 11:45** on January 14, 2027 in America/Los_Angeles is partially occupied and cannot be booked as a free block.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "9wurV1W9Gb8XDakjg9gRs93BrzG7mRUh",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-14T11:15:00\",\"end\":\"2027-01-14T11:45:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-14T11:15:00\",\"end\":\"2027-01-14T11:45:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-14T11:15:00-08:00",
+              "end": "2027-01-14T11:45:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-01-14T11:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-01-14T11:30:00-08:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v2",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-14T19:15:00+00:00",
+                  "utc_end": "2027-01-14T19:45:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-14T11:15:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-14T11:45:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-01-14T19:00:00+00:00",
+                    "utc_end": "2027-01-14T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2027-01-14T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2027-01-14T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    },
+                    "overlaps_query": true,
+                    "query_fully_within_event": false
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot — **2027‑01‑14 11:15 – 11:45 America/Los_Angeles** — is **not available**.\n\nThere is a busy event that overlaps part of the interval:\n\n| Original event | Converted (America/Los_Angeles) |\n|----------------|---------------------------------|\n| Start: 2027‑01‑14T11:00:00‑08:00, End: 2027‑01‑14T11:30:00‑08:00 | 2027‑01‑14 11:00 – 11:30 PST (UTC‑08:00) |\n\nThe event runs from 11:00 to 11:30.  \nYour requested window starts at 11:15, so the two intervals overlap for 15 minutes (11:15 – 11:30). Because the event does **not** fully contain your entire request, only that portion is blocked.\n\nThus, the slot from **11:15 to 11:45** on January 14, 2027 in America/Los_Angeles is partially occupied and cannot be booked as a free block.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-01-14T11:15:00-08:00",
+          "end": "2027-01-14T11:45:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 9.619,
+      "system_prompt_sha256": "15ef1a3c8c6bc2af1e436d636f1571cd9df672e7582d9dc14e9ad6a6a937731e",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "availability_correct": true,
+        "false_full_containment": false,
+        "inside_control_not_contradicted": null,
+        "specific_findings": [
+          "Uses PST despite numeric-offset/IANA-only instruction."
+        ]
+      }
+    },
+    {
+      "version": "candidate",
+      "case": {
+        "id": "partial-left",
+        "prompt": "Please check whether 10:45–11:15 on January 14, 2027 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-01-14T10:45:00",
+              "end": "2027-01-14T11:15:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-01-14T10:45:00-08:00",
+          "end": "2027-01-14T11:15:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "expected_containment": false
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot — 10:45 – 11:15 on January 14, 2027 in the America/Los_Angeles time zone — overlaps a busy event on the dedicated test calendar.\n\n**Conflict details**\n\n| Event | Original timestamps (UTC) | Converted to America/Los_Angeles |\n|-------|---------------------------|----------------------------------|\n| Busy interval #0 | 2027‑01‑14 19:00 – 19:30 +00:00 | 2027‑01‑14 11:00 – 11:30 -08:00 |\n\nThe event runs from **11:00 – 11:30 PST** (UTC‑8).  \nYour requested window, **10:45 – 11:15 PST**, overlaps this interval for 15 minutes (from 11:00 to 11:15). Because the overlap is not a full containment of the query, only part of your slot is busy.\n\nTherefore, the entire 30‑minute window you asked about is **not fully available** on the dedicated test calendar.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "Til1ssMIwlhFZMRrQmk2CfiVUmPXAFDb",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-14T10:45:00\",\"end\":\"2027-01-14T11:15:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-14T10:45:00\",\"end\":\"2027-01-14T11:15:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-14T10:45:00-08:00",
+              "end": "2027-01-14T11:15:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-01-14T11:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-01-14T11:30:00-08:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v2",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-14T18:45:00+00:00",
+                  "utc_end": "2027-01-14T19:15:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-14T10:45:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-14T11:15:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-01-14T19:00:00+00:00",
+                    "utc_end": "2027-01-14T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2027-01-14T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2027-01-14T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    },
+                    "overlaps_query": true,
+                    "query_fully_within_event": false
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot — 10:45 – 11:15 on January 14, 2027 in the America/Los_Angeles time zone — overlaps a busy event on the dedicated test calendar.\n\n**Conflict details**\n\n| Event | Original timestamps (UTC) | Converted to America/Los_Angeles |\n|-------|---------------------------|----------------------------------|\n| Busy interval #0 | 2027‑01‑14 19:00 – 19:30 +00:00 | 2027‑01‑14 11:00 – 11:30 -08:00 |\n\nThe event runs from **11:00 – 11:30 PST** (UTC‑8).  \nYour requested window, **10:45 – 11:15 PST**, overlaps this interval for 15 minutes (from 11:00 to 11:15). Because the overlap is not a full containment of the query, only part of your slot is busy.\n\nTherefore, the entire 30‑minute window you asked about is **not fully available** on the dedicated test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-01-14T10:45:00-08:00",
+          "end": "2027-01-14T11:15:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 8.591,
+      "system_prompt_sha256": "15ef1a3c8c6bc2af1e436d636f1571cd9df672e7582d9dc14e9ad6a6a937731e",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "availability_correct": true,
+        "false_full_containment": false,
+        "inside_control_not_contradicted": null,
+        "specific_findings": [
+          "Labels recalculated UTC values as original timestamps; raw original was -08:00.",
+          "Uses PST despite instruction."
+        ]
+      }
+    },
+    {
+      "version": "baseline",
+      "case": {
+        "id": "partial-left",
+        "prompt": "Please check whether 10:45–11:15 on January 14, 2027 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-01-14T10:45:00",
+              "end": "2027-01-14T11:15:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-01-14T10:45:00-08:00",
+          "end": "2027-01-14T11:15:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "expected_containment": false
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot **10:45 – 11:15 on January 14, 2027 (America/Los_Angeles)** is **not available**.\n\nA busy event overlaps this window:\n\n| Event | Original timestamps (UTC‑offset) | Converted to America/Los_Angeles |\n|-------|----------------------------------|---------------------------------|\n| Busy interval | 2027‑01‑14T19:00:00+00:00 – 19:30:00+00:00 | 2027‑01‑14T11:00:00‑08:00 – 11:30:00‑08:00 |\n\nThe event runs from **11:00 to 11:30 PST** (UTC‑08:00), which intersects the requested interval from **10:45 to 11:15 PST**. Therefore that time slot is occupied and cannot be used.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "g8BXR3rgDlS11DZv8vglvn3ZjUyY0PC3",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-14T10:45:00\",\"end\":\"2027-01-14T11:15:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-14T10:45:00\",\"end\":\"2027-01-14T11:15:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-14T10:45:00-08:00",
+              "end": "2027-01-14T11:15:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-01-14T11:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-01-14T11:30:00-08:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-14T18:45:00+00:00",
+                  "utc_end": "2027-01-14T19:15:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-14T10:45:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-14T11:15:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-01-14T19:00:00+00:00",
+                    "utc_end": "2027-01-14T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2027-01-14T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2027-01-14T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    }
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot **10:45 – 11:15 on January 14, 2027 (America/Los_Angeles)** is **not available**.\n\nA busy event overlaps this window:\n\n| Event | Original timestamps (UTC‑offset) | Converted to America/Los_Angeles |\n|-------|----------------------------------|---------------------------------|\n| Busy interval | 2027‑01‑14T19:00:00+00:00 – 19:30:00+00:00 | 2027‑01‑14T11:00:00‑08:00 – 11:30:00‑08:00 |\n\nThe event runs from **11:00 to 11:30 PST** (UTC‑08:00), which intersects the requested interval from **10:45 to 11:15 PST**. Therefore that time slot is occupied and cannot be used.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-01-14T10:45:00-08:00",
+          "end": "2027-01-14T11:15:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 7.555,
+      "system_prompt_sha256": "35411081efc84a6b926c8bf3f223676b15abd0743f551aa1cb7d1118fbcd0865",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "availability_correct": true,
+        "false_full_containment": false,
+        "inside_control_not_contradicted": null,
+        "specific_findings": [
+          "Labels recalculated UTC values as original timestamps; raw original was -08:00.",
+          "Uses PST despite instruction."
+        ]
+      }
+    },
+    {
+      "version": "baseline",
+      "case": {
+        "id": "inside",
+        "prompt": "Please check whether 11:05–11:25 on January 14, 2027 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-01-14T11:05:00",
+              "end": "2027-01-14T11:25:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-01-14T11:05:00-08:00",
+          "end": "2027-01-14T11:25:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "expected_containment": true
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot — **January 14, 2027 from 11:05 to 11:25 America/Los_Angeles (UTC‑08:00)** — is **not available**.\n\nA busy event overlaps this interval:\n\n| Event | Original timestamps (UTC‑08:00) | Converted to requested zone |\n|-------|----------------------------------|-----------------------------|\n| Busy event 0 | Start: 2027‑01‑14 11:00 -08:00, End: 2027‑01‑14 11:30 -08:00 | Same as above (no conversion needed) |\n\nBecause the event runs from **11:00 to 11:30**, it conflicts with your requested window of **11:05–11:25**. Therefore that time slot is occupied on the dedicated test calendar.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "x66LD3QvqAOcpOpS2nPHFqvGMPnjNqwI",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-14T11:05:00\",\"end\":\"2027-01-14T11:25:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-14T11:05:00\",\"end\":\"2027-01-14T11:25:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-14T11:05:00-08:00",
+              "end": "2027-01-14T11:25:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-01-14T11:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-01-14T11:30:00-08:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-14T19:05:00+00:00",
+                  "utc_end": "2027-01-14T19:25:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-14T11:05:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-14T11:25:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-01-14T19:00:00+00:00",
+                    "utc_end": "2027-01-14T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2027-01-14T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2027-01-14T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    }
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot — **January 14, 2027 from 11:05 to 11:25 America/Los_Angeles (UTC‑08:00)** — is **not available**.\n\nA busy event overlaps this interval:\n\n| Event | Original timestamps (UTC‑08:00) | Converted to requested zone |\n|-------|----------------------------------|-----------------------------|\n| Busy event 0 | Start: 2027‑01‑14 11:00 -08:00, End: 2027‑01‑14 11:30 -08:00 | Same as above (no conversion needed) |\n\nBecause the event runs from **11:00 to 11:30**, it conflicts with your requested window of **11:05–11:25**. Therefore that time slot is occupied on the dedicated test calendar.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-01-14T11:05:00-08:00",
+          "end": "2027-01-14T11:25:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 7.15,
+      "system_prompt_sha256": "35411081efc84a6b926c8bf3f223676b15abd0743f551aa1cb7d1118fbcd0865",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "availability_correct": true,
+        "false_full_containment": false,
+        "inside_control_not_contradicted": true,
+        "specific_findings": []
+      }
+    },
+    {
+      "version": "candidate",
+      "case": {
+        "id": "inside",
+        "prompt": "Please check whether 11:05–11:25 on January 14, 2027 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-01-14T11:05:00",
+              "end": "2027-01-14T11:25:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-01-14T11:05:00-08:00",
+          "end": "2027-01-14T11:25:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "expected_containment": true
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The requested window — **2027‑01‑14 11:05 – 11:25 America/Los_Angeles** — is **not available**.\n\nA busy event on the dedicated test calendar occupies that entire interval:\n\n| Original event (UTC) | Converted to America/Los_Angeles |\n|----------------------|----------------------------------|\n| Start: 2027‑01‑14T19:00:00+00:00 (11:00 – PST) | 2027‑01‑14T11:00:00‑08:00 |\n| End:   2027‑01‑14T19:30:00+00:00 (11:30 – PST) | 2027‑01‑14T11:30:00‑08:00 |\n\nThe event’s converted interval **overlaps the query** and, in fact, **fully contains it** (`query_fully_within_event` is true). Therefore the slot from 11:05 to 11:25 on January 14, 2027 is occupied.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "HzgcM7ygmJ2UJYBYxb8CZ5xOnZIYm5k1",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-14T11:05:00\",\"end\":\"2027-01-14T11:25:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-14T11:05:00\",\"end\":\"2027-01-14T11:25:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-14T11:05:00-08:00",
+              "end": "2027-01-14T11:25:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-01-14T11:00:00-08:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-01-14T11:30:00-08:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v2",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-14T19:05:00+00:00",
+                  "utc_end": "2027-01-14T19:25:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-14T11:05:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-14T11:25:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-01-14T19:00:00+00:00",
+                    "utc_end": "2027-01-14T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2027-01-14T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2027-01-14T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    },
+                    "overlaps_query": true,
+                    "query_fully_within_event": true
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested window — **2027‑01‑14 11:05 – 11:25 America/Los_Angeles** — is **not available**.\n\nA busy event on the dedicated test calendar occupies that entire interval:\n\n| Original event (UTC) | Converted to America/Los_Angeles |\n|----------------------|----------------------------------|\n| Start: 2027‑01‑14T19:00:00+00:00 (11:00 – PST) | 2027‑01‑14T11:00:00‑08:00 |\n| End:   2027‑01‑14T19:30:00+00:00 (11:30 – PST) | 2027‑01‑14T11:30:00‑08:00 |\n\nThe event’s converted interval **overlaps the query** and, in fact, **fully contains it** (`query_fully_within_event` is true). Therefore the slot from 11:05 to 11:25 on January 14, 2027 is occupied.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-01-14T11:05:00-08:00",
+          "end": "2027-01-14T11:25:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 9.15,
+      "system_prompt_sha256": "15ef1a3c8c6bc2af1e436d636f1571cd9df672e7582d9dc14e9ad6a6a937731e",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "availability_correct": true,
+        "false_full_containment": false,
+        "inside_control_not_contradicted": true,
+        "specific_findings": [
+          "Labels recalculated UTC values as original timestamps; raw original was -08:00.",
+          "Uses PST despite instruction.",
+          "Exposes internal query_fully_within_event implementation field in final prose."
+        ]
+      }
+    },
+    {
+      "version": "candidate",
+      "case": {
+        "id": "adjacent",
+        "prompt": "Please check whether 11:30–12:00 on January 14, 2027 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-01-14T11:30:00",
+              "end": "2027-01-14T12:00:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-01-14T11:30:00-08:00",
+          "end": "2027-01-14T12:00:00-08:00"
+        },
+        "expected_available": true,
+        "answer_criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "expected_containment": false
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot from **2027‑01‑14 11:30 – 12:00 America/Los_Angeles** is available on the dedicated test calendar.\n\nNo events overlap that interval, so there are no conflicts to report.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "arhD1JOUNr2gvZh52uY5H8BZKWp5pldY",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-14T11:30:00\",\"end\":\"2027-01-14T12:00:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-14T11:30:00\",\"end\":\"2027-01-14T12:00:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-14T11:30:00-08:00",
+              "end": "2027-01-14T12:00:00-08:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v2",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-14T19:30:00+00:00",
+                  "utc_end": "2027-01-14T20:00:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-14T11:30:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-14T12:00:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot from **2027‑01‑14 11:30 – 12:00 America/Los_Angeles** is available on the dedicated test calendar.\n\nNo events overlap that interval, so there are no conflicts to report.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-01-14T11:30:00-08:00",
+          "end": "2027-01-14T12:00:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 4.198,
+      "system_prompt_sha256": "15ef1a3c8c6bc2af1e436d636f1571cd9df672e7582d9dc14e9ad6a6a937731e",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "availability_correct": true,
+        "false_full_containment": false,
+        "inside_control_not_contradicted": null,
+        "specific_findings": [
+          "Final answer omits numeric UTC offset."
+        ]
+      }
+    },
+    {
+      "version": "baseline",
+      "case": {
+        "id": "adjacent",
+        "prompt": "Please check whether 11:30–12:00 on January 14, 2027 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-01-14T11:30:00",
+              "end": "2027-01-14T12:00:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-01-14T11:30:00-08:00",
+          "end": "2027-01-14T12:00:00-08:00"
+        },
+        "expected_available": true,
+        "answer_criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "expected_containment": false
+      },
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot — **January 14, 2027 from 11:30 – 12:00 AM Los Angeles time (America/Los_Angeles)** — is **available** on the dedicated test calendar.\n\nNo events overlap that interval, so there are no conflicts to report.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "aVdcE6QUQUNmXgTdVTI0xSfTNCtTFnnD",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-01-14T11:30:00\",\"end\":\"2027-01-14T12:00:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-01-14T11:30:00\",\"end\":\"2027-01-14T12:00:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-01-14T11:30:00-08:00",
+              "end": "2027-01-14T12:00:00-08:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-01-14T19:30:00+00:00",
+                  "utc_end": "2027-01-14T20:00:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-01-14T11:30:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-01-14T12:00:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot — **January 14, 2027 from 11:30 – 12:00 AM Los Angeles time (America/Los_Angeles)** — is **available** on the dedicated test calendar.\n\nNo events overlap that interval, so there are no conflicts to report.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-01-14T11:30:00-08:00",
+          "end": "2027-01-14T12:00:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability, interval relationship, dates, offsets and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Partial overlap described as full containment."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 4.354,
+      "system_prompt_sha256": "35411081efc84a6b926c8bf3f223676b15abd0743f551aa1cb7d1118fbcd0865",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "availability_correct": true,
+        "false_full_containment": false,
+        "inside_control_not_contradicted": null,
+        "specific_findings": [
+          "Renders end as 12:00 AM although query ends at local noon.",
+          "Final answer omits numeric UTC offset."
+        ]
+      }
+    }
+  ],
+  "review_provenance": "Codex assisted full-answer review; Rachel semantic signoff pending",
+  "judge_calls": 0,
+  "acceptance_gate": "not_met",
+  "conclusion": "Both versions have correct availability and no false-containment claim in this round. Baseline defect did not reproduce; no demonstrated improvement. Candidate retains source/time-format defects. No reruns or tuning.",
+  "structural_passes": 8,
+  "python_facts_verified": 8
+}
