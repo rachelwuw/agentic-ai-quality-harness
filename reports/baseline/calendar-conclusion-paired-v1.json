@@ -1,0 +1,1172 @@
+{
+  "state": "completed",
+  "baseline_commit": "e9e9e75385fdb4757ccbaa0c0e815dec568d3ff5",
+  "candidate_commit": "d90772256e43180c3d3674c5a191254e868686b9",
+  "main_commit": "ae2e311b216e035945e37a991d7b6c8b688ffe99",
+  "baseline_role": "PR11 candidate, not main",
+  "model": "openai/gpt-oss-20b",
+  "calendar_mode": "controlled_no_google_access",
+  "reference_now": "2027-01-01T12:00:00-08:00",
+  "elapsed_seconds": 40.05,
+  "model_requests": 12,
+  "google_requests": 0,
+  "judge_calls": 0,
+  "runtime_unchanged": true,
+  "code_hashes": {
+    "baseline": {
+      "calendar_agent.py": "5725d9ebda968b3d2b1e6abad985e9fef1ebd9dc8988503d2529637c5cb96b0e",
+      "trace_facts.py": "5d0a815005f4b65e9deb36ae2fa1c8d1804dd5dd916315bd21fe5a95954403bc",
+      "calendar_evaluate.py": "5b6833a6529d3744fffb0e3e8cd2684c03d750481455f77d009f84331c324bc7",
+      "client.py": "a7c8a8ac73df20fd82a72ee6422265db75b9943a254c86ce7abda056238f10a6",
+      "agent.py": "5ea48cb8996aea913c2ca01c117c2875855f62388c83e7ac670f168fd0bd1b82"
+    },
+    "candidate": {
+      "calendar_agent.py": "46784ec0f5e4c13e93e5d80deabac652c930180478620672603d6bf70d79dabd",
+      "trace_facts.py": "ba5bde568299a83ecf93b8655854304451be84a1af27ffddaa28b50c4197c7a3",
+      "calendar_evaluate.py": "5b6833a6529d3744fffb0e3e8cd2684c03d750481455f77d009f84331c324bc7",
+      "client.py": "a7c8a8ac73df20fd82a72ee6422265db75b9943a254c86ce7abda056238f10a6",
+      "agent.py": "5ea48cb8996aea913c2ca01c117c2875855f62388c83e7ac670f168fd0bd1b82"
+    }
+  },
+  "plan_sha256": "fa660ad6d911d23d13fd48657ec31ac7b904e69c15852855b4523f9e74caf3c5",
+  "temperature": 0,
+  "max_tokens": 2048,
+  "context_length": 8192,
+  "results": [
+    {
+      "version": "baseline",
+      "case": {
+        "id": "winter-busy",
+        "fixture": {
+          "start": "2027-12-08T19:00:00Z",
+          "end": "2027-12-08T19:30:00Z"
+        },
+        "prompt": "Please check whether 11:10–11:20 on 2027-12-08 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-12-08T11:10:00",
+              "end": "2027-12-08T11:20:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-12-08T11:10:00-08:00",
+          "end": "2027-12-08T11:20:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "**Query:** 2027‑12‑08T11:10:00-08:00 to 2027‑12‑08T11:20:00-08:00 (America/Los_Angeles)  \n**Original event timestamps:** 2027‑12‑08T19:00:00Z to 2027‑12‑08T19:30:00Z  \n**Event in requested zone:** 2027‑12‑08T11:00:00-08:00 to 2027‑12‑08T11:30:00-08:00 (America/Los_Angeles)",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "Ftfcx38MWXH3tCuOvpZLKs5nBE3g5kCC",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-12-08T11:10:00\",\"end\":\"2027-12-08T11:20:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-12-08T11:10:00\",\"end\":\"2027-12-08T11:20:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-12-08T11:10:00-08:00",
+              "end": "2027-12-08T11:20:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-12-08T19:00:00Z"
+                  },
+                  "end": {
+                    "dateTime": "2027-12-08T19:30:00Z"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-12-08T19:10:00+00:00",
+                  "utc_end": "2027-12-08T19:20:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-12-08T11:10:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-12-08T11:20:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-12-08T19:00:00+00:00",
+                    "utc_end": "2027-12-08T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2027-12-08T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2027-12-08T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    }
+                  }
+                ],
+                "issues": [],
+                "presentation": {
+                  "version": "calendar-time-display-v1",
+                  "query": "2027-12-08T11:10:00-08:00 to 2027-12-08T11:20:00-08:00 (America/Los_Angeles)",
+                  "busy_intervals": [
+                    {
+                      "busy_index": 0,
+                      "original": "2027-12-08T19:00:00Z to 2027-12-08T19:30:00Z",
+                      "converted": "2027-12-08T11:00:00-08:00 to 2027-12-08T11:30:00-08:00 (America/Los_Angeles)"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**Query:** 2027‑12‑08T11:10:00-08:00 to 2027‑12‑08T11:20:00-08:00 (America/Los_Angeles)  \n**Original event timestamps:** 2027‑12‑08T19:00:00Z to 2027‑12‑08T19:30:00Z  \n**Event in requested zone:** 2027‑12‑08T11:00:00-08:00 to 2027‑12‑08T11:30:00-08:00 (America/Los_Angeles)",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-12-08T11:10:00-08:00",
+          "end": "2027-12-08T11:20:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 7.269,
+      "system_prompt_sha256": "2c75f997425052abffbd172beff5de8a1a62756464f5c9c6db44fbcdfa2a631d",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "explicit_correct_availability": false,
+        "dedicated_calendar_scope_explicit": false,
+        "user_language_english": true,
+        "busy_conflict_explanation": false,
+        "exact_display_copy": false,
+        "specific_findings": [
+          "Omits explicit unavailable conclusion, dedicated-calendar scope and conflict explanation.",
+          "Uses Unicode date hyphens, violating exact-copy requirement."
+        ],
+        "gate_pass": false
+      }
+    },
+    {
+      "version": "candidate",
+      "case": {
+        "id": "winter-busy",
+        "fixture": {
+          "start": "2027-12-08T19:00:00Z",
+          "end": "2027-12-08T19:30:00Z"
+        },
+        "prompt": "Please check whether 11:10–11:20 on 2027-12-08 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-12-08T11:10:00",
+              "end": "2027-12-08T11:20:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-12-08T11:10:00-08:00",
+          "end": "2027-12-08T11:20:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "**Unavailable on the dedicated test calendar.**\n\nQuery: 2027‑12‑08T11:10:00-08:00 to 2027‑12‑08T11:20:00-08:00 (America/Los_Angeles)\n\nOriginal event timestamps: 2027‑12‑08T19:00:00Z to 2027‑12‑08T19:30:00Z  \nEvent in requested zone: 2027‑12‑08T11:00:00-08:00 to 2027‑12‑08T11:30:00-08:00 (America/Los_Angeles)",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "h56P1uBvBA5yBRdLn1VnMdefQp8GhNZK",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-12-08T11:10:00\",\"end\":\"2027-12-08T11:20:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-12-08T11:10:00\",\"end\":\"2027-12-08T11:20:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-12-08T11:10:00-08:00",
+              "end": "2027-12-08T11:20:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-12-08T19:00:00Z"
+                  },
+                  "end": {
+                    "dateTime": "2027-12-08T19:30:00Z"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-12-08T19:10:00+00:00",
+                  "utc_end": "2027-12-08T19:20:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-12-08T11:10:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2027-12-08T11:20:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-12-08T19:00:00+00:00",
+                    "utc_end": "2027-12-08T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2027-12-08T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2027-12-08T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    }
+                  }
+                ],
+                "issues": [],
+                "presentation": {
+                  "version": "calendar-time-display-v2",
+                  "conclusion": "Unavailable on the dedicated test calendar.",
+                  "query": "2027-12-08T11:10:00-08:00 to 2027-12-08T11:20:00-08:00 (America/Los_Angeles)",
+                  "busy_intervals": [
+                    {
+                      "busy_index": 0,
+                      "original": "2027-12-08T19:00:00Z to 2027-12-08T19:30:00Z",
+                      "converted": "2027-12-08T11:00:00-08:00 to 2027-12-08T11:30:00-08:00 (America/Los_Angeles)"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**Unavailable on the dedicated test calendar.**\n\nQuery: 2027‑12‑08T11:10:00-08:00 to 2027‑12‑08T11:20:00-08:00 (America/Los_Angeles)\n\nOriginal event timestamps: 2027‑12‑08T19:00:00Z to 2027‑12‑08T19:30:00Z  \nEvent in requested zone: 2027‑12‑08T11:00:00-08:00 to 2027‑12‑08T11:30:00-08:00 (America/Los_Angeles)",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-12-08T11:10:00-08:00",
+          "end": "2027-12-08T11:20:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 7.532,
+      "system_prompt_sha256": "da414b1435df58a15ec01e17db72182f21ab91ead42217e1a7e53b5a49a6b8fd",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "explicit_correct_availability": true,
+        "dedicated_calendar_scope_explicit": true,
+        "user_language_english": true,
+        "busy_conflict_explanation": false,
+        "exact_display_copy": false,
+        "specific_findings": [
+          "Correctly restores unavailable conclusion and dedicated-calendar scope.",
+          "Still omits conflict explanation.",
+          "Uses Unicode date hyphens, violating exact-copy requirement."
+        ],
+        "gate_pass": false
+      }
+    },
+    {
+      "version": "candidate",
+      "case": {
+        "id": "summer-partial-cross-day",
+        "fixture": {
+          "start": "2027-07-09T16:00:00-07:00",
+          "end": "2027-07-09T16:30:00-07:00"
+        },
+        "prompt": "Please check whether 07:15–07:45 on 2027-07-10 in Asia/Taipei is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-07-10T07:15:00",
+              "end": "2027-07-10T07:45:00",
+              "time_zone": "Asia/Taipei"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-07-10T07:15:00+08:00",
+          "end": "2027-07-10T07:45:00+08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "**Unavailable on the dedicated test calendar.**\n\n- **Query:** 2027‑07‑10T07:15:00+08:00 to 2027‑07‑10T07:45:00+08:00 (Asia/Taipei)  \n- **Original event timestamps:** 2027‑07‑09T16:00:00-07:00 to 2027‑07‑09T16:30:00-07:00  \n- **Event in requested zone:** 2027‑07‑10T07:00:00+08:00 to 2027‑07‑10T07:30:00+08:00 (Asia/Taipei)",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "NP4o9Ay6FwvbPfmLP8CDgBnf9AkmPa5e",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-07-10T07:15:00\",\"end\":\"2027-07-10T07:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-07-10T07:15:00\",\"end\":\"2027-07-10T07:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2027-07-10T07:15:00+08:00",
+              "end": "2027-07-10T07:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-07-09T16:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-07-09T16:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-07-09T23:15:00+00:00",
+                  "utc_end": "2027-07-09T23:45:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "Asia/Taipei",
+                    "start": {
+                      "datetime": "2027-07-10T07:15:00+08:00",
+                      "timezone_label": "CST"
+                    },
+                    "end": {
+                      "datetime": "2027-07-10T07:45:00+08:00",
+                      "timezone_label": "CST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-07-09T23:00:00+00:00",
+                    "utc_end": "2027-07-09T23:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "Asia/Taipei",
+                      "start": {
+                        "datetime": "2027-07-10T07:00:00+08:00",
+                        "timezone_label": "CST"
+                      },
+                      "end": {
+                        "datetime": "2027-07-10T07:30:00+08:00",
+                        "timezone_label": "CST"
+                      }
+                    }
+                  }
+                ],
+                "issues": [],
+                "presentation": {
+                  "version": "calendar-time-display-v2",
+                  "conclusion": "Unavailable on the dedicated test calendar.",
+                  "query": "2027-07-10T07:15:00+08:00 to 2027-07-10T07:45:00+08:00 (Asia/Taipei)",
+                  "busy_intervals": [
+                    {
+                      "busy_index": 0,
+                      "original": "2027-07-09T16:00:00-07:00 to 2027-07-09T16:30:00-07:00",
+                      "converted": "2027-07-10T07:00:00+08:00 to 2027-07-10T07:30:00+08:00 (Asia/Taipei)"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**Unavailable on the dedicated test calendar.**\n\n- **Query:** 2027‑07‑10T07:15:00+08:00 to 2027‑07‑10T07:45:00+08:00 (Asia/Taipei)  \n- **Original event timestamps:** 2027‑07‑09T16:00:00-07:00 to 2027‑07‑09T16:30:00-07:00  \n- **Event in requested zone:** 2027‑07‑10T07:00:00+08:00 to 2027‑07‑10T07:30:00+08:00 (Asia/Taipei)",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-07-10T07:15:00+08:00",
+          "end": "2027-07-10T07:45:00+08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 7.503,
+      "system_prompt_sha256": "da414b1435df58a15ec01e17db72182f21ab91ead42217e1a7e53b5a49a6b8fd",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "explicit_correct_availability": true,
+        "dedicated_calendar_scope_explicit": true,
+        "user_language_english": true,
+        "busy_conflict_explanation": false,
+        "exact_display_copy": false,
+        "specific_findings": [
+          "Correctly restores unavailable conclusion and dedicated-calendar scope.",
+          "Still omits partial-overlap explanation.",
+          "Uses Unicode date hyphens, violating exact-copy requirement."
+        ],
+        "gate_pass": false
+      }
+    },
+    {
+      "version": "baseline",
+      "case": {
+        "id": "summer-partial-cross-day",
+        "fixture": {
+          "start": "2027-07-09T16:00:00-07:00",
+          "end": "2027-07-09T16:30:00-07:00"
+        },
+        "prompt": "Please check whether 07:15–07:45 on 2027-07-10 in Asia/Taipei is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-07-10T07:15:00",
+              "end": "2027-07-10T07:45:00",
+              "time_zone": "Asia/Taipei"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-07-10T07:15:00+08:00",
+          "end": "2027-07-10T07:45:00+08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "**Query:** 2027-07-10T07:15:00+08:00 to 2027-07-10T07:45:00+08:00 (Asia/Taipei)  \n**Original event timestamps:** 2027-07-09T16:00:00-07:00 to 2027-07-09T16:30:00-07:00  \n**Event in requested zone:** 2027-07-10T07:00:00+08:00 to 2027-07-10T07:30:00+08:00 (Asia/Taipei)",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "XbtA9IX2OxUG4bfYFoWf1pwyMhXhkig0",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-07-10T07:15:00\",\"end\":\"2027-07-10T07:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-07-10T07:15:00\",\"end\":\"2027-07-10T07:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2027-07-10T07:15:00+08:00",
+              "end": "2027-07-10T07:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2027-07-09T16:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2027-07-09T16:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-07-09T23:15:00+00:00",
+                  "utc_end": "2027-07-09T23:45:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "Asia/Taipei",
+                    "start": {
+                      "datetime": "2027-07-10T07:15:00+08:00",
+                      "timezone_label": "CST"
+                    },
+                    "end": {
+                      "datetime": "2027-07-10T07:45:00+08:00",
+                      "timezone_label": "CST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2027-07-09T23:00:00+00:00",
+                    "utc_end": "2027-07-09T23:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "Asia/Taipei",
+                      "start": {
+                        "datetime": "2027-07-10T07:00:00+08:00",
+                        "timezone_label": "CST"
+                      },
+                      "end": {
+                        "datetime": "2027-07-10T07:30:00+08:00",
+                        "timezone_label": "CST"
+                      }
+                    }
+                  }
+                ],
+                "issues": [],
+                "presentation": {
+                  "version": "calendar-time-display-v1",
+                  "query": "2027-07-10T07:15:00+08:00 to 2027-07-10T07:45:00+08:00 (Asia/Taipei)",
+                  "busy_intervals": [
+                    {
+                      "busy_index": 0,
+                      "original": "2027-07-09T16:00:00-07:00 to 2027-07-09T16:30:00-07:00",
+                      "converted": "2027-07-10T07:00:00+08:00 to 2027-07-10T07:30:00+08:00 (Asia/Taipei)"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**Query:** 2027-07-10T07:15:00+08:00 to 2027-07-10T07:45:00+08:00 (Asia/Taipei)  \n**Original event timestamps:** 2027-07-09T16:00:00-07:00 to 2027-07-09T16:30:00-07:00  \n**Event in requested zone:** 2027-07-10T07:00:00+08:00 to 2027-07-10T07:30:00+08:00 (Asia/Taipei)",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-07-10T07:15:00+08:00",
+          "end": "2027-07-10T07:45:00+08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 7.239,
+      "system_prompt_sha256": "2c75f997425052abffbd172beff5de8a1a62756464f5c9c6db44fbcdfa2a631d",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "explicit_correct_availability": false,
+        "dedicated_calendar_scope_explicit": false,
+        "user_language_english": true,
+        "busy_conflict_explanation": false,
+        "exact_display_copy": true,
+        "specific_findings": [
+          "Omits explicit unavailable conclusion, dedicated-calendar scope and conflict explanation."
+        ],
+        "gate_pass": false
+      }
+    },
+    {
+      "version": "baseline",
+      "case": {
+        "id": "noon-free",
+        "fixture": {
+          "start": "2027-09-16T11:00:00-07:00",
+          "end": "2027-09-16T11:30:00-07:00"
+        },
+        "prompt": "Please check whether 12:00–12:30 on 2027-09-16 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-09-16T12:00:00",
+              "end": "2027-09-16T12:30:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-09-16T12:00:00-07:00",
+          "end": "2027-09-16T12:30:00-07:00"
+        },
+        "expected_available": true,
+        "answer_criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "**Query:** 2027‑09‑16 T12:00:00‑07:00 to 2027‑09‑16 T12:30:00‑07:00 (America/Los_Angeles)  \n**Original event timestamps:** None  \n**Event in requested zone:** None  \n\nThe time slot from 12:00 – 12:30 on September 16, 2027 is available.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "58B9KnaRg9xKCGtXuhTXqL0HQ6xYYFap",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-09-16T12:00:00\",\"end\":\"2027-09-16T12:30:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-09-16T12:00:00\",\"end\":\"2027-09-16T12:30:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-09-16T12:00:00-07:00",
+              "end": "2027-09-16T12:30:00-07:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-09-16T19:00:00+00:00",
+                  "utc_end": "2027-09-16T19:30:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-09-16T12:00:00-07:00",
+                      "timezone_label": "PDT"
+                    },
+                    "end": {
+                      "datetime": "2027-09-16T12:30:00-07:00",
+                      "timezone_label": "PDT"
+                    }
+                  }
+                },
+                "busy_intervals": [],
+                "issues": [],
+                "presentation": {
+                  "version": "calendar-time-display-v1",
+                  "query": "2027-09-16T12:00:00-07:00 to 2027-09-16T12:30:00-07:00 (America/Los_Angeles)",
+                  "busy_intervals": []
+                }
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**Query:** 2027‑09‑16 T12:00:00‑07:00 to 2027‑09‑16 T12:30:00‑07:00 (America/Los_Angeles)  \n**Original event timestamps:** None  \n**Event in requested zone:** None  \n\nThe time slot from 12:00 – 12:30 on September 16, 2027 is available.",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-09-16T12:00:00-07:00",
+          "end": "2027-09-16T12:30:00-07:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 5.012,
+      "system_prompt_sha256": "2c75f997425052abffbd172beff5de8a1a62756464f5c9c6db44fbcdfa2a631d",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "explicit_correct_availability": true,
+        "dedicated_calendar_scope_explicit": false,
+        "user_language_english": true,
+        "busy_conflict_explanation": null,
+        "exact_display_copy": false,
+        "specific_findings": [
+          "Correct available conclusion but omits dedicated-calendar scope.",
+          "Reformats ISO query text with Unicode hyphens/spaces; adds empty None event rows."
+        ],
+        "gate_pass": false
+      }
+    },
+    {
+      "version": "candidate",
+      "case": {
+        "id": "noon-free",
+        "fixture": {
+          "start": "2027-09-16T11:00:00-07:00",
+          "end": "2027-09-16T11:30:00-07:00"
+        },
+        "prompt": "Please check whether 12:00–12:30 on 2027-09-16 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2027-09-16T12:00:00",
+              "end": "2027-09-16T12:30:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2027-09-16T12:00:00-07:00",
+          "end": "2027-09-16T12:30:00-07:00"
+        },
+        "expected_available": true,
+        "answer_criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ]
+      },
+      "run": {
+        "status": "completed",
+        "answer": "**Disponible en el calendario de prueba dedicado.**\n\n- **Consulta:** 2027‑09‑16T12:00:00‑07:00 a 2027‑09‑16T12:30:00‑07:00 (America/Los_Angeles)",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "zG1UTgXfdy9f8FG3uFTgciWiR5p50Hzm",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2027-09-16T12:00:00\",\"end\":\"2027-09-16T12:30:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2027-09-16T12:00:00\",\"end\":\"2027-09-16T12:30:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2027-09-16T12:00:00-07:00",
+              "end": "2027-09-16T12:30:00-07:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2027-09-16T19:00:00+00:00",
+                  "utc_end": "2027-09-16T19:30:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2027-09-16T12:00:00-07:00",
+                      "timezone_label": "PDT"
+                    },
+                    "end": {
+                      "datetime": "2027-09-16T12:30:00-07:00",
+                      "timezone_label": "PDT"
+                    }
+                  }
+                },
+                "busy_intervals": [],
+                "issues": [],
+                "presentation": {
+                  "version": "calendar-time-display-v2",
+                  "conclusion": "Available on the dedicated test calendar.",
+                  "query": "2027-09-16T12:00:00-07:00 to 2027-09-16T12:30:00-07:00 (America/Los_Angeles)",
+                  "busy_intervals": []
+                }
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**Disponible en el calendario de prueba dedicado.**\n\n- **Consulta:** 2027‑09‑16T12:00:00‑07:00 a 2027‑09‑16T12:30:00‑07:00 (America/Los_Angeles)",
+              "tool_calls": []
+            }
+          }
+        ]
+      },
+      "api_calls": [
+        {
+          "start": "2027-09-16T12:00:00-07:00",
+          "end": "2027-09-16T12:30:00-07:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct original versus converted labels; exact dates and offsets; requested IANA zone; correct availability and dedicated-calendar scope."
+        ],
+        "forbidden_behaviors": [
+          "Original values rewritten as UTC.",
+          "PST/PDT or AM/PM rendering.",
+          "Internal field names in prose."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 5.468,
+      "system_prompt_sha256": "da414b1435df58a15ec01e17db72182f21ab91ead42217e1a7e53b5a49a6b8fd",
+      "python_facts_independently_verified": true,
+      "assisted_answer_review": {
+        "explicit_correct_availability": true,
+        "dedicated_calendar_scope_explicit": true,
+        "user_language_english": false,
+        "busy_conflict_explanation": null,
+        "exact_display_copy": false,
+        "specific_findings": [
+          "Correct available conclusion and dedicated-calendar scope in Spanish, but prompt was English.",
+          "Reformats copied ISO values and translates to separator into a; exact-copy requirement not met."
+        ],
+        "gate_pass": false
+      }
+    }
+  ],
+  "review_provenance": "Codex assisted full-answer review; Rachel semantic signoff pending",
+  "acceptance_gate": "not_met",
+  "criterion_summary": {
+    "explicit_correct_availability": {
+      "baseline": 1,
+      "candidate": 3,
+      "denominator": 3
+    },
+    "explicit_dedicated_calendar_scope": {
+      "baseline": 0,
+      "candidate": 3,
+      "denominator": 3
+    },
+    "user_language_english": {
+      "baseline": 3,
+      "candidate": 2,
+      "denominator": 3
+    },
+    "busy_conflict_explanation": {
+      "baseline": 0,
+      "candidate": 0,
+      "denominator": 2
+    },
+    "exact_display_copy": {
+      "baseline": 1,
+      "candidate": 0,
+      "denominator": 3
+    },
+    "complete_gate": {
+      "baseline": 0,
+      "candidate": 0,
+      "denominator": 3
+    }
+  },
+  "conclusion": "Local criterion improvement in explicit availability/scope, but complete gate remains unmet. Retain #13 unmerged; no general reliability or repeatability claim and no additional tuning/runs.",
+  "structural_passes": 6,
+  "python_facts_verified": 6
+}

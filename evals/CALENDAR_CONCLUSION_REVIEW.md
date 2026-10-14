@@ -56,3 +56,42 @@ If PR #11 already passes these new cases, do not claim demonstrated improvement.
 One round cannot establish repeatability/general reliability. Keep failed evidence
 and do not rerun until green. Model execution and merge each require Rachel approval;
 a future Google regression requires its own selected-version plan and authorization.
+
+## Approved paired round v1 — local gain, full gate not met
+
+Rachel approved merging documentation PR #12 and executing this six-conversation
+study, not merging #13. Main became `ae2e311`; #13 was updated with its documentation
+and required pytest passed before inference. Source/prompt files remained byte-equal
+to implementation `01cf14c`. The tested candidate commit was
+`d90772256e43180c3d3674c5a191254e868686b9`; comparator remained PR #11 `e9e9e75`,
+which is a prior candidate, not main. The original preparation scope above describes
+the pre-documentation-merge state. Cases, expectations and runtime were unchanged.
+
+Six fresh alternating-version conversations completed in 40.05 seconds, with 12
+first-attempt inference requests, zero Google/Judge calls and unchanged runtime.
+Tool structure and independent fixed-fixture Python/display verification passed
+6/6. Full controlled answers, code/prompt/plan hashes and assisted review are in
+`reports/baseline/calendar-conclusion-paired-v1.json`; native runtime/request metadata
+remain in ignored reports/runs/.
+
+| Assisted criterion | PR #11 | #13 candidate |
+| --- | --- | --- |
+| Explicit correct availability conclusion | 1/3 | 3/3 |
+| Explicit dedicated-calendar scope | 0/3 | 3/3 |
+| English answer matching English request | 3/3 | 2/3 |
+| Busy conflict explanation | 0/2 | 0/2 |
+| Exact display-value copying | 1/3 | 0/3 |
+| Complete gate | 0/3 | 0/3 |
+
+Candidate restores busy conclusions/scope in both matched busy cases, a local
+criterion gain. However, busy answers still omit a conflict/overlap explanation,
+Unicode date hyphens break exact copying, and noon-free unexpectedly answers in
+Spanish (including translating the interval separator). Numerical dates/offsets
+remain correct. The Spanish conclusion is semantically correct, but fails the
+user-language requirement; these dimensions are not conflated.
+
+No labels, gate or prompt were changed, no results were repaired, and no extra runs
+were performed. Findings are Codex-assisted, with Rachel semantic signoff pending.
+Keep #13 draft/unmerged for review: this round supports availability/scope delivery
+improvement only, not complete answer reliability or repeatability. No further
+candidate or live Google execution is approved by this outcome.
