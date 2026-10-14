@@ -25,6 +25,8 @@ def check_availability(start: str, end: str, time_zone: str = 'America/Los_Angel
     with date-specific UTC offsets. Keep raw busy_intervals as original evidence;
     do not describe original values as converted. Use IANA zone plus numeric offset
     rather than guessing PST/PDT. Unsupported/all-day conversions remain unknown.
+    time_facts.presentation provides copyable ISO 24-hour query/original/converted
+    text. Translate labels only; keep values, offsets and requested zone unchanged.
     Does not reserve or create an event. Other calendars are not checked.
     """
     try:

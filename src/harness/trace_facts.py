@@ -36,6 +36,13 @@ def with_availability_time_facts(result, start, end, time_zone):
              "provenance": "python_zoneinfo_from_tool_intervals",
              "query_interval": interval(start, end, time_zone),
              "busy_intervals": [], "issues": []}
+    def display(converted):
+        local = converted["in_query_timezone"]
+        return (f'{local["start"]["datetime"]} to {local["end"]["datetime"]} '
+                f'({local["time_zone"]})')
+    facts["presentation"] = {"version": "calendar-time-display-v1",
+                             "query": display(facts["query_interval"]),
+                             "busy_intervals": []}
     busy = result.get("busy_intervals")
     if not isinstance(busy, list):
         facts["issues"].append("busy_intervals_missing_or_malformed")
@@ -45,6 +52,11 @@ def with_availability_time_facts(result, start, end, time_zone):
             try:
                 record.update(interval(entry["start"]["dateTime"],
                                        entry["end"]["dateTime"], time_zone))
+                facts["presentation"]["busy_intervals"].append({
+                    "busy_index": index,
+                    "original": (f'{entry["start"]["dateTime"]} to '
+                                 f'{entry["end"]["dateTime"]}'),
+                    "converted": display(record)})
             except (KeyError, TypeError, ValueError):
                 record["issue"] = "busy_interval_unavailable_or_all_day"
             facts["busy_intervals"].append(record)
