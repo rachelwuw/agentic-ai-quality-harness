@@ -58,3 +58,35 @@ All candidate cases must meet these criteria for the small gate to pass. Compare
 baseline failures explicitly; a baseline that already passes does not demonstrate
 improvement. One paired round cannot establish repeatability/general reliability.
 Retain negative evidence. Merge requires separate Rachel authorization.
+
+## Approved paired round v1 — gate not met
+
+Rachel approved the original three-case plan via the review chat. Main remained
+`c17be487131d29397373649db22001811664d71c`; tested candidate was
+`e9e9e75385fdb4757ccbaa0c0e815dec568d3ff5`. Six fresh alternating-version
+conversations completed in 38.319 seconds, with 12 first-attempt inference requests,
+zero Google/Judge calls and unchanged runtime (context 8192, temperature 0,
+max_tokens 2048). Submitted system-prompt/code/plan hashes and full controlled
+answers are in `reports/baseline/calendar-time-label-paired-v1.json`.
+Native runtime metadata and request payloads remain in ignored reports/runs/.
+
+Tool structure and independently checked Python time/display facts passed 6/6.
+Candidate dates, endpoint values and offsets were numerically correct and no
+PST/PDT or internal keys appeared. Both busy cases included original/converted
+endpoints, whereas baseline omitted original ends and summer used PDT. However,
+both candidate busy answers omitted the availability conclusion, conflict
+explanation and dedicated-calendar scope. These omissions are answer regressions
+relative to baseline's explicit busy conclusion. Candidate also reformatted ISO
+values with Unicode hyphens/spaces (winter removed T), violating exact copying.
+Noon/free remained correctly available on the dedicated test calendar; baseline
+already rendered noon correctly, so no noon-fix claim is supported.
+
+The complete candidate semantic gate passed 0/3. These are Codex-assisted findings,
+not Rachel semantic signoff. Presentation gains do not establish full answer
+quality improvement. No prompt tuning, extra repetitions or label changes occurred.
+
+Recommendation: keep both #10 and #11 draft/unmerged as diagnostic evidence,
+preserving branches and reports. Do not combine independent candidates and assume
+their separate tests cover the combined version. Scope a later candidate around
+preserving availability/scope while rendering time facts; do not implement or run
+it without further approval. Defer selection of a live-test candidate until review.
