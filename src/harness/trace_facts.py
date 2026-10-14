@@ -25,6 +25,14 @@ def interval(start, end, target=None):
     return result
 
 
+def interval_relationship(query, event):
+    """Compare normalized instants; intervals are half-open [start, end)."""
+    qs, qe = (datetime.fromisoformat(query[key]) for key in ("utc_start", "utc_end"))
+    es, ee = (datetime.fromisoformat(event[key]) for key in ("utc_start", "utc_end"))
+    return {"overlaps_query": es < qe and ee > qs,
+            "query_fully_within_event": es <= qs and qe <= ee}
+
+
 def with_availability_time_facts(result, start, end, time_zone):
     """Add model-facing facts using the same conversion as saved-trace review.
 
@@ -32,7 +40,7 @@ def with_availability_time_facts(result, start, end, time_zone):
     remain untouched; unsupported/all-day values never get guessed timestamps.
     ISO datetimes include an explicit UTC offset, including at each DST endpoint.
     """
-    facts = {"version": "calendar-availability-time-facts-v1",
+    facts = {"version": "calendar-availability-time-facts-v2",
              "provenance": "python_zoneinfo_from_tool_intervals",
              "query_interval": interval(start, end, time_zone),
              "busy_intervals": [], "issues": []}
@@ -45,6 +53,7 @@ def with_availability_time_facts(result, start, end, time_zone):
             try:
                 record.update(interval(entry["start"]["dateTime"],
                                        entry["end"]["dateTime"], time_zone))
+                record.update(interval_relationship(facts["query_interval"], record))
             except (KeyError, TypeError, ValueError):
                 record["issue"] = "busy_interval_unavailable_or_all_day"
             facts["busy_intervals"].append(record)
@@ -118,8 +127,7 @@ def derive_trace_facts(item):
                 converted = interval(entry["start"]["dateTime"], entry["end"]["dateTime"], target)
                 record.update(converted)
                 if query is not None:
-                    record["overlaps_query"] = (datetime.fromisoformat(converted["utc_start"]) < datetime.fromisoformat(query["utc_end"]) and
-                                                 datetime.fromisoformat(converted["utc_end"]) > datetime.fromisoformat(query["utc_start"]))
+                    record["overlaps_query"] = interval_relationship(query, converted)["overlaps_query"]
             except (KeyError, ValueError, TypeError):
                 record["issue"] = "busy_interval_unavailable_or_all_day"
             observation["busy_intervals"].append(record)

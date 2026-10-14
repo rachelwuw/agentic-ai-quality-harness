@@ -25,6 +25,8 @@ def check_availability(start: str, end: str, time_zone: str = 'America/Los_Angel
     with date-specific UTC offsets. Keep raw busy_intervals as original evidence;
     do not describe original values as converted. Use IANA zone plus numeric offset
     rather than guessing PST/PDT. Unsupported/all-day conversions remain unknown.
+    overlaps_query and query_fully_within_event are Python-computed per event.
+    An overlap does not imply full containment; touching endpoints do not overlap.
     Does not reserve or create an event. Other calendars are not checked.
     """
     try:

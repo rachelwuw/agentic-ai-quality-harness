@@ -62,7 +62,8 @@ def test_tool_event_facts_use_existing_conversion_and_preserve_original(
     facts = result['time_facts']
     assert facts['query_interval'] == interval(*calendar.calls[0], zone)
     busy = facts['busy_intervals'][0]
-    assert busy == {'busy_index': 0, **interval(event_start, event_end, zone)}
+    assert busy == {'busy_index': 0, **interval(event_start, event_end, zone),
+                    'overlaps_query': True, 'query_fully_within_event': False}
     assert busy['in_query_timezone']['start'] == {'datetime': local_start, 'timezone_label': start_label}
     assert busy['in_query_timezone']['end'] == {'datetime': local_end, 'timezone_label': end_label}
     assert busy['in_query_timezone'] != facts['query_interval']['in_query_timezone']
@@ -96,3 +97,43 @@ def test_unsupported_event_conversion_preserves_busy_and_raw_evidence(entry):
     assert result['available'] is False and result['busy_intervals'] == [entry]
     assert result['time_facts']['busy_intervals'] == [
         {'busy_index': 0, 'issue': 'busy_interval_unavailable_or_all_day'}]
+
+
+@pytest.mark.parametrize('start,end,overlap,contained', [
+    ('10:45', '11:15', True, False),
+    ('11:15', '11:45', True, False),
+    ('10:45', '11:45', True, False),
+    ('11:05', '11:25', True, True),
+    ('11:00', '11:30', True, True),
+    ('10:30', '11:00', False, False),
+    ('11:30', '12:00', False, False),
+    ('12:00', '12:30', False, False),
+])
+def test_model_facts_distinguish_overlap_from_full_containment(start, end, overlap, contained):
+    from harness.trace_facts import with_availability_time_facts
+    raw = {'available': False, 'busy_intervals': [{
+        'start': {'dateTime': '2027-07-14T18:00:00+00:00'},
+        'end': {'dateTime': '2027-07-14T18:30:00+00:00'}}]}
+    facts = with_availability_time_facts(raw, f'2027-07-14T{start}:00-07:00',
+                                       f'2027-07-14T{end}:00-07:00', 'America/Los_Angeles')['time_facts']
+    event = facts['busy_intervals'][0]
+    assert event['overlaps_query'] is overlap
+    assert event['query_fully_within_event'] is contained
+    # Annotation cannot rewrite the adapter's availability or clip whole events.
+    assert raw['available'] is False
+    assert event['utc_start'] == '2027-07-14T18:00:00+00:00'
+    assert event['utc_end'] == '2027-07-14T18:30:00+00:00'
+
+
+def test_containment_is_per_event_not_union_of_busy_intervals():
+    from harness.trace_facts import with_availability_time_facts
+    raw = {'available': False, 'busy_intervals': [
+        {'start': {'dateTime': '2027-07-14T11:00:00-07:00'},
+         'end': {'dateTime': '2027-07-14T11:20:00-07:00'}},
+        {'start': {'dateTime': '2027-07-14T11:20:00-07:00'},
+         'end': {'dateTime': '2027-07-14T11:40:00-07:00'}}]}
+    facts = with_availability_time_facts(raw, '2027-07-14T11:10:00-07:00',
+                                       '2027-07-14T11:30:00-07:00', 'America/Los_Angeles')['time_facts']
+    assert [entry['busy_index'] for entry in facts['busy_intervals']] == [0, 1]
+    assert all(entry['overlaps_query'] for entry in facts['busy_intervals'])
+    assert not any(entry['query_fully_within_event'] for entry in facts['busy_intervals'])

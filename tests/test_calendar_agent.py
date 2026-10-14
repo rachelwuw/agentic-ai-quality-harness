@@ -97,6 +97,8 @@ def test_busy_event_time_facts_reach_next_model_message_without_replacing_query(
         data = json.loads(messages[-1]['content'])
         facts = data['time_facts']
         assert data['available'] is False
+        assert facts['busy_intervals'][0]['overlaps_query'] is True
+        assert facts['busy_intervals'][0]['query_fully_within_event'] is False
         assert data['busy_intervals'][0]['start']['dateTime'] == '2026-10-06T11:00:00-07:00'
         assert facts['query_interval']['in_query_timezone']['start']['datetime'] == '2026-10-07T02:15:00+08:00'
         assert facts['busy_intervals'][0]['in_query_timezone']['start']['datetime'] == '2026-10-07T02:00:00+08:00'

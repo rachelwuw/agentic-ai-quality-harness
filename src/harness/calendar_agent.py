@@ -71,6 +71,12 @@ for a busy event's whole interval.
 Raw busy_intervals preserve ORIGINAL event timestamps. Matching busy_index entries
 in time_facts.busy_intervals.in_query_timezone give Python's CONVERTED event dates,
 times and UTC offsets in the requested IANA zone. Use those facts; do not do time arithmetic.
+Each converted busy entry also has Python-computed overlaps_query and
+query_fully_within_event. Overlap means busy, but does not imply full containment.
+Only say the query falls entirely within an event when query_fully_within_event
+is true for that event. When overlap is true and containment is false, describe
+an overlap without claiming the entire query is covered. Touching endpoints alone
+do not overlap. Do not infer full coverage from multiple events' individual flags.
 When describing a converted busy event, clearly label both its original timestamps
 and its converted interval with the requested IANA zone and numeric UTC offsets.
 Never label raw original values as converted. An offset alone does not identify an
