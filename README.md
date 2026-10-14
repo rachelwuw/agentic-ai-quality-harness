@@ -28,19 +28,26 @@ The assistant is **read-only** and queries a dedicated private test calendar. Ev
 | Layer | What it checks | Dependencies / evidence |
 | --- | --- | --- |
 | Deterministic pytest | Loop bounds, allowed tools, argument validation, time zones, error handling, trace facts and judge output parsing | Scripted model responses and mock APIs; no model or Google calls. [Tests](tests/) |
-| Live integration | Read-only adapter and OAuth against a dedicated test calendar | Real Google API; earlier manual checks, separate from controlled evaluations. [Status](SETUP_STATUS.md) |
+| Live integration | Explicit opt-in, bounded read-only adapter/agent regression against a dedicated test calendar | Real Google API and local SUT; fixture preflight, separate tool/Python/answer review, private raw evidence. [Live runner](evals/CALENDAR_LIVE_READONLY_REGRESSION.md). Ordinary CI remains offline. |
 | Agent evaluation | Real local SUT tool use and answers; deterministic trace checks plus semantic judge review | Simulated Calendar fixtures; saved traces, criterion judgments and targeted human review. [Evaluation guide](evals/CALENDAR_EVALUATIONS.md) |
 
 ## Latest saved evidence
 
 | Evidence | Recorded scope / finding | Source / limits |
 | --- | --- | --- |
-| Deterministic tests | 143 passed in a recreated Python 3.12 environment, with no skips; current collection remains 143 | [Engineering verification](reports/baseline/ENGINEERING_CHECKPOINT_20261008.md), [test source](tests/). No Google or model inference; test count is not product accuracy. |
+| Main deterministic tests | 193 passed on main checkpoint `c17be48` in an independent snapshot; [main CI passed](https://github.com/rachelwuw/agentic-ai-quality-harness/actions/runs/38500855337) | [Test source](tests/). No Google/model inference; test count is not product accuracy. The [143-test engineering verification](reports/baseline/ENGINEERING_CHECKPOINT_20261008.md) is historical evidence, not the current count. |
 | Controlled agent cases | 15 completed with a real local SUT and simulated Calendar fixtures; structural recovery and answer defects are recorded separately | [SUT baseline review and raw trace](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md). Semantic signoff remains pending. |
 | Advisory judge evidence | Full v7 review exposes missed defects and false failures; focused v10 fresh cases expose criterion misses, boundary overlap and a reason/verdict contradiction | [Full judge baseline](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md), [v10 fresh-case review](reports/baseline/JUDGE_V10_FRESH_REVIEW.md). Versioned counts remain in those reports; agreement is not semantic accuracy. |
-| Live integration | Separate manual read-only Google checks for overlap, adjacency and free slots on the dedicated test calendar | [Public setup summary](SETUP_STATUS.md). Availability conclusions were supported, but one answer omitted explicit scope; not an automated live suite. Private raw traces are excluded. |
+| Main live regression, merged in PR #9 | Three adapter checks and three agent structural checks passed; six events sends and six model requests. Final overlap answer falsely described partial overlap as full containment | [Runner and assisted findings](evals/CALENDAR_LIVE_READONLY_REGRESSION.md), [deidentified summary](reports/baseline/calendar-live-readonly-attempt-v2-summary.json). Raw live traces stay private; answer reviews remain pending. [Earlier manual checks](SETUP_STATUS.md) are separate historical evidence. |
 
 A full v10 judge baseline and repeatability study have **not** been run. Authored expected labels and Codex-assisted reviews are distinct from Rachel’s human signoff. [Browse representative findings and the full evidence history](reports/baseline/README.md).
+
+### Unmerged candidates, distinct from main
+
+- [PR #10: overlap/containment facts](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/10): 202 offline tests; eight controlled conversations. The baseline containment defect did not reproduce, and the complete semantic gate failed. No demonstrated reliability improvement.
+- [PR #11: original/converted display text](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/11): 194 offline tests; six controlled conversations. Time labels improved in some respects, but both candidate busy answers omitted the availability conclusion and dedicated-calendar scope; complete candidate gate 0/3. Retain as diagnostic evidence, not an adopted fix.
+
+These branches are independent and remain draft/unmerged. Their test counts and results do not describe main or a combined implementation. No additional tuning or reruns were performed. All earlier reports remain preserved. A [proposed next live check](evals/proposals/CALENDAR_NEXT_LIVE_REGRESSION_PLAN.md) requires version selection and separate execution approval.
 
 ## Architecture
 
