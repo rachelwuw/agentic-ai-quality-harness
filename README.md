@@ -42,12 +42,12 @@ The assistant is **read-only** and queries a dedicated private test calendar. Ev
 
 A full v10 judge baseline and repeatability study have **not** been run. Authored expected labels and Codex-assisted reviews are distinct from Rachel’s human signoff. [Browse representative findings and the full evidence history](reports/baseline/README.md).
 
-### Unmerged candidates, distinct from main
+### Candidate experiments, distinct from main
 
 - [PR #10: overlap/containment facts](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/10): 202 offline tests; eight controlled conversations. The baseline containment defect did not reproduce, and the complete semantic gate failed. No demonstrated reliability improvement.
 - [PR #11: original/converted display text](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/11): 194 offline tests; six controlled conversations. Time labels improved in some respects, but both candidate busy answers omitted the availability conclusion and dedicated-calendar scope; complete candidate gate 0/3. Retain as diagnostic evidence, not an adopted fix.
 
-These branches are independent and remain draft/unmerged. Their test counts and results do not describe main or a combined implementation. No additional tuning or reruns were performed. All earlier reports remain preserved. A [proposed next live check](evals/proposals/CALENDAR_NEXT_LIVE_REGRESSION_PLAN.md) requires version selection and separate execution approval.
+[#13: conclusion preservation](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/13) reuses #11 and improves explicit availability/scope in its paired comparison, but still fails the complete gate and is not adopted. [Candidate convergence decision and preserved evidence](evals/CALENDAR_CANDIDATE_DECISIONS.md): close #10 as a diagnostic experiment and #11 as superseded, retain their branches/reports, and keep #13 as the sole draft candidate pending disposition. No candidate code is merged by this evidence checkpoint. Counts/results do not describe main or a combined implementation; comparators differ. No additional tuning or reruns were performed. A [proposed next live check](evals/proposals/CALENDAR_NEXT_LIVE_REGRESSION_PLAN.md) requires version selection and separate execution approval.
 
 ## Architecture
 
