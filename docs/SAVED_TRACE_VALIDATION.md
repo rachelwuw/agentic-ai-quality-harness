@@ -23,3 +23,9 @@ A malformed case cannot become `PASS_PROVISIONAL`. Independent deterministic che
 [GitHub Actions](../.github/workflows/deterministic-tests.yml) installs `.[dev,calendar,mcp]` on Python 3.12, verifies MCP imports, and runs the deterministic pytest suite. The explicit import step fails if optional MCP dependencies are missing, preventing an accidental `importorskip` from silently removing MCP coverage.
 
 CI has no model server, OAuth secrets or live Google tests. Tests use scripted model responses and mock adapters. Dependency ranges remain declared in `pyproject.toml`; this is not a complete dependency lock or full Mac Studio migration verification.
+
+## Optional offline relationship sidecars
+
+[Offline interval analysis](OFFLINE_INTERVAL_RELATIONS.md) adds explicit per-event
+containment and unknown handling in a separate opt-in report. Existing trace facts,
+Judge inputs and commands keep their current schema; sidecars are not model input.

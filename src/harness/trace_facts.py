@@ -25,6 +25,19 @@ def interval(start, end, target=None):
     return result
 
 
+def interval_relationship(query, event):
+    """Half-open intervals; unavailable evidence is unknown, never false."""
+    try:
+        query = interval(query["utc_start"], query["utc_end"])
+        event = interval(event["utc_start"], event["utc_end"])
+        qs, qe = (datetime.fromisoformat(query[k]) for k in ("utc_start", "utc_end"))
+        es, ee = (datetime.fromisoformat(event[k]) for k in ("utc_start", "utc_end"))
+    except (KeyError, TypeError, ValueError):
+        return {"overlaps_query": None, "query_fully_within_event": None}
+    return {"overlaps_query": es < qe and ee > qs,
+            "query_fully_within_event": es <= qs and qe <= ee}
+
+
 def with_availability_time_facts(result, start, end, time_zone):
     """Add model-facing facts using the same conversion as saved-trace review.
 
@@ -118,8 +131,7 @@ def derive_trace_facts(item):
                 converted = interval(entry["start"]["dateTime"], entry["end"]["dateTime"], target)
                 record.update(converted)
                 if query is not None:
-                    record["overlaps_query"] = (datetime.fromisoformat(converted["utc_start"]) < datetime.fromisoformat(query["utc_end"]) and
-                                                 datetime.fromisoformat(converted["utc_end"]) > datetime.fromisoformat(query["utc_start"]))
+                    record["overlaps_query"] = interval_relationship(query, converted)["overlaps_query"]
             except (KeyError, ValueError, TypeError):
                 record["issue"] = "busy_interval_unavailable_or_all_day"
             observation["busy_intervals"].append(record)
