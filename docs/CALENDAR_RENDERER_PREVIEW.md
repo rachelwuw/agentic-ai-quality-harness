@@ -70,10 +70,12 @@ Los Angeles timestamps and next-day Taipei conversion, with partial overlap text
 
 ## Deferred integration and claims
 
-No renderer is wired into `run_calendar_agent`, evaluations, live runner, MCP or
-Judge. Even faithful rendering cannot fix a wrong agent query, incomplete Calendar
+The standalone preview does not automatically change agent, evaluation, live runner,
+MCP or Judge output. The separately scoped [Python agent opt-in](CALENDAR_RENDERER_OPT_IN.md)
+documents explicit API/CLI integration; default behavior remains unchanged.
+Even faithful rendering cannot fix a wrong agent query, incomplete Calendar
 results or fabricated saved evidence. Tool/intent correctness, renderer correctness
 and raw LLM prose quality must remain separate evaluation dimensions. Any product
-integration, broader language selection, multiple-query support or true SUT/Google
-evaluation requires a separately reviewed scope and execution approval. Merge also
+integration beyond that opt-in, broader language selection, multiple-query support
+or true SUT/Google evaluation requires a separately reviewed scope and execution approval. Merge also
 requires Rachel's explicit authorization.

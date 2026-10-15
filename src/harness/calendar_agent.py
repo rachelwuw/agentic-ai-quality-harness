@@ -1,6 +1,7 @@
 """Read-only scheduling assistant: local model -> real Calendar tool -> answer."""
 import argparse
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -8,6 +9,7 @@ from zoneinfo import ZoneInfo
 from .agent import run_agent
 from .calendar_tools import CalendarError, connect, check_local_availability, LocalTimeError
 from .client import LocalClient
+from .calendar_renderer import TEXT as RENDERER_LANGUAGES, render_calendar_answer
 
 TOOLS = [{'type': 'function', 'function': {
     'name': 'check_availability',
@@ -59,7 +61,9 @@ def executor_for(calendar):
     return execute
 
 
-def run_calendar_agent(prompt, complete, calendar, *, now=None, on_event=None):
+def run_calendar_agent(prompt, complete, calendar, *, now=None, on_event=None, renderer_language=None):
+    if renderer_language is not None and (not isinstance(renderer_language, str) or renderer_language not in RENDERER_LANGUAGES):
+        raise ValueError('renderer_language must be en or zh-TW')
     now = now or datetime.now(ZoneInfo('America/Los_Angeles'))
     system = f'''You are a read-only Calendar availability assistant.
 Current date and time: {now.isoformat()}. Default timezone: America/Los_Angeles.
@@ -91,15 +95,28 @@ Never invent a tool limitation from an error. An error means availability is unk
 You cannot create, modify, delete or reserve events. Never say a booking succeeded.
 Report the exact date/time/timezone and scope in the user's language. If asked to book,
 explain that this version only checks availability. Do not use any other tools.'''
-    return run_agent(prompt, complete, system=system, tools=TOOLS,
-                     executor=executor_for(calendar), on_event=on_event)
+    result = run_agent(prompt, complete, system=system, tools=TOOLS,
+                       executor=executor_for(calendar), on_event=on_event)
+    if renderer_language is not None:
+        product = render_calendar_answer(result, language=renderer_language)
+        product['provenance'] = {'source': 'current_python_agent_run',
+                                 'raw_answer_field': 'answer', 'evidence_field': 'events',
+                                 'user_intent_verified': False}
+        result = {**result, 'product_output': product}
+    return result
 
 
 def main():
     parser = argparse.ArgumentParser(description='Local LLM assistant with real read-only Calendar access')
     parser.add_argument('prompt')
     parser.add_argument('--output', default='reports/calendar-agent-latest.json')
+    parser.add_argument('--renderer', choices=['python'], help='Opt in to separate deterministic product output')
+    parser.add_argument('--language', choices=RENDERER_LANGUAGES, help='Required with --renderer')
     args = parser.parse_args()
+    if (args.renderer is None) != (args.language is None):
+        parser.error('--renderer python and --language must be supplied together')
+    if args.renderer is not None and Path(args.output).exists():
+        parser.error('Renderer mode requires a new output file; existing traces must not be overwritten')
     try:
         client = LocalClient()
         client.models()  # Check the runtime before opening the Calendar connection.
@@ -111,17 +128,30 @@ def main():
         print('Local model: ' + client.model + ' at ' + client.base, flush=True)
         print('Read-only access: dedicated test calendar. No event writes.', flush=True)
         try:
-            result = run_calendar_agent(args.prompt, client, calendar, on_event=show)
+            result = run_calendar_agent(args.prompt, client, calendar, on_event=show,
+                                        renderer_language=args.language)
         finally:
             calendar.session.close()
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps({'recorded_at': datetime.now().astimezone().isoformat(),
-                                     'model': client.model, 'base_url': client.base,
-                                     'prompt': args.prompt, **result}, indent=2, ensure_ascii=False))
-        print('\nAssistant: ' + result['answer'])
+        saved = json.dumps({'recorded_at': datetime.now().astimezone().isoformat(),
+                            'model': client.model, 'base_url': client.base,
+                            'prompt': args.prompt, **result}, indent=2, ensure_ascii=False)
+        if args.renderer is None:
+            output.write_text(saved)
+        else:
+            with open(output, 'x', encoding='utf-8', opener=lambda path, flags: os.open(path, flags, 0o600)) as stream:
+                stream.write(saved)
+        if args.renderer is None:
+            print('\nAssistant: ' + result['answer'])
+        else:
+            product = result['product_output']
+            print('\nRenderer status: ' + product['render_status'])
+            print(product['rendered_answer'] if product['rendered_answer'] is not None else
+                  'No renderer product output for this run; raw model answer is retained in the trace.')
         print('Trace saved: ' + str(output))
-        return int(result['status'] != 'completed')
+        return int(result['status'] != 'completed' or
+                   (args.renderer is not None and result['product_output']['render_status'] != 'rendered'))
     except Exception as error:
         print(f'Calendar agent failed ({type(error).__name__}). Check LM Studio and Calendar setup.', file=sys.stderr)
         return 1
