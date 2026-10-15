@@ -73,3 +73,7 @@ instant; relations do not require inventing a timezone.
 
 After this small PR is reviewed and separately approved, renderer design can be
 considered as its own task. This change does not authorize expanding into it.
+
+The separately scoped [renderer preview](CALENDAR_RENDERER_PREVIEW.md) documents
+offline presentation using these shared facts; it does not change the legacy
+model-input path or automatically integrate rendering into the agent.
