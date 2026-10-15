@@ -58,7 +58,7 @@ def test_unsupported_event_is_unknown_not_nonoverlap(bad):
 
 @pytest.mark.parametrize('field,value', [('start', 'bad'), ('start', None),
     ('start', '2027-07-14T11:15:00'), ('end', '2027-07-14T10:00:00-07:00'),
-    ('error', 'calendar_unavailable')])
+    ('error', 'calendar_unavailable'), ('error', '')])
 def test_invalid_query_or_tool_failure_is_unknown(field, value):
     item = saved(); result(item)[field] = value
     assert relation(item)['overlaps_query'] is None

@@ -30,7 +30,7 @@ def derive_interval_relations(item):
             continue
         observation["busy_intervals"] = []
         for event in source["busy_intervals"]:
-            query = None if source.get("reported_error") else source.get("query_interval")
+            query = None if "reported_error" in source else source.get("query_interval")
             relation = interval_relationship(query, event)
             record = {"busy_index": event["busy_index"], **relation}
             if relation["overlaps_query"] is None:
