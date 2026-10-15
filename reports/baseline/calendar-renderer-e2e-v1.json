@@ -1,0 +1,615 @@
+{
+  "state": "completed",
+  "candidate_commit": "5ba414b5219f6da4a9005533e96c1bbd0a44f29e",
+  "model": "openai/gpt-oss-20b",
+  "calendar_mode": "controlled_no_google_access",
+  "reference_now": "2028-01-01T12:00:00-08:00",
+  "model_requests": 6,
+  "model_request_limit": 8,
+  "google_requests": 0,
+  "judge_calls": 0,
+  "code_hashes": {
+    "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "__main__.py": "3b2c0695370b92551a323607efff2a7dd0041e029a90f446cc644f1fb7a9b3e6",
+    "agent.py": "5ea48cb8996aea913c2ca01c117c2875855f62388c83e7ac670f168fd0bd1b82",
+    "calendar_agent.py": "ade68ee406252148d11062d2da8eedca05153e2d95b0c46c46b58b35c4ff8ee4",
+    "calendar_evaluate.py": "5b6833a6529d3744fffb0e3e8cd2684c03d750481455f77d009f84331c324bc7",
+    "calendar_judge.py": "e5a746d58314a6c704a075a177693205c2ea7cf39a064631a1b22f3d72dd9c3b",
+    "calendar_live_regression.py": "5fd922fd46844c4eb60802e00a66e95352958d65a3e12f69f057da7f628b0733",
+    "calendar_mcp.py": "601a5c397478c6628dc3580554e7de66f66ce3b894ce2be2d03fd3c93fd76d43",
+    "calendar_renderer.py": "9c054277312b83a490af78099fe6ee173c0a6b8c083b00c4dc430206b38bafc5",
+    "calendar_setup.py": "6c5461c57f423a285385bc6066bb9e5555cea3eac1e468049dea663a6895fc7a",
+    "calendar_tools.py": "540d65f4a6612242744eac4728e66535d282413dba170e469407d515af979f32",
+    "client.py": "a7c8a8ac73df20fd82a72ee6422265db75b9943a254c86ce7abda056238f10a6",
+    "evaluate.py": "6c6d9da0e1aca1321d1f118c3778d4ca4a922e26cf9d663857a4a04ba00db221",
+    "interval_relations.py": "fe033e8615d6c4b9693e9fa5835aeca4f8f08bb8d22684a1301c230dcbc6a6bd",
+    "retry.py": "da36045e85d881858394cc055065c3a85dc692b987e7c7d6831e424a83bf07e1",
+    "saved_trace.py": "2b5dd1e97bbc5579e3a0734a021ed84c9413df5d2d3c3d4598eea9a0e0aac312",
+    "tools.py": "55d15daa92f74632497b7977e358d2f09dd9aab94f62113db8cede3bf42183fa",
+    "trace_facts.py": "c1f544a3f64156f23449ffbfadfd8be5330dd6c428cdbbc2cbc8b2cc07771119"
+  },
+  "plan_sha256": "3879525831921edbfb75ecb8716159cdbeda82a75e3a3466cfb476d9776142b4",
+  "elapsed_seconds": 24.459,
+  "runtime_unchanged": true,
+  "temperature": 0,
+  "max_tokens": 2048,
+  "context_length": 8192,
+  "review_provenance": "Codex assisted full-answer review and independent fixed-fixture fact check; Rachel semantic signoff pending",
+  "comparison": "Raw model answer and product output from the SAME run; no paired extra inference",
+  "structural_passes": 3,
+  "python_facts_verified": 3,
+  "product_assisted_passes": 3,
+  "scope_limits": "Three controlled cases, one attempt each; no real Google verification, general reliability or LLM improvement claim. Unknown/unsupported were covered offline, not by this three-case runtime round.",
+  "results": [
+    {
+      "id": "winter-busy",
+      "case": {
+        "id": "winter-busy",
+        "prompt": "Please check whether 11:10–11:20 on 2028-01-19 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "language": "en",
+        "fixture": {
+          "start": "2028-01-19T19:00:00Z",
+          "end": "2028-01-19T19:30:00Z"
+        },
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2028-01-19T11:10:00",
+              "end": "2028-01-19T11:20:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2028-01-19T11:10:00-08:00",
+          "end": "2028-01-19T11:20:00-08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct availability/scope, query and original/converted times, relation and explicit output language."
+        ],
+        "forbidden_behaviors": [
+          "False containment, invented times/source regions, hidden fallback or raw-answer replacement."
+        ]
+      },
+      "state": "completed",
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot **2028‑01‑19 11:10–11:20 America/Los_Angeles** is **not available**.\n\nA busy event overlaps that window:\n\n| Original event (UTC) | Converted to America/Los_Angeles |\n|----------------------|----------------------------------|\n| Start: 2028‑01‑19T19:00:00Z | 2028‑01‑19 11:00–11:30 America/Los_Angeles (offset −08:00) |\n| End:   2028‑01‑19T19:30:00Z | 2028‑01‑19 11:30–12:00 America/Los_Angeles (offset −08:00) |\n\nThe event runs from **11:00 to 11:30 PST** on that day, so it conflicts with the requested 11:10–11:20 slot.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "ONTLVq6eu9kbZoUXMvbtbt8WtNAwgoSM",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2028-01-19T11:10:00\",\"end\":\"2028-01-19T11:20:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2028-01-19T11:10:00\",\"end\":\"2028-01-19T11:20:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2028-01-19T11:10:00-08:00",
+              "end": "2028-01-19T11:20:00-08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2028-01-19T19:00:00Z"
+                  },
+                  "end": {
+                    "dateTime": "2028-01-19T19:30:00Z"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2028-01-19T19:10:00+00:00",
+                  "utc_end": "2028-01-19T19:20:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2028-01-19T11:10:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2028-01-19T11:20:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2028-01-19T19:00:00+00:00",
+                    "utc_end": "2028-01-19T19:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "America/Los_Angeles",
+                      "start": {
+                        "datetime": "2028-01-19T11:00:00-08:00",
+                        "timezone_label": "PST"
+                      },
+                      "end": {
+                        "datetime": "2028-01-19T11:30:00-08:00",
+                        "timezone_label": "PST"
+                      }
+                    }
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot **2028‑01‑19 11:10–11:20 America/Los_Angeles** is **not available**.\n\nA busy event overlaps that window:\n\n| Original event (UTC) | Converted to America/Los_Angeles |\n|----------------------|----------------------------------|\n| Start: 2028‑01‑19T19:00:00Z | 2028‑01‑19 11:00–11:30 America/Los_Angeles (offset −08:00) |\n| End:   2028‑01‑19T19:30:00Z | 2028‑01‑19 11:30–12:00 America/Los_Angeles (offset −08:00) |\n\nThe event runs from **11:00 to 11:30 PST** on that day, so it conflicts with the requested 11:10–11:20 slot.",
+              "tool_calls": []
+            }
+          }
+        ],
+        "product_output": {
+          "version": "calendar-renderer-preview-v1",
+          "language": "en",
+          "render_status": "rendered",
+          "rendered_answer": "Unavailable (tool-reported; dedicated test calendar only).\nActual tool query: 2028-01-19T11:10:00-08:00 → 2028-01-19T11:20:00-08:00 (America/Los_Angeles)\nOriginal event timestamps: 2028-01-19T19:00:00Z → 2028-01-19T19:30:00Z\nEvent in requested zone: 2028-01-19T11:00:00-08:00 → 2028-01-19T11:30:00-08:00 (America/Los_Angeles)\nThis event contains the entire query interval.",
+          "evidence_refs": [
+            {
+              "event_index": 2
+            }
+          ],
+          "reasons": [],
+          "limitations": [],
+          "provenance": {
+            "source": "current_python_agent_run",
+            "raw_answer_field": "answer",
+            "evidence_field": "events",
+            "user_intent_verified": false
+          }
+        }
+      },
+      "api_calls": [
+        {
+          "start": "2028-01-19T11:10:00-08:00",
+          "end": "2028-01-19T11:20:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability/scope, query and original/converted times, relation and explicit output language."
+        ],
+        "forbidden_behaviors": [
+          "False containment, invented times/source regions, hidden fallback or raw-answer replacement."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 9.99,
+      "system_prompt_sha256": "4d2b003d6b4db0db7de0d28a96a4cede368d206db730f484e8202faab6302b3d",
+      "python_fact_review": "verified against fixed explicit endpoints, without recomputing using the renderer",
+      "raw_answer_assisted_findings": [
+        "Converted End table cell incorrectly shows 11:30–12:00, contradicting the actual event end 11:30 and the other answer clauses.",
+        "Uses PST; dedicated-calendar scope is not explicit."
+      ],
+      "product_assisted_review": {
+        "availability_scope": true,
+        "query_original_converted_times": true,
+        "relationship_or_no_conflicts": true,
+        "language": true,
+        "pass": true,
+        "human_signoff": "pending"
+      }
+    },
+    {
+      "id": "summer-cross-day",
+      "case": {
+        "id": "summer-cross-day",
+        "prompt": "請查詢專用測試行事曆：2028-08-18 07:15 到 07:45，時區 Asia/Taipei，是否有空？若有衝突請說明。",
+        "language": "zh-TW",
+        "fixture": {
+          "start": "2028-08-17T16:00:00-07:00",
+          "end": "2028-08-17T16:30:00-07:00"
+        },
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2028-08-18T07:15:00",
+              "end": "2028-08-18T07:45:00",
+              "time_zone": "Asia/Taipei"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2028-08-18T07:15:00+08:00",
+          "end": "2028-08-18T07:45:00+08:00"
+        },
+        "expected_available": false,
+        "answer_criteria": [
+          "Correct availability/scope, query and original/converted times, relation and explicit output language."
+        ],
+        "forbidden_behaviors": [
+          "False containment, invented times/source regions, hidden fallback or raw-answer replacement."
+        ]
+      },
+      "state": "completed",
+      "run": {
+        "status": "completed",
+        "answer": "**可用性查詢結果**\n\n| 時間區間 | 是否空閒 |\n|---------|----------|\n| 2028‑08‑18 07:15 – 07:45 (Asia/Taipei) | **否** |\n\n---\n\n### 衝突說明\n\n- **原始事件時間（UTC‑7）**  \n  - 開始：2028‑08‑17 16:00‑07:00  \n  - 結束：2028‑08‑17 16:30‑07:00  \n\n- **轉換後的時間（Asia/Taipei，+08:00）**  \n  - 開始：2028‑08‑18 07:00 +08:00 (CST)  \n  - 結束：2028‑08‑18 07:30 +08:00 (CST)\n\n請注意，您查詢的時間區間（07:15–07:45）與上述事件在 **Asia/Taipei 時區** 的 07:00–07:30 時段重疊，因此該時段不可用。",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "sd5fK7ypFiyRHZElFOBYdfyaImqqBhF5",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2028-08-18T07:15:00\",\"end\":\"2028-08-18T07:45:00\",\"time_zone\":\"Asia/Taipei\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2028-08-18T07:15:00\",\"end\":\"2028-08-18T07:45:00\",\"time_zone\":\"Asia/Taipei\"}",
+            "result": {
+              "start": "2028-08-18T07:15:00+08:00",
+              "end": "2028-08-18T07:45:00+08:00",
+              "available": false,
+              "busy_intervals": [
+                {
+                  "start": {
+                    "dateTime": "2028-08-17T16:00:00-07:00"
+                  },
+                  "end": {
+                    "dateTime": "2028-08-17T16:30:00-07:00"
+                  }
+                }
+              ],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "Asia/Taipei",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2028-08-17T23:15:00+00:00",
+                  "utc_end": "2028-08-17T23:45:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "Asia/Taipei",
+                    "start": {
+                      "datetime": "2028-08-18T07:15:00+08:00",
+                      "timezone_label": "CST"
+                    },
+                    "end": {
+                      "datetime": "2028-08-18T07:45:00+08:00",
+                      "timezone_label": "CST"
+                    }
+                  }
+                },
+                "busy_intervals": [
+                  {
+                    "busy_index": 0,
+                    "utc_start": "2028-08-17T23:00:00+00:00",
+                    "utc_end": "2028-08-17T23:30:00+00:00",
+                    "in_query_timezone": {
+                      "time_zone": "Asia/Taipei",
+                      "start": {
+                        "datetime": "2028-08-18T07:00:00+08:00",
+                        "timezone_label": "CST"
+                      },
+                      "end": {
+                        "datetime": "2028-08-18T07:30:00+08:00",
+                        "timezone_label": "CST"
+                      }
+                    }
+                  }
+                ],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "**可用性查詢結果**\n\n| 時間區間 | 是否空閒 |\n|---------|----------|\n| 2028‑08‑18 07:15 – 07:45 (Asia/Taipei) | **否** |\n\n---\n\n### 衝突說明\n\n- **原始事件時間（UTC‑7）**  \n  - 開始：2028‑08‑17 16:00‑07:00  \n  - 結束：2028‑08‑17 16:30‑07:00  \n\n- **轉換後的時間（Asia/Taipei，+08:00）**  \n  - 開始：2028‑08‑18 07:00 +08:00 (CST)  \n  - 結束：2028‑08‑18 07:30 +08:00 (CST)\n\n請注意，您查詢的時間區間（07:15–07:45）與上述事件在 **Asia/Taipei 時區** 的 07:00–07:30 時段重疊，因此該時段不可用。",
+              "tool_calls": []
+            }
+          }
+        ],
+        "product_output": {
+          "version": "calendar-renderer-preview-v1",
+          "language": "zh-TW",
+          "render_status": "rendered",
+          "rendered_answer": "不可用（工具回報；僅專用測試行事曆）。\n工具實際查詢區間: 2028-08-18T07:15:00+08:00 → 2028-08-18T07:45:00+08:00 (Asia/Taipei)\n活動原始時間: 2028-08-17T16:00:00-07:00 → 2028-08-17T16:30:00-07:00\n活動於指定時區: 2028-08-18T07:00:00+08:00 → 2028-08-18T07:30:00+08:00 (Asia/Taipei)\n此活動與查詢重疊，但未包含整段查詢區間。",
+          "evidence_refs": [
+            {
+              "event_index": 2
+            }
+          ],
+          "reasons": [],
+          "limitations": [],
+          "provenance": {
+            "source": "current_python_agent_run",
+            "raw_answer_field": "answer",
+            "evidence_field": "events",
+            "user_intent_verified": false
+          }
+        }
+      },
+      "api_calls": [
+        {
+          "start": "2028-08-18T07:15:00+08:00",
+          "end": "2028-08-18T07:45:00+08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability/scope, query and original/converted times, relation and explicit output language."
+        ],
+        "forbidden_behaviors": [
+          "False containment, invented times/source regions, hidden fallback or raw-answer replacement."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 10.258,
+      "system_prompt_sha256": "4d2b003d6b4db0db7de0d28a96a4cede368d206db730f484e8202faab6302b3d",
+      "python_fact_review": "verified against fixed explicit endpoints, without recomputing using the renderer",
+      "raw_answer_assisted_findings": [
+        "Time values/overlap are supported, but dedicated-calendar scope is not explicit.",
+        "Uses CST abbreviation despite the numeric-offset/IANA preference."
+      ],
+      "product_assisted_review": {
+        "availability_scope": true,
+        "query_original_converted_times": true,
+        "relationship_or_no_conflicts": true,
+        "language": true,
+        "pass": true,
+        "human_signoff": "pending"
+      }
+    },
+    {
+      "id": "noon-free",
+      "case": {
+        "id": "noon-free",
+        "prompt": "Please check whether 12:00–12:30 on 2028-01-19 in America/Los_Angeles is available on the dedicated test calendar. Explain any conflict.",
+        "language": "en",
+        "fixture": {
+          "start": "2028-01-19T11:00:00-08:00",
+          "end": "2028-01-19T11:30:00-08:00"
+        },
+        "expected_calls": [
+          {
+            "name": "check_availability",
+            "arguments": {
+              "start": "2028-01-19T12:00:00",
+              "end": "2028-01-19T12:30:00",
+              "time_zone": "America/Los_Angeles"
+            }
+          }
+        ],
+        "expected_api_interval": {
+          "start": "2028-01-19T12:00:00-08:00",
+          "end": "2028-01-19T12:30:00-08:00"
+        },
+        "expected_available": true,
+        "answer_criteria": [
+          "Correct availability/scope, query and original/converted times, relation and explicit output language."
+        ],
+        "forbidden_behaviors": [
+          "False containment, invented times/source regions, hidden fallback or raw-answer replacement."
+        ]
+      },
+      "state": "completed",
+      "run": {
+        "status": "completed",
+        "answer": "The requested slot **2028‑01‑19 12:00–12:30 America/Los_Angeles** is available on the dedicated test calendar.\n\nNo events overlap this interval; the calendar has no busy intervals during that time.",
+        "events": [
+          {
+            "type": "model_attempt",
+            "step": 0,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 0,
+            "message": {
+              "role": "assistant",
+              "content": "",
+              "tool_calls": [
+                {
+                  "type": "function",
+                  "id": "Sh6MoXFSZ72lHQQOTd01XWgOLV9yYvhZ",
+                  "function": {
+                    "name": "check_availability",
+                    "arguments": "{\"start\":\"2028-01-19T12:00:00\",\"end\":\"2028-01-19T12:30:00\",\"time_zone\":\"America/Los_Angeles\"}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "tool",
+            "name": "check_availability",
+            "arguments": "{\"start\":\"2028-01-19T12:00:00\",\"end\":\"2028-01-19T12:30:00\",\"time_zone\":\"America/Los_Angeles\"}",
+            "result": {
+              "start": "2028-01-19T12:00:00-08:00",
+              "end": "2028-01-19T12:30:00-08:00",
+              "available": true,
+              "busy_intervals": [],
+              "source": "controlled_calendar_fixture",
+              "scope": "configured_test_calendar_only",
+              "time_zone": "America/Los_Angeles",
+              "time_facts": {
+                "version": "calendar-availability-time-facts-v1",
+                "provenance": "python_zoneinfo_from_tool_intervals",
+                "query_interval": {
+                  "utc_start": "2028-01-19T20:00:00+00:00",
+                  "utc_end": "2028-01-19T20:30:00+00:00",
+                  "in_query_timezone": {
+                    "time_zone": "America/Los_Angeles",
+                    "start": {
+                      "datetime": "2028-01-19T12:00:00-08:00",
+                      "timezone_label": "PST"
+                    },
+                    "end": {
+                      "datetime": "2028-01-19T12:30:00-08:00",
+                      "timezone_label": "PST"
+                    }
+                  }
+                },
+                "busy_intervals": [],
+                "issues": []
+              }
+            }
+          },
+          {
+            "type": "model_attempt",
+            "step": 1,
+            "attempt": 1,
+            "outcome": "success"
+          },
+          {
+            "type": "assistant",
+            "step": 1,
+            "message": {
+              "role": "assistant",
+              "content": "The requested slot **2028‑01‑19 12:00–12:30 America/Los_Angeles** is available on the dedicated test calendar.\n\nNo events overlap this interval; the calendar has no busy intervals during that time.",
+              "tool_calls": []
+            }
+          }
+        ],
+        "product_output": {
+          "version": "calendar-renderer-preview-v1",
+          "language": "en",
+          "render_status": "rendered",
+          "rendered_answer": "Available (tool-reported; dedicated test calendar only).\nActual tool query: 2028-01-19T12:00:00-08:00 → 2028-01-19T12:30:00-08:00 (America/Los_Angeles)\nNo conflicting events were returned.",
+          "evidence_refs": [
+            {
+              "event_index": 2
+            }
+          ],
+          "reasons": [],
+          "limitations": [],
+          "provenance": {
+            "source": "current_python_agent_run",
+            "raw_answer_field": "answer",
+            "evidence_field": "events",
+            "user_intent_verified": false
+          }
+        }
+      },
+      "api_calls": [
+        {
+          "start": "2028-01-19T12:00:00-08:00",
+          "end": "2028-01-19T12:30:00-08:00"
+        }
+      ],
+      "structural_pass": true,
+      "checks": {
+        "completed": true,
+        "tool_arguments": true,
+        "api_interval": true,
+        "tool_outcome": true
+      },
+      "answer_review": {
+        "status": "pending",
+        "criteria": [
+          "Correct availability/scope, query and original/converted times, relation and explicit output language."
+        ],
+        "forbidden_behaviors": [
+          "False containment, invented times/source regions, hidden fallback or raw-answer replacement."
+        ],
+        "notes": ""
+      },
+      "overall_status": "pending_review",
+      "model_requests": 2,
+      "elapsed_seconds": 4.115,
+      "system_prompt_sha256": "4d2b003d6b4db0db7de0d28a96a4cede368d206db730f484e8202faab6302b3d",
+      "python_fact_review": "verified against fixed explicit endpoints, without recomputing using the renderer",
+      "raw_answer_assisted_findings": [
+        "Available and dedicated-calendar scope are explicit; numeric UTC query offset is omitted."
+      ],
+      "product_assisted_review": {
+        "availability_scope": true,
+        "query_original_converted_times": true,
+        "relationship_or_no_conflicts": true,
+        "language": true,
+        "pass": true,
+        "human_signoff": "pending"
+      }
+    }
+  ]
+}

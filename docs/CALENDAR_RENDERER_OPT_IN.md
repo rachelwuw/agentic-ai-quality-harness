@@ -83,3 +83,40 @@ separately, and final product conclusion/scope/time/relation/language separately
 Any unknown/unsupported remains visible rather than counted as semantic PASS. One
 round does not establish general reliability. Product adoption/merge is separately
 authorized; Google live regression requires a later selected-version approval.
+
+## Approved controlled E2E v1 outcome
+
+Rachel approved the above three cases and eight-request cap, not PR merge.
+Tested commit `5ba414b5219f6da4a9005533e96c1bbd0a44f29e` and main `089392c`
+were unchanged before execution. The three fresh conversations completed in 24.459
+seconds, with six first-attempt inference requests and three controlled Calendar
+queries, zero Google/Judge calls and unchanged runtime. No prompt/settings/label
+changes, extra conversations or reruns occurred.
+
+| Review dimension | This round |
+| --- | --- |
+| Tool arguments, resolved query and recorded outcome | 3/3 structurally passed |
+| Python time facts versus independent fixed endpoint references | 3/3 verified |
+| Renderer conclusion/scope, query/original/converted times, relationship and language | 3/3 Codex-assisted review passed; Rachel signoff pending |
+| Raw LLM prose | Defects retained; no overall reliability or improvement claim |
+
+The winter raw answer's converted End table cell incorrectly says 11:30–12:00,
+contradicting the actual 11:30 event end and other clauses. Its PST wording and
+missing explicit scope remain preserved. Summer raw time values/overlap are
+supported, but it omits explicit dedicated-calendar scope and uses CST; noon raw
+conclusion/scope are supported but omit the numeric offset. Product output in all
+three cases correctly renders the recorded facts in the selected language from
+the SAME runs, with no additional inference. This validates only these controlled
+paths, not user-intent generalization, actual Google integration or improved LLM
+prose. Unknown/unsupported paths were tested offline, not exercised in this round.
+
+Full public synthetic raw answers, tool traces, product outputs, code/prompt/plan
+hashes and review are in `reports/baseline/calendar-renderer-e2e-v1.json`. Native
+runtime details and HTTP request/response captures remain under ignored reports/runs/.
+Original request captures used mutable message-array references; separate derived
+request-time snapshots were reconstructed and checked against preserved responses,
+without overwriting originals or running inference. The public review relies on
+saved run events and fixed endpoint references, not the mutable captures.
+
+Keep PR #17 unmerged pending Rachel review/explicit merge authorization. Google
+live regression still needs a selected-version plan and separate approval.
