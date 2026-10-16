@@ -1,6 +1,10 @@
 # Agentic AI Quality & Test Harness — current architecture
 
-Current v0.2 Development Preview, October 8, 2026. The implemented SUT checks Calendar availability; event creation is future work.
+Current v0.3 Development Preview, October 15, 2026. The implemented SUT checks Calendar availability; event creation is future work.
+
+The v0.3 Development Preview adds an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
+
+Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review; Rachel's individual answer signoff remains pending. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
 
 ## Runtime and evidence flow
 
@@ -13,6 +17,7 @@ flowchart TD
         Validate --> Read[Read-only Calendar adapter]
         Read --> Agent
         Agent --> Trace[Saved answer and trace]
+        Trace --> Product[Explicit opt-in Python renderer: separate product_output]
         Trace --> Facts[Python: time conversion and tool facts]
         Facts --> Judge[LM Studio: Qwen semantic judge]
         Trace --> Judge
@@ -41,7 +46,7 @@ The MCP host owns a separate loop. It shares the read-only Calendar implementati
 
 | Layer | Execution | Evidence and limits |
 |---|---|---|
-| Deterministic | Scripted model responses and simulated APIs | 108 tests; loop, validation, time zones, retries, judge schema and grading logic |
+| Deterministic | Scripted model responses and simulated APIs | 283 tests; renderer, interval relations, loop, validation, time zones, retries, judge schema and grading logic |
 | Integration | Real Google Calendar reads | Manual live read-only evidence on the dedicated calendar; separate from controlled evaluations |
 | Agent evaluation | Real local SUT with controlled Calendar fixtures | 15 cases, structural checks, saved answers and pending semantic review |
 

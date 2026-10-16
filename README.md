@@ -2,13 +2,17 @@
 
 [![Deterministic tests](https://github.com/rachelwuw/agentic-ai-quality-harness/actions/workflows/deterministic-tests.yml/badge.svg?branch=main)](https://github.com/rachelwuw/agentic-ai-quality-harness/actions/workflows/deterministic-tests.yml)
 
-**Status: v0.2 Development Preview**
+**Status: v0.3 Development Preview — package `0.3.0.dev0`**
 
 **Testing the reliability of LLM-powered agents and their evaluators**
 
 The **Calendar Availability Agent** is a local, read-only assistant that checks whether a requested time slot is free on a dedicated test calendar. Its Python quality harness verifies tool execution and program logic, then supports review of answer quality through saved traces, deterministic checks and an advisory LLM judge. The project demonstrates Software Quality, Test Automation and Agentic AI Evaluation through inspectable evidence; it does not establish semantic accuracy or production reliability.
 
 The assistant is **read-only** and queries a dedicated private test calendar. Event creation is future work. The local judge is **advisory**; it is not release signoff. Controlled evaluations use **simulated Calendar fixtures** with a real local SUT model.
+
+The v0.3 Development Preview adds an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
+
+Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review; Rachel's individual answer signoff remains pending. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
 
 ## Demo: tool success is not always answer success
 
@@ -23,6 +27,8 @@ The assistant is **read-only** and queries a dedicated private test calendar. Ev
 - **Overall judge verdicts can hide criterion-level errors.** [v10 fresh summer-negative review](reports/baseline/JUDGE_V10_FRESH_REVIEW.md#criterion-disagreements-preserved) records an overall FAIL that matches the authored expectation while c2 misses a contradictory time claim.
 - **Python-derived time facts support semantic review, but do not eliminate judge mistakes.** [v10 fresh winter-positive review](reports/baseline/JUDGE_V10_FRESH_REVIEW.md#criterion-disagreements-preserved) preserves a false FAIL despite computed time facts; the c6 reason concludes it should PASS while the label remains FAIL.
 
+Current offline verification: **283 pytest tests passed** on October 15, 2026. No model or Google calls occur in pytest. Earlier versioned counts below remain historical.
+
 ## Three testing layers
 
 | Layer | What it checks | Dependencies / evidence |
@@ -35,7 +41,7 @@ The assistant is **read-only** and queries a dedicated private test calendar. Ev
 
 | Evidence | Recorded scope / finding | Source / limits |
 | --- | --- | --- |
-| Main deterministic tests | 193 passed on main checkpoint `c17be48` in an independent snapshot; [main CI passed](https://github.com/rachelwuw/agentic-ai-quality-harness/actions/runs/38500855337) | [Test source](tests/). No Google/model inference; test count is not product accuracy. The [143-test engineering verification](reports/baseline/ENGINEERING_CHECKPOINT_20261008.md) is historical evidence, not the current count. |
+| Main deterministic tests | 283 passed locally for the v0.3 metadata/docs checkpoint; required GitHub Actions checks run on each PR and main | [Test source](tests/). No Google/model inference; test count is not product accuracy. The [143-test engineering verification](reports/baseline/ENGINEERING_CHECKPOINT_20261008.md) is historical evidence, not the current count. |
 | Controlled agent cases | 15 completed with a real local SUT and simulated Calendar fixtures; structural recovery and answer defects are recorded separately | [SUT baseline review and raw trace](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md). Semantic signoff remains pending. |
 | Advisory judge evidence | Full v7 review exposes missed defects and false failures; focused v10 fresh cases expose criterion misses, boundary overlap and a reason/verdict contradiction | [Full judge baseline](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md), [v10 fresh-case review](reports/baseline/JUDGE_V10_FRESH_REVIEW.md). Versioned counts remain in those reports; agreement is not semantic accuracy. |
 | Main live regression, merged in PR #9 | Three adapter checks and three agent structural checks passed; six events sends and six model requests. Final overlap answer falsely described partial overlap as full containment | [Runner and assisted findings](evals/CALENDAR_LIVE_READONLY_REGRESSION.md), [deidentified summary](reports/baseline/calendar-live-readonly-attempt-v2-summary.json). Raw live traces stay private; answer reviews remain pending. [Earlier manual checks](SETUP_STATUS.md) are separate historical evidence. |
@@ -47,7 +53,7 @@ A full v10 judge baseline and repeatability study have **not** been run. Authore
 - [PR #10: overlap/containment facts](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/10): 202 offline tests; eight controlled conversations. The baseline containment defect did not reproduce, and the complete semantic gate failed. No demonstrated reliability improvement.
 - [PR #11: original/converted display text](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/11): 194 offline tests; six controlled conversations. Time labels improved in some respects, but both candidate busy answers omitted the availability conclusion and dedicated-calendar scope; complete candidate gate 0/3. Retain as diagnostic evidence, not an adopted fix.
 
-[#13: conclusion preservation](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/13) reuses #11 and improves explicit availability/scope in its paired comparison, but still fails the complete gate and is not adopted. [Candidate convergence decision and preserved evidence](evals/CALENDAR_CANDIDATE_DECISIONS.md): close #10 as a diagnostic experiment and #11 as superseded, retain their branches/reports, and keep #13 as the sole draft candidate pending disposition. No candidate code is merged by this evidence checkpoint. Counts/results do not describe main or a combined implementation; comparators differ. No additional tuning or reruns were performed. A [proposed next live check](evals/proposals/CALENDAR_NEXT_LIVE_REGRESSION_PLAN.md) requires version selection and separate execution approval.
+[#13: conclusion preservation](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/13) improved some conclusions but failed the complete gate. **#10, #11 and #13 are closed without merging their implementations; branches and evidence are retained.** [Convergence record](evals/CALENDAR_CANDIDATE_DECISIONS.md). Later #15 selectively adopted offline interval math; #16–#18 added the opt-in renderer without adopting those candidate prompts. The [earlier live proposal](evals/proposals/CALENDAR_NEXT_LIVE_REGRESSION_PLAN.md) is historical; the separately approved executed renderer round is documented [here](docs/LIVE_RENDERER_OPT_IN.md).
 
 ## Architecture
 
@@ -60,6 +66,7 @@ flowchart LR
     G --> V
     V --> A
     A --> T[Saved trace and final answer]
+    T --> P[Explicit opt-in Python renderer: separate product_output]
     T --> F[Python: time and tool facts]
     T --> D[Python: deterministic checks]
     F --> J[LM Studio: local Qwen semantic judge]
