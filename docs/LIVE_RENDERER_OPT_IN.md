@@ -95,3 +95,38 @@ Use a fresh private directory; retain raw evidence locally. Review only allowlis
 deidentified summary for publication, without automatic upload. One round cannot
 prove general reliability or real intent accuracy. Rachel must separately approve
 these real calls and any PR merge; engineering authorization covers neither.
+
+## Approved live renderer round v1 outcome
+
+Rachel separately approved the fixed three-case plan at commit
+`91966489575fa309d2688df435a498e66ccaf4e0`, without approving merge. The round
+completed in 16.513 seconds: six actual Google events HTTP sends, six first-attempt
+model inference requests, three adapter fixture checks and three agent structural
+checks. All events responses succeeded, no interval drift was observed, and runtime
+was unchanged. OAuth auth transport remains separate/uninstrumented; six events
+sends is not a count of all Google HTTP traffic. No writes, reauthorization, settings
+changes, Judge inference, tuning or additional runs occurred.
+
+Actual HTTP query parameters were privately checked against the approved queries;
+Python UTC/query/event facts were checked against fixed endpoint references.
+Codex-assisted full product review passed for all three: correct reported
+availability/scope, dates/offsets, faithful original/converted labels, partial
+overlap rather than containment, noon/free and explicit Traditional Chinese.
+Renderer status rendered=3 describes eligibility, not independent semantic signoff.
+Rachel signoff and the original answer_review fields remain pending; no overall
+semantic PASS is asserted and one round is not general reliability evidence.
+
+Raw model prose remains separate/private: overlap supports busy/partial overlap
+but omits the explicit query date; adjacent supports free/test-calendar scope with
+no specific numerical time defect observed; empty supports free/date/time but omits
+explicit dedicated-calendar scope. This does not establish that the original LLM
+improved or that historical failures are fixed. Unknown/unsupported runtime paths
+were covered offline and were not exercised by this successful live round.
+
+Only the manually inspected allowlisted original summary is committed at
+`reports/baseline/calendar-live-renderer-attempt-v1-summary.json`. It contains no raw
+answers, product text, dates, offsets, Calendar IDs, URLs or credentials. Raw Google
+and agent traces, original/product answers, native runtime manifest and assisted
+review remain in the new ignored private directory, with original evidence intact.
+No model request captures were added. Implementation hash in the summary ties it
+to the unchanged tested source. Keep PR #18 unmerged pending explicit authorization.
