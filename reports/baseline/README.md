@@ -5,7 +5,7 @@
 - Current offline verification: 283 pytest tests passed (October 15, 2026); no model or Google calls in pytest.
 - [Controlled renderer E2E](../../docs/CALENDAR_RENDERER_OPT_IN.md): three real SUT conversations, simulated Calendar, separate raw/tool/product evidence; [public controlled report](calendar-renderer-e2e-v1.json).
 - [Executed live renderer round](../../docs/LIVE_RENDERER_OPT_IN.md): one three-case Google read-only round, six events sends and six model inferences; [allowlisted public summary](calendar-live-renderer-attempt-v1-summary.json). Private traces remain excluded.
-- Assisted product checks passed; Rachel’s answer signoff remains pending. Raw prose defects, advisory Judge limits and `semantic_pass_claim=false` are preserved. These are small-sample checkpoints, not general accuracy evidence.
+- Assisted product checks passed; the three controlled product answers have [Rachel’s subsequent case-by-case signoff](CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md). Live-answer signoff remains pending. Raw prose defects, advisory Judge limits and `semantic_pass_claim=false` are preserved. These are small-sample checkpoints, not general accuracy evidence.
 
 ## Start here
 

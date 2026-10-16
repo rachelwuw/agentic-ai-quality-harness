@@ -4,7 +4,7 @@ Current v0.3 Development Preview, October 15, 2026. This document describes the 
 
 The v0.3 Development Preview adds an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
 
-Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review; Rachel's individual answer signoff remains pending. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
+Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review. The three controlled product answers subsequently received [Rachel's case-by-case signoff](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md); live-answer signoff remains pending. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
 
 ## Objective
 

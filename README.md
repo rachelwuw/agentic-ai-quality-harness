@@ -45,7 +45,7 @@ The raw answer's End cell contradicts the evidence and its own prose. The render
 | **Controlled agent cases** | Earlier 15-case baseline: **14/15 strict structural passes**, with correction recovery recorded separately. Later renderer round: **3/3 structural checks, Python fact checks and assisted product reviews**. [Baseline](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md) · [Renderer review](docs/CALENDAR_RENDERER_OPT_IN.md#approved-controlled-e2e-v1-outcome) |
 | **Live integration** | One three-case renderer round: **3 fixture checks and 3 agent structural checks passed**; all three products passed assisted review. [Live outcome](docs/LIVE_RENDERER_OPT_IN.md#approved-live-renderer-round-v1-outcome) · [Public summary](reports/baseline/calendar-live-renderer-attempt-v1-summary.json) |
 
-Rachel subsequently confirmed the three exact controlled product answers; the separate [signoff record PR](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/21) is pending merge. Live-answer human signoff remains pending. Original experiment labels are preserved.
+Rachel subsequently confirmed the three exact controlled product answers; see the [case-by-case signoff record](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md). Live-answer human signoff remains pending. Original experiment labels are preserved.
 
 ## Quick start
 
