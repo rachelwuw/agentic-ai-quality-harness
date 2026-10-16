@@ -18,13 +18,13 @@ The **Calendar Availability Agent** uses a locally hosted LLM to understand a ti
 
 Agent evaluations combine rule-based checks, an independent local **Qwen Judge**, and assisted/human review. [Architecture](ARCHITECTURE.md) · [Evaluation guide](evals/CALENDAR_EVALUATIONS.md).
 
-## Key findings
+## Findings and engineering improvements
 
-- **Tool success does not guarantee answer correctness.** Correct tool results can still produce contradictory timestamps in the final answer.
-- **The Judge also needs testing.** Saved experiments expose missed defects, false failures and contradictory reasoning. [Judge findings](reports/baseline/JUDGE_V10_FRESH_REVIEW.md).
-- **Known facts can use a deterministic output path.** An opt-in Python renderer presents supported tool evidence while retaining the raw LLM answer, tool trace and separate `product_output`. Candidate fixes that improved only part of the answer contract were not adopted as complete fixes. [Decisions and evidence](evals/CALENDAR_CANDIDATE_DECISIONS.md).
+- **Correct tools can produce inconsistent answers → Python facts and opt-in rendering.** Render supported facts while preserving raw answers, traces and separate product output. [Same-run evidence](reports/baseline/calendar-renderer-e2e-v1.json).
+- **Judge misses and false failures → criterion-level validation.** Check labels and reasons against reference expectations; preserve failure cases for regression analysis. [Judge findings](reports/baseline/JUDGE_V10_FRESH_REVIEW.md).
+- **A local gain can leave other requirements unmet → evaluate the full answer contract.** Candidate fixes were not adopted as complete fixes when they failed the full criteria. [Decisions and evidence](evals/CALENDAR_CANDIDATE_DECISIONS.md).
 
-## One demo: what the harness helped uncover and improve
+## Example: detecting and addressing an answer defect
 
 In the public controlled case **`winter-busy`**, the user asks whether **2028-01-19, 11:10–11:20 America/Los_Angeles** is free. The tool reports busy: the event is **19:00–19:30 UTC**, or **11:00–11:30 at UTC−08:00**.
 
@@ -37,7 +37,7 @@ These are **verbatim excerpts from the same run**, using a real local model and 
 
 The raw answer's End cell contradicts the evidence and its own prose. The renderer preserves the correct event interval and scope without another inference; this demonstrates output fidelity for this case, not improved LLM reasoning. [Full question, trace, answers and review](reports/baseline/calendar-renderer-e2e-v1.json) (`results`, id `winter-busy`).
 
-## Results
+## Verification results
 
 | Evidence | Recorded result |
 | --- | --- |
