@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote, urlsplit, parse_qs
 from zoneinfo import ZoneInfo
-from .calendar_agent import run_calendar_agent
+from .calendar_agent import RENDERER_LANGUAGES, run_calendar_agent
 from .calendar_evaluate import grade_structure
 from .calendar_tools import CalendarError, check_local_availability, connect, resolve_local_interval
 from .client import LocalClient
@@ -145,13 +145,17 @@ class OneReadCalendar:
             self.attempt_events = list(getattr(self.calendar, 'attempt_events', []))
 
 
-def run_suite(suite, complete, calendar, *, progress=None, stop_requested=lambda: False):
+def run_suite(suite, complete, calendar, *, progress=None, stop_requested=lambda: False, renderer_language=None):
+    if renderer_language is not None and (not isinstance(renderer_language, str) or renderer_language not in RENDERER_LANGUAGES):
+        raise ValueError('renderer_language must be en or zh-TW')
     cases = validate_suite(suite)
     reference_now = datetime.now(ZoneInfo('America/Los_Angeles'))
     report = {'state': 'running', 'recorded_at': datetime.now(timezone.utc).isoformat(),
               'reference_now': reference_now.isoformat(), 'case_definitions': suite,
               'calendar_mode': 'live_readonly', 'semantic_review_required': True,
               'direct': [], 'results': []}
+    if renderer_language is not None:
+        report['renderer_language'] = renderer_language
     def save():
         if progress:
             progress(report)
@@ -186,7 +190,8 @@ def run_suite(suite, complete, calendar, *, progress=None, stop_requested=lambda
                 row['tool_events'].append(event)
                 save()
             try:
-                run = run_calendar_agent(c['prompt'], complete, wrapper, now=reference_now, on_event=observe)
+                options = {} if renderer_language is None else {'renderer_language': renderer_language}
+                run = run_calendar_agent(c['prompt'], complete, wrapper, now=reference_now, on_event=observe, **options)
                 row.update(**grade_structure(c, run, wrapper), run=run)
                 if wrapper.results:
                     row['fixture_comparison'] = ('same_intervals' if snapshot(wrapper.results[0]) == snapshot(direct['tool_result'])
@@ -217,7 +222,7 @@ def public_summary(report, google_budget, model_budget):
     allowed_states = {'running', 'completed', 'adapter_error', 'fixture_precondition_failed',
                       'fixture_changed', 'model_or_loop_error', 'agent_error', 'preflight_error',
                       'budget_exhausted', 'runtime_error', 'interrupted'}
-    return {'suite': 'calendar_live_readonly_v1',
+    summary = {'suite': 'calendar_live_readonly_v1',
             'state': report['state'] if report['state'] in allowed_states else 'preflight_error',
             'google_events_http_sends': google_budget.used, 'model_inference_attempts': model_budget.used,
             'oauth_refresh_count': 'not_instrumented_separate_auth_transport',
@@ -230,6 +235,21 @@ def public_summary(report, google_budget, model_budget):
                        'answer_review': next(('pending' if r.get('run', {}).get('status') == 'completed' else 'unavailable'
                                               for r in report['results'] if r['id'] == ident), 'not_attempted')} for ident in IDS],
             'semantic_pass_claim': False}
+    if report.get('renderer_language') in ('en', 'zh-TW'):
+        counts = dict.fromkeys(('rendered', 'unknown', 'unsupported', 'pending', 'unavailable', 'not_attempted'), 0)
+        for case in summary['cases']:
+            row = next((r for r in report['results'] if r['id'] == case['id']), None)
+            if row is None:
+                status = 'not_attempted'
+            elif 'run' not in row:
+                status = 'pending' if report['state'] == 'running' and 'error_type' not in row else 'unavailable'
+            else:
+                raw_status = row.get('run', {}).get('product_output', {}).get('render_status')
+                status = raw_status if raw_status in ('rendered', 'unknown', 'unsupported') else 'unavailable'
+            case['renderer_status'] = status
+            counts[status] += 1
+        summary['renderer_counts'] = {'planned': len(IDS), **counts}
+    return summary
 
 
 def private_directory(value):
@@ -261,20 +281,29 @@ def main(argv=None):
     parser.add_argument('--live-readonly', action='store_true', help='Explicit opt-in; requires separate execution approval')
     parser.add_argument('--cases', default='evals/calendar_live_readonly_cases.json')
     parser.add_argument('--private-dir', required=True)
+    parser.add_argument('--renderer', choices=['python'])
+    parser.add_argument('--language', choices=RENDERER_LANGUAGES, help='Required with --renderer; applies to all three cases')
     args = parser.parse_args(argv)
     if not args.live_readonly:
         parser.error('Live execution is disabled without --live-readonly')
+    if (args.renderer is None) != (args.language is None):
+        parser.error('--renderer python and --language must be supplied together')
     source = Path(args.cases).read_bytes()
     suite = json.loads(source)
     validate_suite(suite)
     output = private_directory(args.private_dir)
     google_budget, model_budget = Budget(), Budget()
     report = {'state': 'preflight_error', 'direct': [], 'results': []}
+    if args.renderer is not None:
+        report['renderer_language'] = args.language
     manifest = {'cases_sha256': hashlib.sha256(source).hexdigest(), 'request_limit_each': LIMIT,
                 'expected_sut': MODEL, 'client_parameters_changed': False,
                 'oauth': 'Existing credentials only; connect may refresh. No interactive authorization or new scope.',
                 'code_sha256': {str(p): hashlib.sha256(p.read_bytes()).hexdigest()
                                 for p in sorted(Path('src/harness').glob('*.py'))}}
+    if args.renderer is not None:
+        manifest['renderer'] = {'kind': 'python', 'language': args.language,
+                                'provenance': 'same_python_agent_run_no_additional_requests'}
     manifest['implementation_sha256'] = hashlib.sha256(
         json.dumps(manifest['code_sha256'], sort_keys=True).encode()).hexdigest()
     calendar, guard = None, None
@@ -285,9 +314,9 @@ def main(argv=None):
                 'implementation_sha256': manifest['implementation_sha256']}
     def save(value):
         nonlocal report
-        report = value
-        write_private(output / 'raw.json', {**value, 'events_http': guard.records if guard else []})
-        write_private(output / 'summary.json', summary(value))
+        report = value if args.renderer is None else {**value, 'renderer_language': args.language}
+        write_private(output / 'raw.json', {**report, 'events_http': guard.records if guard else []})
+        write_private(output / 'summary.json', summary(report))
     try:
         client = BoundedClient(model_budget)
         if client.model != MODEL:
@@ -303,8 +332,9 @@ def main(argv=None):
         guard = ReadOnlyAdapter(calendar.session.get_adapter(endpoint), calendar.calendar_id, google_budget)
         calendar.session.mount('https://', guard)
         calendar.session.mount('http://', guard)
+        options = {} if args.renderer is None else {'renderer_language': args.language}
         report = run_suite(suite, client, calendar, progress=save,
-                           stop_requested=lambda: google_budget.exhausted or model_budget.exhausted)
+                           stop_requested=lambda: google_budget.exhausted or model_budget.exhausted, **options)
         manifest['runtime_after'] = next(m for m in native.request('/api/v1/models')['models'] if m['key'] == MODEL)
         manifest['runtime_unchanged'] = manifest['runtime_before'] == manifest['runtime_after']
         if not manifest['runtime_unchanged']:
@@ -324,6 +354,8 @@ def main(argv=None):
     # Only the allowlisted summary is printed. No private exception text or paths.
     print(json.dumps(summary(report)))
     return int(report['state'] != 'completed' or not manifest.get('runtime_unchanged') or
+               (args.renderer is not None and (len(report['results']) != len(IDS) or any(
+                   r.get('run', {}).get('product_output', {}).get('render_status') != 'rendered' for r in report['results']))) or
                not all(x.get('structural_pass') for x in report['results']))
 
 
