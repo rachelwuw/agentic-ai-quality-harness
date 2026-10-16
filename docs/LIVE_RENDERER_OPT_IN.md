@@ -1,5 +1,9 @@
 # Bounded live runner renderer opt-in
 
+## Current status — after the recorded experiment
+
+[PR #18](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/18) was subsequently authorized and merged as `2e79e243bccbac5d531a82ae2d587d450f7bb0d7`. The proposal's “not executed” heading and closing “Keep PR #18 unmerged” instruction below preserve their original planning/authorization context. The approved execution is recorded in the outcome section; neither the prior execution nor merge approval authorizes a new run. Individual answer signoff remains pending.
+
 Dependency: merged #17 (`16899ef`), based on #15 interval facts and #16 renderer.
 This change only passes explicit renderer language into the existing Python agent
 API. It adopts no rejected prompts or rubric changes and adds no MCP behavior,
