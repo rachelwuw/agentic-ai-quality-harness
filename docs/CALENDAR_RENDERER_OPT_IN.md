@@ -2,7 +2,9 @@
 
 ## Current status — after the recorded experiment
 
-[PR #17](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/17) was subsequently authorized and merged as `16899efbee39617dd083e8c791954c6cfd89090d`. The separately approved Google round and later merged [PR #18](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/18) are documented in [the live outcome](LIVE_RENDERER_OPT_IN.md#approved-live-renderer-round-v1-outcome). The proposed plan and “Keep PR #17 unmerged” instruction below record the authorization state at that time; they are not current pending work. Merge approval does not change the pending individual answer signoff or authorize another live run.
+The three controlled product answers subsequently received [Rachel's case-by-case signoff](../reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md). This applies only to the exact `winter-busy`, `summer-cross-day` and `noon-free` product text; raw answers and live cases are not signed off. The historical pending statuses below remain unchanged.
+
+[PR #17](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/17) was subsequently authorized and merged as `16899efbee39617dd083e8c791954c6cfd89090d`. The separately approved Google round and later merged [PR #18](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/18) are documented in [the live outcome](LIVE_RENDERER_OPT_IN.md#approved-live-renderer-round-v1-outcome). The proposed plan and “Keep PR #17 unmerged” instruction below record the authorization state at that time; they are not current pending work. Merge approval itself did not grant individual answer signoff or authorize another live run.
 
 This is the single integration of the existing #16 renderer with a Python agent
 run. It does not adopt #10/#11/#13 prompts, change model/tool/rubric settings or add
