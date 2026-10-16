@@ -8,7 +8,9 @@ Track src/, tests/, evals/, project dependency declarations, documentation and s
 
 ## Current checkpoint
 
-v0.2 Development Preview: real read-only Calendar availability, local SUT, custom agent loop, MCP adapter, deterministic tests, controlled agent evaluations and a local judge. Known semantic failures and judge limitations are retained as evidence. Event creation and complete migration doctor/dependency locking remain pending. This checkpoint adds trace-derived facts and criterion-level evidence analysis; Judge remains advisory. It is not release signoff. The Python package version is 0.2.0.dev0. Commit locally before any separately requested push; tag creation is optional and must refer to a reviewed commit.
+v0.3 Development Preview, package `0.3.0.dev0`: existing local LLM tool selection plus explicit opt-in deterministic Python product rendering, with separate raw answers/tool evidence and controlled/live evidence. Calendar remains read-only; Judge advisory, human answer signoff pending, and small-sample evidence does not establish intent accuracy or production reliability. Default Python and MCP behavior do not opt in. See [current scope](PROJECT_SCOPE.md).
+
+Checkpoint tag `v0.3.0-dev-preview` is to name the reviewed merge commit after main CI passes. Create only a new annotated tag when authorized; never move or overwrite earlier tags. A checkpoint tag is not a GitHub Release or package publication.
 
 ## Daily workflow
 

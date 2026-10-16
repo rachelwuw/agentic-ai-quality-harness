@@ -1,9 +1,16 @@
 # Selected regression evidence
 
+## Current v0.3 Development Preview
+
+- Current offline verification: 283 pytest tests passed (October 15, 2026); no model or Google calls in pytest.
+- [Controlled renderer E2E](../../docs/CALENDAR_RENDERER_OPT_IN.md): three real SUT conversations, simulated Calendar, separate raw/tool/product evidence; [public controlled report](calendar-renderer-e2e-v1.json).
+- [Executed live renderer round](../../docs/LIVE_RENDERER_OPT_IN.md): one three-case Google read-only round, six events sends and six model inferences; [allowlisted public summary](calendar-live-renderer-attempt-v1-summary.json). Private traces remain excluded.
+- Assisted product checks passed; Rachel’s answer signoff remains pending. Raw prose defects, advisory Judge limits and `semantic_pass_claim=false` are preserved. These are small-sample checkpoints, not general accuracy evidence.
+
 ## Start here
 
 - [Approved single-criterion boundary diagnostic](JUDGE_SINGLE_BOUNDARY_REVIEW.md): 8/8 selected labels matched versus 4/8 historical batch labels; positive and negative controls repeat. Promising narrow-format evidence, not independent accuracy or default activation.
-- [Latest engineering verification](ENGINEERING_CHECKPOINT_20261008.md): recreated Python 3.12 environment, deterministic tests and GitHub CI evidence; no model or Google calls.
+- [Historical October 8 engineering verification](ENGINEERING_CHECKPOINT_20261008.md): recreated Python 3.12 environment, deterministic tests and GitHub CI evidence; no model or Google calls.
 - [Controlled SUT baseline](CALENDAR_BASELINE_V7_RETRY_REVIEW.md): real local agent, simulated Calendar responses, structural results and separate answer review.
 - [Frozen v10 judge fresh-case review](JUDGE_V10_FRESH_REVIEW.md): new authored cases, criterion disagreements and remaining limits; expected labels are not Rachel’s human signoff.
 
@@ -15,7 +22,7 @@
 
 ## Full experiment history
 
-These selected artifacts contain controlled Calendar fixtures, not private Google event data. The SUT baseline uses a real local gpt-oss-20b model and simulated Calendar API results. The historical post-fix baseline passed 15/15 structural checks. The latest baseline passed 14/15 after one recovered format error. Semantic signoff remains pending; see the versioned reviews below.
+These selected artifacts contain controlled Calendar fixtures, not private Google event data. The SUT baseline uses a real local gpt-oss-20b model and simulated Calendar API results. The historical post-fix baseline passed 15/15 structural checks. The historical v7 retry baseline passed 14/15 after one recovered format error. Semantic signoff remains pending; see the versioned reviews below.
 
 `judge-calibration-v2.json` records the real local Qwen3.5-9B Q8_0 judge calibration: 3/4 agreement. It incorrectly passes cal-13, so the judge is NOT validated for autonomous quality signoff. This failed calibration is intentionally retained. Runtime: 8192 context, full GPU offload, LM Studio Reasoning Budget 0. See evals/CALENDAR_JUDGE.md for procedure and limitations.
 

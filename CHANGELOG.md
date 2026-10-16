@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0.dev0 — Development Preview, October 15, 2026
+
+- Add offline interval relations and deterministic Calendar rendering, explicitly opt-in through the Python agent and bounded live runner (#15–#18). Preserve raw answers, tool traces and separate product output; default/MCP behavior remains unchanged.
+- Preserve retired #10/#11/#13 candidate evidence without adopting their prompt implementations.
+- Record three controlled real-SUT cases and one three-case Google read-only round. Assisted product checks passed; raw LLM defects remain, Rachel’s answer signoff is pending, and Judge remains advisory. Renderer fidelity is not user-intent accuracy or production reliability.
+- Current offline verification: 283 pytest tests passed. This version/documentation update runs no new model, Google or Judge experiment.
+- Unknown/unsupported, multi-query and correction limits remain explicit. Calendar writes, complete dependency locking and clean-machine migration remain deferred. Historical labels, pending statuses, rubrics and dated reports are unchanged.
+
+
 ## Engineering follow-up — October 8, 2026
 
 - Reorganize the public README, add sanitized saved-evidence demos and separate runtime details. Keep Calendar availability read-only and Judge advisory.

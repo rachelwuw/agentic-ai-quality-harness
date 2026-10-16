@@ -1,6 +1,10 @@
 # Project scope — Calendar Availability Assistant
 
-Current v0.2 Development Preview, October 8, 2026. This document describes the implemented scope and separates future scheduling work.
+Current v0.3 Development Preview, October 15, 2026. This document describes the implemented scope and separates future scheduling work.
+
+The v0.3 Development Preview adds an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
+
+Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review; Rachel's individual answer signoff remains pending. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
 
 ## Objective
 
@@ -14,7 +18,7 @@ Build a real read-only Calendar assistant as the System Under Test (SUT), and a 
 - Python time-zone resolution, conflict boundaries, cross-midnight queries and rejection of ambiguous/nonexistent DST times.
 - Clarification of missing information. Missing end time or duration must be requested from the user, not supplied as a proposed default.
 - Bounded transport retries and one tool-argument correction opportunity in the Python agent. See [retry policy](RETRY_POLICY.md) for limits and the MCP host boundary.
-- 143 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
+- 283 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
 
 ## Expected behavior
 
@@ -28,7 +32,7 @@ Deterministic tests use scripted model responses and simulated APIs. Live integr
 
 The local judge scores saved answers without Google credentials or Calendar tools. Invalid output is UNCERTAIN. Judge verdicts are provisional; assisted evidence review is distinct from Rachel's human signoff. The v7 focused development check matched three expectations, but does not establish held-out accuracy. Known failures and earlier results remain preserved.
 
-The latest prompt/retry changes have deterministic verification and a new controlled 15-case SUT baseline: 14/15 strict structural passes, with one recovered formatting error. Full v7 scoring completed with 15 valid outputs and raw 11 PASS / 4 FAIL; known coverage gaps and criterion mistakes remain. Human semantic signoff is pending. See [evidence review](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md).
+The historical v0.2 prompt/retry changes have deterministic verification and a new controlled 15-case SUT baseline: 14/15 strict structural passes, with one recovered formatting error. Full v7 scoring completed with 15 valid outputs and raw 11 PASS / 4 FAIL; known coverage gaps and criterion mistakes remain. Human semantic signoff is pending. See [evidence review](reports/baseline/CALENDAR_JUDGE_V7_NEW_BASELINE_REVIEW.md).
 
 ## Portability requirements
 
@@ -44,6 +48,6 @@ LangGraph, RAG, vector databases, Jenkins, complex CI/CD, real Jira and automate
 
 Use the completed live read-only regression and controlled SUT/judge baselines to prioritize findings. Confirm missing rubric coverage, grade trace facts deterministically, then freeze the revision before validating unseen examples with targeted human review. Improve migration reproducibility without expanding product scope.
 
-## v0.2 checkpoint boundary
+## Historical v0.2 checkpoint boundary
 
 The new capability is evaluation infrastructure: Python-derived time/tool facts, deterministic trace grading, semantic Qwen review and preserved overall/criterion comparisons. The Calendar product remains read-only. Frozen v10 fresh validation found 3/4 overall and 31/36 criterion matches against authored expectations, with known false failure and scope disagreement. These counts do not establish overall accuracy; full v10 baseline, human review and repeatability remain pending. Prior raw evidence is retained.
