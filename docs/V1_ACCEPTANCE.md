@@ -6,7 +6,7 @@ Planning checkpoint: October 21, 2026; implementation/evidence inspected at `0c2
 
 The primary v1 path is the Python CLI with explicit `--renderer python --language en|zh-TW`: a local LLM chooses the read-only Calendar tool; Python validates/computes facts and renders a separate product answer. Keep raw `answer`, tool `events` and `product_output` distinct. Do not change default flags implicitly. LM Studio continues to host inference; its chat-box/MCP experience already exists, but its full integration/acceptance is a **v2 target**, not evidence inherited from CLI tests.
 
-V1 supports complete, explicit date/start/end/IANA-zone requests on the dedicated test calendar. Unknown/error/unsupported outcomes must be honest and visible. Missing-input clarification is not currently an interactive renderer conversation: no-tool runs return unsupported, raw clarification stays in the trace. Do not claim that the renderer asks the follow-up or resolves user intent. Calendar writes, multi-turn chat and automatic Judge signoff are excluded.
+V1 supports complete, explicit date/start/end/IANA-zone requests on the dedicated test calendar. Unknown/error/unsupported outcomes must be honest and visible. A [conservative explicit-date gate](EXPLICIT_DATE_GUARD.md) now supplies a separate deterministic question before inference when a full date is absent/unrecognized. Product output remains unsupported; there is no raw model answer or multi-turn state. This does not verify user intent. Calendar writes, multi-turn chat and automatic Judge signoff are excluded.
 
 ## Acceptance and evidence map
 

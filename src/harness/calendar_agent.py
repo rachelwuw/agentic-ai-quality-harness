@@ -7,6 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from .agent import run_agent
+from .calendar_input import date_clarification
 from .calendar_tools import CalendarError, connect, check_local_availability, LocalTimeError
 from .client import LocalClient
 from .calendar_renderer import TEXT as RENDERER_LANGUAGES, render_calendar_answer
@@ -64,6 +65,7 @@ def executor_for(calendar):
 def run_calendar_agent(prompt, complete, calendar, *, now=None, on_event=None, renderer_language=None):
     if renderer_language is not None and (not isinstance(renderer_language, str) or renderer_language not in RENDERER_LANGUAGES):
         raise ValueError('renderer_language must be en or zh-TW')
+    clarification = date_clarification(prompt, renderer_language) if renderer_language is not None else None
     now = now or datetime.now(ZoneInfo('America/Los_Angeles'))
     system = f'''You are a read-only Calendar availability assistant.
 Current date and time: {now.isoformat()}. Default timezone: America/Los_Angeles.
@@ -95,8 +97,12 @@ Never invent a tool limitation from an error. An error means availability is unk
 You cannot create, modify, delete or reserve events. Never say a booking succeeded.
 Report the exact date/time/timezone and scope in the user's language. If asked to book,
 explain that this version only checks availability. Do not use any other tools.'''
-    result = run_agent(prompt, complete, system=system, tools=TOOLS,
-                       executor=executor_for(calendar), on_event=on_event)
+    if clarification is not None:
+        # No raw model answer exists: keep answer/events empty and identify the source.
+        result = {'status': 'completed', 'answer': '', 'events': [], 'input_validation': clarification}
+    else:
+        result = run_agent(prompt, complete, system=system, tools=TOOLS,
+                           executor=executor_for(calendar), on_event=on_event)
     if renderer_language is not None:
         product = render_calendar_answer(result, language=renderer_language)
         product['provenance'] = {'source': 'current_python_agent_run',
@@ -118,24 +124,28 @@ def main():
     if args.renderer is not None and Path(args.output).exists():
         parser.error('Renderer mode requires a new output file; existing traces must not be overwritten')
     try:
-        client = LocalClient()
-        client.models()  # Check the runtime before opening the Calendar connection.
-        calendar = connect()
-        def show(event):
-            print('TOOL: ' + event['name'], flush=True)
-            print('Arguments: ' + event['arguments'], flush=True)
-            print('Google result: ' + json.dumps(event['result'], ensure_ascii=False), flush=True)
-        print('Local model: ' + client.model + ' at ' + client.base, flush=True)
-        print('Read-only access: dedicated test calendar. No event writes.', flush=True)
-        try:
-            result = run_calendar_agent(args.prompt, client, calendar, on_event=show,
-                                        renderer_language=args.language)
-        finally:
-            calendar.session.close()
+        client = None
+        if args.renderer is not None and date_clarification(args.prompt, args.language) is not None:
+            result = run_calendar_agent(args.prompt, None, None, renderer_language=args.language)
+        else:
+            client = LocalClient()
+            client.models()  # Check the runtime before opening the Calendar connection.
+            calendar = connect()
+            def show(event):
+                print('TOOL: ' + event['name'], flush=True)
+                print('Arguments: ' + event['arguments'], flush=True)
+                print('Google result: ' + json.dumps(event['result'], ensure_ascii=False), flush=True)
+            print('Local model: ' + client.model + ' at ' + client.base, flush=True)
+            print('Read-only access: dedicated test calendar. No event writes.', flush=True)
+            try:
+                result = run_calendar_agent(args.prompt, client, calendar, on_event=show,
+                                            renderer_language=args.language)
+            finally:
+                calendar.session.close()
         output = Path(args.output)
         output.parent.mkdir(parents=True, exist_ok=True)
         saved = json.dumps({'recorded_at': datetime.now().astimezone().isoformat(),
-                            'model': client.model, 'base_url': client.base,
+                            'model': client.model if client else None, 'base_url': client.base if client else None,
                             'prompt': args.prompt, **result}, indent=2, ensure_ascii=False)
         if args.renderer is None:
             output.write_text(saved)
@@ -147,8 +157,14 @@ def main():
         else:
             product = result['product_output']
             print('\nRenderer status: ' + product['render_status'])
-            print(product['rendered_answer'] if product['rendered_answer'] is not None else
-                  'No renderer product output for this run; raw model answer is retained in the trace.')
+            if 'input_validation' in result:
+                print(result['input_validation']['message'])
+            if product['rendered_answer'] is not None:
+                print(product['rendered_answer'])
+            elif 'input_validation' in result:
+                print('No model inference was performed.')
+            else:
+                print('No renderer product output for this run; raw model answer is retained in the trace.')
         print('Trace saved: ' + str(output))
         return int(result['status'] != 'completed' or
                    (args.renderer is not None and result['product_output']['render_status'] != 'rendered'))

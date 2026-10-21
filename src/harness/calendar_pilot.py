@@ -154,7 +154,8 @@ def grade(case, run, calendar):
     return {'structural_checks': checks, 'python_facts_match': facts_ok,
             'product_reference_match': product_ok, 'expected_agent_exit': int(expected['status'] != 'rendered'),
             'automated_pass': all(checks.values()) and facts_ok and product_ok,
-            'raw_answer_review': 'pending', 'human_product_review': 'pending', 'semantic_pass_claim': False}
+            'raw_answer_review': ('not_applicable_no_inference' if 'input_validation' in run else 'pending'),
+            'human_product_review': 'pending', 'semantic_pass_claim': False}
 
 
 def run_suite(suite, client, *, progress=None, runtime_check=None):
