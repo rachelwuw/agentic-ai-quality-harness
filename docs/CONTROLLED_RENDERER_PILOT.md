@@ -4,6 +4,8 @@ Engineering delivery, October 21, 2026. This supplies the runner prerequisite fr
 
 Subsequent input-guard update: [missing explicit dates are blocked before inference](EXPLICIT_DATE_GUARD.md). The no-date case now needs zero model requests, so the normal total becomes 10; max 18 and pending execution approval are unchanged. No new runtime result is implied.
 
+Subsequent approved execution/review: pilot 003 completed all six expected routes with ten inference attempts and no Google/Judge calls. [Rachel’s exact six-output signoff](../reports/baseline/V1_CONTROLLED_PILOT_003_HUMAN_SIGNOFF.md) covers four rendered answers, one deterministic input question and one unknown response. This updates the current review status; the engineering/prior proposal sections retain their original context. No independent accuracy or live signoff is claimed.
+
 ## Explicit entry point (requires later execution approval)
 
 ```sh

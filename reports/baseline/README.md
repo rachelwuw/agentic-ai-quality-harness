@@ -7,6 +7,8 @@
 - [Executed live renderer round](../../docs/LIVE_RENDERER_OPT_IN.md): one three-case Google read-only round, six events sends and six model inferences; [allowlisted public summary](calendar-live-renderer-attempt-v1-summary.json). Private traces remain excluded.
 - Assisted product checks passed; the three controlled product answers have [Rachel’s subsequent case-by-case signoff](CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md). Live-answer signoff remains pending. Raw prose defects, advisory Judge limits and `semantic_pass_claim=false` are preserved. These are small-sample checkpoints, not general accuracy evidence.
 
+- [Six-case pilot human signoff](V1_CONTROLLED_PILOT_003_HUMAN_SIGNOFF.md): four rendered answers, one deterministic missing-date question and one unknown response passed Rachel’s review. Ten model attempts, no Google/Judge; regression evidence after development, not independent reliability. Original private traces/labels remain unchanged.
+
 ## Start here
 
 - [Approved single-criterion boundary diagnostic](JUDGE_SINGLE_BOUNDARY_REVIEW.md): 8/8 selected labels matched versus 4/8 historical batch labels; positive and negative controls repeat. Promising narrow-format evidence, not independent accuracy or default activation.
