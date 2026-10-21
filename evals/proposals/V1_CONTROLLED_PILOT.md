@@ -1,4 +1,6 @@
-# Proposed v1 controlled pilot — not executable/authorized yet
+# Proposed v1 controlled pilot — execution not authorized
+
+Implementation update: the separate [bounded runner](../../docs/CONTROLLED_RENDERER_PILOT.md) and [six-case JSON](v1_controlled_pilot_cases.json) now supply the execution support described below, verified with scripted offline tests only. Exact references and real execution still require review/approval. The API-error product reports unverified scope because its recorded tool error lacks scope evidence. The prerequisite list below describes the original planning sequence; runner implementation is now complete, not pilot execution.
 
 October 21, 2026. Companion to [v1 acceptance gates](../../docs/V1_ACCEPTANCE.md). This specifies the smallest next diagnostic round after missing controlled-runner support is implemented and reviewed. No new prompts, rubric/model settings or historical expected labels are changed here.
 
@@ -39,4 +41,4 @@ The earlier 20 x 3 idea should cover winter/summer, both endpoint adjacencies, p
 
 1. Ratify v1 scope and these six prompts/references/outcomes, including unsupported versus clarification behavior.
 2. Implement/review missing controlled runner support and scripted offline tests: renderer propagation/default compatibility, per-case fake fixtures, blocked live/extra calls, attempt caps, immutable captures, private exclusive outputs, partial results and expected non-rendered outcomes. CLI routing itself already has tests; reuse it.
-3. Freeze exact candidate/cases and verify loaded runtime settings. Present CI, concrete invocation/report destination and the above budget for explicit execution approval. This file is not a currently runnable command and authorizes no model/Google/Judge calls.
+3. Freeze exact candidate/cases and verify loaded runtime settings. Present CI, concrete invocation/report destination and the above budget for explicit execution approval. Use the linked runner documentation for the explicit command; this plan still authorizes no model/Google/Judge calls.
