@@ -4,6 +4,8 @@ Implementation update: the separate [bounded runner](../../docs/CONTROLLED_RENDE
 
 October 21, 2026. Companion to [v1 acceptance gates](../../docs/V1_ACCEPTANCE.md). This specifies the smallest next diagnostic round after missing controlled-runner support is implemented and reviewed. No new prompts, rubric/model settings or historical expected labels are changed here.
 
+Subsequent implementation update: the [explicit-date guard](../../docs/EXPLICIT_DATE_GUARD.md) now supplies a deterministic question for the missing-date case without inference; raw model answer is absent. Expected product status remains unsupported. Healthy total becomes 10 inference requests instead of the original estimate of 11 below; cap 18 remains unchanged. The original prompts/fixtures/status expectations and historical estimates below are retained.
+
 ## Exact proposed inputs and independent references
 
 Fresh conversation per case; frozen `now=2029-01-01T12:00:00-08:00`. Local SUT `openai/gpt-oss-20b`; retain recorded context 8192, temperature 0, max_tokens 2048, subject to runtime verification without automatic reconfiguration. Explicit renderer language is independent of prompt language. Scope is always the configured test calendar.

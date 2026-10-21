@@ -2,6 +2,8 @@
 
 Engineering delivery, October 21, 2026. This supplies the runner prerequisite from [the proposed six-case pilot](../evals/proposals/V1_CONTROLLED_PILOT.md); **no real pilot has been executed or authorized by this implementation**. Package version remains v0.3. Existing agent prompts/tools/model parameters, renderer, legacy evaluator, Judge rubrics/labels and historical reports are unchanged.
 
+Subsequent input-guard update: [missing explicit dates are blocked before inference](EXPLICIT_DATE_GUARD.md). The no-date case now needs zero model requests, so the normal total becomes 10; max 18 and pending execution approval are unchanged. No new runtime result is implied.
+
 ## Explicit entry point (requires later execution approval)
 
 ```sh

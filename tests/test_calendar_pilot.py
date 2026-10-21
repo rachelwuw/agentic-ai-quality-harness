@@ -53,12 +53,16 @@ def test_six_case_actual_loop_fake_api_refs_and_snapshots(monkeypatch):
     snapshots = []
     original = copy.deepcopy(SUITE)
     report = pilot.run_suite(SUITE, model, progress=snapshots.append)
-    assert report['state'] == 'completed' and report['inference_attempts'] == 11
-    assert len(captures) == 11 and sum(len(r['api_calls']) for r in report['results']) == 5
+    assert report['state'] == 'completed' and report['inference_attempts'] == 10
+    assert len(captures) == 10 and sum(len(r['api_calls']) for r in report['results']) == 5
     assert all(r['automated_pass'] for r in report['results'])
     assert [r['run']['product_output']['render_status'] for r in report['results']] == ['rendered'] * 4 + ['unsupported', 'unknown']
     assert [r['expected_agent_exit'] for r in report['results']] == [0, 0, 0, 0, 1, 1]
-    assert all(r['raw_answer_review'] == r['human_product_review'] == 'pending' for r in report['results'])
+    assert all(r['human_product_review'] == 'pending' for r in report['results'])
+    assert report['results'][4]['raw_answer_review'] == 'not_applicable_no_inference'
+    assert report['results'][4]['run']['answer'] == ''
+    assert report['results'][4]['run']['input_validation']['model_called'] is False
+    assert not any(r['case_id'] == 'v1p-05' for r in report['model_requests'])
     assert not report['semantic_pass_claim'] and report['google_requests'] == report['judge_requests'] == 0
     assert SUITE == original
     assert len(model.requests[0]['payload']['messages']) == 2  # No later mutable-message additions.
@@ -71,6 +75,9 @@ def test_six_case_actual_loop_fake_api_refs_and_snapshots(monkeypatch):
 
 @pytest.mark.parametrize('change', ['wrong_args', 'unknown_tool', 'extra', 'no_tool_case'])
 def test_wrong_or_extra_calls_stop_before_simulated_operation(monkeypatch, change):
+    if change == 'no_tool_case':
+        # Independently exercise the runner guard beneath the production input gate.
+        monkeypatch.setattr('harness.calendar_agent.date_clarification', lambda *_: None)
     def altered(case, payload, message):
         if change == 'no_tool_case':
             if case['id'] == 'v1p-05': return tool_call(SUITE['cases'][0])
@@ -127,7 +134,7 @@ def test_transient_retry_then_success_keeps_failed_attempt(monkeypatch):
         return normal(self, path, payload)
     monkeypatch.setattr(LocalClient, 'request', retry)
     r = pilot.run_suite(SUITE, client())
-    assert r['state'] == 'completed' and r['inference_attempts'] == 12
+    assert r['state'] == 'completed' and r['inference_attempts'] == 11
     assert [x['state'] for x in r['model_requests'][:2]] == ['error', 'returned']
 
 

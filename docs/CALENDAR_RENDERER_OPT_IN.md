@@ -11,6 +11,8 @@ run. It does not adopt #10/#11/#13 prompts, change model/tool/rubric settings or
 MCP features. The underlying renderer uses existing #15 math. Rendering is not a
 claim that the LLM understands user intent or that its original prose improved.
 
+The v1 opt-in path now requires a recognizable valid explicit date before inference. Missing/relative/unrecognized dates receive a separate deterministic input-validation question, no model or Calendar call, and an unsupported product. See the [explicit-date guard and supported formats](EXPLICIT_DATE_GUARD.md). Dated runs below retain their original evidence and behavior.
+
 ## Explicit use
 
 ```sh

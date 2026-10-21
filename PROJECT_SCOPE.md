@@ -14,11 +14,12 @@ Build a real read-only Calendar assistant as the System Under Test (SUT), and a 
 
 - Local gpt-oss-20b SUT and a separate local Qwen3.5-9B judge, loaded in turn on the M5 MacBook Air (32 GB / 4 TB).
 - Custom Python agent loop, a tool allowlist, six-step limit and JSON traces.
+- Explicit-date input gate on the opt-in renderer path: no recognized full date means a separate deterministic clarification, zero inference/Calendar queries and unsupported product; [formats and limits](docs/EXPLICIT_DATE_GUARD.md). Non-renderer/MCP behavior is unchanged.
 - `check_availability` against a dedicated private test calendar, using read-only OAuth. The optional LM Studio MCP adapter also exposes `get_current_time`.
 - Python time-zone resolution, conflict boundaries, cross-midnight queries and rejection of ambiguous/nonexistent DST times.
 - Clarification of missing information. Missing end time or duration must be requested from the user, not supplied as a proposed default.
 - Bounded transport retries and one tool-argument correction opportunity in the Python agent. See [retry policy](RETRY_POLICY.md) for limits and the MCP host boundary.
-- 315 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
+- 342 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
 
 ## Expected behavior
 

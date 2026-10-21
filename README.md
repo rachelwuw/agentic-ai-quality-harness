@@ -41,7 +41,7 @@ The raw answer's End cell contradicts the evidence and its own prose. The render
 
 | Evidence | Recorded result |
 | --- | --- |
-| **Offline tests** | **315 passed**, rechecked October 21, 2026. Required pytest CI runs on PRs and main. [Tests](tests/) · [Workflow](.github/workflows/deterministic-tests.yml) |
+| **Offline tests** | **342 passed**, rechecked October 21, 2026. Required pytest CI runs on PRs and main. [Tests](tests/) · [Workflow](.github/workflows/deterministic-tests.yml) |
 | **Controlled agent cases** | Earlier 15-case baseline: **14/15 strict structural passes**, with correction recovery recorded separately. Later renderer round: **3/3 structural checks, Python fact checks and assisted product reviews**. [Baseline](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md) · [Renderer review](docs/CALENDAR_RENDERER_OPT_IN.md#approved-controlled-e2e-v1-outcome) |
 | **Live integration** | One three-case renderer round: **3 fixture checks and 3 agent structural checks passed**; all three products passed assisted review. [Live outcome](docs/LIVE_RENDERER_OPT_IN.md#approved-live-renderer-round-v1-outcome) · [Public summary](reports/baseline/calendar-live-renderer-attempt-v1-summary.json) |
 
@@ -70,7 +70,7 @@ This calls the real local model and Google, not the demo fixture. Use fresh outp
 
 ## Limitations and evidence
 
-Calendar access is **read-only** and limited to the dedicated test calendar; no booking or writes. The renderer is **opt-in** for supported completed single-tool runs, does not verify user intent, and does not automatically apply to default answers or MCP conversations. Missing/error/contradictory evidence stays unknown; multi-query, correction and incomplete runs are unsupported. [Full renderer boundaries](docs/CALENDAR_RENDERER_PREVIEW.md).
+Calendar access is **read-only** and limited to the dedicated test calendar; no booking or writes. The renderer is **opt-in** for supported completed single-tool runs, does not verify user intent, and does not automatically apply to default answers or MCP conversations. Missing/error/contradictory evidence stays unknown; multi-query, correction and incomplete runs are unsupported. The opt-in path requires a recognizable full date; otherwise it requests one before inference. [Supported date formats](docs/EXPLICIT_DATE_GUARD.md) · [Full renderer boundaries](docs/CALENDAR_RENDERER_PREVIEW.md).
 
 The Judge is **advisory**. Assisted review is distinct from Rachel's human signoff; neither test counts nor small-sample passes establish general reliability. Raw LLM defects remain, and full Judge repeatability and clean-machine migration verification are incomplete.
 
