@@ -46,6 +46,8 @@ LangGraph, RAG, vector databases, Jenkins, complex CI/CD, real Jira and automate
 
 ## Next quality work
 
+The agreed v1 direction is Python CLI with explicitly enabled renderer as the primary supported path; the existing LM Studio chat/MCP experience is a v2 integration/acceptance target. See the [v1 acceptance checklist and evidence gaps](docs/V1_ACCEPTANCE.md) and [proposed six-case controlled pilot](evals/proposals/V1_CONTROLLED_PILOT.md). These are plans, not v1 completion or model/Google execution authorization.
+
 Use the completed live read-only regression and controlled SUT/judge baselines to prioritize findings. Confirm missing rubric coverage, grade trace facts deterministically, then freeze the revision before validating unseen examples with targeted human review. Improve migration reproducibility without expanding product scope.
 
 ## Historical v0.2 checkpoint boundary
