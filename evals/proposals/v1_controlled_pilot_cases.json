@@ -1,0 +1,213 @@
+{
+  "schema": "calendar-controlled-renderer-pilot-v1",
+  "reference_now": "2029-01-01T12:00:00-08:00",
+  "approval": "proposed_references_require_independent_review_and_execution_approval",
+  "cases": [
+    {
+      "id": "v1p-01",
+      "language": "en",
+      "prompt": "Is 2029-01-23 09:10–09:20 America/Los_Angeles free on the dedicated test calendar? Explain any conflict.",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2029-01-23T17:00:00Z",
+          "end": "2029-01-23T17:45:00Z"
+        }
+      },
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2029-01-23T09:10:00",
+            "end": "2029-01-23T09:20:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_api_interval": {
+        "start": "2029-01-23T09:10:00-08:00",
+        "end": "2029-01-23T09:20:00-08:00"
+      },
+      "expected": {
+        "status": "rendered",
+        "lines": [
+          "Unavailable (tool-reported; dedicated test calendar only).",
+          "Actual tool query: 2029-01-23T09:10:00-08:00 → 2029-01-23T09:20:00-08:00 (America/Los_Angeles)",
+          "Original event timestamps: 2029-01-23T17:00:00Z → 2029-01-23T17:45:00Z",
+          "Event in requested zone: 2029-01-23T09:00:00-08:00 → 2029-01-23T09:45:00-08:00 (America/Los_Angeles)",
+          "This event contains the entire query interval."
+        ],
+        "available": false,
+        "event_local": [
+          "2029-01-23T09:00:00-08:00",
+          "2029-01-23T09:45:00-08:00"
+        ]
+      }
+    },
+    {
+      "id": "v1p-02",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2029-07-24 14:20 到 14:50，America/Los_Angeles，有空嗎？請說明衝突。",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2029-07-24T21:00:00Z",
+          "end": "2029-07-24T21:30:00Z"
+        }
+      },
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2029-07-24T14:20:00",
+            "end": "2029-07-24T14:50:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_api_interval": {
+        "start": "2029-07-24T14:20:00-07:00",
+        "end": "2029-07-24T14:50:00-07:00"
+      },
+      "expected": {
+        "status": "rendered",
+        "lines": [
+          "不可用（工具回報；僅專用測試行事曆）。",
+          "工具實際查詢區間: 2029-07-24T14:20:00-07:00 → 2029-07-24T14:50:00-07:00 (America/Los_Angeles)",
+          "活動原始時間: 2029-07-24T21:00:00Z → 2029-07-24T21:30:00Z",
+          "活動於指定時區: 2029-07-24T14:00:00-07:00 → 2029-07-24T14:30:00-07:00 (America/Los_Angeles)",
+          "此活動與查詢重疊，但未包含整段查詢區間。"
+        ],
+        "available": false,
+        "event_local": [
+          "2029-07-24T14:00:00-07:00",
+          "2029-07-24T14:30:00-07:00"
+        ]
+      }
+    },
+    {
+      "id": "v1p-03",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2029-07-25 07:10 到 07:40，Asia/Taipei，有空嗎？",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2029-07-24T16:00:00-07:00",
+          "end": "2029-07-24T16:30:00-07:00"
+        }
+      },
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2029-07-25T07:10:00",
+            "end": "2029-07-25T07:40:00",
+            "time_zone": "Asia/Taipei"
+          }
+        }
+      ],
+      "expected_api_interval": {
+        "start": "2029-07-25T07:10:00+08:00",
+        "end": "2029-07-25T07:40:00+08:00"
+      },
+      "expected": {
+        "status": "rendered",
+        "lines": [
+          "不可用（工具回報；僅專用測試行事曆）。",
+          "工具實際查詢區間: 2029-07-25T07:10:00+08:00 → 2029-07-25T07:40:00+08:00 (Asia/Taipei)",
+          "活動原始時間: 2029-07-24T16:00:00-07:00 → 2029-07-24T16:30:00-07:00",
+          "活動於指定時區: 2029-07-25T07:00:00+08:00 → 2029-07-25T07:30:00+08:00 (Asia/Taipei)",
+          "此活動與查詢重疊，但未包含整段查詢區間。"
+        ],
+        "available": false,
+        "event_local": [
+          "2029-07-25T07:00:00+08:00",
+          "2029-07-25T07:30:00+08:00"
+        ]
+      }
+    },
+    {
+      "id": "v1p-04",
+      "language": "en",
+      "prompt": "Check 2029-01-23 12:00–12:30 America/Los_Angeles on the dedicated test calendar.",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2029-01-23T11:15:00-08:00",
+          "end": "2029-01-23T12:00:00-08:00"
+        }
+      },
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2029-01-23T12:00:00",
+            "end": "2029-01-23T12:30:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_api_interval": {
+        "start": "2029-01-23T12:00:00-08:00",
+        "end": "2029-01-23T12:30:00-08:00"
+      },
+      "expected": {
+        "status": "rendered",
+        "lines": [
+          "Available (tool-reported; dedicated test calendar only).",
+          "Actual tool query: 2029-01-23T12:00:00-08:00 → 2029-01-23T12:30:00-08:00 (America/Los_Angeles)",
+          "No conflicting events were returned."
+        ],
+        "available": true,
+        "event_local": null
+      }
+    },
+    {
+      "id": "v1p-05",
+      "language": "en",
+      "prompt": "Is 09:10–09:20 America/Los_Angeles free on the dedicated test calendar?",
+      "fixture": {
+        "mode": "none"
+      },
+      "expected_calls": [],
+      "expected_api_interval": null,
+      "expected": {
+        "status": "unsupported",
+        "lines": [],
+        "available": null,
+        "event_local": null
+      }
+    },
+    {
+      "id": "v1p-06",
+      "language": "en",
+      "prompt": "Check 2029-01-23 15:00–15:30 America/Los_Angeles on the dedicated test calendar.",
+      "fixture": {
+        "mode": "raise_calendar_error"
+      },
+      "expected_calls": [
+        {
+          "name": "check_availability",
+          "arguments": {
+            "start": "2029-01-23T15:00:00",
+            "end": "2029-01-23T15:30:00",
+            "time_zone": "America/Los_Angeles"
+          }
+        }
+      ],
+      "expected_api_interval": {
+        "start": "2029-01-23T15:00:00-08:00",
+        "end": "2029-01-23T15:30:00-08:00"
+      },
+      "expected": {
+        "status": "unknown",
+        "lines": [
+          "Availability unknown; no free/busy conclusion is supported.",
+          "Calendar scope cannot be verified from this record."
+        ],
+        "available": null,
+        "event_local": null
+      }
+    }
+  ]
+}
