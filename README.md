@@ -41,11 +41,11 @@ The raw answer's End cell contradicts the evidence and its own prose. The render
 
 | Evidence | Recorded result |
 | --- | --- |
-| **Offline tests** | **342 passed**, rechecked October 21, 2026. Required pytest CI runs on PRs and main. [Tests](tests/) · [Workflow](.github/workflows/deterministic-tests.yml) |
+| **Offline tests** | **379 passed**, rechecked October 22, 2026 (342 at the earlier date-guard checkpoint; 37 tests added for the fresh acceptance runner). Required pytest CI runs on PRs and main. [Tests](tests/) · [Workflow](.github/workflows/deterministic-tests.yml) |
 | **Controlled agent cases** | Earlier 15-case baseline: **14/15 strict structural passes**, with correction recovery recorded separately. Later renderer round: **3/3 structural checks, Python fact checks and assisted product reviews**. [Baseline](reports/baseline/CALENDAR_BASELINE_V7_RETRY_REVIEW.md) · [Renderer review](docs/CALENDAR_RENDERER_OPT_IN.md#approved-controlled-e2e-v1-outcome) |
 | **Live integration** | One three-case renderer round: **3 fixture checks and 3 agent structural checks passed**; all three products passed assisted review. [Live outcome](docs/LIVE_RENDERER_OPT_IN.md#approved-live-renderer-round-v1-outcome) · [Public summary](reports/baseline/calendar-live-renderer-attempt-v1-summary.json) |
 
-Rachel confirmed the [earlier three controlled product answers](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md) and [six pilot outputs](reports/baseline/V1_CONTROLLED_PILOT_003_HUMAN_SIGNOFF.md): four rendered answers, a missing-date question and an unknown response. Live-answer human signoff remains pending. Original experiment labels are preserved.
+Rachel confirmed the [earlier three controlled product answers](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md) and [six pilot outputs](reports/baseline/V1_CONTROLLED_PILOT_003_HUMAN_SIGNOFF.md): four rendered answers, a missing-date question and an unknown response. Rachel also approved the historical three live product outputs; that signoff is recorded privately and does not cover the latest candidate. Original experiment labels are preserved.
 
 ## Quick start
 

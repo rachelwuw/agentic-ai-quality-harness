@@ -4,7 +4,7 @@ Current v0.3 Development Preview, October 15, 2026. This document describes the 
 
 The v0.3 Development Preview adds an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
 
-Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review. The three controlled product answers subsequently received [Rachel's case-by-case signoff](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md); live-answer signoff remains pending. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
+Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review. The three controlled product answers subsequently received [Rachel's case-by-case signoff](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md); the historical three live product outputs also received Rachel’s private signoff, without transferring approval to the latest candidate. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
 
 ## Objective
 
@@ -19,7 +19,7 @@ Build a real read-only Calendar assistant as the System Under Test (SUT), and a 
 - Python time-zone resolution, conflict boundaries, cross-midnight queries and rejection of ambiguous/nonexistent DST times.
 - Clarification of missing information. Missing end time or duration must be requested from the user, not supplied as a proposed default.
 - Bounded transport retries and one tool-argument correction opportunity in the Python agent. See [retry policy](RETRY_POLICY.md) for limits and the MCP host boundary.
-- 342 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
+- 379 deterministic pytest tests, live read-only integration evidence, 15 controlled agent evaluation cases, saved-answer judging and selected regression evidence.
 
 ## Expected behavior
 

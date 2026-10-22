@@ -6,6 +6,8 @@ Subsequent input-guard update: [missing explicit dates are blocked before infere
 
 Subsequent approved execution/review: pilot 003 completed all six expected routes with ten inference attempts and no Google/Judge calls. [Rachel’s exact six-output signoff](../reports/baseline/V1_CONTROLLED_PILOT_003_HUMAN_SIGNOFF.md) covers four rendered answers, one deterministic input question and one unknown response. This updates the current review status; the engineering/prior proposal sections retain their original context. No independent accuracy or live signoff is claimed.
 
+A separate [fresh acceptance protocol](FRESH_ACCEPTANCE_RUNNER.md) now adds twenty materialized cases with required batch selection and predeclared DST routes. The original six-case protocol and its historical results below remain unchanged; new cases have only offline scripted evidence, not SUT results.
+
 ## Explicit entry point (requires later execution approval)
 
 ```sh

@@ -8,7 +8,7 @@ Track src/, tests/, evals/, project dependency declarations, documentation and s
 
 ## Current checkpoint
 
-v0.3 Development Preview, package `0.3.0.dev0`: existing local LLM tool selection plus explicit opt-in deterministic Python product rendering, with separate raw answers/tool evidence and controlled/live evidence. Calendar remains read-only; Judge advisory, human answer signoff pending, and small-sample evidence does not establish intent accuracy or production reliability. Default Python and MCP behavior do not opt in. See [current scope](PROJECT_SCOPE.md).
+v0.3 Development Preview, package `0.3.0.dev0`: existing local LLM tool selection plus explicit opt-in deterministic Python product rendering, with separate raw answers/tool evidence and controlled/live evidence. Calendar remains read-only; Judge advisory, human signoff limited to the reviewed historical outputs, and small-sample evidence does not establish intent accuracy or production reliability. Default Python and MCP behavior do not opt in. See [current scope](PROJECT_SCOPE.md).
 
 Checkpoint tag `v0.3.0-dev-preview` is to name the reviewed merge commit after main CI passes. Create only a new annotated tag when authorized; never move or overwrite earlier tags. A checkpoint tag is not a GitHub Release or package publication.
 
