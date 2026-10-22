@@ -1,6 +1,6 @@
 # Fresh controlled acceptance runner — versioned batches
 
-Engineering delivery, October 21, 2026. Implements the reviewed case-inventory direction from [PR #28](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/28) without merging that planning PR or changing its rebuild scope. No new real SUT/Google/Judge run has occurred. New [literal case/reference JSON](../evals/proposals/v1_fresh_acceptance_cases.json) is authored and offline-checked; exact reference/human review and execution approval are still separate prerequisites, not independent benchmark certification.
+Engineering delivery, October 21, 2026. Implements the reviewed case-inventory direction from [PR #28](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/28) which was merged into main on October 22, 2026, without changing its rebuild scope. No new real SUT/Google/Judge run has occurred. New [literal case/reference JSON](../evals/proposals/v1_fresh_acceptance_cases.json) is authored and offline-checked; exact reference/human review and execution approval are still separate prerequisites, not independent benchmark certification.
 
 ## Explicit protocol and batch selection
 
@@ -49,7 +49,7 @@ In particular, a DST no-tool answer saying "Free!" can satisfy no-tool/unsupport
 
 ## Offline evidence
 
-379 full pytest tests passed, including 37 new fresh-protocol tests. Socket-blocked fake Chat Completions/runtime responses cover all twenty inputs through actual agent/tool/renderer loops, both DST routes, fractional-hour/cross-day/boundary references, all four batches, required selection, immutable captures/private files, physical retry cap/deadline, interrupted partial rows, unsafe calls and legacy protocol preservation. No real model/Google/Judge calls occurred.
+379 full pytest tests passed, including 37 new fresh-protocol tests. The earlier explicit-date-guard checkpoint had 342 tests; that historical result is retained in its implementation report. Socket-blocked fake Chat Completions/runtime responses cover all twenty inputs through actual agent/tool/renderer loops, both DST routes, fractional-hour/cross-day/boundary references, all four batches, required selection, immutable captures/private files, physical retry cap/deadline, interrupted partial rows, unsafe calls and legacy protocol preservation. No real model/Google/Judge calls occurred.
 
 [Protocol validator/grading](../src/harness/calendar_acceptance.py) · [Shared runner](../src/harness/calendar_pilot.py) · [Tests](../tests/test_calendar_acceptance.py)
 
