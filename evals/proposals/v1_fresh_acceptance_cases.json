@@ -1,0 +1,887 @@
+{
+  "schema": "calendar-controlled-acceptance-v1",
+  "reference_now": "2030-01-01T12:00:00-08:00",
+  "reference_status": "authored references, not independently verified; no execution approval",
+  "source_specification": "PR #28, specification commit 7bcb0829d413c2ca4989d785171b92cadbb3cd7c",
+  "cases": [
+    {
+      "id": "v1a-01",
+      "language": "en",
+      "prompt": "Check 2030-02-12 08:00–08:20 America/Los_Angeles on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "empty_fixture"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-02-12T08:00:00",
+                "end": "2030-02-12T08:20:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-02-12T08:00:00-08:00",
+            "end": "2030-02-12T08:20:00-08:00"
+          },
+          "reference_utc": {
+            "start": "2030-02-12T16:00:00+00:00",
+            "end": "2030-02-12T16:20:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "Available (tool-reported; dedicated test calendar only).",
+              "Actual tool query: 2030-02-12T08:00:00-08:00 → 2030-02-12T08:20:00-08:00 (America/Los_Angeles)",
+              "No conflicting events were returned."
+            ],
+            "available": true,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-02",
+      "language": "en",
+      "prompt": "Check 2030-01-16 09:05–09:15 America/Los_Angeles on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2030-01-16T17:00:00Z",
+          "end": "2030-01-16T17:25:00Z"
+        }
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-01-16T09:05:00",
+                "end": "2030-01-16T09:15:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-01-16T09:05:00-08:00",
+            "end": "2030-01-16T09:15:00-08:00"
+          },
+          "reference_utc": {
+            "start": "2030-01-16T17:05:00+00:00",
+            "end": "2030-01-16T17:15:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "Unavailable (tool-reported; dedicated test calendar only).",
+              "Actual tool query: 2030-01-16T09:05:00-08:00 → 2030-01-16T09:15:00-08:00 (America/Los_Angeles)",
+              "Original event timestamps: 2030-01-16T17:00:00Z → 2030-01-16T17:25:00Z",
+              "Event in requested zone: 2030-01-16T09:00:00-08:00 → 2030-01-16T09:25:00-08:00 (America/Los_Angeles)",
+              "This event contains the entire query interval."
+            ],
+            "available": false,
+            "event_local": [
+              "2030-01-16T09:00:00-08:00",
+              "2030-01-16T09:25:00-08:00"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-03",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2030-08-20 18:20–18:50 America/Los_Angeles，是否有空？請說明衝突。",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2030-08-21T01:00:00Z",
+          "end": "2030-08-21T01:30:00Z"
+        }
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-08-20T18:20:00",
+                "end": "2030-08-20T18:50:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-08-20T18:20:00-07:00",
+            "end": "2030-08-20T18:50:00-07:00"
+          },
+          "reference_utc": {
+            "start": "2030-08-21T01:20:00+00:00",
+            "end": "2030-08-21T01:50:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "不可用（工具回報；僅專用測試行事曆）。",
+              "工具實際查詢區間: 2030-08-20T18:20:00-07:00 → 2030-08-20T18:50:00-07:00 (America/Los_Angeles)",
+              "活動原始時間: 2030-08-21T01:00:00Z → 2030-08-21T01:30:00Z",
+              "活動於指定時區: 2030-08-20T18:00:00-07:00 → 2030-08-20T18:30:00-07:00 (America/Los_Angeles)",
+              "此活動與查詢重疊，但未包含整段查詢區間。"
+            ],
+            "available": false,
+            "event_local": [
+              "2030-08-20T18:00:00-07:00",
+              "2030-08-20T18:30:00-07:00"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-04",
+      "language": "en",
+      "prompt": "Check 2030-01-16 08:30–09:00 America/Los_Angeles on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2030-01-16T09:00:00-08:00",
+          "end": "2030-01-16T09:30:00-08:00"
+        }
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-01-16T08:30:00",
+                "end": "2030-01-16T09:00:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-01-16T08:30:00-08:00",
+            "end": "2030-01-16T09:00:00-08:00"
+          },
+          "reference_utc": {
+            "start": "2030-01-16T16:30:00+00:00",
+            "end": "2030-01-16T17:00:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "Available (tool-reported; dedicated test calendar only).",
+              "Actual tool query: 2030-01-16T08:30:00-08:00 → 2030-01-16T09:00:00-08:00 (America/Los_Angeles)",
+              "No conflicting events were returned."
+            ],
+            "available": true,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-05",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2030-01-16 09:30–10:00 America/Los_Angeles，是否有空？請說明衝突。",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2030-01-16T09:00:00-08:00",
+          "end": "2030-01-16T09:30:00-08:00"
+        }
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-01-16T09:30:00",
+                "end": "2030-01-16T10:00:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-01-16T09:30:00-08:00",
+            "end": "2030-01-16T10:00:00-08:00"
+          },
+          "reference_utc": {
+            "start": "2030-01-16T17:30:00+00:00",
+            "end": "2030-01-16T18:00:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "可用（工具回報；僅專用測試行事曆）。",
+              "工具實際查詢區間: 2030-01-16T09:30:00-08:00 → 2030-01-16T10:00:00-08:00 (America/Los_Angeles)",
+              "工具未回傳衝突活動。"
+            ],
+            "available": true,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-06",
+      "language": "en",
+      "prompt": "Check 2030-03-10 02:10–02:20 America/Los_Angeles on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "none"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "Ask for an unambiguous valid local time/offset; do not silently choose a DST offset or claim availability."
+      ],
+      "routes": [
+        {
+          "id": "no_tool",
+          "expected_calls": [],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected": {
+            "status": "unsupported",
+            "lines": [],
+            "available": null,
+            "event_local": null
+          }
+        },
+        {
+          "id": "local_dst_validation",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-03-10T02:10:00",
+                "end": "2030-03-10T02:20:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected_error": "dst_time_requires_clarification",
+          "expected": {
+            "status": "unknown",
+            "lines": [
+              "Availability unknown; no free/busy conclusion is supported.",
+              "Calendar scope cannot be verified from this record."
+            ],
+            "available": null,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-07",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2030-11-03 01:10–01:20 America/Los_Angeles，是否有空？請說明衝突。",
+      "fixture": {
+        "mode": "none"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "Ask for an unambiguous valid local time/offset; do not silently choose a DST offset or claim availability."
+      ],
+      "routes": [
+        {
+          "id": "no_tool",
+          "expected_calls": [],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected": {
+            "status": "unsupported",
+            "lines": [],
+            "available": null,
+            "event_local": null
+          }
+        },
+        {
+          "id": "local_dst_validation",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-11-03T01:10:00",
+                "end": "2030-11-03T01:20:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected_error": "dst_time_requires_clarification",
+          "expected": {
+            "status": "unknown",
+            "lines": [
+              "可用性未知；目前紀錄不足以判定空閒或忙碌。",
+              "無法從此紀錄確認行事曆範圍。"
+            ],
+            "available": null,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-08",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2030-09-11 06:45–07:15 Asia/Taipei，是否有空？請說明衝突。",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2030-09-10T15:30:00-07:00",
+          "end": "2030-09-10T16:00:00-07:00"
+        }
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-09-11T06:45:00",
+                "end": "2030-09-11T07:15:00",
+                "time_zone": "Asia/Taipei"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-09-11T06:45:00+08:00",
+            "end": "2030-09-11T07:15:00+08:00"
+          },
+          "reference_utc": {
+            "start": "2030-09-10T22:45:00+00:00",
+            "end": "2030-09-10T23:15:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "不可用（工具回報；僅專用測試行事曆）。",
+              "工具實際查詢區間: 2030-09-11T06:45:00+08:00 → 2030-09-11T07:15:00+08:00 (Asia/Taipei)",
+              "活動原始時間: 2030-09-10T15:30:00-07:00 → 2030-09-10T16:00:00-07:00",
+              "活動於指定時區: 2030-09-11T06:30:00+08:00 → 2030-09-11T07:00:00+08:00 (Asia/Taipei)",
+              "此活動與查詢重疊，但未包含整段查詢區間。"
+            ],
+            "available": false,
+            "event_local": [
+              "2030-09-11T06:30:00+08:00",
+              "2030-09-11T07:00:00+08:00"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-09",
+      "language": "en",
+      "prompt": "Check 2030-06-15 23:50 to 2030-06-16 00:20 America/Los_Angeles on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2030-06-16T00:00:00-07:00",
+          "end": "2030-06-16T00:10:00-07:00"
+        }
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-06-15T23:50:00",
+                "end": "2030-06-16T00:20:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-06-15T23:50:00-07:00",
+            "end": "2030-06-16T00:20:00-07:00"
+          },
+          "reference_utc": {
+            "start": "2030-06-16T06:50:00+00:00",
+            "end": "2030-06-16T07:20:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "Unavailable (tool-reported; dedicated test calendar only).",
+              "Actual tool query: 2030-06-15T23:50:00-07:00 → 2030-06-16T00:20:00-07:00 (America/Los_Angeles)",
+              "Original event timestamps: 2030-06-16T00:00:00-07:00 → 2030-06-16T00:10:00-07:00",
+              "Event in requested zone: 2030-06-16T00:00:00-07:00 → 2030-06-16T00:10:00-07:00 (America/Los_Angeles)",
+              "This event overlaps the query but does not contain the entire query."
+            ],
+            "available": false,
+            "event_local": [
+              "2030-06-16T00:00:00-07:00",
+              "2030-06-16T00:10:00-07:00"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-10",
+      "language": "en",
+      "prompt": "Check 2030-12-04 12:00–12:30 America/Los_Angeles on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "empty_fixture"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-12-04T12:00:00",
+                "end": "2030-12-04T12:30:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-12-04T12:00:00-08:00",
+            "end": "2030-12-04T12:30:00-08:00"
+          },
+          "reference_utc": {
+            "start": "2030-12-04T20:00:00+00:00",
+            "end": "2030-12-04T20:30:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "Available (tool-reported; dedicated test calendar only).",
+              "Actual tool query: 2030-12-04T12:00:00-08:00 → 2030-12-04T12:30:00-08:00 (America/Los_Angeles)",
+              "No conflicting events were returned."
+            ],
+            "available": true,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-11",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2030-02-13 00:00–00:30 Asia/Taipei，是否有空？請說明衝突。",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2030-02-12T16:15:00Z",
+          "end": "2030-02-12T16:25:00Z"
+        }
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-02-13T00:00:00",
+                "end": "2030-02-13T00:30:00",
+                "time_zone": "Asia/Taipei"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-02-13T00:00:00+08:00",
+            "end": "2030-02-13T00:30:00+08:00"
+          },
+          "reference_utc": {
+            "start": "2030-02-12T16:00:00+00:00",
+            "end": "2030-02-12T16:30:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "不可用（工具回報；僅專用測試行事曆）。",
+              "工具實際查詢區間: 2030-02-13T00:00:00+08:00 → 2030-02-13T00:30:00+08:00 (Asia/Taipei)",
+              "活動原始時間: 2030-02-12T16:15:00Z → 2030-02-12T16:25:00Z",
+              "活動於指定時區: 2030-02-13T00:15:00+08:00 → 2030-02-13T00:25:00+08:00 (Asia/Taipei)",
+              "此活動與查詢重疊，但未包含整段查詢區間。"
+            ],
+            "available": false,
+            "event_local": [
+              "2030-02-13T00:15:00+08:00",
+              "2030-02-13T00:25:00+08:00"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-12",
+      "language": "en",
+      "prompt": "Check 2030-01-16 14:00–14:30 Asia/Kolkata on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "busy_fixture",
+        "busy": {
+          "start": "2030-01-16T08:15:00Z",
+          "end": "2030-01-16T08:45:00Z"
+        }
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-01-16T14:00:00",
+                "end": "2030-01-16T14:30:00",
+                "time_zone": "Asia/Kolkata"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-01-16T14:00:00+05:30",
+            "end": "2030-01-16T14:30:00+05:30"
+          },
+          "reference_utc": {
+            "start": "2030-01-16T08:30:00+00:00",
+            "end": "2030-01-16T09:00:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "Unavailable (tool-reported; dedicated test calendar only).",
+              "Actual tool query: 2030-01-16T14:00:00+05:30 → 2030-01-16T14:30:00+05:30 (Asia/Kolkata)",
+              "Original event timestamps: 2030-01-16T08:15:00Z → 2030-01-16T08:45:00Z",
+              "Event in requested zone: 2030-01-16T13:45:00+05:30 → 2030-01-16T14:15:00+05:30 (Asia/Kolkata)",
+              "This event overlaps the query but does not contain the entire query."
+            ],
+            "available": false,
+            "event_local": [
+              "2030-01-16T13:45:00+05:30",
+              "2030-01-16T14:15:00+05:30"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-13",
+      "language": "en",
+      "prompt": "Check June 15, 2030, 12:00–12:30 America/Los_Angeles on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "empty_fixture"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-06-15T12:00:00",
+                "end": "2030-06-15T12:30:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-06-15T12:00:00-07:00",
+            "end": "2030-06-15T12:30:00-07:00"
+          },
+          "reference_utc": {
+            "start": "2030-06-15T19:00:00+00:00",
+            "end": "2030-06-15T19:30:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "Available (tool-reported; dedicated test calendar only).",
+              "Actual tool query: 2030-06-15T12:00:00-07:00 → 2030-06-15T12:30:00-07:00 (America/Los_Angeles)",
+              "No conflicting events were returned."
+            ],
+            "available": true,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-14",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2030年12月4日 10:00 到 10:30，America/Los_Angeles，有空嗎？",
+      "fixture": {
+        "mode": "empty_fixture"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "No unsupported availability, booking or broader-calendar claim; preserve requested dates/zone/scope."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-12-04T10:00:00",
+                "end": "2030-12-04T10:30:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-12-04T10:00:00-08:00",
+            "end": "2030-12-04T10:30:00-08:00"
+          },
+          "reference_utc": {
+            "start": "2030-12-04T18:00:00+00:00",
+            "end": "2030-12-04T18:30:00+00:00"
+          },
+          "expected": {
+            "status": "rendered",
+            "lines": [
+              "可用（工具回報；僅專用測試行事曆）。",
+              "工具實際查詢區間: 2030-12-04T10:00:00-08:00 → 2030-12-04T10:30:00-08:00 (America/Los_Angeles)",
+              "工具未回傳衝突活動。"
+            ],
+            "available": true,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-15",
+      "language": "en",
+      "prompt": "Is 16:10–16:35 America/Los_Angeles free on the dedicated test calendar?",
+      "fixture": {
+        "mode": "none"
+      },
+      "input_message": "Please provide a full date (for example YYYY-MM-DD) before checking availability; no calendar query has been made.",
+      "raw_review_criteria": [
+        "No raw model answer: deterministic date request, no inference or Calendar operation."
+      ],
+      "routes": [
+        {
+          "id": "no_tool",
+          "expected_calls": [],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected": {
+            "status": "unsupported",
+            "lines": [],
+            "available": null,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-16",
+      "language": "en",
+      "prompt": "Check tomorrow 16:10–16:35 America/Los_Angeles on the dedicated test calendar.",
+      "fixture": {
+        "mode": "none"
+      },
+      "input_message": "Please provide a full date (for example YYYY-MM-DD) before checking availability; no calendar query has been made.",
+      "raw_review_criteria": [
+        "No raw model answer: deterministic date request, no inference or Calendar operation."
+      ],
+      "routes": [
+        {
+          "id": "no_tool",
+          "expected_calls": [],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected": {
+            "status": "unsupported",
+            "lines": [],
+            "available": null,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-17",
+      "language": "zh-TW",
+      "prompt": "請查詢專用測試行事曆：2030-02-30 10:00 到 10:30，Asia/Taipei，有空嗎？",
+      "fixture": {
+        "mode": "none"
+      },
+      "input_message": "請提供完整日期（例如 YYYY-MM-DD），再查詢行事曆；目前尚未查詢。",
+      "raw_review_criteria": [
+        "No raw model answer: deterministic date request, no inference or Calendar operation."
+      ],
+      "routes": [
+        {
+          "id": "no_tool",
+          "expected_calls": [],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected": {
+            "status": "unsupported",
+            "lines": [],
+            "available": null,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-18",
+      "language": "en",
+      "prompt": "Check January 16, 2030 at 09:00 America/Los_Angeles on the dedicated test calendar.",
+      "fixture": {
+        "mode": "none"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "Ask user for end time or duration, never propose a default duration; no tool call or availability claim."
+      ],
+      "routes": [
+        {
+          "id": "no_tool",
+          "expected_calls": [],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected": {
+            "status": "unsupported",
+            "lines": [],
+            "available": null,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-19",
+      "language": "en",
+      "prompt": "Check 2030-01-16 09:00–09:30 CST on the dedicated test calendar.",
+      "fixture": {
+        "mode": "none"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "Ask which IANA timezone/region CST means; do not infer an offset or claim availability."
+      ],
+      "routes": [
+        {
+          "id": "no_tool",
+          "expected_calls": [],
+          "expected_api_interval": null,
+          "reference_utc": null,
+          "expected": {
+            "status": "unsupported",
+            "lines": [],
+            "available": null,
+            "event_local": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "v1a-20",
+      "language": "en",
+      "prompt": "Check 2030-01-16 15:00–15:30 America/Los_Angeles on the dedicated test calendar. Explain any conflict.",
+      "fixture": {
+        "mode": "raise_calendar_error"
+      },
+      "input_message": null,
+      "raw_review_criteria": [
+        "Explain unknown availability after Calendar failure; never call it free or retry a different query."
+      ],
+      "routes": [
+        {
+          "id": "tool",
+          "expected_calls": [
+            {
+              "name": "check_availability",
+              "arguments": {
+                "start": "2030-01-16T15:00:00",
+                "end": "2030-01-16T15:30:00",
+                "time_zone": "America/Los_Angeles"
+              }
+            }
+          ],
+          "expected_api_interval": {
+            "start": "2030-01-16T15:00:00-08:00",
+            "end": "2030-01-16T15:30:00-08:00"
+          },
+          "reference_utc": {
+            "start": "2030-01-16T23:00:00+00:00",
+            "end": "2030-01-16T23:30:00+00:00"
+          },
+          "expected": {
+            "status": "unknown",
+            "lines": [
+              "Availability unknown; no free/busy conclusion is supported.",
+              "Calendar scope cannot be verified from this record."
+            ],
+            "available": null,
+            "event_local": null
+          },
+          "expected_error": "calendar_unavailable"
+        }
+      ]
+    }
+  ]
+}

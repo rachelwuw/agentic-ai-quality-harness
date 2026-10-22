@@ -113,11 +113,27 @@ def validate_suite(suite):
     return cases
 
 
+def prepare_suite(suite, batch=None):
+    if suite.get('schema') == 'calendar-controlled-acceptance-v1':
+        from .calendar_acceptance import validate_suite as validate_fresh, select_batch
+        validate_fresh(suite)
+        return select_batch(suite, batch)
+    if batch is not None:
+        raise ValueError('Batch selection is only available for fresh acceptance')
+    if any('routes' in c for c in suite.get('cases', [])):
+        raise ValueError('Route alternatives require the fresh acceptance schema')
+    return validate_suite(suite)
+
+
+def permitted_routes(case):
+    return case.get('routes', [case])
+
+
 class GuardedCalendar(ControlledCalendar):
     def __init__(self, case):
         fixture = case['fixture']
         super().__init__(fixture['mode'], fixture.get('busy'))
-        self.expected, self.attempted = case['expected_api_interval'], []
+        self.expected, self.attempted = permitted_routes(case)[0]['expected_api_interval'], []
 
     def check_availability(self, start, end):
         args = {'start': start, 'end': end}
@@ -137,8 +153,8 @@ def grade(case, run, calendar):
     result = tools[0]['result'] if tools else None
     if not tools:
         facts_ok = not case['expected_calls']
-    elif case['fixture']['mode'] == 'raise_calendar_error':
-        facts_ok = result.get('error') == 'calendar_unavailable' and result.get('available') is None
+    elif case.get('expected_error') or case['fixture']['mode'] == 'raise_calendar_error':
+        facts_ok = result.get('error') == case.get('expected_error', 'calendar_unavailable') and result.get('available') is None
     else:
         zone = case['expected_calls'][0]['arguments']['time_zone']
         query = result.get('time_facts', {}).get('query_interval', {}).get('in_query_timezone', {})
@@ -158,11 +174,14 @@ def grade(case, run, calendar):
             'human_product_review': 'pending', 'semantic_pass_claim': False}
 
 
-def run_suite(suite, client, *, progress=None, runtime_check=None):
-    cases = validate_suite(suite)
+def run_suite(suite, client, *, progress=None, runtime_check=None, batch=None):
+    cases = prepare_suite(suite, batch)
     report = {'schema': suite['schema'], 'state': 'running', 'case_definitions': copy.deepcopy(suite),
               'google_requests': 0, 'judge_requests': 0, 'semantic_pass_claim': False,
               'results': [{'id': c['id'], 'state': 'not_attempted'} for c in cases]}
+    if batch is not None:
+        report.update(batch=batch, selected_case_ids=[c['id'] for c in cases],
+                      excluded_case_ids=[c['id'] for c in suite['cases'] if c not in cases])
     def save():
         report.update(model_requests=copy.deepcopy(client.requests), inference_attempts=client.limits.used)
         if progress:
@@ -188,7 +207,7 @@ def run_suite(suite, client, *, progress=None, runtime_check=None):
                         proposed = [{'name': c['function']['name'], 'arguments': json.loads(c['function']['arguments'])} for c in calls]
                     except (KeyError, TypeError, ValueError):
                         raise StopPilot('unexpected_tool') from None
-                    if accepted or proposed != case['expected_calls']:
+                    if accepted or not any(proposed == r['expected_calls'] for r in permitted_routes(case)):
                         raise StopPilot('unexpected_tool')
                     accepted.extend(proposed)
                 return message
@@ -200,8 +219,14 @@ def run_suite(suite, client, *, progress=None, runtime_check=None):
                 run = run_calendar_agent(case['prompt'], complete, calendar,
                                          now=datetime.fromisoformat(suite['reference_now']),
                                          renderer_language=case['language'], on_event=on_event)
-                row.update(state='completed', run=copy.deepcopy(run), api_calls=calendar.calls,
-                           **grade(case, run, calendar))
+                if 'routes' in case:
+                    from .calendar_acceptance import grade as grade_fresh
+                    checks = grade_fresh(case, run, calendar, grade)
+                    if case['input_message'] is not None and any(q['case_id'] == case['id'] for q in client.requests):
+                        checks.update(input_gate_match=False, automated_pass=False)
+                else:
+                    checks = grade(case, run, calendar)
+                row.update(state='completed', run=copy.deepcopy(run), api_calls=calendar.calls, **checks)
                 row.pop('partial_events', None)
             except BaseException:
                 row.update(state='incomplete', partial_events=copy.deepcopy(trail), api_calls=calendar.calls)
@@ -230,6 +255,7 @@ def main(argv=None):
     parser.add_argument('--execute-controlled', action='store_true')
     parser.add_argument('--cases', default='evals/proposals/v1_controlled_pilot_cases.json')
     parser.add_argument('--private-dir', required=True)
+    parser.add_argument('--batch', type=int, help='Required fresh-protocol batch 1..4; not accepted for legacy pilot')
     parser.add_argument('--max-attempts', type=int, default=MAX_ATTEMPTS)
     parser.add_argument('--deadline-seconds', type=float, default=MAX_SECONDS)
     args = parser.parse_args(argv)
@@ -238,20 +264,25 @@ def main(argv=None):
     # Validate every local input before connecting to a model or creating output.
     raw = Path(args.cases).read_bytes()
     suite = json.loads(raw)
-    validate_suite(suite)
+    cases = prepare_suite(suite, args.batch)
     limits = Limits(args.max_attempts, args.deadline_seconds)
     output = private_directory(args.private_dir)
     root = Path(__file__).resolve().parent
     manifest = {'suite_sha256': hashlib.sha256(raw).hexdigest(),
                 'code_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(root.glob('*.py'))},
                 'max_attempts': limits.cap, 'deadline_seconds': limits.seconds, 'model_settings_changed': False}
+    if args.batch is not None:
+        manifest.update(protocol=suite['schema'], batch=args.batch, selected_case_ids=[c['id'] for c in cases])
     write_private(output / 'manifest.json', manifest)
     def save(value):
         nonlocal report
         report = copy.deepcopy(value)
         write_private(output / 'raw.json', report)
-    report = {'state': 'preflight_error', 'results': [{'id': c['id'], 'state': 'not_attempted'} for c in suite['cases']],
+    report = {'state': 'preflight_error', 'results': [{'id': c['id'], 'state': 'not_attempted'} for c in cases],
               'semantic_pass_claim': False, 'google_requests': 0, 'judge_requests': 0}
+    if args.batch is not None:
+        report.update(batch=args.batch, selected_case_ids=[c['id'] for c in cases],
+                      excluded_case_ids=[c['id'] for c in suite['cases'] if c not in cases])
     client = None
     try:
         client = PilotClient(limits)
@@ -274,7 +305,7 @@ def main(argv=None):
             manifest['runtime_unchanged'] = before == latest
             if not manifest['runtime_unchanged']:
                 raise StopPilot('runtime_changed')
-        report = run_suite(suite, client, progress=save, runtime_check=runtime_check)
+        report = run_suite(suite, client, progress=save, runtime_check=runtime_check, batch=args.batch)
     except KeyboardInterrupt:
         report['state'] = 'interrupted'
     except Exception as error:
@@ -287,7 +318,7 @@ def main(argv=None):
     passed = sum(r.get('automated_pass') is True for r in report['results'])
     print(json.dumps({'state': report['state'], 'planned': len(report['results']), 'automated_matches': passed,
                       'inference_attempts': limits.used, 'semantic_pass_claim': False}))
-    return int(report['state'] != 'completed' or passed != len(suite['cases']) or not manifest.get('runtime_unchanged'))
+    return int(report['state'] != 'completed' or passed != len(cases) or not manifest.get('runtime_unchanged'))
 
 
 if __name__ == '__main__':
