@@ -1,0 +1,47 @@
+{
+  "suite": "calendar_live_readonly_v1",
+  "state": "preflight_error",
+  "google_events_http_sends": 0,
+  "model_inference_attempts": 0,
+  "oauth_refresh_count": "not_instrumented_separate_auth_transport",
+  "direct_checks_completed": 0,
+  "agent_cases_recorded": 0,
+  "cases": [
+    {
+      "id": "live-overlap",
+      "fixture_precondition": null,
+      "agent_structure": null,
+      "fixture_drift_observed": false,
+      "answer_review": "not_attempted",
+      "renderer_status": "not_attempted"
+    },
+    {
+      "id": "live-adjacent",
+      "fixture_precondition": null,
+      "agent_structure": null,
+      "fixture_drift_observed": false,
+      "answer_review": "not_attempted",
+      "renderer_status": "not_attempted"
+    },
+    {
+      "id": "live-empty",
+      "fixture_precondition": null,
+      "agent_structure": null,
+      "fixture_drift_observed": false,
+      "answer_review": "not_attempted",
+      "renderer_status": "not_attempted"
+    }
+  ],
+  "semantic_pass_claim": false,
+  "renderer_counts": {
+    "planned": 3,
+    "rendered": 0,
+    "unknown": 0,
+    "unsupported": 0,
+    "pending": 0,
+    "unavailable": 0,
+    "not_attempted": 3
+  },
+  "elapsed_seconds": 0.434,
+  "implementation_sha256": "a0df49acc936714933fc37109d537f20db4eb65b248dee7aa52c5c83097372c3"
+}

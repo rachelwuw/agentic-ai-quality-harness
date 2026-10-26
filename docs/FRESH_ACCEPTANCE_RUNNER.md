@@ -1,5 +1,9 @@
 # Fresh controlled acceptance runner — versioned batches
 
+## Current execution status — October 26, 2026
+
+Rachel later authorized bounded autopilot: first-round missing batches plus one complete four-batch repeat. This budget is consumed: six new invocations, 40 new physical inference attempts, all forty case observations completed across two rounds on `cad0604`. The original approval table/next-step text below preserves the pre-execution context. See [results, raw defects and remaining human gates](V1_BOUNDED_CLOSEOUT.md); no further batch runs are authorized by that old table. Original reference metadata/labels remain unchanged.
+
 Engineering delivery, October 21, 2026. Implements the reviewed case-inventory direction from [PR #28](https://github.com/rachelwuw/agentic-ai-quality-harness/pull/28) which was merged into main on October 22, 2026, without changing its rebuild scope. No new real SUT/Google/Judge run has occurred. New [literal case/reference JSON](../evals/proposals/v1_fresh_acceptance_cases.json) is authored and offline-checked; exact reference/human review and execution approval are still separate prerequisites, not independent benchmark certification.
 
 ## Explicit protocol and batch selection

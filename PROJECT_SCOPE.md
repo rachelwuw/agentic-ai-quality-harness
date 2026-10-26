@@ -54,3 +54,7 @@ Use the completed live read-only regression and controlled SUT/judge baselines t
 ## Historical v0.2 checkpoint boundary
 
 The new capability is evaluation infrastructure: Python-derived time/tool facts, deterministic trace grading, semantic Qwen review and preserved overall/criterion comparisons. The Calendar product remains read-only. Frozen v10 fresh validation found 3/4 overall and 31/36 criterion matches against authored expectations, with known false failure and scope disagreement. These counts do not establish overall accuracy; full v10 baseline, human review and repeatability remain pending. Prior raw evidence is retained.
+
+## Bounded v1 closeout — October 26, 2026
+
+[Two-round controlled evidence and blockers](docs/V1_BOUNDED_CLOSEOUT.md) now replace the earlier planned-only status: 40/40 automated contract matches, 20/20 product/route/input repeat comparisons; raw prose defects remain. [Hash-fixed Python recreation](docs/V1_REPRODUCE.md) passed 379 tests in a new venv. Current live regression failed OAuth preflight; no fresh OAuth/current live acceptance or v1 release is claimed. Only fresh round-1 cases 01–06 have Rachel signoff.
