@@ -1,10 +1,10 @@
 # Agentic AI Quality & Test Harness — current architecture
 
-Current v0.3 Development Preview, October 15, 2026. The implemented SUT checks Calendar availability; event creation is future work.
+Current v1.0.0, October 26, 2026. The implemented SUT checks Calendar availability; event creation is outside the v1 scope.
 
-The v0.3 Development Preview adds an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
+The v1.0.0 product includes an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
 
-Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review. The three controlled product answers subsequently received [Rachel's case-by-case signoff](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md); live-answer signoff remains pending. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
+Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review. The three controlled product answers subsequently received [Rachel's case-by-case signoff](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md); later scoped controlled/live acceptance is recorded in the [release addendum](reports/baseline/V1_RELEASE_ACCEPTANCE.md). Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
 
 ## Runtime and evidence flow
 
@@ -36,7 +36,7 @@ flowchart TD
     MCP --> Validate
 ```
 
-Model inference is local; Calendar reads connect to Google. Load SUT and judge in turn on the 32 GB Mac. Model weights remain outside Git. Configure `SUT_MODEL`, `JUDGE_MODEL` and `LM_STUDIO_BASE_URL`; the endpoint must remain loopback for this preview.
+Model inference is local; Calendar reads connect to Google. Load SUT and judge in turn on the 32 GB Mac. Model weights remain outside Git. Configure `SUT_MODEL`, `JUDGE_MODEL` and `LM_STUDIO_BASE_URL`; the endpoint must remain loopback for this release.
 
 The judge receives saved answers, tool observations and grading criteria. It does not call Calendar or receive OAuth credentials. Its request transport remains single-attempt. Invalid output is UNCERTAIN; valid JSON does not guarantee a correct verdict.
 
@@ -46,9 +46,9 @@ The MCP host owns a separate loop. It shares the read-only Calendar implementati
 
 | Layer | Execution | Evidence and limits |
 |---|---|---|
-| Deterministic | Scripted model responses and simulated APIs | 283 tests; renderer, interval relations, loop, validation, time zones, retries, judge schema and grading logic |
+| Deterministic | Scripted model responses and simulated APIs | 379 tests; renderer, interval relations, loop, validation, time zones, retries, judge schema and grading logic |
 | Integration | Real Google Calendar reads | Manual live read-only evidence on the dedicated calendar; separate from controlled evaluations |
-| Agent evaluation | Real local SUT with controlled Calendar fixtures | 15 cases, structural checks, saved answers and pending semantic review |
+| Agent evaluation | Real local SUT with controlled Calendar fixtures | Latest 20 cases × 2 rounds, separate tool/fact/product checks and scoped human acceptance; historical Judge experiments remain advisory |
 
 Saved answers also pass through local LLM judging and assisted/human evidence review. The v7 focused check matched three development expectations; it is not held-out accuracy or release approval. A new 15-case controlled SUT evaluation completed after those changes with 14/15 strict structural passes and one successful correction. Full v7 judge scoring completed with 15 valid outputs, 11 raw PASS / 4 FAIL; human semantic review remains pending. Full v10 baseline is not yet run.
 

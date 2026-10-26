@@ -2,6 +2,8 @@
 
 Validated October 26, 2026 with CPython **3.12.14**, existing Python distribution, and product source `cad0604e477d15edc437d38057b26f78057938e8`. [Evidence](../reports/baseline/V1_REBUILD_EVIDENCE.json) · [Closeout boundaries](V1_BOUNDED_CLOSEOUT.md).
 
+The original validation above produced a `0.3.0.dev0` wheel. The subsequent **1.0.0** package was rebuilt/installed and passed the same 379-test suite in another new environment; [release package evidence](../reports/baseline/V1_RELEASE_PACKAGE_VERIFICATION.json) records its distinct hash. Reproduce the version you intend: use the `v1.0.0` release source for 1.0.0, or the original candidate for historical evidence. The dependency lock is unchanged; prior wheel hashes are not release artifact hashes.
+
 ## Fixed artifacts and provenance
 
 [v1-macos-arm64-py312.lock](../requirements/v1-macos-arm64-py312.lock) pins all 46 resolved wheels by version and SHA-256, including selected extras and build tools: pip 25.1.1, setuptools 84.2.1 and wheel 0.48.0. Runtime dependencies were resolved against the existing environment's observed versions, using the configured pip package source; pip/setuptools/wheel are included explicitly. Private resolution logs and wheel inventory retain provenance. The hashes identify the selected wheel artifacts, not every distribution of each package. Marker/platform alternatives were not resolved for other targets; do not call this a cross-platform lock.

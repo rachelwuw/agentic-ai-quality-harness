@@ -1,5 +1,7 @@
 # v1 bounded closeout — evidence and remaining decisions
 
+Current release decision: Rachel subsequently accepted the consolidated review and known limitations and approved v1.0.0. See the [separate acceptance addendum](../reports/baseline/V1_RELEASE_ACCEPTANCE.md). Original checkpoint results, pending fields and authorization limits below are retained as history.
+
 ## Subsequent authorized OAuth/live follow-up
 
 The original failure and decisions below preserve their checkpoint context. [OAuth-only reauthorization and one newly authorized live round](V1_OAUTH_LIVE_CLOSEOUT.md) subsequently succeeded without source/label changes. Current remaining gates are concentrated human acceptance and the final Rachel release decision; the earlier failed live attempt remains intact.

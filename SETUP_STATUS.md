@@ -1,6 +1,10 @@
 # Setup / verification status
 
-## Current checkpoint: October 15, 2026 — v0.3 Development Preview
+## Current release: v1.0.0 — October 26, 2026
+
+379 offline tests; twenty controlled cases repeated twice; current-candidate three-case live/OAuth engineering evidence and scoped Rachel acceptance recorded. [Acceptance](reports/baseline/V1_RELEASE_ACCEPTANCE.md) · [Checklist](docs/V1_ACCEPTANCE.md) · [Locked rebuild](docs/V1_REPRODUCE.md). Product Python source remains the tested `cad0604` bytes; release package metadata is 1.0.0. Existing runtime and fresh OAuth are separate from the new Python environment; no complete new-machine claim. Historical entries below retain their original results and pending labels.
+
+## Historical checkpoint: October 15, 2026 — v0.3 Development Preview
 
 Package version: `0.3.0.dev0`. Offline verification: 283 pytest tests passed.
 

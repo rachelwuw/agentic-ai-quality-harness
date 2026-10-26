@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "project": "rachel-agentic-quality-harness",
+  "product_source_candidate": "cad0604e477d15edc437d38057b26f78057938e8",
+  "product_python_bytes_unchanged": true,
+  "target": {
+    "os": "Darwin",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "macos_version": "27.0"
+  },
+  "dependency_lock_sha256": "fc1865b38f628f505c84d5f2868a78a7a752691fb636afdc15c694c619725cd6",
+  "wheel_filename": "rachel_agentic_quality_harness-1.0.0-py3-none-any.whl",
+  "release_wheel_sha256": "8e68ecc6e9e7edc9a49ddf5c0045bbfe65eaf48dfefe04e3aa5089656cc819d8",
+  "historical_0_3_0_dev0_wheel_sha256": "f6d29b445bb92a6a16b3a64a4821400dde745251de8f820d123c5e0d7f31a260",
+  "artifact_boundary": "New release-metadata wheel, not the old controlled/live execution artifact. Model/Google evidence reused only for unchanged Python source; no new live calls. Wheel timestamp byte reproducibility not claimed.",
+  "verification": [
+    {
+      "step": "wheel-install",
+      "exit_code": 0
+    },
+    {
+      "step": "pip-check",
+      "exit_code": 0
+    },
+    {
+      "step": "version-import",
+      "exit_code": 0
+    },
+    {
+      "step": "offline-suite",
+      "exit_code": 0
+    }
+  ],
+  "offline_tests": {
+    "passed": 379,
+    "skipped": 0
+  },
+  "original_venv_and_rebuild_venv_preserved": true
+}

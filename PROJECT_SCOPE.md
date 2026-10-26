@@ -1,10 +1,10 @@
 # Project scope — Calendar Availability Assistant
 
-Current v0.3 Development Preview, October 15, 2026. This document describes the implemented scope and separates future scheduling work.
+Current v1.0.0, October 26, 2026. This document describes the implemented scope and separates future scheduling work.
 
-The v0.3 Development Preview adds an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
+The v1.0.0 product includes an explicit opt-in deterministic Python product answer to the existing LLM tool-selection workflow. Raw LLM `answer`, tool `events` and `product_output` remain separate; default behavior and the MCP host loop do not opt in. Single supported tool runs use fixed English or Traditional Chinese templates; missing evidence stays unknown, and multi-query, correction and incomplete runs are unsupported. Renderer fidelity does not establish correct user-intent interpretation.
 
-Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review. The three controlled product answers subsequently received [Rachel's case-by-case signoff](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md); the historical three live product outputs also received Rachel’s private signoff, without transferring approval to the latest candidate. Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
+Evidence: [three controlled real-SUT conversations](docs/CALENDAR_RENDERER_OPT_IN.md) and [one three-case real Google read-only round](docs/LIVE_RENDERER_OPT_IN.md), with separate tool execution, Python facts and assisted product review. All three products in each round passed assisted review. The three controlled product answers subsequently received [Rachel's case-by-case signoff](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md); the historical three live product outputs also received Rachel’s private signoff. Later v1 consolidated acceptance is recorded separately in the [release addendum](reports/baseline/V1_RELEASE_ACCEPTANCE.md). Raw LLM prose defects and advisory Judge limitations remain. These small samples do not establish general semantic accuracy or production reliability.
 
 ## Objective
 
@@ -37,7 +37,7 @@ The historical v0.2 prompt/retry changes have deterministic verification and a n
 
 ## Portability requirements
 
-Keep source, tests, evaluation definitions, docs, dependency declarations and selected sanitized baselines in Git. Exclude virtual environments, model weights, secrets, OAuth tokens and disposable outputs. Recreate the environment and reauthenticate Google on the future 64 GB Mac Studio. Runtime URLs and model roles remain configurable. Complete dependency locking, expanded doctor checks and clean-machine migration validation remain pending.
+Keep source, tests, evaluation definitions, docs, dependency declarations and selected sanitized baselines in Git. Exclude virtual environments, model weights, secrets, OAuth tokens and disposable outputs. Recreate the environment and reauthenticate Google on the future 64 GB Mac Studio. Runtime URLs and model roles remain configurable. Hash-fixed dependency/build recreation is verified for Mac arm64/Python 3.12; expanded doctor checks and clean-machine migration validation remain unverified.
 
 ## Deferred
 
@@ -47,7 +47,7 @@ LangGraph, RAG, vector databases, Jenkins, complex CI/CD, real Jira and automate
 
 ## Next quality work
 
-The agreed v1 direction is Python CLI with explicitly enabled renderer as the primary supported path; the existing LM Studio chat/MCP experience is a v2 integration/acceptance target. See the [v1 acceptance checklist and evidence gaps](docs/V1_ACCEPTANCE.md) and [proposed six-case controlled pilot](evals/proposals/V1_CONTROLLED_PILOT.md). These are plans, not v1 completion or model/Google execution authorization.
+The agreed v1 direction is Python CLI with explicitly enabled renderer as the primary supported path; the existing LM Studio chat/MCP experience is a v2 integration/acceptance target. See the [v1 acceptance checklist and evidence gaps](docs/V1_ACCEPTANCE.md) and [proposed six-case controlled pilot](evals/proposals/V1_CONTROLLED_PILOT.md). Historical proposals retain their original planning status. Current v1 evidence and Rachel acceptance are mapped in the checklist; examples do not authorize new model/Google calls.
 
 Use the completed live read-only regression and controlled SUT/judge baselines to prioritize findings. Confirm missing rubric coverage, grade trace facts deterministically, then freeze the revision before validating unseen examples with targeted human review. Improve migration reproducibility without expanding product scope.
 
@@ -57,4 +57,4 @@ The new capability is evaluation infrastructure: Python-derived time/tool facts,
 
 ## Bounded v1 closeout — October 26, 2026
 
-[Two-round controlled evidence and blockers](docs/V1_BOUNDED_CLOSEOUT.md) now replace the earlier planned-only status: 40/40 automated contract matches, 20/20 product/route/input repeat comparisons; raw prose defects remain. [Hash-fixed Python recreation](docs/V1_REPRODUCE.md) passed 379 tests in a new venv. The initial live regression failed OAuth preflight and is preserved. A [newly authorized OAuth-only flow and current-candidate live round](docs/V1_OAUTH_LIVE_CLOSEOUT.md) subsequently passed bounded engineering checks; new human live acceptance and v1 release are still pending. Only fresh round-1 cases 01–06 have Rachel signoff.
+[Two-round controlled evidence and blockers](docs/V1_BOUNDED_CLOSEOUT.md) now replace the earlier planned-only status: 40/40 automated contract matches, 20/20 product/route/input repeat comparisons; raw prose defects remain. [Hash-fixed Python recreation](docs/V1_REPRODUCE.md) passed 379 tests in a new venv. The initial live regression failed OAuth preflight and is preserved. A [newly authorized OAuth-only flow and current-candidate live round](docs/V1_OAUTH_LIVE_CLOSEOUT.md) subsequently passed bounded engineering checks; the subsequent [release acceptance addendum](reports/baseline/V1_RELEASE_ACCEPTANCE.md) records Rachel’s acceptance of the consolidated remaining controlled/live outputs and known limitations, and approval of v1.0.0. Original labels remain unchanged.

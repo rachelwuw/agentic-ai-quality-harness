@@ -1,8 +1,16 @@
 # Selected regression evidence
 
-## Current v0.3 Development Preview
+## Current v1.0.0 evidence
 
-- Current offline verification: 283 pytest tests passed (October 15, 2026); no model or Google calls in pytest.
+- [Rachel release acceptance](V1_RELEASE_ACCEPTANCE.md) and [exact coverage/hashes](V1_RELEASE_ACCEPTANCE.json): consolidated product/repeat acceptance with known limitations, not invented criterion labels or raw/Judge approval.
+- [Controlled two-round checks](V1_BOUNDED_AUTOPILOT_CONTROLLED.json): 20 × 2 observations, 40/40 contract matches, 20/20 paired product/route/input comparisons; authored references, not independent accuracy.
+- [Latest live summary](V1_LIVE_AFTER_OAUTH_SUMMARY.json) and [OAuth/AI review](V1_OAUTH_LIVE_REVIEW.json): fresh OAuth-only consent/refresh, three-case live engineering checks; six events sends/six model attempts. Private traces/text excluded.
+- [Preserved failed live attempt](V1_BOUNDED_AUTOPILOT_LIVE_SUMMARY.json): OAuth refresh failure, all three cases not attempted; never replaced by later success.
+- [Mac/Python rebuild](V1_REBUILD_EVIDENCE.json): 379 offline tests and 46-wheel hash lock; [new 1.0.0 package verification](V1_RELEASE_PACKAGE_VERIFICATION.json) distinguishes release artifact from the earlier wheel.
+
+## Historical v0.3 Development Preview
+
+- At this checkpoint: 283 pytest tests passed (October 15, 2026); no model or Google calls in pytest.
 - [Controlled renderer E2E](../../docs/CALENDAR_RENDERER_OPT_IN.md): three real SUT conversations, simulated Calendar, separate raw/tool/product evidence; [public controlled report](calendar-renderer-e2e-v1.json).
 - [Executed live renderer round](../../docs/LIVE_RENDERER_OPT_IN.md): one three-case Google read-only round, six events sends and six model inferences; [allowlisted public summary](calendar-live-renderer-attempt-v1-summary.json). Private traces remain excluded.
 - Assisted product checks passed; the three controlled product answers have [Rachel’s subsequent case-by-case signoff](CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md). Live-answer signoff remains pending. Raw prose defects, advisory Judge limits and `semantic_pass_claim=false` are preserved. These are small-sample checkpoints, not general accuracy evidence.

@@ -1,5 +1,7 @@
 # Local setup and runtime settings
 
+For v1.0.0, use the [hash-locked Mac arm64 / Python 3.12 reproduction procedure](V1_REPRODUCE.md) for verified environment reconstruction. The convenience commands below remain unpinned. The accepted product path explicitly selects `--renderer python --language en` or `zh-TW` and a new private output path; see the [README](../README.md#quick-start). These live commands make real model/Google calls. [Release acceptance](../reports/baseline/V1_RELEASE_ACCEPTANCE.md).
+
 ## Quick start
 
 Use Python 3.12+ and recreate the virtual environment on each machine:
@@ -71,9 +73,9 @@ python -m harness.calendar_judge --thinking --rubric evals/calendar_judge_rubric
 python -m harness.calendar_judge --thinking --rubric evals/calendar_judge_rubric_v5.json --input evals/judge_calibration_cases.json --calibrate --max-tokens 6144 --timeout 600 --output reports/runs/judge-v5-calibration-new.json
 ```
 
-The judge computes independent criterion scores; Python aggregates them. Invalid/truncated output becomes UNCERTAIN. No automatic retries or rerun-until-pass. Inspect FAIL/UNCERTAIN and sample PASS. Full suite scoring is not autonomous signoff. See [judge guidance](../evals/CALENDAR_JUDGE.md) and [calibration review](../evals/JUDGE_CALIBRATION_REVIEW.md).
+The judge computes per-criterion scores; Python aggregates them. Invalid/truncated output becomes UNCERTAIN. No automatic retries or rerun-until-pass. Inspect FAIL/UNCERTAIN and sample PASS. Full suite scoring is not autonomous signoff. See [judge guidance](../evals/CALENDAR_JUDGE.md) and [calibration review](../evals/JUDGE_CALIBRATION_REVIEW.md).
 
 
 ## Hardware and migration
 
-Development: M5 MacBook Air, 32 GB RAM / 4 TB SSD. Future target: 64 GB Mac Studio. Recreate the Python environment, reinstall LM Studio, download both model roles, configure local secrets and reauthenticate Google. Never copy `.venv` or commit model weights or credentials. Complete dependency locking, expanded doctor checks and a clean-machine rebuild remain pending. See [architecture](../ARCHITECTURE.md) and [source control](../SOURCE_CONTROL.md).
+Development: M5 MacBook Air, 32 GB RAM / 4 TB SSD. Future target: 64 GB Mac Studio. Recreate the Python environment, reinstall LM Studio, download both model roles, configure local secrets and reauthenticate Google. Never copy `.venv` or commit model weights or credentials. A hash-locked new Python environment is verified on the current Mac arm64 / Python 3.12 target. Expanded doctor checks and a complete clean-machine/runtime rebuild remain unverified. See [architecture](../ARCHITECTURE.md) and [source control](../SOURCE_CONTROL.md).

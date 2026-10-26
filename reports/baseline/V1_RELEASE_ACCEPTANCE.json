@@ -1,0 +1,294 @@
+{
+  "decision": "Rachel accepted consolidated review and known limitations and explicitly approved v1.0.0",
+  "authorization_text": "Rachel 已接受集中審閱結果與已知限制，並明確批准 v1.0.0。",
+  "review_packet_sha256": "5aa94d83e308684b3c98d9bfaba0b3ebf48979570f56fbb092ccfe71d64d1766",
+  "review_packet_basename": "FINAL_RACHEL_REVIEW_PACKET.md",
+  "product_candidate": "cad0604e477d15edc437d38057b26f78057938e8",
+  "controlled_observations": 40,
+  "new_live_observations": 3,
+  "newly_accepted_scope": "34 remaining controlled observations plus 3 new live observations; earlier 6 controlled observations separately approved",
+  "not_approved": [
+    "raw LLM prose correctness",
+    "Judge reliability",
+    "uncovered scenarios",
+    "general reliability"
+  ],
+  "criterion_labels_invented": false,
+  "controlled_source_records": [
+    {
+      "round": 1,
+      "batch": 1,
+      "raw_sha256": "bf24eb5d39b708f87b39d825eab44a083c37630f1a93f85d9900eb65e9b692df",
+      "suite_sha256": "1b9cce2ac7320a901a3abdfa181431a8e80b9f6734c0404da67079619e1f5ccf",
+      "inference_attempts": 12
+    },
+    {
+      "round": 1,
+      "batch": 2,
+      "raw_sha256": "a8e6a201c4c074f0d8cd5c486ecdc713aa7b555161dabb76c7e5df02104af817",
+      "suite_sha256": "1b9cce2ac7320a901a3abdfa181431a8e80b9f6734c0404da67079619e1f5ccf",
+      "inference_attempts": 12
+    },
+    {
+      "round": 1,
+      "batch": 3,
+      "raw_sha256": "42935f4705a1510ca1b1836d0db004db30e70f2eda810d694b817cbd2b39d6db",
+      "suite_sha256": "1b9cce2ac7320a901a3abdfa181431a8e80b9f6734c0404da67079619e1f5ccf",
+      "inference_attempts": 5
+    },
+    {
+      "round": 1,
+      "batch": 4,
+      "raw_sha256": "b1cfb5a4cd95d4c498d9d0fecf8a633678b7ad5a4e55703d8543e78b37b6c7aa",
+      "suite_sha256": "1b9cce2ac7320a901a3abdfa181431a8e80b9f6734c0404da67079619e1f5ccf",
+      "inference_attempts": 3
+    },
+    {
+      "round": 2,
+      "batch": 1,
+      "raw_sha256": "92adcf6b25f0605891b7f000aaea73b46a81efcc6b6478a7d4dea7d2267d2c69",
+      "suite_sha256": "1b9cce2ac7320a901a3abdfa181431a8e80b9f6734c0404da67079619e1f5ccf",
+      "inference_attempts": 12
+    },
+    {
+      "round": 2,
+      "batch": 2,
+      "raw_sha256": "8d92374e247f82537ffa34323a24e0274438c93986f59b4b080d691b9835b32e",
+      "suite_sha256": "1b9cce2ac7320a901a3abdfa181431a8e80b9f6734c0404da67079619e1f5ccf",
+      "inference_attempts": 12
+    },
+    {
+      "round": 2,
+      "batch": 3,
+      "raw_sha256": "28699e233cfa42ea3c7bf990d08caa554e3d0f4037b025ddd894a3fd0b9642ac",
+      "suite_sha256": "1b9cce2ac7320a901a3abdfa181431a8e80b9f6734c0404da67079619e1f5ccf",
+      "inference_attempts": 5
+    },
+    {
+      "round": 2,
+      "batch": 4,
+      "raw_sha256": "4a417370ff30a6ff01e9dc61f0b6733e88131b2d986351aeb1a4dc2d4deba6cd",
+      "suite_sha256": "1b9cce2ac7320a901a3abdfa181431a8e80b9f6734c0404da67079619e1f5ccf",
+      "inference_attempts": 3
+    }
+  ],
+  "covered_controlled_outputs": [
+    {
+      "round": 1,
+      "id": "v1a-01",
+      "product_object_sha256": "e9ac1aca11c09fc820c8eb35be6aa977e16e17403a15a3d42177b00f7809396f"
+    },
+    {
+      "round": 1,
+      "id": "v1a-02",
+      "product_object_sha256": "c33123aa94a6c4e0b194e63618de490d29b524733223a652a3d02406242b09e4"
+    },
+    {
+      "round": 1,
+      "id": "v1a-03",
+      "product_object_sha256": "8a748b7917721e2f4280419dc82158188ce18f50920f37fa033a203ad664f6bf"
+    },
+    {
+      "round": 1,
+      "id": "v1a-04",
+      "product_object_sha256": "ce4e1338a38047ecfa24fe8d55df702d15320df8cb0da467380b56fc3121e573"
+    },
+    {
+      "round": 1,
+      "id": "v1a-05",
+      "product_object_sha256": "029ec7e209dca501d0b82d1e7f4f08847cc3a99d9d791d6f15020cbc15c4d3e5"
+    },
+    {
+      "round": 1,
+      "id": "v1a-06",
+      "product_object_sha256": "2fafd88de49e4fbcf1d1647edb6ed41b311f014a37d1ff860ffee62c72277d91"
+    },
+    {
+      "round": 1,
+      "id": "v1a-07",
+      "product_object_sha256": "c226245f9f6389b614c0621f0f072f7d81355f38de6a61d99a4b00d406a50f60"
+    },
+    {
+      "round": 1,
+      "id": "v1a-08",
+      "product_object_sha256": "b2e0476bf9583e1993c31929fefafffd95342c79aa1c73f8d5a7e9cf08a76193"
+    },
+    {
+      "round": 1,
+      "id": "v1a-09",
+      "product_object_sha256": "fb9b116a1d2b1e81b55cdd94641cf22ea5f9ab7b9ed0cf92827793144e7e6e24"
+    },
+    {
+      "round": 1,
+      "id": "v1a-10",
+      "product_object_sha256": "f750281a5a8382376937d14d321b59cf781cd6c80b3e75d1f551a4b912faea22"
+    },
+    {
+      "round": 1,
+      "id": "v1a-11",
+      "product_object_sha256": "3acda71c2ecf4fb0a16dc5ce021bfacd8ce93c0e64fe7e9a205dff509bd09c7d"
+    },
+    {
+      "round": 1,
+      "id": "v1a-12",
+      "product_object_sha256": "92bcefab77c7b87c27fe058de0aa4bafe5c6f00a25861df192a1073d1e043dbc"
+    },
+    {
+      "round": 1,
+      "id": "v1a-13",
+      "product_object_sha256": "6168855c6e1459677d15188713a14719734202f46176be85066f123f81b202e9"
+    },
+    {
+      "round": 1,
+      "id": "v1a-14",
+      "product_object_sha256": "fc546dad94eae0c42fa12cdc5a0e8416444355b13ceff793a4fce06a9595d704"
+    },
+    {
+      "round": 1,
+      "id": "v1a-15",
+      "product_object_sha256": "508793b8e6e27bd5cba7359b266af805f1de81164e64d1151a5a3bf7818062ab"
+    },
+    {
+      "round": 1,
+      "id": "v1a-16",
+      "product_object_sha256": "508793b8e6e27bd5cba7359b266af805f1de81164e64d1151a5a3bf7818062ab"
+    },
+    {
+      "round": 1,
+      "id": "v1a-17",
+      "product_object_sha256": "ac8761211cdd972f339359990c1aa4d6985dccccf9a24241ce9399249f6d66e0"
+    },
+    {
+      "round": 1,
+      "id": "v1a-18",
+      "product_object_sha256": "508793b8e6e27bd5cba7359b266af805f1de81164e64d1151a5a3bf7818062ab"
+    },
+    {
+      "round": 1,
+      "id": "v1a-19",
+      "product_object_sha256": "508793b8e6e27bd5cba7359b266af805f1de81164e64d1151a5a3bf7818062ab"
+    },
+    {
+      "round": 1,
+      "id": "v1a-20",
+      "product_object_sha256": "2fafd88de49e4fbcf1d1647edb6ed41b311f014a37d1ff860ffee62c72277d91"
+    },
+    {
+      "round": 2,
+      "id": "v1a-01",
+      "product_object_sha256": "e9ac1aca11c09fc820c8eb35be6aa977e16e17403a15a3d42177b00f7809396f"
+    },
+    {
+      "round": 2,
+      "id": "v1a-02",
+      "product_object_sha256": "c33123aa94a6c4e0b194e63618de490d29b524733223a652a3d02406242b09e4"
+    },
+    {
+      "round": 2,
+      "id": "v1a-03",
+      "product_object_sha256": "8a748b7917721e2f4280419dc82158188ce18f50920f37fa033a203ad664f6bf"
+    },
+    {
+      "round": 2,
+      "id": "v1a-04",
+      "product_object_sha256": "ce4e1338a38047ecfa24fe8d55df702d15320df8cb0da467380b56fc3121e573"
+    },
+    {
+      "round": 2,
+      "id": "v1a-05",
+      "product_object_sha256": "029ec7e209dca501d0b82d1e7f4f08847cc3a99d9d791d6f15020cbc15c4d3e5"
+    },
+    {
+      "round": 2,
+      "id": "v1a-06",
+      "product_object_sha256": "2fafd88de49e4fbcf1d1647edb6ed41b311f014a37d1ff860ffee62c72277d91"
+    },
+    {
+      "round": 2,
+      "id": "v1a-07",
+      "product_object_sha256": "c226245f9f6389b614c0621f0f072f7d81355f38de6a61d99a4b00d406a50f60"
+    },
+    {
+      "round": 2,
+      "id": "v1a-08",
+      "product_object_sha256": "b2e0476bf9583e1993c31929fefafffd95342c79aa1c73f8d5a7e9cf08a76193"
+    },
+    {
+      "round": 2,
+      "id": "v1a-09",
+      "product_object_sha256": "fb9b116a1d2b1e81b55cdd94641cf22ea5f9ab7b9ed0cf92827793144e7e6e24"
+    },
+    {
+      "round": 2,
+      "id": "v1a-10",
+      "product_object_sha256": "f750281a5a8382376937d14d321b59cf781cd6c80b3e75d1f551a4b912faea22"
+    },
+    {
+      "round": 2,
+      "id": "v1a-11",
+      "product_object_sha256": "3acda71c2ecf4fb0a16dc5ce021bfacd8ce93c0e64fe7e9a205dff509bd09c7d"
+    },
+    {
+      "round": 2,
+      "id": "v1a-12",
+      "product_object_sha256": "92bcefab77c7b87c27fe058de0aa4bafe5c6f00a25861df192a1073d1e043dbc"
+    },
+    {
+      "round": 2,
+      "id": "v1a-13",
+      "product_object_sha256": "6168855c6e1459677d15188713a14719734202f46176be85066f123f81b202e9"
+    },
+    {
+      "round": 2,
+      "id": "v1a-14",
+      "product_object_sha256": "fc546dad94eae0c42fa12cdc5a0e8416444355b13ceff793a4fce06a9595d704"
+    },
+    {
+      "round": 2,
+      "id": "v1a-15",
+      "product_object_sha256": "508793b8e6e27bd5cba7359b266af805f1de81164e64d1151a5a3bf7818062ab"
+    },
+    {
+      "round": 2,
+      "id": "v1a-16",
+      "product_object_sha256": "508793b8e6e27bd5cba7359b266af805f1de81164e64d1151a5a3bf7818062ab"
+    },
+    {
+      "round": 2,
+      "id": "v1a-17",
+      "product_object_sha256": "ac8761211cdd972f339359990c1aa4d6985dccccf9a24241ce9399249f6d66e0"
+    },
+    {
+      "round": 2,
+      "id": "v1a-18",
+      "product_object_sha256": "508793b8e6e27bd5cba7359b266af805f1de81164e64d1151a5a3bf7818062ab"
+    },
+    {
+      "round": 2,
+      "id": "v1a-19",
+      "product_object_sha256": "508793b8e6e27bd5cba7359b266af805f1de81164e64d1151a5a3bf7818062ab"
+    },
+    {
+      "round": 2,
+      "id": "v1a-20",
+      "product_object_sha256": "2fafd88de49e4fbcf1d1647edb6ed41b311f014a37d1ff860ffee62c72277d91"
+    }
+  ],
+  "covered_live_outputs": [
+    {
+      "id": "live-overlap",
+      "rendered_answer_sha256": "a9fd3dd1cf8a25ca7554e7b4a0dee70310b73446eeba8f4e62c5493f72da5af9"
+    },
+    {
+      "id": "live-adjacent",
+      "rendered_answer_sha256": "701af96ddf7c8901d50cbe4ba2cbd72abf48c9fa889d7f7ad57995a78204a85c"
+    },
+    {
+      "id": "live-empty",
+      "rendered_answer_sha256": "ef3d64dd0515fee6e26f7a78ffdb036a3b91bc831917d2aa74d59017d9b4d5ef"
+    }
+  ],
+  "live_source_raw_sha256": "4fe1a35ab3c68e4808cbd14ca5c110b0b3c14ff7d08314e61caec5a5c5a188c6",
+  "live_execution_checkout": "648bdc8cf09f1f6fb80b5bffe9a148c46b6a16a7",
+  "implementation_sha256": "a0df49acc936714933fc37109d537f20db4eb65b248dee7aa52c5c83097372c3"
+}

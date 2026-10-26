@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 — October 26, 2026
+
+- Release the read-only Calendar Availability Agent through the Python CLI with explicit Python renderer and English/Traditional Chinese output. Preserve raw model answer, tool trace, product output and provenance separately.
+- Retain three testing layers: offline deterministic pytest/CI, opt-in real Google/OAuth integration, and real local-model controlled evaluations with deterministic grading, advisory Qwen experiments and human review.
+- Record 379 offline tests, twenty controlled cases repeated twice (40/40 automated contract matches; 20/20 product/route/input-message pairs), and a bounded three-case live round with six events sends and six model attempts. These are bounded checks, not overall accuracy.
+- Include a 46-wheel hash lock and verified Mac arm64/Python 3.12 environment/build procedure; distinguish the new 1.0.0 wheel from historical 0.3.0.dev0 artifacts.
+- Record Rachel's scoped consolidated acceptance and v1.0.0 approval in a separate [addendum](reports/baseline/V1_RELEASE_ACCEPTANCE.md). Preserve original pending/semantic labels, private live evidence and failures.
+- Keep limitations explicit: read-only dedicated calendar, opt-in renderer, unsupported/missing-input boundaries, incomplete clarification, raw LLM defects, advisory Judge and separate MCP acceptance. No PyPI publication or new-machine/production-readiness claim.
+
 ## 0.3.0.dev0 — Development Preview, October 15, 2026
 
 - Add offline interval relations and deterministic Calendar rendering, explicitly opt-in through the Python agent and bounded live runner (#15–#18). Preserve raw answers, tool traces and separate product output; default/MCP behavior remains unchanged.
