@@ -47,7 +47,7 @@ The raw answer's End cell contradicts the evidence and its own prose. The render
 
 Rachel confirmed the [earlier three controlled product answers](reports/baseline/CALENDAR_RENDERER_E2E_V1_HUMAN_SIGNOFF.md) and [six pilot outputs](reports/baseline/V1_CONTROLLED_PILOT_003_HUMAN_SIGNOFF.md): four rendered answers, a missing-date question and an unknown response. Rachel also approved the historical three live product outputs; that signoff is recorded privately and does not cover the latest candidate. Original experiment labels are preserved.
 
-Current v1 acceptance work: twenty controlled cases completed twice on one unchanged candidate; product/route/input-message comparisons matched in 20/20 pairs. A new hash-fixed Mac arm64/Python 3.12 environment passed all 379 offline tests. Current-candidate live regression stopped at OAuth refresh before events/inference; human/release gates remain open. [Closeout evidence and blockers](docs/V1_BOUNDED_CLOSEOUT.md) · [Reproduce Python environment](docs/V1_REPRODUCE.md).
+Current v1 acceptance work: twenty controlled cases completed twice on one unchanged candidate; product/route/input-message comparisons matched in 20/20 pairs. A new hash-fixed Mac arm64/Python 3.12 environment passed all 379 offline tests. After a preserved OAuth-refresh failure, fresh OAuth-only consent and one newly authorized current-candidate live round succeeded (6 events sends, 6 model attempts; three fixture/structure/facts and AI product reviews matched). Human/release gates remain open. [Current closeout and remaining decisions](docs/V1_OAUTH_LIVE_CLOSEOUT.md) · [Reproduce Python environment](docs/V1_REPRODUCE.md).
 
 ## Quick start
 
