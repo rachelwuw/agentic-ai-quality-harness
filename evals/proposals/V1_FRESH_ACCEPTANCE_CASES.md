@@ -1,5 +1,9 @@
 # Fresh v1 acceptance cases — proposed, not executed
 
+## Current execution status — October 26, 2026
+
+The original authored proposal and approval language below are historical. Under later bounded-autopilot authorization, these unchanged cases completed two controlled rounds on `cad0604`; no expected labels were changed. See [closeout and reference/review limitations](../../docs/V1_BOUNDED_CLOSEOUT.md). This does not establish an independently validated benchmark or authorize additional runs.
+
 October 21, 2026. Prepared after code candidate `338e477` and the six-case regression signoff in `0b87a10`. These new inputs have not been run against the SUT or used to change implementation. They are authored development proposals, **not an independently validated benchmark**. Rachel/separate reference review must approve the exact inputs and outcomes before inference. No new execution is authorized here.
 
 ## Fixed inputs and case inventory

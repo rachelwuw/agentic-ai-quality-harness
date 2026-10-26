@@ -1,5 +1,9 @@
 # v1 environment rebuild — evidence plan, not a completed rebuild
 
+## Current status — October 26, 2026
+
+The original proposal below is retained as history. Bounded autopilot subsequently authorized and completed the hash-fixed dependency/build scheme and new Python venv checks. See [actual rebuild evidence and procedure](V1_REPRODUCE.md) and [closeout](V1_BOUNDED_CLOSEOUT.md). Runtime/model recreation was not performed; current live attempt failed OAuth refresh, fresh OAuth is still missing. Earlier approval-only instructions below are historical, not current work status.
+
 October 21, 2026. Preparation only: no dependencies installed, environment created/deleted, model loaded, Google authorization performed or experiment executed. Companion to [v1 acceptance](V1_ACCEPTANCE.md).
 
 ## Existing evidence and specific gaps

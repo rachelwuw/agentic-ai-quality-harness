@@ -1,0 +1,52 @@
+{
+  "target": {
+    "os": "Darwin",
+    "machine": "arm64",
+    "python": "3.12.14",
+    "macos_version": "27.0"
+  },
+  "candidate_commit": "cad0604e477d15edc437d38057b26f78057938e8",
+  "lock_sha256": "fc1865b38f628f505c84d5f2868a78a7a752691fb636afdc15c694c619725cd6",
+  "locked_wheel_count": 46,
+  "project_wheel_sha256": "f6d29b445bb92a6a16b3a64a4821400dde745251de8f820d123c5e0d7f31a260",
+  "build_tools": {
+    "pip": "25.1.1",
+    "setuptools": "84.2.1",
+    "wheel": "0.48.0"
+  },
+  "clean_dependency_check": "passed",
+  "required_mcp_calendar_imports": "passed",
+  "installed_wheel_import_outside_checkout": "passed",
+  "offline_tests": {
+    "passed": 379,
+    "skipped": 0
+  },
+  "runtime": {
+    "key": "openai/gpt-oss-20b",
+    "architecture": "gpt-oss",
+    "quantization": {
+      "name": "MXFP4",
+      "bits_per_weight": 4
+    },
+    "size_bytes": 12109664217,
+    "format": "gguf"
+  },
+  "runtime_context_length": 8192,
+  "request_parameters": {
+    "temperature": 0,
+    "max_tokens": 2048,
+    "timeout_seconds": 180
+  },
+  "sut_gguf_sha256": "65d06d31a3977d553cb3af137b5c26b5f1e9297a6aaa29ae7caa98788cde53ab",
+  "recreation_boundaries": {
+    "python_environment": "new isolated venv; wheel installation from hashed lock; fixed build tooling; existing Python distribution",
+    "runtime": "existing installation and loaded instance; no reinstall/download",
+    "oauth": "existing credentials; refresh failed; no interactive auth; no completed current live regression",
+    "clean_os_or_new_machine": "not performed"
+  },
+  "verification_failure_preserved": "Initial outside-checkout check accidentally resolved venv executable symlink to base Python; harness import failed. Corrected venv invocation passed; no package/source change.",
+  "runtime_application": {
+    "CFBundleShortVersionString": "0.4.25+1",
+    "CFBundleVersion": "0.4.25+1"
+  }
+}
