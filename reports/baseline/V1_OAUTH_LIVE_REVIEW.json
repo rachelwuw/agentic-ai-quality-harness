@@ -1,0 +1,43 @@
+{
+  "execution_checkout_commit": "648bdc8cf09f1f6fb80b5bffe9a148c46b6a16a7",
+  "product_source_candidate": "cad0604e477d15edc437d38057b26f78057938e8",
+  "implementation_sha256": "a0df49acc936714933fc37109d537f20db4eb65b248dee7aa52c5c83097372c3",
+  "oauth_only": {
+    "fresh_interactive_consent": true,
+    "scope": "calendar.events.owned.readonly",
+    "exact_scope_verified": true,
+    "refresh_validation_passed": true,
+    "atomic_token_replacement": true,
+    "previous_token_preserved_outside_git": true,
+    "calendar_reads": 0,
+    "model_calls": 0,
+    "oauth_traffic": "Browser authorization/token exchange plus one explicit refresh validation; HTTP exchanges not completely instrumented."
+  },
+  "live_review": {
+    "source_raw_sha256": "4fe1a35ab3c68e4808cbd14ca5c110b0b3c14ff7d08314e61caec5a5c5a188c6",
+    "case_count": 3,
+    "google_parameters_matched": 3,
+    "python_facts_matched": 3,
+    "product_fidelity_ai_review_matched": 3,
+    "product_text_matches_historically_approved_text": 3,
+    "rachel_human_signoff": "pending; equality does not transfer approval",
+    "raw_findings": [
+      "Overlap omits explicit date.",
+      "Adjacent omits numeric offset; no numerical time defect observed.",
+      "Empty omits explicit dedicated-calendar scope and numeric offset."
+    ],
+    "semantic_pass_claim": false
+  },
+  "permissions_and_limits": {
+    "google_events_sends": 6,
+    "model_attempts": 6,
+    "hard_limit_each": 12,
+    "judge_calls": 0,
+    "fixture_checks_passed": 3,
+    "agent_structure_checks_passed": 3,
+    "runtime_unchanged": true,
+    "entire_round_retries": 0,
+    "calendar_writes": 0
+  },
+  "private_review_packet": "Stored locally only; live answers/traces and credential files are not committed."
+}

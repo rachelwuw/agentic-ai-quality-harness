@@ -1,5 +1,9 @@
 # v1 bounded closeout — evidence and remaining decisions
 
+## Subsequent authorized OAuth/live follow-up
+
+The original failure and decisions below preserve their checkpoint context. [OAuth-only reauthorization and one newly authorized live round](V1_OAUTH_LIVE_CLOSEOUT.md) subsequently succeeded without source/label changes. Current remaining gates are concentrated human acceptance and the final Rachel release decision; the earlier failed live attempt remains intact.
+
 October 26, 2026. Product candidate: `cad0604e477d15edc437d38057b26f78057938e8`, package `0.3.0.dev0`. This closeout changes dependency/evidence documentation, not product code, model settings, labels or rubric. No v1 tag or release is created.
 
 ## Controlled acceptance: two rounds, fixed candidate
