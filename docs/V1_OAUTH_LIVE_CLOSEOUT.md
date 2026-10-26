@@ -1,5 +1,7 @@
 # v1 OAuth and current-candidate live closeout
 
+Current release decision: Rachel subsequently accepted the consolidated review and known limitations and approved v1.0.0. See the [separate acceptance addendum](../reports/baseline/V1_RELEASE_ACCEPTANCE.md). Original checkpoint results, pending fields and authorization limits below are retained as history.
+
 October 26, 2026. Follow-up to the [bounded closeout](V1_BOUNDED_CLOSEOUT.md). Execution checkout was `648bdc8cf09f1f6fb80b5bffe9a148c46b6a16a7`; every product Python source hash still matched tested candidate `cad0604e477d15edc437d38057b26f78057938e8`, and live-case bytes matched the earlier attempt. This PR changes evidence/documentation only. No product, labels, model settings, rubric, workflows, version or release artifacts changed.
 
 ## OAuth-only authorization
